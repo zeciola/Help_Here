@@ -1,5 +1,10 @@
 package Model;
 
+import Model.*;
+import DAO.*;
+import Control.*;
+import Util.*;
+
 public class Cadastro {
     private String nome;
     private String email;
