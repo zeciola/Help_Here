@@ -1,8 +1,8 @@
 package Model;
 
+import Control.*;
 import Model.*;
 import DAO.*;
-import Control.*;
 import Util.*;
 
 public class Cadastro {
