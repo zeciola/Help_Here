@@ -1,18 +1,26 @@
+<%-- 
+    Document   : CastroFrom
+    Created on : 08/02/2017, 10:26:34
+    Author     : 11141100670
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <title>Help Here - Cadastro Usuário</title>
-    <meta charset="UTF-8">
+    <head>
+        <title>Help Here - Cadastro Usuário</title>
+        <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <!-- barra de superior -->
+        <!-- barra de superior -->
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -28,7 +36,7 @@
                     <li> </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Quem somos</a></li>s
+                    <li><a href="#">Quem somos</a></li>
                     <li><a href="#">Cadastrar-se</a> </li>
                     <li><a href="#">Entrar</a> </li>
                 </ul>
@@ -81,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                    -->
+                -->
 
 
                 <!-- Text input-->
@@ -95,6 +103,16 @@
                     </div>
                 </div>
 
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Data de nascimento</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="data" placeholder="dd/mm/aa" class="form-control" type="date">
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Text input-->
 
@@ -107,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Text input-->
 
                 <div class="form-group">
@@ -152,35 +170,35 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="state" class="form-control selectpicker">
-      <option value=" " >Escolha o seu estado</option>
-	<option value="AC">Acre</option>
-	<option value="AL">Alagoas</option>
-	<option value="AP">Amapá</option>
-	<option value="AM">Amazonas</option>
-	<option value="BA">Bahia</option>
-	<option value="CE">Ceará</option>
-	<option value="DF">Distrito Federal</option>
-	<option value="ES">Espirito Santo</option>
-	<option value="GO">Goiás</option>
-	<option value="MA">Maranhão</option>
-	<option value="MS">Mato Grosso do Sul</option>
-	<option value="MT">Mato Grosso</option>
-	<option value="MG">Minas Gerais</option>
-	<option value="PA">Pará</option>
-	<option value="PB">Paraíba</option>
-	<option value="PR">Paraná</option>
-	<option value="PE">Pernambuco</option>
-	<option value="PI">Piauí</option>
-	<option value="RJ">Rio de Janeiro</option>
-	<option value="RN">Rio Grande do Norte</option>
-	<option value="RS">Rio Grande do Sul</option>
-	<option value="RO">Rondônia</option>
-	<option value="RR">Roraima</option>
-	<option value="SC">Santa Catarina</option>
-	<option value="SP">São Paulo</option>
-	<option value="SE">Sergipe</option>
-	<option value="TO">Tocantins</option>
-    </select>
+                                <option value=" " >Escolha o seu estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espirito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -226,10 +244,10 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <select name="state" class="form-control selectpicker">
-      <option value=" " >Escolha o seu sexo</option>
-	<option value="Masculino">Masculino</option>
-	<option value="Feminino">Feminino</option>
-    </select>
+                                <option value=" " >Escolha o seu sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -241,15 +259,15 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" class="btn btn-warning">Send <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 
             </fieldset>
         </form>
     </div>
-    </div>
-    <!-- /.container -->
+</div>
+<!-- /.container -->
 </body>
 
 </html>

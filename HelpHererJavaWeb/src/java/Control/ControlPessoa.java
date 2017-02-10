@@ -12,7 +12,7 @@ import Model.*;
 import DAO.*;
 import Util.*;
 
-public class ControlCadastro extends HttpServlet {
+public class ControlPessoa extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

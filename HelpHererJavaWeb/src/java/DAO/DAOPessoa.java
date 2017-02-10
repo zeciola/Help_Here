@@ -5,6 +5,6 @@ import Model.*;
 import DAO.*;
 import Util.*;
 
-public class DAOCadastro {
+public class DAOPessoa {
     
 }

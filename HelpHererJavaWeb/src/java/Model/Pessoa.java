@@ -4,15 +4,20 @@ import Control.*;
 import Model.*;
 import DAO.*;
 import Util.*;
+import java.util.*;
 
-public class Cadastro {
+public class Pessoa {
+    
     private String nome;
     private String email;
+    private Date datanas;
     private String celular;
+    private String telefone;
     private String endereco;
+    private String cidade;
     private String estado;
     private String cep;
-    private String RG;
+    private String rg;
     private String cpf;
     private String sexo;
     
@@ -26,12 +31,24 @@ public class Cadastro {
         return email;
     }
 
+    public Date getDatanas() {
+        return datanas;
+    }
+
     public String getCelular() {
         return celular;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
     public String getEndereco() {
         return endereco;
+    }
+
+    public String getCidade() {
+        return cidade;
     }
 
     public String getEstado() {
@@ -42,8 +59,8 @@ public class Cadastro {
         return cep;
     }
 
-    public String getRG() {
-        return RG;
+    public String getRg() {
+        return rg;
     }
 
     public String getCpf() {
@@ -64,12 +81,24 @@ public class Cadastro {
         this.email = email;
     }
 
+    public void setDatanas(Date datanas) {
+        this.datanas = datanas;
+    }
+
     public void setCelular(String celular) {
         this.celular = celular;
     }
 
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public void setEstado(String estado) {
@@ -80,8 +109,8 @@ public class Cadastro {
         this.cep = cep;
     }
 
-    public void setRG(String RG) {
-        this.RG = RG;
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     public void setCpf(String cpf) {
