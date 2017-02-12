@@ -13,16 +13,13 @@ public class Pessoa {
     private Date datanas;
     private String celular;
     private String telefone;
-    private String endereco;
-    private String cidade;
-    private String estado;
-    private String cep;
     private String rg;
     private String cpf;
     private String sexo;
     
     //Gets
 
+    
     public String getNome() {
         return nome;
     }
@@ -41,22 +38,6 @@ public class Pessoa {
 
     public String getTelefone() {
         return telefone;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public String getCep() {
-        return cep;
     }
 
     public String getRg() {
@@ -93,22 +74,6 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
     public void setRg(String rg) {
         this.rg = rg;
     }
@@ -120,6 +85,5 @@ public class Pessoa {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
     
 }
