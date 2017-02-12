@@ -11,9 +11,10 @@ create table Pessoa (
 );
 
 create table endereco(
+    id int serial unique not null,
     endereco varchar(100),
     numeroen varchar(7),
     cidade varchar(30),
     estado varchar(20),
-    cep varchar(10),
+    cep varchar(10)
 );
