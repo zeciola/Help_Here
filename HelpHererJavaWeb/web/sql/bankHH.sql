@@ -7,7 +7,6 @@ create table Pessoa (
     rg varchar(20),
     cpf varchar(20),
     sexo varchar(10),
-
 );
 
 create table endereco(
