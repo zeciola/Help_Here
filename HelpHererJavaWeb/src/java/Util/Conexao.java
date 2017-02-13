@@ -20,13 +20,13 @@ public class Conexao {
     //senha do banco
     static String password = "postgres";
     //driver que será utilizado
-    static String Driver = "org.postgresql.Driver";
+    static String driver = "org.postgresql.Driver";
 
     public static Connection getConexao() {
         Connection conexao = null;
         try {
             //driver
-            Class.forName(Driver);
+            Class.forName(driver);
             conexao = DriverManager.getConnection(url, login, password);
         } catch (ClassNotFoundException erro1) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar carregar o driver: " + erro1);
