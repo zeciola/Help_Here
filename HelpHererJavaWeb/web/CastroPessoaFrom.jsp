@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
@@ -40,8 +39,7 @@
                     <li><a href="#">Cadastrar-se</a> </li>
                     <li><a href="#">Entrar</a> </li>
                 </ul>
-                </li>
-                </ul>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -51,6 +49,7 @@
 </head>
 
 <body>
+    
     <script src="js/jquery.mim.js"></script>
     <script src="js/bootstrap.mim.js"></script>
     <script src="js/cadform.js"></script>
@@ -146,18 +145,9 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                             <input name="endereco" placeholder="Endereço" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Cidade</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="numeroen" placeholder="Número" class="form-control" type="text">
                             <input name="cidade" placeholder="Cidade" class="form-control" type="text">
+                             <input name="cep" placeholder="CEP" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
@@ -199,18 +189,6 @@
                                 <option value="SE">Sergipe</option>
                                 <option value="TO">Tocantins</option>
                             </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label">CEP</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="cep" placeholder="CEP" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
@@ -259,7 +237,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" class="btn btn-warning">Send <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 
