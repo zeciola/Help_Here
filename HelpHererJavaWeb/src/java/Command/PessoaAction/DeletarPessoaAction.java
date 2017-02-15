@@ -5,10 +5,25 @@
  */
 package Command.PessoaAction;
 
+import Command.ICommand;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  *
  * @author 11141100670
  */
-public class DeletarPessoaAction {
+
+
+
+
+
+public class DeletarPessoaAction implements ICommand {
+
+    @Override
+    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
