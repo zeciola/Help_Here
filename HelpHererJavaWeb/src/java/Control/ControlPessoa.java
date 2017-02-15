@@ -1,5 +1,6 @@
 package Control;
 
+import Command.ICommand;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +12,9 @@ import Control.*;
 import Model.*;
 import DAO.*;
 import Util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 
 public class ControlPessoa extends HttpServlet {
 
@@ -24,20 +28,37 @@ public class ControlPessoa extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControlCadastro</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControlCadastro at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            try {
+                String acao = request.getParameter("acao");
+
+                //Mosta a acao
+                System.out.println("acao");
+
+                String Nomeclasse = "Command.PessoaAction." + acao + "PessoaAction";
+
+                Class classeAction = Class.forName(Nomeclasse);
+
+                ICommand commandAction = (ICommand) classeAction.newInstance();
+
+                String pageDispatcher = commandAction.executar(request, response);
+
+                RequestDispatcher rd = request.getRequestDispatcher(pageDispatcher);
+
+                rd.forward(request, response);
+
+            } catch (Exception erro) {
+                //Exibe pagina de erro ao usário
+                request.setAttribute("erro", erro);
+                RequestDispatcher rd = request.getRequestDispatcher("//erro.jsp");
+                rd.forward(request, response);
+            }
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +73,11 @@ public class ControlPessoa extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ControlPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -66,7 +91,11 @@ public class ControlPessoa extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ControlPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
