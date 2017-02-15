@@ -1,9 +1,13 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Date;
+import Control.*;
+import Model.*;
+import DAO.*;
+import Util.*;
+import java.util.*;
 
 public class Evento {
+
     private Date dataInicio;
     private Date dataFim;
     private Date dataCad;
@@ -12,63 +16,62 @@ public class Evento {
     private ArrayList<Pessoa> responsavel = new ArrayList();
     private Endereco endereco;
 
+    //Gets
     public Date getDataInicio() {
         return dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
     }
 
     public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
-    }
-
     public Date getDataCad() {
         return dataCad;
-    }
-
-    public void setDataCad(Date dataCad) {
-        this.dataCad = dataCad;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getDescricao() {
         return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public ArrayList<Pessoa> getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(ArrayList<Pessoa> responsavel) {
-        this.responsavel = responsavel;
-    }
-
     public Endereco getEndereco() {
         return endereco;
+    }
+
+    //Sets
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public void setDataCad(Date dataCad) {
+        this.dataCad = dataCad;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setResponsavel(ArrayList<Pessoa> responsavel) {
+        this.responsavel = responsavel;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
-    public void AddResp(Pessoa pessoa){
-        responsavel.add(pessoa);
-    }
+
 }
