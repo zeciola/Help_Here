@@ -15,7 +15,7 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
-    
+    private String municipio;
     //Gets
 
     public int getId(){
@@ -41,6 +41,14 @@ public class Endereco {
     public String getCep() {
         return cep;
     }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    
+    
+    
     
     //Sets
 
@@ -67,5 +75,13 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
+<<<<<<< HEAD
 
+=======
+    
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+    
+>>>>>>> master
 }

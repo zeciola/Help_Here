@@ -9,6 +9,7 @@ import java.util.*;
 public class Pessoa {
     
     private String nome;
+    private Endereco endereco;
     private String email;
     private Date datanas;
     private String celular;

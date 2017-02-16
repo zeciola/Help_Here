@@ -8,7 +8,7 @@ import java.util.*;
 public class Instituicao {
 
     private String nome;
-    private String razao;
+    private String razaoSocial;
     private String cnpj;
     private ArrayList<Endereco> endereco = new ArrayList();
     private String modalidade;
@@ -20,7 +20,7 @@ public class Instituicao {
     }
 
     public String getRazao() {
-        return razao;
+        return razaoSocial;
     }
 
     public String getCnpj() {
@@ -42,7 +42,7 @@ public class Instituicao {
     }
 
     public void setRazao(String razao) {
-        this.razao = razao;
+        this.razaoSocial = razao;
     }
 
     public void setCnpj(String cnpj) {
