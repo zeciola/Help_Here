@@ -9,6 +9,7 @@ import java.util.*;
 
 public class Endereco {
     
+    private int id;
     private String endereco;
     private String numeroen;
     private String cidade;
@@ -17,6 +18,10 @@ public class Endereco {
     
     //Gets
 
+    public int getId(){
+        return id;
+    }
+    
     public String getEndereco() {
         return endereco;
     }
@@ -39,6 +44,10 @@ public class Endereco {
     
     //Sets
 
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
@@ -58,6 +67,5 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
-    
+
 }

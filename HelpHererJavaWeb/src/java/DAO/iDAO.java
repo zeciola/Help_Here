@@ -1,5 +1,6 @@
 package DAO;
 
+import com.mysql.jdbc.PreparedStatement;
 import java.util.*;
 
 public interface iDAO {

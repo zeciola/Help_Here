@@ -22,7 +22,7 @@ public class CadastrarPessoaAction implements ICommand{
         en.setCep("cep");
         
         daoe.setEndereco(en);
-        return null;
+        return "/sucesso.jsp";
         
     }
     

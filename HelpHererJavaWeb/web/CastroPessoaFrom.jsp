@@ -56,7 +56,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action=" " method="post" id="contact_form">
+        <form class="well form-horizontal" action="ControlPessoa" method="post" id="contact_form">
             <fieldset>
 
 
@@ -237,7 +237,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" class="btn btn-warning">Send <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name = "acao " value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 
