@@ -20,6 +20,10 @@ create table endereco(
     status boolean
 );
 
+--Insert Pesssoa
+insert into pessoa (nome, email, datanas, ceular, rg, cpf, sexo, status) values(?,?,?,?,?,?,?,?);
+
+
 --Insert Endereco
 insert into endereco (endereco, numeroen, cidade, estado, cep) values(?,?,?,?,?);
 

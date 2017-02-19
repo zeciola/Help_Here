@@ -75,13 +75,9 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
-<<<<<<< HEAD
-
-=======
     
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
     
->>>>>>> master
 }

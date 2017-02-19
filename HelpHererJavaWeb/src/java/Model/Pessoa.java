@@ -20,7 +20,6 @@ public class Pessoa {
     
     //Gets
 
-    
     public String getNome() {
         return nome;
     }

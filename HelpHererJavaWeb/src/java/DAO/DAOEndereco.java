@@ -40,7 +40,8 @@ public class DAOEndereco implements iDAO {
             
             conexao.setAutoCommit(false);
             
-            //PreparedStatement INSERT
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            
             PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
             
             pstmt.setString(1, endereco.getEndereco());
