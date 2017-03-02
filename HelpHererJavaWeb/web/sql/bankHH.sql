@@ -20,6 +20,16 @@ create table endereco(
     status boolean
 );
 
+create table instituicao (
+    id int primary key serial unique not null,
+    nome varchar(50),
+    razaoSocial varchar(50),
+    cnpj varchar(50),
+    endereco int,
+    modalidade varchar(50),
+    
+)
+
 --Insert Pesssoa
 insert into pessoa (nome, email, datanas, ceular, rg, cpf, sexo, status) values(?,?,?,?,?,?,?,?);
 
