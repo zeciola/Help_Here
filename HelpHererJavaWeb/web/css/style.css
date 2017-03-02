@@ -2,6 +2,15 @@
     display: none;
 }
 
-.titulo {
-    width: 100px;
+.titulo{
+    font-size: 30px;
+    margin: 0 auto;
+    position: relative;
+    left: 50%;
+}
+
+#botao{
+    position: absolute;
+    margin-left: 5%;
+    margin-top: 5%;
 }
