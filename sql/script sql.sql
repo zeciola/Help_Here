@@ -28,13 +28,6 @@ dataDoado date,
 idCampanha numeric(4)
 )
 
-CREATE TABLE Campanha (
-ID numeric(4) PRIMARY KEY,
-Meta numeric(10),
-Moeda varchar(7),
-Duracao date
-)
-
 CREATE TABLE Endereco (
 ID numeric(4) PRIMARY KEY,
 Logradouro varchar(10),
@@ -56,19 +49,6 @@ ID numeric(4) PRIMARY KEY,
 idInstituicao numeric(4),
 Numero numeric(20),
 Tipo Boolean
-)
-
-CREATE TABLE Item (
-Campo_4 numeric(4) PRIMARY KEY,
-Item varchar(50)
-)
-
-CREATE TABLE ItemDoado (
-ID numeric(4) PRIMARY KEY,
-item varchar(20),
-dataDoado date,
-idArrecadacao numeric(4),
-observacao varchar(100)
 )
 
 CREATE TABLE EnderecoPessoa (
@@ -115,7 +95,7 @@ ID numeric(4) PRIMARY KEY,
 Quantidade numeric(5),
 idItem numeric(4),
 Duracao numeric(4),
-FOREIGN KEY(idItem) REFERENCES Item (Campo_4)
+ID_Evento numeric(4)
 )
 
 CREATE TABLE EmailInstituicao (
@@ -135,7 +115,7 @@ FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID)
 CREATE TABLE Evento (
 ID numeric(4) PRIMARY KEY,
 idEndereco numeric(4),
-Data numeric(4),
+Data date(8),
 Nome varchar(50),
 FOREIGN KEY(idEndereco) REFERENCES Endereco (ID)
 )
@@ -159,6 +139,29 @@ RG varchar,
 Penalisado boolean
 )
 
+CREATE TABLE ItemDoado (
+ID numeric(4) PRIMARY KEY,
+dataDoado date,
+idArrecadacao numeric(4),
+observacao varchar(100),
+idIten numeric(4),
+FOREIGN KEY(idArrecadacao) REFERENCES Arrecadacao (ID)
+)
+
+CREATE TABLE Item (
+ID numeric(4) PRIMARY KEY,
+Item varchar(50)
+)
+
+CREATE TABLE Campanha (
+ID numeric(4) PRIMARY KEY,
+Meta numeric(10),
+Moeda varchar(7),
+Duracao date,
+ID_Evento numeric(4),
+FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
+)
+
 ALTER TABLE Email ADD FOREIGN KEY(IdPessoa) REFERENCES Pessoa (ID)
 ALTER TABLE DoadoDoador ADD FOREIGN KEY(idDoador) REFERENCES Doador (ID)
 ALTER TABLE DoadoDoador ADD FOREIGN KEY(idItem) REFERENCES ItemDoado (ID)
@@ -167,11 +170,13 @@ ALTER TABLE ValorDoador ADD FOREIGN KEY(idValor) REFERENCES ValoresDoados (ID)
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES Campanha (ID)
 ALTER TABLE Telefone/Celular ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID)
 ALTER TABLE Tel/CelInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID)
-ALTER TABLE ItemDoado ADD FOREIGN KEY(idArrecadacao) REFERENCES Arrecadacao (ID)
 ALTER TABLE EnderecoPessoa ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID)
 ALTER TABLE Responsavel ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID)
 ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID)
 ALTER TABLE Voluntario ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID)
 ALTER TABLE Voluntario ADD FOREIGN KEY(IDEvento) REFERENCES Evento (ID)
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID)
+ALTER TABLE Arrecadacao ADD FOREIGN KEY(idItem) REFERENCES Item (ID)
+ALTER TABLE Arrecadacao ADD FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID)
+ALTER TABLE ItemDoado ADD FOREIGN KEY(idIten) REFERENCES Item (ID)
