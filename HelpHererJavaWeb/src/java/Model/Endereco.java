@@ -14,9 +14,15 @@ public class Endereco {
     private String numeroen;
     private String cidade;
     private String estado;
+    private String bairro;
     private String cep;
     private String municipio;
     //Gets
+
+    public String getBairro() {
+        return bairro;
+    }
+
 
     public int getId(){
         return id;
@@ -56,6 +62,10 @@ public class Endereco {
         this.id = id;
     }
     
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
