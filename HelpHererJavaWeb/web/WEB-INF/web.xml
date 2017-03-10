@@ -4,25 +4,9 @@
         <servlet-name>ControlCadastro</servlet-name>
         <servlet-class>Control.ControlCadastro</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>AcessoAdministrativo</servlet-name>
-        <servlet-class>Control.AcessoAdministrativo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AcessoLogado</servlet-name>
-        <servlet-class>Control.AcessoLogado</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ControlCadastro</servlet-name>
         <url-pattern>/ControlCadastro</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AcessoAdministrativo</servlet-name>
-        <url-pattern>/AcessoAdministrativo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AcessoLogado</servlet-name>
-        <url-pattern>/AcessoLogado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
