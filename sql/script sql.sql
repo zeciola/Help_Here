@@ -54,10 +54,12 @@ IdEvento numeric(4)
 CREATE TABLE Usuario (
 ID numeric(5) PRIMARY KEY,
 IDPessoa numeric(5),
-Tipo varchar(15),
 Login varchar(45),
-senha varchar(45)
+senha varchar(45),
+Tipo varchar(15)
 )
+select * from Usuario
+
 
 CREATE TABLE Instituicao (
 ID numeric(5) PRIMARY KEY,
