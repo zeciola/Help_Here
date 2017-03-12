@@ -17,9 +17,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Autenticação</title>
     </head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <body>
-        <h1>Hello World!</h1>
+        <h1>Autenticação de usuário</h1>
+        <%
+            String msg = (String) request.getAttribute("msg");
+            if(msg!=null){
+                
+         %>
+         <font color="red"> <%=msg%></font>
+         <%}%>
+         <form action="ControleAcesso" method="POST">
+             Login: <input type="text" name="txtLogin"><br/>
+             Senha: <input type="submit" value="Entrar" name="acao">
+         </form> 
     </body>
 </html>
