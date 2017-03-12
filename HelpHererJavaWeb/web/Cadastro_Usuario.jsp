@@ -30,7 +30,7 @@
                 </select><br/>
                 <input type="submit" value="Cadastrar" name="acao">
         </form>
-        <a href="../CastroPessoaFrom.jsp"> Pagina Principal</a> 
+        <a href="../Principal.jsp"> Pagina Principal</a> 
              
         
     </body>
