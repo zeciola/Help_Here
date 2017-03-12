@@ -10,5 +10,6 @@ package Model;
  * @author 11141104689
  */
 public enum PerfilDeAcesso {
-    
+    comum,
+    administrador;
 }
