@@ -63,7 +63,7 @@ CREATE TABLE Instituicao (
 ID numeric(5) PRIMARY KEY,
 Nome varchar(50),
 razaoSocial VARCHAR(50 ),
-tipo varchar(15), --Combo box com os tipos de Intituição: ONG, Igrejas, etc. 
+tipo varchar(15), --checkbox com os tipos de Intituição: ONG, Igrejas, etc. 
 CNJP varchar(19),
 Contato numeric(5),
 modalidade VARCHAR(50)
