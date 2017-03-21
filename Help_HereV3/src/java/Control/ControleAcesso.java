@@ -42,9 +42,9 @@ public class ControleAcesso extends HttpServlet {
                HttpSession sessaoUsuario = request.getSession();
                sessaoUsuario.setAttribute("usuarioAutenticado", usuarioAutenticado);
                //redireciona para a pagina princiapal
-               response.sendRedirect("Principal.jsp");
+               response.sendRedirect("acessologado/logado.jsp");
                } else {
-               RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+               RequestDispatcher rd = request.getRequestDispatcher("/Erro.jsp");
                request.setAttribute("msg", "Login ou Senha Incorreto!");
                rd.forward(request, response);
                }
@@ -52,11 +52,11 @@ public class ControleAcesso extends HttpServlet {
                 if(acao.equals("Sair")){
                 HttpSession sessaoUsuario = request.getSession();
                 sessaoUsuario.removeAttribute("usuarioAutenticado");
-                response.sendRedirect("logout.jsp");
+                response.sendRedirect("index.html");
 
                 }
             } catch (Exception erro) {
-                RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/Erro.jsp");
                 request.setAttribute("erro", erro);
                 rd.forward(request, response);
             }

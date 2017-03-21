@@ -10,18 +10,15 @@
         <div class="container">
             <h1>Help Here!</h1>
             <form class="form" method="post" action="ControleAcesso">
-                
-                
-                <input type="login" placeholder="Usuario">
-                <input type="password" placeholder="Senha">
-                
-                <!-- BOTTON Funcionando -->               
-                <button ty type="submit" name="acao" id="login-button" value="Entrar">Entrar</button>
-                
+                <input type="login" name="txtLogin" placeholder="Usuario">
+                <input type="password" name="txtSenha" placeholder="Senha">
+                <!-- BOTTON não Funcionou comigo usei input -->   
+                <input type="submit" name="acao" value="Entrar">  
+                <!-- BOTTON Funcionando -->
+                <button type="submit" name="acao" value="Entrar" id="login-button">Entrar</button>
                 <ul>
                 <li><a href="" class="senha-link" id="login-button">Esqueceu a senha?</a></li>
                 </ul>
-                
                 <!--<button type="submit" id="singin-button">Sing in</button>-->
             </form>
         </div>

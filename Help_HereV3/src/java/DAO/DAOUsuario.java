@@ -65,9 +65,9 @@ public class DAOUsuario {
 
         if (rsLogin.next()) {
             loginAutenticado = new Login();
-            loginAutenticado.setNome(rsLogin.getString("Login"));
+            loginAutenticado.setNome(rsLogin.getString("login"));
             loginAutenticado.setSenha(rsLogin.getString("senha"));
-            loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("Tipo")));
+            loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
         }
     
         } catch (SQLException sqlErro) {
