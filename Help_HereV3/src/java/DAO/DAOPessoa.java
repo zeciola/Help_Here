@@ -21,9 +21,12 @@ public class DAOPessoa implements iDAO{
     }
     
     //SQL
+    
     private static final String INSERT = "insert into pessoa (nome, email, datanas, ceular, rg, cpf, sexo, status) values(?,?,?,?,?,?,?,?)";
     
     private static final String DELETE = "update pessoa set";
+    
+    private static final String UPDATE = "";
     
     //DAOs
     @Override

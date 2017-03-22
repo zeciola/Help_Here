@@ -17,7 +17,7 @@
                 <!-- BOTTON Funcionando -->
                 <button type="submit" name="acao" value="Entrar" id="login-button">Entrar</button>
                 <ul>
-                <li><a href="" class="senha-link" id="login-button">Esqueceu a senha?</a></li>
+                <li><a href="#" class="senha-link" id="login-button">Esqueceu a senha?</a></li>
                 </ul>
                 <!--<button type="submit" id="singin-button">Sing in</button>-->
             </form>

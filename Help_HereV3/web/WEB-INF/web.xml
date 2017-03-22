@@ -37,7 +37,7 @@
             30
         </session-timeout>
     </session-config>
-        <!--Declaração dos filtros-->
+    <!--Declaração dos filtros-->
     <filter>
         <filter-name>AcessoAdministrativo</filter-name>
         <filter-class>AutorizacaoDeAcesso.AcessoAdministrativo</filter-class>

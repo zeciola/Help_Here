@@ -237,15 +237,13 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" name = "acao " value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name="acao" value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 
             </fieldset>
         </form>
     </div>
-</div>
-<!-- /.container -->
 </body>
 
 </html>
