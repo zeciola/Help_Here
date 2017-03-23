@@ -9,7 +9,7 @@
 <html lang="pt-br">
 
     <head>
-        <title>Help Here - Cadastro Usuário</title>
+        <title>Cadastro - Help Here</title>
         <meta charset="UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Quem somos</a></li>
                     <li><a href="#">Cadastrar-se</a> </li>
-                    <li><a href="#">Entrar</a> </li>
+                    <li><a href="login.jsp">Entrar</a> </li>
                 </ul>
 
             </div>
@@ -89,14 +89,53 @@
                     </div>
                 </div>
                 
+                <!-- Sexo -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Sexo</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <select name="state" class="form-control selectpicker">
+                                <option value=" " >Escolha o seu sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- RG -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">RG</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="RG" placeholder="RG" class="form-control" type="number">
+                        </div>
+                    </div>
+                </div>
 
-                <!-- Text input-->
+                <!-- CPF -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">CPF</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="cpf" placeholder="CPF" class="form-control" type="number">
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+
+                <!-- Email -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">E-Mail</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="E-Mail" class="form-control" type="text">
+                            <input name="email" placeholder="E-Mail" class="form-control" type="email">
                         </div>
                     </div>
                 </div>
@@ -119,7 +158,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="text">
+                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="number">
                         </div>
                     </div>
                 </div>
@@ -131,7 +170,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="text">
+                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="number">
                         </div>
                     </div>
                 </div>
@@ -145,7 +184,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                             <input name="endereco" placeholder="Endereço" class="form-control" type="text">
                             <input name="bairro" placeholder="Bairro" class="form-control" type="text">
-                            <input name="numeroen" placeholder="Número" class="form-control" type="text">
+                            <input name="numeroen" placeholder="Número" class="form-control" type="number">
                             <input name="cidade" placeholder="Cidade" class="form-control" type="text">
                             <input name="cep" placeholder="CEP" class="form-control" type="text">
                         </div>
@@ -378,49 +417,13 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">RG</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="RG" placeholder="RG" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">CPF</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="cpf" placeholder="CPF" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- radio checks -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Sexo</label>
-                    <div class="col-md-4 selectContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <select name="state" class="form-control selectpicker">
-                                <option value=" " >Escolha o seu sexo</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Feminino">Feminino</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
+                
+                
                 <!-- Success message -->
-                <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+                <div class="alert alert-success" role="alert" id="success_message">Sucesso! <i class="glyphicon glyphicon-thumbs-up"></i>Cadastro realizado com sucesso. <i style="font-size: 25px;">&#9786;</i></div>
 
                  <!-- Error message -->
-                <div class="alert alert-success" role="alert" id="success_message">Error <i class="glyphicon glyphicon-thumbs-down"></i> escreva novamente</div>
+                 <div style="background-color: firebrick" class="alert alert-success" role="alert" id="success_message">Erro <i class="glyphicon glyphicon-thumbs-down"></i>Ops! Algum erro foi encontrado <font style="font-size: 20px">&#9785;</font></div>
                 
                 <!-- Button -->
                 <div class="form-group">

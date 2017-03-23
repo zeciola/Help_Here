@@ -1,4 +1,4 @@
-﻿﻿
+
 
 CREATE TABLE Item (
 ID numeric(5) PRIMARY KEY,
@@ -14,7 +14,7 @@ idPessoa numeric(5)
 );
 
 CREATE TABLE Endereco (
-ID numeric(5) PRIMARY KEY unique serial,
+ID numeric(5) PRIMARY KEY   ,
 cep varchar(9),
 NomeLogradouro varchar(50),
 Numero numeric(4),
@@ -23,7 +23,7 @@ Municipio varchar(45),
 Estado varchar(2),
 Pais varchar(45)
 );
-insert into endereco values(1, '88888888', 'avenida mariana', 10, 'vila mariana', 'mogi', 'sp', 'brasil');
+-- insert into endereco values(1, '88888888', 'avenida mariana', 10, 'vila mariana', 'mogi', 'sp', 'brasil');
 
 CREATE TABLE Voluntario (
 ID numeric(5) PRIMARY KEY,
@@ -57,10 +57,13 @@ ID numeric(5) PRIMARY KEY,
 IDPessoa numeric(5),
 Login varchar(45),
 senha varchar(45),
-Tipo varchar(15)
+Tipo varchar(15),
+FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID)
 );
 
-insert into Usuario values(1, 1, 'admin', 'admin', 'administrador');
+drop table Usuario;
+-- insert into Usuario values(1, 1, 'admin', 'admin', 'administrador');
+-- insert into Usuario values(2, 2, 'comum', '123', 'comum');
 
 CREATE TABLE Instituicao (
 ID numeric(5) PRIMARY KEY,
@@ -96,12 +99,12 @@ FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID)
 );
 
 CREATE TABLE Pessoa (
-ID numeric(5) PRIMARY KEY unique serial,
-Penalisado boolean,
+ID numeric(5) PRIMARY KEY,
 Nome varchar(50),
 Sobrenome varchar(50),
 CPF varchar(15),
 RG varchar,
+Penalisado boolean,
 Datanascimento date,
 email varchar(45),
 IDEndereco numeric(5),
@@ -110,7 +113,9 @@ celular VARCHAR(20 ),
 sexo varchar,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
-insert into Pessoa values(1, 'Maria', 'De Sa', '111', '22', false, '01/01/1990', 'maria@email.com', 1, '01147474747', '011959595955', 'f');
+-- insert into Pessoa values(2, 'Maria', 'De Sa', '111', '22', false, '01/01/1990', 'maria@email.com', 1, '01147474747', '011959595955', 'Feminino');
+
+drop table Pessoa cascade
 
 CREATE TABLE Responsavel (
 ID numeric(5) PRIMARY KEY,
@@ -179,7 +184,7 @@ FOREIGN KEY(idItem) REFERENCES Item (ID),
 FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
 
-select * from Pessoa
+ -- select * from Pessoa
 
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
