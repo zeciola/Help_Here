@@ -14,14 +14,14 @@ idPessoa numeric(5)
 );
 
 CREATE TABLE Endereco (
-ID numeric(5) PRIMARY KEY,
+ID numeric(5) PRIMARY KEY unique serial,
 cep varchar(9),
 NomeLogradouro varchar(50),
 Numero numeric(4),
 Bairro varchar(45),
 Municipio varchar(45),
-UF varchar(2),
-pais varchar(45)
+Estado varchar(2),
+Pais varchar(45)
 );
 insert into endereco values(1, '88888888', 'avenida mariana', 10, 'vila mariana', 'mogi', 'sp', 'brasil');
 
@@ -96,18 +96,18 @@ FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID)
 );
 
 CREATE TABLE Pessoa (
-ID numeric(5) PRIMARY KEY,
+ID numeric(5) PRIMARY KEY unique serial,
+Penalisado boolean,
 Nome varchar(50),
 Sobrenome varchar(50),
 CPF varchar(15),
 RG varchar,
-Penalisado boolean,
 Datanascimento date,
 email varchar(45),
 IDEndereco numeric(5),
 Telefone varchar(19),
 celular VARCHAR(20 ),
-sexo char,
+sexo varchar,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
 insert into Pessoa values(1, 'Maria', 'De Sa', '111', '22', false, '01/01/1990', 'maria@email.com', 1, '01147474747', '011959595955', 'f');
