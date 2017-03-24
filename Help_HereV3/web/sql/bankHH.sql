@@ -1,5 +1,3 @@
-
-
 CREATE TABLE Item (
 ID numeric(5) PRIMARY KEY,
 Item varchar(50),
@@ -113,9 +111,11 @@ celular VARCHAR(20 ),
 sexo varchar,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
+
+-- insert into Pessoa values(1, 'admin', 'admin', '123','20',false,'01/01/1990','maria@email.com',1,'01147121212','0000000000','Masculino');
 -- insert into Pessoa values(2, 'Maria', 'De Sa', '111', '22', false, '01/01/1990', 'maria@email.com', 1, '01147474747', '011959595955', 'Feminino');
 
-drop table Pessoa cascade
+-- drop table Pessoa cascade
 
 CREATE TABLE Responsavel (
 ID numeric(5) PRIMARY KEY,
@@ -185,6 +185,7 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
 
  -- select * from Pessoa
+ -- select * from Usuario
 
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);

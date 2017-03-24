@@ -89,6 +89,17 @@
                     </div>
                 </div>
                 
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Data de nascimento</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="data" placeholder="dd/mm/aa" class="form-control" type="date">
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Sexo -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">Sexo</label>
@@ -135,21 +146,10 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="E-Mail" class="form-control" type="email">
+                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email">
                         </div>
                     </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Data de nascimento</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="data" placeholder="dd/mm/aa" class="form-control" type="date">
-                        </div>
-                    </div>
-                </div>
+                </div>              
 
                 <!-- Text input-->
 
@@ -186,7 +186,7 @@
                             <input name="bairro" placeholder="Bairro" class="form-control" type="text">
                             <input name="numeroen" placeholder="Número" class="form-control" type="number">
                             <input name="cidade" placeholder="Cidade" class="form-control" type="text">
-                            <input name="cep" placeholder="CEP" class="form-control" type="text">
+                            <input name="cep" placeholder="CEP" class="form-control" type="number">
                         </div>
                     </div>
                 </div>
@@ -429,14 +429,13 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" name = "acao " value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name = "acao" value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 
             </fieldset>
         </form>
     </div>
-</div>
 <!-- /.container -->
 </body>
 

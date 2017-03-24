@@ -18,7 +18,7 @@
                     <div>
                         <ul>
                             <!-- Link Esquecu Senha-->
-                            <li><a href="CadastroPessoaFrom.jsp" class="senha-link">Cadastrar-se</a></li>
+                            <li><a href="CadastroPessoaForm.jsp" class="senha-link">Cadastrar-se</a></li>
                             <li><a href="#" class="senha-link">Esqueceu a senha?</a></li>
                         </ul>
                     </div>
