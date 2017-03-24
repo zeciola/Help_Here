@@ -21,7 +21,8 @@ Municipio varchar(45),
 Estado varchar(2),
 Pais varchar(45)
 );
--- insert into endereco values(1, '88888888', 'avenida mariana', 10, 'vila mariana', 'mogi', 'sp', 'brasil');
+-- insert into endereco values(1, '88888888', 'avenida admin', 10, 'vila admin', 'mogi', 'sp', 'brasil');
+-- insert into endereco values(2, '88888888', 'avenida mariana', 10, 'vila mariana', 'mogi', 'sp', 'brasil');
 
 CREATE TABLE Voluntario (
 ID numeric(5) PRIMARY KEY,
@@ -59,7 +60,7 @@ Tipo varchar(15),
 FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID)
 );
 
-drop table Usuario;
+-- drop table Usuario;
 -- insert into Usuario values(1, 1, 'admin', 'admin', 'administrador');
 -- insert into Usuario values(2, 2, 'comum', '123', 'comum');
 
@@ -143,6 +144,7 @@ FOREIGN KEY(idIten) REFERENCES Item (ID)
 CREATE TABLE DoadoDoador (
 ID numeric(5) PRIMARY KEY,
 idItem numeric(5),
+idDoador numeric(5),
 FOREIGN KEY(idDoador) REFERENCES Doador (ID),
 FOREIGN KEY(idItem) REFERENCES ItemDoado (ID)
 );
@@ -185,6 +187,7 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
 
  -- select * from Pessoa
+ -- select * from Endereco
  -- select * from Usuario
 
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);

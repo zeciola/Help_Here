@@ -1,9 +1,3 @@
-<%-- 
-    Document   : logado
-    Created on : 21/03/2017, 17:22:41
-    Author     : Diego
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -35,7 +35,7 @@
                     <li> </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Quem somos</a></li>
+                    <li><a href="Sobre.html">Sobre</a></li>
                     <li><a href="#">Cadastrar-se</a> </li>
                     <li><a href="login.jsp">Entrar</a> </li>
                 </ul>
@@ -149,7 +149,20 @@
                             <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email">
                         </div>
                     </div>
-                </div>              
+                </div>
+                
+                <!-- Text input-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Senha</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input name="password" placeholder="Senha" class="form-control" type="password">
+                            <input name="password" placeholder="Confirmar Senha" class="form-control" type="password">
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Text input-->
 
