@@ -18,29 +18,53 @@ public class CadastrarPessoaAction implements ICommand{
         
         Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
+        Login lo = new Login();
+        
+        //DAOs
         DAOEndereco daoen = new DAOEndereco();
         DAOPessoa daop = new DAOPessoa();
+        DAOUsuario daou = new DAOUsuario();
+        
+        
+        boolean defalt = false;
         
         //Pessoa
         pe.setNome("nome");
-        pe.setEmail("email");
-        pe.setDatanas(datanas);
-        pe.setCelular("celular");
-        pe.setTelefone("telefone");
-        pe.setRg("rg");
+        pe.setSobrenome("sobrenome");
         pe.setCpf("cpf");
+        pe.setRg("rg");
+        pe.setPenalisado(defalt);
+        pe.setDatanascimento("datanascimento");
+        pe.setEmail("email");
+        pe.setTelefone("telefone");
+        pe.setCelular("celular");
         pe.setSexo("sexo");
+        
         
         daop.setPessoa();
         
         //Endereco de pessoa
-        en.setEndereco("endereco");
+        
+        en.setNomelogradouro("nomelogradouro");
         en.setNumeroen("numeroen");
-        en.setCidade("cidade");
+        en.setMunicipio("municipio");
         en.setEstado("estado");
+        en.setBairro("bairro");
         en.setCep("cep");
+        en.setPais("pais");
         
         daoen.setEndereco(en);
+        
+        //Usuário
+        
+        //Email
+        lo.setNome("nome");
+        lo.setSenha("senha");
+        
+        daou.setUsuario(lo);
+        
+        
+        //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";
         
     }

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-/**
- *
- * @author Lucas Puglia
- */
 import Model.Login;
 import Model.PerfilDeAcesso;
 import java.sql.Connection;
@@ -20,9 +11,16 @@ import Util.Conexao;
 
 public class DAOUsuario {
  
+    private Login login;
+    
     private static final String CADASTRAR_USUARIO = "INSERT INTO Usuario (Login, senha, Tipo) VALUES (?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
 
+    //Construtor
+    public void setUsuario(Login login) {
+        this.login = login;
+    }
+    
      public void cadastraNovoUsuario(Login login) {
     Connection conexao = null;
     PreparedStatement pstmt = null;

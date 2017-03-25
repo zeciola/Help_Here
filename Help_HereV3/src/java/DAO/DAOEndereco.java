@@ -24,9 +24,9 @@ public class DAOEndereco implements iDAO {
     private final Connection conexao = Conexao.getConexao();
 
     //SQL inputs
-    private static final String INSERT = "insert into endereco (endereco, numeroen, cidade, estado, cep) values(?,?,?,?,?)";
+    private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, Estado, Pais) values(?,?,?,?,?,?,?)";
     private static final String SELECT_ALL = "select * from endereco";
-    private static final String SELECT_ID = "select * from endereco where id=? status=true";
+    private static final String SELECT_ID = "select * from endereco where id=?";
 
     //Construtor
     public void setEndereco(Endereco endereco) {
@@ -44,15 +44,19 @@ public class DAOEndereco implements iDAO {
             
             PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
             
-            pstmt.setString(1, endereco.getEndereco());
+            pstmt.setString(1, endereco.getCep());
             
-            pstmt.setString(2, endereco.getNumeroen());
+            pstmt.setString(2, endereco.getNomelogradouro());
             
-            pstmt.setString(3, endereco.getCidade());
+            pstmt.setString(3, endereco.getNumeroen());
             
-            pstmt.setString(4, endereco.getEstado());
+            pstmt.setString(4, endereco.getBairro());
             
-            pstmt.setString(5, endereco.getCep());
+            pstmt.setString(5, endereco.getMunicipio());
+            
+            pstmt.setString(6, endereco.getEstado());
+            
+            pstmt.setString(7, endereco.getPais());
             
             pstmt.executeUpdate();
             // Fim da pstmt insert

@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
-/**
- *
- * @author 11141104689
- */
+
+// Login é a tabela Usuário
+
+// Login is the table Usuário
+
 public class Login {
+    
     private String nome;
     private String senha;
     private PerfilDeAcesso perfil;
+
+    //Gets
 
     public String getNome() {
         return nome;
@@ -25,6 +24,8 @@ public class Login {
     public PerfilDeAcesso getPerfil() {
         return perfil;
     }
+    
+    //Sets
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -37,6 +38,5 @@ public class Login {
     public void setPerfil(PerfilDeAcesso perfil) {
         this.perfil = perfil;
     }
-    
     
 }

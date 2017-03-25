@@ -8,82 +8,109 @@ import java.util.*;
 
 public class Pessoa {
     
-    private String nome;
-    private Endereco endereco;
-    private String email;
-    private Date datanas;
-    private String celular;
-    private String telefone;
-    private String rg;
-    private String cpf;
-    private String sexo;
-    
-    //Gets
+   private int id;
+   private String nome;
+   private String sobrenome;
+   private String cpf;
+   private String rg;
+   private boolean penalisado;
+   private String datanascimento;
+   private String email;
+   private String telefone;
+   private String celular;
+   private String sexo;
+   
+   //Gets
+
+    public int getId() {
+        return id;
+    }
 
     public String getNome() {
         return nome;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public Date getDatanas() {
-        return datanas;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getRg() {
-        return rg;
+    public String getSobrenome() {
+        return sobrenome;
     }
 
     public String getCpf() {
         return cpf;
     }
 
+    public String getRg() {
+        return rg;
+    }
+
+    public boolean isPenalisado() {
+        return penalisado;
+    }
+
+    public String getDatanascimento() {
+        return datanascimento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
     public String getSexo() {
         return sexo;
     }
-    
-    //Sets
+   
+   //Sets
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setDatanas(Date datanas) {
-        this.datanas = datanas;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public void setPenalisado(boolean penalisado) {
+        this.penalisado = penalisado;
+    }
+
+    public void setDatanascimento(String datanascimento) {
+        this.datanascimento = datanascimento;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
+    
     
 }

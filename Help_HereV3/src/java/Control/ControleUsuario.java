@@ -31,12 +31,16 @@ public class ControleUsuario extends HttpServlet {
 
     try {
          String acao = request.getParameter("acao");
+         
     if (acao.equals("Cadastrar")) {
         Login login = new Login();
         login.setNome(request.getParameter("txtLogin"));
         login.setSenha(request.getParameter("txtSenha"));
         String perfil = request.getParameter("optPerfil");
+        
+        
     if (perfil.equalsIgnoreCase("administrador")) {
+        
         login.setPerfil(PerfilDeAcesso.administrador);
     } else {
         login.setPerfil(PerfilDeAcesso.comum);
@@ -44,11 +48,15 @@ public class ControleUsuario extends HttpServlet {
     
     
     DAOUsuario daousuario = new DAOUsuario();
+    
     daousuario.cadastraNovoUsuario(login);
+    
     request.setAttribute("msg", "cadastrado com sucesso");
-    RequestDispatcher rd =
-   request.getRequestDispatcher("/Cadastro_Usuario.jsp");
+    
+    RequestDispatcher rd = request.getRequestDispatcher("/Cadastro_Usuario.jsp");
+    
     rd.forward(request, response);
+    
     }
     
     } catch (Exception erro) {
