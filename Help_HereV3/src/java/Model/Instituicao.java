@@ -13,6 +13,11 @@ public class Instituicao {
     private String cnpj;
     private String modalidade;
     private ArrayList<Endereco> endereco = new ArrayList();
+
+    public Instituicao() {
+        
+    }
+
     
     //Gets
 
@@ -80,6 +85,9 @@ public class Instituicao {
         this.tipo = tipo;
     }
     
-    
+        public Instituicao(int aInt, String string, String string0, String string1, String string2, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }
