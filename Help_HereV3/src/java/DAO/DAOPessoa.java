@@ -59,7 +59,7 @@ public class DAOPessoa implements iDAO{
             
             pstmt.setString(7, pessoa.getEmail());
             
-            pstmt.setInt(8, en.getId());;
+            pstmt.setInt(8, en.getIdEndereco());;
             
             pstmt.setString(9, pessoa.getTelefone());
             

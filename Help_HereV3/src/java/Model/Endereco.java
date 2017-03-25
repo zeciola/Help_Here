@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Endereco {
     
-    private int id;
+    private int idEndereco;
     private String nomelogradouro;
     private String numeroen;
     private String municipio;
@@ -21,8 +21,8 @@ public class Endereco {
 
     //Gets
 
-    public int getId() {
-        return id;
+    public int getIdEndereco() {
+        return idEndereco;
     }
 
     public String getNomelogradouro() {
@@ -55,8 +55,8 @@ public class Endereco {
     
     //Sets
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public void setNomelogradouro(String nomelogradouro) {

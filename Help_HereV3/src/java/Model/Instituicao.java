@@ -6,14 +6,20 @@ import DAO.*;
 import Util.*;
 import java.util.*;
 public class Instituicao {
-
+    private int idInstituicao;
     private String nome;
     private String razaoSocial;
+    private String tipo;
     private String cnpj;
-    private ArrayList<Endereco> endereco = new ArrayList();
     private String modalidade;
+    private ArrayList<Endereco> endereco = new ArrayList();
     
     //Gets
+
+    public int getIdInstituicao() {
+        return idInstituicao;
+    }
+    
 
     public String getNome() {
         return nome;
@@ -34,8 +40,20 @@ public class Instituicao {
     public String getModalidade() {
         return modalidade;
     }
+
+
+    public String getTipo() {
+        return tipo;
+    }
+    
+    
     
     //Sets
+
+    
+    public void setIdInstituicao(int idInstituicao) {
+        this.idInstituicao = idInstituicao;
+    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -56,5 +74,12 @@ public class Instituicao {
     public void setModalidade(String modalidade) {
         this.modalidade = modalidade;
     }
+
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
     
 }

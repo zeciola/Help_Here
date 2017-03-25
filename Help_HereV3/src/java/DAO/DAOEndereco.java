@@ -66,7 +66,7 @@ public class DAOEndereco implements iDAO {
             ResultSet rs = pstmt.getGeneratedKeys();
             
             if(rs.next()){
-                endereco.setId(rs.getInt("id"));
+                endereco.setIdEndereco(rs.getInt("id"));
                 conexao.commit();
             }
             //Fim da busca
