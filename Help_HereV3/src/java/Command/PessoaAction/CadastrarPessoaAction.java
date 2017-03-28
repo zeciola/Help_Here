@@ -14,8 +14,9 @@ public class CadastrarPessoaAction implements ICommand{
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
-        Date datanas = null;
+        //Date datanas = null;
         
+        //Instanciando Objetos
         Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
         Login lo = new Login();
@@ -29,7 +30,7 @@ public class CadastrarPessoaAction implements ICommand{
         boolean defalt = false;
         
         //Pessoa
-        pe.setNome("nome");
+        pe.setNome(request.getParameter("nome"));
         pe.setSobrenome("sobrenome");
         pe.setCpf("cpf");
         pe.setRg("rg");
@@ -42,6 +43,7 @@ public class CadastrarPessoaAction implements ICommand{
         
         
         daop.setPessoa();
+        daop.Inserir();
         
         //Endereco de pessoa
         
@@ -58,7 +60,9 @@ public class CadastrarPessoaAction implements ICommand{
         //Usuário
         
         //Email
-        lo.setNome("nome");
+        
+        lo.setId(pe.getId());
+        lo.setNome("email");
         lo.setSenha("senha");
         
         daou.setUsuario(lo);

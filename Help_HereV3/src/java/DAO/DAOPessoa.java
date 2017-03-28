@@ -8,6 +8,7 @@ import DAO.*;
 import Util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -68,7 +69,15 @@ public class DAOPessoa implements iDAO{
             pstmt.setString(11, pessoa.getSexo());
             
             pstmt.executeUpdate();
+            
             //Fim do pstmt inserir
+            
+            ResultSet rs = pstmt.getGeneratedKeys();
+            
+            if(rs.next()){
+                pessoa.setId(rs.getInt("id"));
+                conexao.commit();
+            }
             
             
         }catch(SQLException e){

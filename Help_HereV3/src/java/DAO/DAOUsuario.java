@@ -1,6 +1,11 @@
 package DAO;
 
-import Model.Login;
+import Command.*;
+import Control.*;
+import Model.*;
+import DAO.*;
+import Util.*;
+import java.sql.Connection;
 import Model.PerfilDeAcesso;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +17,10 @@ import Util.Conexao;
 public class DAOUsuario {
  
     private Login login;
+    private final Connection conexao = Conexao.getConexao();
     
-    private static final String CADASTRAR_USUARIO = "INSERT INTO Usuario (Login, senha, Tipo) VALUES (?,?,?)";
+    
+    private static final String INSERT = "INSERT INTO Usuario (Login, senha, Tipo) VALUES (?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
 
     //Construtor
@@ -23,11 +30,12 @@ public class DAOUsuario {
     
      public void cadastraNovoUsuario(Login login) {
     Connection conexao = null;
-    PreparedStatement pstmt = null;
     
     try {
+        
+        
         conexao = Conexao.getConexao();
-        pstmt = conexao.prepareStatement(CADASTRAR_USUARIO);
+        pstmt = conexao.prepareStatement(INSERT);
         pstmt.setString(1, login.getNome());
         pstmt.setString(2, login.getSenha());
         pstmt.setString(3, login.getPerfil().toString());
@@ -39,7 +47,8 @@ public class DAOUsuario {
             if (conexao != null) {
             try {
             conexao.close();
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
             }
