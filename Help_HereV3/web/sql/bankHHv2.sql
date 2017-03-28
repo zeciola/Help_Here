@@ -1,4 +1,4 @@
-﻿
+
 CREATE TABLE Item (
 ID serial PRIMARY KEY,
 Item varchar(50),
@@ -183,7 +183,7 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 -- INSERTs
 
 -- Pessoa
--- insert into Pessoa values();
+-- insert into Pessoa values("admin", "");	
 -- insert into Pessoa values();
 
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
