@@ -56,7 +56,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="ControlPessoa" method="post" id="contact_form">
+        <form class="well form-horizontal" action="ControlePessoa" method="post" id="contact_form">
             <fieldset>
 
 
@@ -84,7 +84,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="nome" placeholder="Sobrenome" class="form-control" type="text">
+                            <input name="sobrenome" placeholder="Sobrenome" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="data" placeholder="dd/mm/aa" class="form-control" type="date">
+                            <input name="datanascimento" placeholder="dd/mm/aa" class="form-control" type="date">
                         </div>
                     </div>
                 </div>
@@ -106,8 +106,8 @@
                     <div class="col-md-4 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <select name="state" class="form-control selectpicker">
-                                <option value=" " >Escolha o seu sexo</option>
+                            <select name="sexo" class="form-control selectpicker">
+                                <option value="" >Escolha o seu sexo</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Feminino">Feminino</option>
                             </select>
@@ -121,7 +121,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="RG" placeholder="RG" class="form-control" type="number">
+                            <input name="rg" placeholder="RG" class="form-control" type="number">
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input name="password" placeholder="Senha" class="form-control" type="password">
-                            <input name="password" placeholder="Confirmar Senha" class="form-control" type="password">
+                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="password">
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="number">
+                            <input name="telefone" placeholder="(DD)95555-5555" class="form-control" type="number">
                         </div>
                     </div>
                 </div>
@@ -195,10 +195,10 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="endereco" placeholder="Endereço" class="form-control" type="text">
+                            <input name="nomelogradouro" placeholder="Endereço" class="form-control" type="text">
                             <input name="bairro" placeholder="Bairro" class="form-control" type="text">
                             <input name="numeroen" placeholder="Número" class="form-control" type="number">
-                            <input name="cidade" placeholder="Cidade" class="form-control" type="text">
+                            <input name="municipio" placeholder="Cidade" class="form-control" type="text">
                             <input name="cep" placeholder="CEP" class="form-control" type="number">
                         </div>
                     </div>
@@ -442,7 +442,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" name = "acao" value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name = "acao" value="Cadastro" >Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 

@@ -214,7 +214,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="pais" class="form-control selectpicker">
-                                <option value=" " >Escolha o seu pais</option>
+                                <option value="" >Escolha o seu pais</option>
                                 <option value="África do Sul">África do Sul</option>
                                 <option value="Albânia">Albânia</option>
                                 <option value="Alemanha">Alemanha</option>
@@ -406,7 +406,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" name = "acao" value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name = "acao" value="Cadastrar">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 

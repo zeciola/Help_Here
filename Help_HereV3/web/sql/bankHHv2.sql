@@ -1,4 +1,3 @@
-
 CREATE TABLE Item (
 ID serial PRIMARY KEY,
 Item varchar(50),

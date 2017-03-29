@@ -33,6 +33,7 @@ public class ControleUsuario extends HttpServlet {
          
          
     if (acao.equals("Cadastrar")) {
+        
         Login login = new Login();
         login.setNome(request.getParameter("txtLogin"));
         login.setSenha(request.getParameter("txtSenha"));
