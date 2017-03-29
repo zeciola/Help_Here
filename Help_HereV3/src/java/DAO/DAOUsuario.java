@@ -54,6 +54,8 @@ public class DAOUsuario implements iDAO{
         pstmt.setString(3, lo.getPerfil().toString());
         pstmt.executeUpdate();
         
+        //Fim do pstmt inserir
+        
         ResultSet rs = pstmt.getGeneratedKeys();
         
         if(rs.next()){

@@ -14,8 +14,6 @@ public class CadastrarPessoaAction implements ICommand{
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
-        //Date datanas = null;
-        
         //Instanciando Objetos
         Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
