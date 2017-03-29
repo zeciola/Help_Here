@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 11141100670
+ * @author Lucas Puglia
  */
 public class CadastrarInstituicaoAction implements ICommand {
 
@@ -51,7 +51,7 @@ public class CadastrarInstituicaoAction implements ICommand {
         daoi.setInstituicao();
         daoi.Inserir();
         
-        //Endereco de pessoa
+        //Endereco da Instituicao
         
         en.setNomelogradouro("nomelogradouro");
         en.setNumeroen("numeroen");
@@ -62,7 +62,7 @@ public class CadastrarInstituicaoAction implements ICommand {
         en.setPais("pais");
         
         daoen.setEndereco(en);
-        
+        daoen.Inserir();
         //Usuário
         
         //Email
