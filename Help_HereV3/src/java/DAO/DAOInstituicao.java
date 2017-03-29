@@ -21,231 +21,180 @@ import java.util.ArrayList;
  */
 public class DAOInstituicao implements iDAO{
     
-     public boolean inserir(Instituicao obj) throws SQLException {
-        //os dados estão atribuidos aos atributos do objeto que foi passado para o método em questão
-        // desta forma devemos criar um preparação para o comando SQL
-        Connection con = null;
-        PreparedStatement pst = null;
-        Statement st_valor = null;
-        ResultSet valor_idCliente = null;
-
-        con = Conexao.getConexao();
-
-        try {
-
-            con.setAutoCommit(false);
-            String stm = "INSERT INTO Instituicao(nome, razaoSocial, tipo, CNPJ, modalidade) VALUES(?, ?, ?, ?, ?)";
-            pst = con.prepareStatement(stm);
-
-            pst.setString(1, obj.getNome());
-            pst.setString(2, obj.getRazao());
-            pst.setString(3, obj.getTipo());
-            pst.setString(3, obj.getCnpj());
-            pst.setString(3, obj.getModalidade());
-
-            pst.executeUpdate();
-
-            String stm_valor_idInstituicao = "SELECT currval('Instituicao_id_seq')"; //prepara para recuperar o valor atual da sequence
-
-            st_valor = con.createStatement();
-            valor_idCliente = st_valor.executeQuery(stm_valor_idInstituicao);
-
-            if (valor_idCliente.next()) {
-                obj.setIdInstituicao(valor_idCliente.getInt(1)); //recupera o valor atual da sequence
-            }
-
-            con.commit();
-            con.close();
-            return true;
-
-        } catch (Exception e) {
-
-            con.rollback();
-            con.close();
-            return false;
-        }
+    
+    
+    private Instituicao instituicao;
+    private Endereco en;
+    private Connection conexao;
+    
+    
+    
+    //Construtor Instituicao
+    public void setInstituicao() {
+        this.instituicao = instituicao;
     }
     
-    public Instituicao consultar(Instituicao obj) throws SQLException {
-
-        Connection con = null;
-
-        Statement st = null;
-        ResultSet rsUsuario = null;
-
-        Instituicao instituicao = new Instituicao();
-        
-
-        con = Conexao.getConexao();
-
-        try {
-
-            String stm = "select * from Instituicao I, Endereco E WHERE i.id = E.id AND I.id = " + obj.getIdInstituicao() + ";";
-
-            st = con.createStatement();
-            rsUsuario = st.executeQuery(stm);
-
-            while (rsUsuario.next()) {
-
-                instituicao.setIdInstituicao(rsUsuario.getInt("id"));
-                instituicao.setNome(rsUsuario.getString("nome"));
-                instituicao.setRazao(rsUsuario.getString("razaoSocial"));
-                instituicao.setTipo(rsUsuario.getString("tipo"));
-                instituicao.setCnpj(rsUsuario.getString("CNPJ"));
-                instituicao.setModalidade(rsUsuario.getString("modalidade"));
-                instituicao.setEndereco((ArrayList<Endereco>) rsUsuario.getArray("Cep, NomeLogradouro, Numero, Bairro, Municipio, Estado, Pais"));
-            }
-
-        } catch (Exception e) {
-            //nada para fazer
-            con.close();
-        }
-        con.close();
-        return instituicao;
-    }
+    //SQL
     
+    private static final String INSERT = "INSERT INTO Instituicao(nome, razaoSocial, tipo, CNPJ, modalidade) VALUES(?, ?, ?, ?, ?)";
     
-    public ArrayList<Instituicao> listar() throws SQLException {
-
-        Connection con = null;
-
-        Statement st = null;
-        ResultSet rsUsuario = null;
-
-        ArrayList<Instituicao> arrayInstituicao = new ArrayList<Instituicao>();
-
-        con = Conexao.getConexao();
-
-        try {
-
-            String stm = "select * from Instituicao i, Endereco e where i.id = e.id;";
-
-            st = con.createStatement();
-            rsUsuario = st.executeQuery(stm);
-
-            while (rsUsuario.next()) {
-
-                arrayInstituicao.add(new Instituicao(rsUsuario.getInt("id"), rsUsuario.getString("nome"), rsUsuario.getString("razaoSocial"), rsUsuario.getString("tipo"), rsUsuario.getString("CNPJ"), rsUsuario.getString("Modalidade"), rsUsuario.getString("Cep"), rsUsuario.getString("NomeLogradouro"), rsUsuario.getString("Numero"), rsUsuario.getString("Bairro"), rsUsuario.getString("Municipio"), rsUsuario.getString("Rstado"), rsUsuario.getString("Pais")));
-
-            }
-
-        } catch (Exception e) {
-
-            //nada para fazer
-            con.close();
-        }
-        con.close();
-        return arrayInstituicao;
-        
-    }
+    private static final String DELETE = "DELETE from Instituicao where id=?;";
     
-
-        public boolean alterar(Instituicao obj) throws SQLException {
-        //os dados estão atribuidos aos atributos do objeto que foi passado para o método em questão
-        // desta forma devemos criar um preparação para o comando SQL
-        Connection con = null;
-        PreparedStatement pst = null;
-        Statement st_valor = null;
-        ResultSet valor_idInstituicao = null;
-
-        con = Conexao.getConexao();
-
-        try {
-
-            con.setAutoCommit(false);
-
-            String stm = "UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=? WHERE id=" + obj.getIdInstituicao() + ";";
-
-            pst = con.prepareStatement(stm);
-
-            pst.setString(1, obj.getNome());
-            pst.setString(2, obj.getRazao());
-            pst.setString(2, obj.getTipo());
-            pst.setString(2, obj.getCnpj());
-            pst.setString(2, obj.getModalidade());
-
-            pst.executeUpdate();
-
-            String stm_valor_idInst = "SELECT id FROM Instituicao WHERE id=" + obj.getIdInstituicao() + ";"; //prepara para recuperar o valor atual da sequence
-
-            st_valor = con.createStatement();
-            valor_idInstituicao = st_valor.executeQuery(stm_valor_idInst);
-
-            if (valor_idInstituicao.next()) {
-                obj.setIdInstituicao(valor_idInstituicao.getInt(1)); //recupera
-            }
-
-            con.commit();
-            con.close();
-            return true;
-
-        } catch (Exception e) {
-
-            con.rollback();
-            con.close();
-            return false;
-        }
-    }
+    private static final String UPDATE = "UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=? WHERE id=?";
+ 
+    private static final String CONSULTA = "SELECT * from Instituicao WHERE id = ?" ;
     
-        
-    
-    public boolean excluir(Instituicao obj) throws SQLException {
-
-        //os dados estão atribuidos aos atributos do objeto que foi passado para o método em questão
-        // desta forma devemos criar um preparação para o comando SQL
-        Connection con = null;
-        PreparedStatement pst = null;
-
-        con = Conexao.getConexao();
-
-        try {
-
-            con.setAutoCommit(false);
-            String stm = "delete from Instituicao where id=?;";
-
-            pst = con.prepareStatement(stm);
-
-            pst.setInt(1, obj.getIdInstituicao());
-
-            pst.executeUpdate();
-
-            con.commit();
-            con.close();
-            return true;
-
-        } catch (Exception e) {
-
-            con.rollback();
-            con.close();
-            return false;
-        }
-    }
-
-    
+    private static final String LISTAR = "SELECT * FROM Instituicao";
     
     @Override
     public void Inserir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            conexao.setAutoCommit(false);
+            
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            
+            PreparedStatement pst = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pst.setString(1, instituicao.getNome());
+            
+            pst.setString(2, instituicao.getRazao());
+            
+            pst.setString(3, instituicao.getTipo());
+            
+            pst.setString(3, instituicao.getCnpj());
+            
+            pst.setString(3, instituicao.getModalidade());
+
+            pst.executeUpdate();
+
+            
+            ResultSet rs = pst.getGeneratedKeys();
+            
+            if(rs.next()){
+                instituicao.setIdInstituicao(rs.getInt("id"));
+                conexao.commit();
+            }
+            
+            
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+    
+    @Override
+    public ArrayList<Instituicao> Listar() {
+
+        PreparedStatement pstmt = null;
+        ResultSet rsUsuario;
+
+        try 
+        {
+            conexao.setAutoCommit(false);
+            pstmt = conexao.prepareStatement(LISTAR); // prepara a instrução em sql para os parâmetros informados (?)
+            // atribui os valores nos parâmetros (?) 
+            ArrayList<Instituicao> retorno = new ArrayList<>();
+           
+            rsUsuario = pstmt.executeQuery();
+            
+            while (rsUsuario.next())
+            {
+                instituicao.setIdInstituicao(rsUsuario.getInt("id"));
+                
+                instituicao.setNome(rsUsuario.getString("nome"));
+                
+                instituicao.setRazao(rsUsuario.getString("razaoSocial"));
+                
+                instituicao.setTipo(rsUsuario.getString("tipo"));
+                
+                instituicao.setCnpj(rsUsuario.getString("CNPJ"));
+                
+                instituicao.setModalidade(rsUsuario.getString("modalidade"));
+                
+                retorno.add(instituicao);
+
+            }
+            return retorno;
+
+        } catch (SQLException e)
+            {
+                throw new RuntimeException(e);
+            }
+
+        
     }
 
+       
     @Override
     public void Atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        try{
+            conexao.setAutoCommit(false);
+            
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            
+            PreparedStatement pst = conexao.prepareStatement(UPDATE, PreparedStatement.RETURN_GENERATED_KEYS);
 
-    @Override
+            pst.setString(1, instituicao.getNome());
+            
+            pst.setString(2, instituicao.getRazao());
+            
+            pst.setString(3, instituicao.getTipo());
+            
+            pst.setString(3, instituicao.getCnpj());
+            
+            pst.setString(3, instituicao.getModalidade());
+
+            pst.executeUpdate();
+
+            
+            ResultSet rs = pst.getGeneratedKeys();
+            
+            if(rs.next()){
+                instituicao.setIdInstituicao(rs.getInt("id"));
+                conexao.commit();
+            }
+            
+            
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+        
+    
+@Override
     public void Deletar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        try{
+            conexao.setAutoCommit(false);
+            
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            
+            PreparedStatement pst = conexao.prepareStatement(DELETE, PreparedStatement.RETURN_GENERATED_KEYS);
 
+            
+
+            pst.setInt(1, instituicao.getIdInstituicao());
+
+             pst.executeUpdate();
+
+            
+            ResultSet rs = pst.getGeneratedKeys();
+            
+            if(rs.next()){
+                instituicao.setIdInstituicao(rs.getInt("id"));
+                conexao.commit();
+            }
+            
+            
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+    
+
+  
     @Override
     public ArrayList Consultar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public ArrayList Listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

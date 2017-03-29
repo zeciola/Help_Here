@@ -12,7 +12,7 @@ public class Instituicao {
     private String tipo;
     private String cnpj;
     private String modalidade;
-    private ArrayList<Endereco> endereco = new ArrayList();
+    
 
     public Instituicao() {
         
@@ -38,9 +38,6 @@ public class Instituicao {
         return cnpj;
     }
 
-    public ArrayList<Endereco> getEndereco() {
-        return endereco;
-    }
 
     public String getModalidade() {
         return modalidade;
@@ -72,9 +69,6 @@ public class Instituicao {
         this.cnpj = cnpj;
     }
 
-    public void setEndereco(ArrayList<Endereco> endereco) {
-        this.endereco = endereco;
-    }
 
     public void setModalidade(String modalidade) {
         this.modalidade = modalidade;
