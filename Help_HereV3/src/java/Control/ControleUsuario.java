@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Control;
 
-/**
- *
- * @author Lucas Puglia
- */
+
+
+
+import Control.*;
+import Model.*;
+import DAO.*;
+import Util.*;
+import Command.*;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -16,11 +15,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Model.PerfilDeAcesso;
-import Model.Login;
-import DAO.DAOUsuario;
-
-
 
 
 public class ControleUsuario extends HttpServlet {
@@ -31,6 +25,15 @@ public class ControleUsuario extends HttpServlet {
 
     try {
          String acao = request.getParameter("acao");
+         
+         //Mostra a acao
+         System.out.println("acao");
+         
+         String NomeClasse = "Command.UsuarioAction." + acao + "UsuarioAction";
+         
+         Class classeAction = Class.forName(NomeClasse);
+         
+         
          
     if (acao.equals("Cadastrar")) {
         Login login = new Login();
