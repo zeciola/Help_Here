@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/DAO/DAOPessoa.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Control/ControleUsuario.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Util/Conexao.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/web/sql/bankHHv2.sql</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/web/Erro.jsp</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/web/CadastroPessoaForm.jsp</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/DAO/DAOEndereco.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/web/sucesso.jsp</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Command/UsuarioAction/CadastrarUsuarioAction.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Model/Login.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Control/ControlePessoa.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Model/Endereco.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/DAO/iDAO.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Command/PessoaAction/CadastrarPessoaAction.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/DAO/DAOEvento.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/DAO/DAOUsuario.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/web/Sobre.html</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/Model/Pessoa.java</file>
+            <file>file:/home/jrciola/GitHub/gitHelp-Here/Help_Here/Help_HereV3/src/java/DAO/DAOInstituicao.java</file>
+        </group>
+    </open-files>
+</project-private>
