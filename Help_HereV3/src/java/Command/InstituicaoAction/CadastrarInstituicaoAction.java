@@ -6,7 +6,7 @@
 package Command.InstituicaoAction;
 
 import Command.ICommand;
-import DAO.DAOEndereco;
+import DAO.*;
 import DAO.DAOInstituicao;
 import DAO.DAOUsuario;
 import Model.Endereco;
@@ -25,27 +25,29 @@ public class CadastrarInstituicaoAction implements ICommand {
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
-        //Date datanas = null;
+     
         
         //Instanciando Objetos
         Endereco en = new Endereco();
         Instituicao inst = new Instituicao();
-        Login lo = new Login();
+        
         
         //DAOs
-        DAOEndereco daoen = new DAOEndereco();
+        
         DAOInstituicao daoi = new DAOInstituicao();
-        DAOUsuario daou = new DAOUsuario();
+        
+        DAOEndereco daoen = new DAOEndereco();
         
         
-        boolean defalt = false;
+        
         
         //Instituicao
-        inst.setNome(request.getParameter("nome"));
-        inst.setRazao("razaoSocial");
-        inst.setTipo("tipo");
-        inst.setCnpj("CNPJ");
-        inst.setModalidade("modalidade");
+        inst.setNome(request.getParameter("Nome"));
+        inst.setRazao(request.getParameter("razaoSocial"));
+        inst.setTipo(request.getParameter("tipo"));
+        inst.setCnpj(request.getParameter("CNPJ"));
+        inst.setModalidade(request.getParameter("modalidade"));
+        inst.setEmail(request.getParameter("email"));
         
         
         daoi.setInstituicao();
@@ -65,13 +67,9 @@ public class CadastrarInstituicaoAction implements ICommand {
         daoen.Inserir();
         //Usuário
         
-        //Email
         
-        lo.setId(inst.getIdInstituicao());
-        lo.setNome("email");
-        lo.setSenha("senha");
         
-        daou.setUsuario(lo);
+        
         
         
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima

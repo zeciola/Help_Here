@@ -28,9 +28,9 @@ public class DAOUsuario {
         this.login = login;
     }
     
-     public void cadastraNovoUsuario(Login login) {
+     public void cadastraNovoUsuario(Login login) throws SQLException {
     Connection conexao = null;
-    
+    PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
     try {
         
         

@@ -24,7 +24,7 @@ import javax.servlet.RequestDispatcher;
  *
  * @author Lucas Puglia
  */
-public class ControleInstituicao extends HttpServlet {
+public class ControleInst extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -63,7 +63,7 @@ public class ControleInstituicao extends HttpServlet {
                 //Exibe pagina de erro ao usário
                 request.setAttribute("erro", erro);
                 RequestDispatcher rd = request.getRequestDispatcher("//erro.jsp");
-                rd.forward(request, response);
+                    rd.forward(request, response);
             }
         }
 
@@ -102,7 +102,7 @@ public class ControleInstituicao extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ControlePessoa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControleInst.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

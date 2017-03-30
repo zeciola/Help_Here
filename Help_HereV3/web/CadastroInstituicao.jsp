@@ -57,7 +57,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="ControlInstituicao" method="post" id="contact_form">
+        <form class="well form-horizontal" action="ControleInst" method="post" id="contact_form">
             <fieldset>
 
 
@@ -136,20 +136,6 @@
                     </div>
                 </div>
                 
-                <!-- Text input-->
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Senha</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input name="password" placeholder="Senha" class="form-control" type="password">
-                            <input name="password" placeholder="Confirmar Senha" class="form-control" type="password">
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <!-- Text input-->
 
@@ -406,11 +392,12 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" name = "acao" value="Cadastrar" class="btn btn-warning">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name = "acao" value="Cadastrar" >Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 
             </fieldset>
+            <input type="submit" name="acao" value="Cadastrar">
         </form>
     </div>
 <!-- /.container -->

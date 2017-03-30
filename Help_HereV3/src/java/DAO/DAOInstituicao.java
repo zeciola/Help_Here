@@ -23,24 +23,22 @@ public class DAOInstituicao implements iDAO{
     
     
     
-    private Instituicao instituicao;
+    
     private Endereco en;
     private Connection conexao;
     
-    
+    Instituicao instituicao = new Instituicao();
     
     //Construtor Instituicao
-    public void setInstituicao() {
-        this.instituicao = instituicao;
-    }
+    public void setInstituicao (){}
     
     //SQL
     
-    private static final String INSERT = "INSERT INTO Instituicao(nome, razaoSocial, tipo, CNPJ, modalidade) VALUES(?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO Instituicao(Nome, razaoSocial, tipo, CNPJ, modalidade, email) VALUES(?, ?, ?, ?, ?, ?)";
     
     private static final String DELETE = "DELETE from Instituicao where id=?;";
     
-    private static final String UPDATE = "UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=? WHERE id=?";
+    private static final String UPDATE = "UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=? WHERE id=?";
  
     private static final String CONSULTA = "SELECT * from Instituicao WHERE id = ?" ;
     
@@ -48,30 +46,35 @@ public class DAOInstituicao implements iDAO{
     
     @Override
     public void Inserir() {
+        Connection conexao = null;
+        PreparedStatement pst =null;
+        
         try{
-            conexao.setAutoCommit(false);
-            
+           conexao = Conexao.getConexao();
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            
-            PreparedStatement pst = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+            conexao.setAutoCommit(false);
+            pst=conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 
+            
             pst.setString(1, instituicao.getNome());
             
             pst.setString(2, instituicao.getRazao());
             
             pst.setString(3, instituicao.getTipo());
             
-            pst.setString(3, instituicao.getCnpj());
+            pst.setString(4, instituicao.getCnpj());
             
-            pst.setString(3, instituicao.getModalidade());
+            pst.setString(5, instituicao.getModalidade());
+            
+            pst.setString(6, instituicao.getEmail());
 
             pst.executeUpdate();
-
+            
             
             ResultSet rs = pst.getGeneratedKeys();
             
             if(rs.next()){
-                instituicao.setIdInstituicao(rs.getInt("id"));
+                instituicao.setIdInstituicao(rs.getInt("ID"));
                 conexao.commit();
             }
             
@@ -110,6 +113,8 @@ public class DAOInstituicao implements iDAO{
                 
                 instituicao.setModalidade(rsUsuario.getString("modalidade"));
                 
+                instituicao.setModalidade(rsUsuario.getString("email"));
+                
                 retorno.add(instituicao);
 
             }
@@ -139,10 +144,12 @@ public class DAOInstituicao implements iDAO{
             
             pst.setString(3, instituicao.getTipo());
             
-            pst.setString(3, instituicao.getCnpj());
+            pst.setString(4, instituicao.getCnpj());
             
-            pst.setString(3, instituicao.getModalidade());
+            pst.setString(5, instituicao.getModalidade());
 
+            pst.setString(6, instituicao.getEmail());
+            
             pst.executeUpdate();
 
             

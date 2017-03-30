@@ -56,7 +56,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="ControlInstituicao" method="post" id="contact_form">
+        <form class="well form-horizontal" action="ControlInst" method="post" id="contact_form">
             <fieldset>
 
 

@@ -1,4 +1,4 @@
-
+﻿
 CREATE TABLE Item (
 ID serial PRIMARY KEY,
 Item varchar(50),
@@ -64,9 +64,12 @@ Nome varchar(50),
 razaoSocial VARCHAR(50 ),
 tipo varchar(15),
 CNJP varchar(19),
-Contato serial,
-modalidade VARCHAR(50)
+modalidade VARCHAR(50),
+email varchar(50)
+
 );
+
+alter table Instituicao add email varchar(50)
 
 CREATE TABLE EnderecoIstituicao (
 ID serial PRIMARY KEY,
