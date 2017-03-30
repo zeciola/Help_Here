@@ -59,27 +59,20 @@ public class DAOUsuario implements iDAO{
         
         //Fim do pstmt inserir
         
-        ResultSet rs = pstmt.getGeneratedKeys();
         
-        if(rs.next()){
-                lo.setId(rs.getInt("id"));
-                conexao.commit();
-            }
+        ResultSet rs = pstmt.getGeneratedKeys();
+            
+            rs.next();
+            
+            lo.setId(rs.getInt("ID"));
+            
+            conexao.commit();
         
         } 
         // Verifica se a conexao foi fechada
         catch (SQLException sqlErro) {
             throw new RuntimeException(sqlErro);
-            } finally {
-            if (conexao != null) {
-            try {
-            conexao.close();
             } 
-            catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        }
     }
 
     @Override

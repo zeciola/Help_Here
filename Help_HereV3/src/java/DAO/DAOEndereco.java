@@ -59,31 +59,25 @@ public class DAOEndereco implements iDAO {
             
             pstmt.setString(7, en.getPais());
             
-            pstmt.executeUpdate();
+            pstmt.execute();
             // Fim da pstmt insert
             
             //Resultset para id
             
             ResultSet rs = pstmt.getGeneratedKeys();
             
-            if(rs.next()){
-                en.setIdEndereco(rs.getInt("id"));
-                conexao.commit();
-            }
+            rs.next();
+            
+            en.setIdEndereco(rs.getInt("ID"));
+            
+            conexao.commit();
+            
             //Fim da busca
             
         } // Verifica se a conexao foi fechada
         catch (SQLException sqlErro) {
             throw new RuntimeException(sqlErro);
-        } finally {
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        }
+        } 
     }
 
     @Override

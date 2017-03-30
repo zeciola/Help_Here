@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿
-=======
->>>>>>> origin/master
-CREATE TABLE Item (
+﻿CREATE TABLE Item (
 ID serial PRIMARY KEY,
 Item varchar(50),
 peso numeric,
@@ -69,10 +65,9 @@ tipo varchar(15),
 CNJP varchar(19),
 modalidade VARCHAR(50),
 email varchar(50)
-
 );
 
-alter table Instituicao add email varchar(50)
+-- alter table Instituicao add email varchar(50)
 
 CREATE TABLE EnderecoIstituicao (
 ID serial PRIMARY KEY,
@@ -184,9 +179,10 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
 -- select * from Pessoa
 -- select * from Endereco
+-- select * from Usuario
 
 -- DROP ALL
---drop table CampanhaItens, CampanhaDinheiro, Evento, ValorDoador, DoadoDoador, ItemDoado, ValoresDoados, Responsavel, Pessoa, TelCelInstituicao, InstituicaoPessoa, EnderecoIstituicao, Instituicao, Usuario, InstituicaoEvento, EmailInstituicao, Voluntario, Endereco, Doador, Item
+--drop table CampanhaItens, CampanhaDinheiro, Evento, ValorDoador, DoadoDoador, ItemDoado, ValoresDoados, Responsavel, Pessoa, TelCelInstituicao, InstituicaoPessoa, EnderecoIstituicao, Instituicao, Usuario, InstituicaoEvento, EmailInstituicao, Voluntario, Endereco, Doador, Item cascade
 
 -- INSERTs
 
@@ -211,7 +207,7 @@ ALTER TABLE EmailInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituic
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
-ALTER TABLE Instituicao ADD FOREIGN KEY(Contato) REFERENCES Pessoa (ID);
+--ALTER TABLE Instituicao ADD FOREIGN KEY(Contato) REFERENCES Pessoa (ID);
 ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);

@@ -8,6 +8,8 @@ import java.util.*;
 
 public class Pessoa {
 
+    private Endereco en;
+
     private int id;
     private String nome;
     private String sobrenome;
@@ -16,12 +18,17 @@ public class Pessoa {
     private boolean penalisado;
     private String datanascimento;
     private String email;
-    private int IDEndereco;
+
+    //private int IDEndereco;
     private String telefone;
     private String celular;
     private String sexo;
 
     //Gets
+    public Endereco getEn() {
+        return en;
+    }
+
     public int getId() {
         return id;
     }
@@ -53,11 +60,7 @@ public class Pessoa {
     public String getEmail() {
         return email;
     }
-
-    public int getIDEndereco() {
-        return IDEndereco;
-    }
-
+    
     public String getTelefone() {
         return telefone;
     }
@@ -71,6 +74,11 @@ public class Pessoa {
     }
 
     //Sets
+    
+    public void setEn(Endereco en) {
+        this.en = en;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -101,10 +109,6 @@ public class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-    
-    public void setIDEndereco(int IDEndereco) {
-        this.IDEndereco = IDEndereco;
     }
 
     public void setTelefone(String telefone) {
