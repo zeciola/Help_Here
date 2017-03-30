@@ -36,11 +36,7 @@ public class DAOUsuario implements iDAO{
     
      public void cadastraNovoUsuario(Login login) throws SQLException {
     Connection conexao = null;
-<<<<<<< HEAD
-    PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-    try {
-=======
-    
+
     
     }
      
@@ -48,8 +44,7 @@ public class DAOUsuario implements iDAO{
     public void Inserir() {
         try {
         conexao.setAutoCommit(false);
->>>>>>> origin/master
-        
+
         
         //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
         

@@ -18,7 +18,7 @@
     </servlet>
     <servlet>
         <servlet-name>ControleInst</servlet-name>
-        <servlet-class>Control.ControleInst</servlet-class>
+        <servlet-class>Control.ControleInstituicao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>

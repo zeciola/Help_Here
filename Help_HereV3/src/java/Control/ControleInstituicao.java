@@ -24,7 +24,7 @@ import javax.servlet.RequestDispatcher;
  *
  * @author Lucas Puglia
  */
-public class ControleInst extends HttpServlet {
+public class ControleInstituicao extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -102,7 +102,7 @@ public class ControleInst extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ControleInst.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControleInstituicao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
