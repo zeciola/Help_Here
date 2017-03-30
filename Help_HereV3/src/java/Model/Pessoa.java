@@ -7,21 +7,21 @@ import Util.*;
 import java.util.*;
 
 public class Pessoa {
-    
-   private int id;
-   private String nome;
-   private String sobrenome;
-   private String cpf;
-   private String rg;
-   private boolean penalisado;
-   private String datanascimento;
-   private String email;
-   private String telefone;
-   private String celular;
-   private String sexo;
-   
-   //Gets
 
+    private int id;
+    private String nome;
+    private String sobrenome;
+    private String cpf;
+    private String rg;
+    private boolean penalisado;
+    private String datanascimento;
+    private String email;
+    private int IDEndereco;
+    private String telefone;
+    private String celular;
+    private String sexo;
+
+    //Gets
     public int getId() {
         return id;
     }
@@ -54,6 +54,10 @@ public class Pessoa {
         return email;
     }
 
+    public int getIDEndereco() {
+        return IDEndereco;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -65,9 +69,8 @@ public class Pessoa {
     public String getSexo() {
         return sexo;
     }
-   
-   //Sets
 
+    //Sets
     public void setId(int id) {
         this.id = id;
     }
@@ -99,6 +102,10 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public void setIDEndereco(int IDEndereco) {
+        this.IDEndereco = IDEndereco;
+    }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
@@ -111,6 +118,5 @@ public class Pessoa {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
-    
+
 }

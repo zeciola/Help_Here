@@ -22,10 +22,11 @@ public class DAOUsuario implements iDAO{
     
     //Variaveis de chamada
     private Login lo;
+    private Pessoa pe;
     private Connection conexao;
     
     
-    private static final String INSERT = "INSERT INTO Usuario (Login, senha, Tipo) VALUES (?,?,?)";
+    private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
 
     //Construtor
@@ -49,9 +50,11 @@ public class DAOUsuario implements iDAO{
         
         PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
         
-        pstmt.setString(1, lo.getNome());
-        pstmt.setString(2, lo.getSenha());
-        pstmt.setString(3, lo.getPerfil().toString());
+        pstmt.setInt(1, pe.getId());
+        pstmt.setString(2, lo.getPerfil().toString());
+        pstmt.setString(3, lo.getNome());
+        pstmt.setString(4, lo.getSenha());
+        
         pstmt.executeUpdate();
         
         //Fim do pstmt inserir

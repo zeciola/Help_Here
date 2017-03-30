@@ -11,7 +11,7 @@ public class Endereco {
     
     private int idEndereco;
     private String nomelogradouro;
-    private String numeroen;
+    private int numeroen;
     private String municipio;
     private String estado;
     private String bairro;
@@ -29,7 +29,7 @@ public class Endereco {
         return nomelogradouro;
     }
 
-    public String getNumeroen() {
+    public int getNumeroen() {
         return numeroen;
     }
 
@@ -63,7 +63,7 @@ public class Endereco {
         this.nomelogradouro = nomelogradouro;
     }
 
-    public void setNumeroen(String numeroen) {
+    public void setNumeroen(int numeroen) {
         this.numeroen = numeroen;
     }
 

@@ -18,7 +18,7 @@ NomeLogradouro varchar(50),
 Numero numeric(4),
 Bairro varchar(45),
 Municipio varchar(45),
-UF varchar(2),
+UF varchar(10),
 pais varchar(45)
 );
 
@@ -101,7 +101,7 @@ Datanascimento date,
 email varchar(45),
 IDEndereco serial,
 Telefone varchar(19),
-celular VARCHAR(20 ),
+celular VARCHAR(20),
 sexo varchar,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
@@ -175,6 +175,8 @@ ID_Evento serial,
 FOREIGN KEY(idItem) REFERENCES Item (ID),
 FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
+-- select * from Pessoa
+-- select * from Endereco
 
 -- DROP ALL
 --drop table CampanhaItens, CampanhaDinheiro, Evento, ValorDoador, DoadoDoador, ItemDoado, ValoresDoados, Responsavel, Pessoa, TelCelInstituicao, InstituicaoPessoa, EnderecoIstituicao, Instituicao, Usuario, InstituicaoEvento, EmailInstituicao, Voluntario, Endereco, Doador, Item
@@ -182,8 +184,16 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 -- INSERTs
 
 -- Pessoa
--- insert into Pessoa values("admin", "");	
--- insert into Pessoa values();
+-- insert into Pessoa values(1,'admin','admin','123','123',false,'10-10-1995','aaa@aaa.com',1,'12345678','12345678','Masculino');	
+-- insert into Endereco values(1,'123','aaa','123','123','bbb','sao paulo','brasil');
+
+-- DELETEs
+
+-- DELETE from Pessoa where id=1;
+-- ALTER TABLE Endereco ID = 1
+
+-- TRUNCATE TABLE Pessoa cascade
+
 
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);

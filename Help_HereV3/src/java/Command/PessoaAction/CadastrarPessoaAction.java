@@ -27,6 +27,21 @@ public class CadastrarPessoaAction implements ICommand{
         
         boolean defalt = false;
         
+        
+        
+        //Endereco de pessoa
+        
+        en.setNomelogradouro(request.getParameter("nomelogradouro"));
+        en.setNumeroen(Integer.parseInt(request.getParameter("numeroen")));
+        en.setMunicipio(request.getParameter("municipio"));
+        en.setEstado(request.getParameter("estado"));
+        en.setBairro(request.getParameter("bairro"));
+        en.setCep(request.getParameter("cep"));
+        en.setPais(request.getParameter("pais"));
+        
+        daoen.setEndereco(en);
+        daoen.Inserir();
+        
         //Pessoa
         pe.setNome(request.getParameter("nome"));
         pe.setSobrenome(request.getParameter("sobrenome"));
@@ -36,26 +51,14 @@ public class CadastrarPessoaAction implements ICommand{
         pe.setPenalisado(defalt);
         pe.setDatanascimento(request.getParameter("datanascimento"));
         pe.setEmail(request.getParameter("email"));
+        pe.setIDEndereco(en.getIdEndereco());
         pe.setTelefone(request.getParameter("telefone"));
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
         
         
         daop.setPessoa(pe);
-        daop.Inserir();
         
-        //Endereco de pessoa
-        
-        en.setNomelogradouro(request.getParameter("nomelogradouro"));
-        en.setNumeroen(request.getParameter("numeroen"));
-        en.setMunicipio(request.getParameter("municipio"));
-        en.setEstado(request.getParameter("estado"));
-        en.setBairro(request.getParameter("bairro"));
-        en.setCep(request.getParameter("cep"));
-        en.setPais(request.getParameter("pais"));
-        
-        daoen.setEndereco(en);
-        daoen.Inserir();
         
         //Usuário
 
@@ -70,6 +73,7 @@ public class CadastrarPessoaAction implements ICommand{
         daou.setUsuario(lo);
         
         //Executa o metodo Insert
+        
         daou.Inserir();
         
         

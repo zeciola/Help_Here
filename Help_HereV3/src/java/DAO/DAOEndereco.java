@@ -19,18 +19,18 @@ public class DAOEndereco implements iDAO {
     //Variavel tipo de metodo
     private String classTipo;
     //Endereço
-    private Endereco endereco;
+    private Endereco en;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
     //SQL inputs
-    private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, Estado, Pais) values(?,?,?,?,?,?,?)";
+    private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
     private static final String SELECT_ALL = "select * from endereco";
     private static final String SELECT_ID = "select * from endereco where id=?";
 
     //Construtor
     public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+        this.en = en;
     }
 
     //DAO Metodos
@@ -44,19 +44,19 @@ public class DAOEndereco implements iDAO {
             
             PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
             
-            pstmt.setString(1, endereco.getCep());
+            pstmt.setString(1, en.getCep());
             
-            pstmt.setString(2, endereco.getNomelogradouro());
+            pstmt.setString(2, en.getNomelogradouro());
             
-            pstmt.setString(3, endereco.getNumeroen());
+            pstmt.setInt(3, en.getNumeroen());
             
-            pstmt.setString(4, endereco.getBairro());
+            pstmt.setString(4, en.getBairro());
             
-            pstmt.setString(5, endereco.getMunicipio());
+            pstmt.setString(5, en.getMunicipio());
             
-            pstmt.setString(6, endereco.getEstado());
+            pstmt.setString(6, en.getEstado());
             
-            pstmt.setString(7, endereco.getPais());
+            pstmt.setString(7, en.getPais());
             
             pstmt.executeUpdate();
             // Fim da pstmt insert
@@ -66,13 +66,22 @@ public class DAOEndereco implements iDAO {
             ResultSet rs = pstmt.getGeneratedKeys();
             
             if(rs.next()){
-                endereco.setIdEndereco(rs.getInt("id"));
+                en.setIdEndereco(rs.getInt("id"));
                 conexao.commit();
             }
             //Fim da busca
             
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } // Verifica se a conexao foi fechada
+        catch (SQLException sqlErro) {
+            throw new RuntimeException(sqlErro);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
         }
     }
 

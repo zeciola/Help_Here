@@ -37,6 +37,7 @@ public class DAOPessoa implements iDAO {
     @Override
     public void Inserir() {
         try {
+            
             conexao.setAutoCommit(false);
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
@@ -56,7 +57,7 @@ public class DAOPessoa implements iDAO {
 
             pstmt.setString(7, pe.getEmail());
 
-            pstmt.setInt(8, en.getIdEndereco());;
+            pstmt.setInt(8, en.getIdEndereco());
 
             pstmt.setString(9, pe.getTelefone());
 
@@ -70,6 +71,7 @@ public class DAOPessoa implements iDAO {
             ResultSet rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
+                //en.setIdEndereco(rs.getInt("id"));
                 pe.setId(rs.getInt("id"));
                 conexao.commit();
             }
