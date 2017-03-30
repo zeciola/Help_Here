@@ -14,13 +14,6 @@ import java.util.ArrayList;
 
 public class DAOInstituicao implements iDAO{
     
-<<<<<<< HEAD
-    
-    
-    
-=======
-    private Instituicao instituicao;
->>>>>>> origin/master
     private Endereco en;
     private Connection conexao;
     

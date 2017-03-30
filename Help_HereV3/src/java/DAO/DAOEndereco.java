@@ -16,13 +16,6 @@ import java.util.logging.Logger;
 
 public class DAOEndereco implements iDAO {
     
-<<<<<<< HEAD
-    
-    
-    private Endereco endereco;
-    private Connection conexao;
-    
-=======
     //Variavel tipo de metodo
     private String classTipo;
     //Endereço
@@ -30,7 +23,7 @@ public class DAOEndereco implements iDAO {
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
->>>>>>> origin/master
+
     //SQL inputs
     private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
     private static final String SELECT_ALL = "select * from endereco";
