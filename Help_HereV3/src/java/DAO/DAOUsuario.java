@@ -12,36 +12,68 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Util.Conexao;
+import java.util.ArrayList;
 
 
-public class DAOUsuario {
+public class DAOUsuario implements iDAO{
  
-    private Login login;
-    private final Connection conexao = Conexao.getConexao();
+    //Variaveis comuns ou tipo defalt
+    private String defalt = "comum";
+    
+    //Variaveis de chamada
+    private Login lo;
+    private Pessoa pe;
+    private Connection conexao;
     
     
-    private static final String INSERT = "INSERT INTO Usuario (Login, senha, Tipo) VALUES (?,?,?)";
+    private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
 
     //Construtor
-    public void setUsuario(Login login) {
-        this.login = login;
+    public void setUsuario(Login lo) {
+        this.lo = lo;
     }
     
      public void cadastraNovoUsuario(Login login) throws SQLException {
     Connection conexao = null;
+<<<<<<< HEAD
     PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
     try {
+=======
+    
+    
+    }
+     
+    @Override
+    public void Inserir() {
+        try {
+        conexao.setAutoCommit(false);
+>>>>>>> origin/master
         
         
-        conexao = Conexao.getConexao();
-        pstmt = conexao.prepareStatement(INSERT);
-        pstmt.setString(1, login.getNome());
-        pstmt.setString(2, login.getSenha());
-        pstmt.setString(3, login.getPerfil().toString());
-        pstmt.execute();
+        //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
         
-        } catch (SQLException sqlErro) {
+        PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+        
+        pstmt.setInt(1, pe.getId());
+        pstmt.setString(2, lo.getPerfil().toString());
+        pstmt.setString(3, lo.getNome());
+        pstmt.setString(4, lo.getSenha());
+        
+        pstmt.executeUpdate();
+        
+        //Fim do pstmt inserir
+        
+        ResultSet rs = pstmt.getGeneratedKeys();
+        
+        if(rs.next()){
+                lo.setId(rs.getInt("id"));
+                conexao.commit();
+            }
+        
+        } 
+        // Verifica se a conexao foi fechada
+        catch (SQLException sqlErro) {
             throw new RuntimeException(sqlErro);
             } finally {
             if (conexao != null) {
@@ -54,8 +86,30 @@ public class DAOUsuario {
             }
         }
     }
-     
-     
+
+    @Override
+    public void Atualizar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void Deletar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    @Override
+    public ArrayList Consultar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList Listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    //Autenticação metodo unido não necessita estar na interface!
+    
     public Login autenticaUsuario(Login login) {
         Login loginAutenticado = null;
 

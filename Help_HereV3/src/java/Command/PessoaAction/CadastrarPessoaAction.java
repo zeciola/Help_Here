@@ -14,8 +14,6 @@ public class CadastrarPessoaAction implements ICommand{
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
-        //Date datanas = null;
-        
         //Instanciando Objetos
         Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
@@ -29,46 +27,57 @@ public class CadastrarPessoaAction implements ICommand{
         
         boolean defalt = false;
         
-        //Pessoa
-        pe.setNome(request.getParameter("nome"));
-        pe.setSobrenome("sobrenome");
-        pe.setCpf("cpf");
-        pe.setRg("rg");
-        pe.setPenalisado(defalt);
-        pe.setDatanascimento("datanascimento");
-        pe.setEmail("email");
-        pe.setTelefone("telefone");
-        pe.setCelular("celular");
-        pe.setSexo("sexo");
         
-        
-        daop.setPessoa();
-        daop.Inserir();
         
         //Endereco de pessoa
         
-        en.setNomelogradouro("nomelogradouro");
-        en.setNumeroen("numeroen");
-        en.setMunicipio("municipio");
-        en.setEstado("estado");
-        en.setBairro("bairro");
-        en.setCep("cep");
-        en.setPais("pais");
+        en.setNomelogradouro(request.getParameter("nomelogradouro"));
+        en.setNumeroen(Integer.parseInt(request.getParameter("numeroen")));
+        en.setMunicipio(request.getParameter("municipio"));
+        en.setEstado(request.getParameter("estado"));
+        en.setBairro(request.getParameter("bairro"));
+        en.setCep(request.getParameter("cep"));
+        en.setPais(request.getParameter("pais"));
         
         daoen.setEndereco(en);
+        daoen.Inserir();
+        
+        //Pessoa
+        pe.setNome(request.getParameter("nome"));
+        pe.setSobrenome(request.getParameter("sobrenome"));
+        pe.setCpf(request.getParameter("cpf"));
+        pe.setRg(request.getParameter("rg"));
+        //Variavel defalt
+        pe.setPenalisado(defalt);
+        pe.setDatanascimento(request.getParameter("datanascimento"));
+        pe.setEmail(request.getParameter("email"));
+        pe.setIDEndereco(en.getIdEndereco());
+        pe.setTelefone(request.getParameter("telefone"));
+        pe.setCelular(request.getParameter("celular"));
+        pe.setSexo(request.getParameter("sexo"));
+        
+        
+        daop.setPessoa(pe);
+        
         
         //Usuário
+
+        //ID Pessoa
+        lo.setId(pe.getId());
         
         //Email
+        lo.setNome(request.getParameter("email"));
+        lo.setSenha(request.getParameter("senha"));
         
-        lo.setId(pe.getId());
-        lo.setNome("email");
-        lo.setSenha("senha");
-        
+        //Seta os valores
         daou.setUsuario(lo);
         
+        //Executa o metodo Insert
         
-        //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
+        daou.Inserir();
+        
+        
+        //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";
         
     }

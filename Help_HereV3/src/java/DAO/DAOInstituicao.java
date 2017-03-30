@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import Model.Endereco;
-import Model.Instituicao;
-import Util.Conexao;
+import Command.*;
+import Control.*;
+import Model.*;
+import DAO.*;
+import Util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,15 +12,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author 11141104689
- */
 public class DAOInstituicao implements iDAO{
     
+<<<<<<< HEAD
     
     
     
+=======
+    private Instituicao instituicao;
+>>>>>>> origin/master
     private Endereco en;
     private Connection conexao;
     

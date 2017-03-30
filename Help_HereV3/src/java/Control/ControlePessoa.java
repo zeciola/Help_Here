@@ -1,6 +1,10 @@
 package Control;
 
-import Command.ICommand;
+import Command.*;
+import Control.*;
+import Model.*;
+import DAO.*;
+import Util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -41,7 +45,7 @@ public class ControlePessoa extends HttpServlet {
 
                 String Nomeclasse = "Command.PessoaAction." + acao + "PessoaAction";
 
-                Class classeAction = Class.forName(Nomeclasse);
+                    Class classeAction = Class.forName(Nomeclasse);
 
                 ICommand commandAction = (ICommand) classeAction.newInstance();
 
@@ -54,7 +58,7 @@ public class ControlePessoa extends HttpServlet {
             } catch (Exception erro) {
                 //Exibe pagina de erro ao usário
                 request.setAttribute("erro", erro);
-                RequestDispatcher rd = request.getRequestDispatcher("//erro.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("Erro.jsp");
                 rd.forward(request, response);
             }
         }

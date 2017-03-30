@@ -1,4 +1,3 @@
-
 package DAO;
 
 import Command.*;
@@ -12,76 +11,82 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DAOPessoa implements iDAO{
-    
-    private Pessoa pessoa;
+public class DAOPessoa implements iDAO {
+
+    private Pessoa pe;
     private Endereco en;
     private Connection conexao;
-    
+
     // defalt variabel Penalisado = false
-    
     private boolean defalt;
-    
-    
+
     //Construtor Pessoa
-    public void setPessoa() {
-        this.pessoa = pessoa;
+    public void setPessoa(Pessoa pe) {
+        this.pe = pe;
     }
-    
+
     //SQL
-    
-    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
+    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo) "
+            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     private static final String DELETE = "update pessoa set";
-    
+
     private static final String UPDATE = "";
-    
+
     //DAOs
     @Override
     public void Inserir() {
-        try{
+        try {
+            
             conexao.setAutoCommit(false);
-            
+
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            
             PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-            
-            pstmt.setString(1, pessoa.getNome());
-            
-            pstmt.setString(2, pessoa.getSobrenome());
-            
-            pstmt.setString(3, pessoa.getCpf());
-            
-            pstmt.setString(4, pessoa.getRg());
-            
-            pstmt.setBoolean(5, pessoa.isPenalisado());
-            
-            pstmt.setString(6, pessoa.getDatanascimento());
-            
-            pstmt.setString(7, pessoa.getEmail());
-            
-            pstmt.setInt(8, en.getIdEndereco());;
-            
-            pstmt.setString(9, pessoa.getTelefone());
-            
-            pstmt.setString(10, pessoa.getCelular());
-            
-            pstmt.setString(11, pessoa.getSexo());
-            
+
+            pstmt.setString(1, pe.getNome());
+
+            pstmt.setString(2, pe.getSobrenome());
+
+            pstmt.setString(3, pe.getCpf());
+
+            pstmt.setString(4, pe.getRg());
+
+            pstmt.setBoolean(5, pe.isPenalisado());
+
+            pstmt.setString(6, pe.getDatanascimento());
+
+            pstmt.setString(7, pe.getEmail());
+
+            pstmt.setInt(8, en.getIdEndereco());
+
+            pstmt.setString(9, pe.getTelefone());
+
+            pstmt.setString(10, pe.getCelular());
+
+            pstmt.setString(11, pe.getSexo());
+
             pstmt.executeUpdate();
-            
+
             //Fim do pstmt inserir
-            
             ResultSet rs = pstmt.getGeneratedKeys();
-            
-            if(rs.next()){
-                pessoa.setId(rs.getInt("id"));
+
+            if (rs.next()) {
+                //en.setIdEndereco(rs.getInt("id"));
+                pe.setId(rs.getInt("id"));
                 conexao.commit();
             }
-            
-            
-        }catch(SQLException e){
-            throw new RuntimeException(e);
+
+        } // Verifica se a conexao foi fechada
+        catch (SQLException sqlErro) {
+            throw new RuntimeException(sqlErro);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
         }
     }
 
@@ -105,6 +110,4 @@ public class DAOPessoa implements iDAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
 }

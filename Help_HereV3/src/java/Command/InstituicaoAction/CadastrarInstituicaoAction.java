@@ -56,7 +56,7 @@ public class CadastrarInstituicaoAction implements ICommand {
         //Endereco da Instituicao
         
         en.setNomelogradouro("nomelogradouro");
-        en.setNumeroen("numeroen");
+        en.setNumeroen(Integer.parseInt("numeroen"));
         en.setMunicipio("municipio");
         en.setEstado("estado");
         en.setBairro("bairro");
