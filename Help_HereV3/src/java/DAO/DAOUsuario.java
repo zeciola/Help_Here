@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import Util.Conexao;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class DAOUsuario implements iDAO{
@@ -21,8 +23,8 @@ public class DAOUsuario implements iDAO{
     private String defalt = "comum";
     
     //Variaveis de chamada
-    private Login lo;
-    private Pessoa pe;
+    public Login lo;
+    public Pessoa pe;
     private Connection conexao;
     
     
@@ -55,7 +57,7 @@ public class DAOUsuario implements iDAO{
         pstmt.setString(3, lo.getNome());
         pstmt.setString(4, lo.getSenha());
         
-        pstmt.executeUpdate();
+        pstmt.execute();
         
         //Fim do pstmt inserir
         
@@ -70,9 +72,25 @@ public class DAOUsuario implements iDAO{
         
         } 
         // Verifica se a conexao foi fechada
-        catch (SQLException sqlErro) {
-            throw new RuntimeException(sqlErro);
-            } 
+        catch(SQLException e){
+              try {
+                  conexao.rollback();
+                  
+              } catch (SQLException ex) {
+                  Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            Logger.getLogger(Login.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: "+ e.getMessage());
+        }finally{
+                //4
+            if(conexao != null){
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } 
     }
 
     @Override
