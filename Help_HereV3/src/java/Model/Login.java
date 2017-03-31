@@ -4,12 +4,19 @@ package Model;
 // Login is the table Usuário
 public class Login {
 
+    private Pessoa pe;
+
     private int id;
     private String nome;
     private String senha;
     private PerfilDeAcesso perfil;
 
     //Gets
+    
+    public void setPe(Pessoa pe) {
+        this.pe = pe;
+    }
+    
     public int getId() {
         return id;
     }
@@ -27,6 +34,10 @@ public class Login {
     }
 
     //Sets
+    
+    public Pessoa getPe() {
+        return pe;
+    }
     
     public void setId(int CodPessoa) {
         this.id = id;

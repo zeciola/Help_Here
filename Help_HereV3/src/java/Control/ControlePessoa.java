@@ -100,7 +100,7 @@ public class ControlePessoa extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(ControlePessoa.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        }
 
     /**
      * Returns a short description of the servlet.

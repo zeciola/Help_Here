@@ -39,7 +39,8 @@ public class CadastrarPessoaAction implements ICommand{
         en.setCep(request.getParameter("cep"));
         en.setPais(request.getParameter("pais"));
         
-        daoen.setEndereco(en);
+        //daoen.setEndereco(en);
+        pe.setEn(en);
         daoen.Inserir();
         
         //Pessoa
@@ -49,16 +50,18 @@ public class CadastrarPessoaAction implements ICommand{
         pe.setRg(request.getParameter("rg"));
         //Variavel defalt
         pe.setPenalisado(defalt);
+        
         pe.setDatanascimento(request.getParameter("datanascimento"));
         pe.setEmail(request.getParameter("email"));
-        pe.setIDEndereco(en.getIdEndereco());
+        //Id Endereço foreign key
+        
         pe.setTelefone(request.getParameter("telefone"));
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
         
         
         daop.setPessoa(pe);
-        
+        daop.Inserir();
         
         //Usuário
 

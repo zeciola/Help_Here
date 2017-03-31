@@ -65,29 +65,22 @@ public class DAOPessoa implements iDAO {
 
             pstmt.setString(11, pe.getSexo());
 
-            pstmt.executeUpdate();
+            pstmt.execute();
 
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();
 
-            if (rs.next()) {
-                //en.setIdEndereco(rs.getInt("id"));
-                pe.setId(rs.getInt("id"));
-                conexao.commit();
-            }
+            rs.next();
+            
+            pe.setId(rs.getInt("ID"));
+            
+            conexao.commit();
+
 
         } // Verifica se a conexao foi fechada
         catch (SQLException sqlErro) {
             throw new RuntimeException(sqlErro);
-        } finally {
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        }
+        } 
     }
 
     @Override
