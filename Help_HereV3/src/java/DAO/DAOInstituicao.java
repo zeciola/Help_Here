@@ -11,6 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static jdk.nashorn.internal.objects.NativeMath.log;
+
 
 public class DAOInstituicao implements iDAO{
     
@@ -37,13 +41,13 @@ public class DAOInstituicao implements iDAO{
     @Override
     public void Inserir() {
         Connection conexao = null;
-        PreparedStatement pst =null;
         
         try{
            conexao = Conexao.getConexao();
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             conexao.setAutoCommit(false);
-            pst=conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+            
+          PreparedStatement  pst = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 
             
             pst.setString(1, instituicao.getNome());
@@ -57,20 +61,57 @@ public class DAOInstituicao implements iDAO{
             pst.setString(5, instituicao.getModalidade());
             
             pst.setString(6, instituicao.getEmail());
+            
 
-            pst.executeUpdate();
+            pst.execute();
             
             
             ResultSet rs = pst.getGeneratedKeys();
             
-            if(rs.next()){
-                instituicao.setIdInstituicao(rs.getInt("ID"));
-                conexao.commit();
-            }
+            rs.next();
+            
+           int idInstituicao = rs.getInt("ID");
+           
+           String sqlEndereco = "insert into Endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
+                   
+           PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
+           
+            pstmt.setString(1, instituicao.getEndereco().getCep());
+            
+            pstmt.setString(2, instituicao.getEndereco().getNomelogradouro());
+            
+            pstmt.setInt(3, instituicao.getEndereco().getNumeroen());
+            
+            pstmt.setString(4, instituicao.getEndereco().getBairro());
+            
+            pstmt.setString(5, instituicao.getEndereco().getMunicipio());
+            
+            pstmt.setString(6, instituicao.getEndereco().getEstado());
+            
+            pstmt.setString(7, instituicao.getEndereco().getPais());
+            
+            pstmt.execute();
+      
+            conexao.commit();
+           
             
             
         }catch(SQLException e){
-            throw new RuntimeException(e);
+            try{
+                conexao.rollback();
+            }   catch (SQLException ex){
+                Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+            }
+            Logger.getLogger(DAOInstituicao.class.getName());
+                log(Level.SEVERE, "Erro ao Cadastrar: "+ e.getMessage());
+        }finally{
+            if(conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+                }
+            }
         }
     }
     

@@ -17,7 +17,7 @@
         <servlet-class>Control.ControlePessoa</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ControleInst</servlet-name>
+        <servlet-name>ControleInstituicao</servlet-name>
         <servlet-class>Control.ControleInstituicao</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -37,8 +37,8 @@
         <url-pattern>/ControlePessoa</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ControleInst</servlet-name>
-        <url-pattern>/ControleInst</url-pattern>
+        <servlet-name>ControleInstituicao</servlet-name>
+        <url-pattern>/ControleInstituicao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

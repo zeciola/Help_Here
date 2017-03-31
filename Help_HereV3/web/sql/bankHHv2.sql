@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿
-=======
->>>>>>> origin/master
-CREATE TABLE Item (
+﻿CREATE TABLE Item (
 ID serial PRIMARY KEY,
 Item varchar(50),
 peso numeric,
@@ -72,7 +68,10 @@ email varchar(50)
 
 );
 
-alter table Instituicao add email varchar(50)
+alter table Instituicao add idEndereco serial
+select * from Instituicao
+
+select * from Endereco
 
 CREATE TABLE EnderecoIstituicao (
 ID serial PRIMARY KEY,
@@ -209,6 +208,7 @@ ALTER TABLE Divulgacao ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE Divulgacao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE EmailInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID);
+ALTER TABLE Instituicao ADD FOREIGN KEY (idEndereco) REFERENCES Endereco (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Instituicao ADD FOREIGN KEY(Contato) REFERENCES Pessoa (ID);

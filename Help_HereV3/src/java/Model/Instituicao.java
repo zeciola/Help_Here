@@ -13,6 +13,7 @@ public class Instituicao {
     private String cnpj;
     private String modalidade;
     private String Email;
+    private Endereco endereco;
     
 
     public Instituicao() {
@@ -52,6 +53,11 @@ public class Instituicao {
     public String getEmail() {
         return Email;
     }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+    
     
     
     
@@ -89,8 +95,12 @@ public class Instituicao {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
     
-        
+   
 
     
 }

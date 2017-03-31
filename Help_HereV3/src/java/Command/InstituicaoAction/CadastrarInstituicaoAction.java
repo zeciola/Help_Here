@@ -42,30 +42,28 @@ public class CadastrarInstituicaoAction implements ICommand {
         
         
         //Instituicao
-        inst.setNome(request.getParameter("Nome"));
-        inst.setRazao(request.getParameter("razaoSocial"));
+        inst.setNome(request.getParameter("nome"));
+        inst.setRazao(request.getParameter("razao"));
         inst.setTipo(request.getParameter("tipo"));
-        inst.setCnpj(request.getParameter("CNPJ"));
+        inst.setCnpj(request.getParameter("cnpj"));
         inst.setModalidade(request.getParameter("modalidade"));
         inst.setEmail(request.getParameter("email"));
         
         
-        daoi.setInstituicao();
-        daoi.Inserir();
-        
         //Endereco da Instituicao
         
-        en.setNomelogradouro("nomelogradouro");
-        en.setNumeroen(Integer.parseInt("numeroen"));
-        en.setMunicipio("municipio");
-        en.setEstado("estado");
-        en.setBairro("bairro");
-        en.setCep("cep");
-        en.setPais("pais");
+        en.setCep(request.getParameter("cep"));
+        en.setNomelogradouro(request.getParameter("endereco"));
+        en.setNumeroen(Integer.parseInt(request.getParameter("numero")));
+        en.setBairro(request.getParameter("bairro"));
+        en.setMunicipio(request.getParameter("cidade"));
+        en.setEstado(request.getParameter("estado"));
+        en.setPais(request.getParameter("pais"));
         
-        daoen.setEndereco(en);
-        daoen.Inserir();
-        //Usuário
+        
+        
+        daoi.setInstituicao();
+        daoi.Inserir();
         
         
         

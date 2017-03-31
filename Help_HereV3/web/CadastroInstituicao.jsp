@@ -57,7 +57,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="ControleInst" method="post" id="contact_form">
+        <form class="well form-horizontal" action="ControleInstituicao" method="post" id="contact_form">
             <fieldset>
 
 
@@ -85,7 +85,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="Razao" placeholder="RazaoSocial" class="form-control" type="text">
+                            <input name="razao" placeholder="RazaoSocial" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
@@ -144,11 +144,11 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="endereco" placeholder="Endereço" class="form-control" type="text">
-                            <input name="bairro" placeholder="Bairro" class="form-control" type="text">
-                            <input name="numeroen" placeholder="Número" class="form-control" type="number">
-                            <input name="cidade" placeholder="Cidade" class="form-control" type="text">
                             <input name="cep" placeholder="CEP" class="form-control" type="number">
+                            <input name="endereco" placeholder="Endereço" class="form-control" type="text">
+                            <input name="numero" placeholder="Número" class="form-control" type="number">
+                            <input name="bairro" placeholder="Bairro" class="form-control" type="text">                          
+                            <input name="cidade" placeholder="Cidade" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
