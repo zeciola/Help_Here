@@ -68,7 +68,7 @@ public class DAOPessoa implements iDAO {
 
             pstmt.setString(11, pe.getSexo());
 
-            pstmt.execute();
+            pstmt.executeUpdate(INSERT);
 
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();
