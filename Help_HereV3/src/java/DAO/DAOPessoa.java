@@ -56,7 +56,8 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(6, pe.getDatanascimento());
 
             pstmt.setString(7, pe.getEmail());
-
+            
+            //Foreign Key
             pstmt.setInt(8, en.getIdEndereco());
 
             pstmt.setString(9, pe.getTelefone());
@@ -65,16 +66,19 @@ public class DAOPessoa implements iDAO {
 
             pstmt.setString(11, pe.getSexo());
 
-            pstmt.execute();
+            pstmt.executeUpdate();
 
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();
 
             rs.next();
             
-            pe.setId(rs.getInt("ID"));
-            
-            conexao.commit();
+            if(rs.next()){
+                pe.setId(rs.getInt("ID"));
+                conexao.commit();
+            }
+
+            //conexao.commit();
 
 
         } // Verifica se a conexao foi fechada

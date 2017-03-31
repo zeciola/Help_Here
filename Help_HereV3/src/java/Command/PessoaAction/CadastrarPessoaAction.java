@@ -39,8 +39,9 @@ public class CadastrarPessoaAction implements ICommand{
         en.setCep(request.getParameter("cep"));
         en.setPais(request.getParameter("pais"));
         
-        //daoen.setEndereco(en);
+        //Seta o endereco na pessoa 
         pe.setEn(en);
+        daoen.setEndereco(en);
         daoen.Inserir();
         
         //Pessoa
