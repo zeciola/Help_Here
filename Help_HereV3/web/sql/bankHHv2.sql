@@ -64,7 +64,8 @@ razaoSocial VARCHAR(50 ),
 tipo varchar(15),
 CNJP varchar(19),
 modalidade VARCHAR(50),
-email varchar(50)
+email varchar(50),
+idEndereco serial
 
 );
 
@@ -211,7 +212,6 @@ ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituica
 ALTER TABLE Instituicao ADD FOREIGN KEY (idEndereco) REFERENCES Endereco (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
-ALTER TABLE Instituicao ADD FOREIGN KEY(Contato) REFERENCES Pessoa (ID);
 ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);

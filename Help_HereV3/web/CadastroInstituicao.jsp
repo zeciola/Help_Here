@@ -144,9 +144,9 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="cep" placeholder="CEP" class="form-control" type="number">
+                            <input name="cep" placeholder="CEP" class="form-control" type="text">
                             <input name="endereco" placeholder="Endereço" class="form-control" type="text">
-                            <input name="numero" placeholder="Número" class="form-control" type="number">
+                            <input name="numero" placeholder="Número" class="form-control" type="int">
                             <input name="bairro" placeholder="Bairro" class="form-control" type="text">                          
                             <input name="cidade" placeholder="Cidade" class="form-control" type="text">
                         </div>

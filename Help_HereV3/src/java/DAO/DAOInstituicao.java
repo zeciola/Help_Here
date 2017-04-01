@@ -28,7 +28,7 @@ public class DAOInstituicao implements iDAO{
     
     //SQL
     
-    private static final String INSERT = "INSERT INTO Instituicao(Nome, razaoSocial, tipo, CNPJ, modalidade, email) VALUES(?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO Instituicao(Nome, razaoSocial, tipo, CNPJ, modalidade, email) VALUES( ?, ?, ?, ?, ?, ?)";
     
     private static final String DELETE = "DELETE from Instituicao where id=?;";
     
@@ -63,14 +63,14 @@ public class DAOInstituicao implements iDAO{
             pst.setString(6, instituicao.getEmail());
             
 
-            pst.execute();
+            pst.executeUpdate();
             
             
             ResultSet rs = pst.getGeneratedKeys();
             
             rs.next();
             
-           int idInstituicao = rs.getInt("ID");
+           int idEndereco = rs.getInt("ID");
            
            String sqlEndereco = "insert into Endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
                    
