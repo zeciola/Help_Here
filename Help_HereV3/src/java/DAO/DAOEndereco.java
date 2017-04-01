@@ -59,7 +59,7 @@ public class DAOEndereco implements iDAO {
             
             pstmt.setString(7, en.getPais());
             
-            pstmt.executeUpdate(INSERT);
+            pstmt.executeUpdate();
             // Fim da pstmt insert
             
             //Resultset para id

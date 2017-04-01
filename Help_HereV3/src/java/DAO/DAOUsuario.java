@@ -24,7 +24,8 @@ public class DAOUsuario implements iDAO {
     //Variaveis de chamada
     public Login lo;
     public Pessoa pe;
-    private Connection conexao;
+    //Variable connection
+    private final Connection conexao = Conexao.getConexao();
 
     private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
@@ -52,7 +53,7 @@ public class DAOUsuario implements iDAO {
             pstmt.setString(3, lo.getNome());
             pstmt.setString(4, lo.getSenha());
 
-            pstmt.execute();
+            pstmt.executeUpdate();
 
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();

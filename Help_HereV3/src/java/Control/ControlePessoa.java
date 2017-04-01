@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "ControlePessoa", urlPatterns = {"/Control"})
+//@WebServlet(name = "ControlePessoa", urlPatterns = {"/Control"})
 public class ControlePessoa extends HttpServlet {
 
     /**
@@ -47,7 +47,7 @@ public class ControlePessoa extends HttpServlet {
 
                 String Nomeclasse = "Command.PessoaAction." + acao + "PessoaAction";
 
-                    Class classeAction = Class.forName(Nomeclasse);
+                Class classeAction = Class.forName(Nomeclasse);
 
                 ICommand commandAction = (ICommand) classeAction.newInstance();
 

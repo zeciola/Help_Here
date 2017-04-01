@@ -17,8 +17,10 @@ public class DAOPessoa implements iDAO {
 
     public Pessoa pe;
     public Endereco en;
-    private Connection conexao;
-
+    
+    //Variable connection
+    private final Connection conexao = Conexao.getConexao();
+    
     // defalt variabel Penalisado = false
     private boolean defalt;
 
@@ -68,7 +70,7 @@ public class DAOPessoa implements iDAO {
 
             pstmt.setString(11, pe.getSexo());
 
-            pstmt.executeUpdate(INSERT);
+            pstmt.executeUpdate();
 
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();
