@@ -14,11 +14,6 @@ public class Instituicao {
     private String modalidade;
     private String Email;
     private Endereco endereco;
-    
-
-    public Instituicao() {
-        
-    }
 
     
     //Gets

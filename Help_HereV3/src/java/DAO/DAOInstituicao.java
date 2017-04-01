@@ -16,15 +16,17 @@ import java.util.logging.Logger;
 import static jdk.nashorn.internal.objects.NativeMath.log;
 
 
-public class DAOInstituicao implements iDAO{
+public class DAOInstituicao implements iDAO {
     
-    private Endereco en;
+    
     private Connection conexao;
+    public Instituicao in;
     
-    Instituicao instituicao = new Instituicao();
     
-    //Construtor Instituicao
-    public void setInstituicao (){}
+    //Set Instituicao
+    public void setInstituicao (Instituicao in){
+        this.in = in;
+    }
     
     //SQL
     
@@ -50,17 +52,17 @@ public class DAOInstituicao implements iDAO{
           PreparedStatement  pst = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 
             
-            pst.setString(1, instituicao.getNome());
+            pst.setString(1, in.getNome());
             
-            pst.setString(2, instituicao.getRazao());
+            pst.setString(2, in.getRazao());
             
-            pst.setString(3, instituicao.getTipo());
+            pst.setString(3, in.getTipo());
             
-            pst.setString(4, instituicao.getCnpj());
+            pst.setString(4, in.getCnpj());
             
-            pst.setString(5, instituicao.getModalidade());
+            pst.setString(5, in.getModalidade());
             
-            pst.setString(6, instituicao.getEmail());
+            pst.setString(6, in.getEmail());
             
 
             pst.executeUpdate();
@@ -76,19 +78,19 @@ public class DAOInstituicao implements iDAO{
                    
            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
            
-            pstmt.setString(1, instituicao.getEndereco().getCep());
+            pstmt.setString(1, in.getEndereco().getCep());
             
-            pstmt.setString(2, instituicao.getEndereco().getNomelogradouro());
+            pstmt.setString(2, in.getEndereco().getNomelogradouro());
             
-            pstmt.setInt(3, instituicao.getEndereco().getNumeroen());
+            pstmt.setInt(3, in.getEndereco().getNumeroen());
             
-            pstmt.setString(4, instituicao.getEndereco().getBairro());
+            pstmt.setString(4, in.getEndereco().getBairro());
             
-            pstmt.setString(5, instituicao.getEndereco().getMunicipio());
+            pstmt.setString(5, in.getEndereco().getMunicipio());
             
-            pstmt.setString(6, instituicao.getEndereco().getEstado());
+            pstmt.setString(6, in.getEndereco().getEstado());
             
-            pstmt.setString(7, instituicao.getEndereco().getPais());
+            pstmt.setString(7, in.getEndereco().getPais());
             
             pstmt.execute();
       
@@ -115,7 +117,7 @@ public class DAOInstituicao implements iDAO{
         }
     }
     
-    @Override
+    
     public ArrayList<Instituicao> Listar() {
 
         PreparedStatement pstmt = null;
@@ -160,8 +162,8 @@ public class DAOInstituicao implements iDAO{
     }
 
        
-    @Override
-    public void Atualizar() {
+   
+    public void Atualizar(Instituicao instituicao) {
         try{
             conexao.setAutoCommit(false);
             
@@ -169,6 +171,7 @@ public class DAOInstituicao implements iDAO{
             
             PreparedStatement pst = conexao.prepareStatement(UPDATE, PreparedStatement.RETURN_GENERATED_KEYS);
 
+            
             pst.setString(1, instituicao.getNome());
             
             pst.setString(2, instituicao.getRazao());
@@ -178,14 +181,40 @@ public class DAOInstituicao implements iDAO{
             pst.setString(4, instituicao.getCnpj());
             
             pst.setString(5, instituicao.getModalidade());
-
+            
             pst.setString(6, instituicao.getEmail());
             
-            pst.executeUpdate();
 
+            pst.executeUpdate();
+            
             
             ResultSet rs = pst.getGeneratedKeys();
             
+            rs.next();
+            
+           int idEndereco = rs.getInt("ID");
+                                //"UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=? WHERE id=?";
+           String sqlEndereco = "UPDATE Endereco SET cep=?, NomeLogradouro=?, Numero=?, Bairro=?, Municipio=?, UF=?, pais=? WHERE ID=?";
+                   
+           PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
+           
+            pstmt.setString(1, instituicao.getEndereco().getCep());
+            
+            pstmt.setString(2, instituicao.getEndereco().getNomelogradouro());
+            
+            pstmt.setInt(3, instituicao.getEndereco().getNumeroen());
+            
+            pstmt.setString(4, instituicao.getEndereco().getBairro());
+            
+            pstmt.setString(5, instituicao.getEndereco().getMunicipio());
+            
+            pstmt.setString(6, instituicao.getEndereco().getEstado());
+            
+            pstmt.setString(7, instituicao.getEndereco().getPais());
+            
+            pstmt.execute();
+      
+            conexao.commit();            
             if(rs.next()){
                 instituicao.setIdInstituicao(rs.getInt("id"));
                 conexao.commit();
@@ -197,8 +226,7 @@ public class DAOInstituicao implements iDAO{
         }
     }
         
-    
-@Override
+
     public void Deletar() {
         try{
             conexao.setAutoCommit(false);
@@ -229,8 +257,12 @@ public class DAOInstituicao implements iDAO{
     
 
   
-    @Override
     public ArrayList Consultar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void Atualizar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
