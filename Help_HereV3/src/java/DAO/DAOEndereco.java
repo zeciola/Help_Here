@@ -29,7 +29,7 @@ public class DAOEndereco implements iDAO {
     private static final String SELECT_ALL = "select * from endereco";
     private static final String SELECT_ID = "select * from endereco where id=?";
 
-    //Construtor
+    //set model
     public void setEndereco(Endereco en) {
         this.en = en;
     }

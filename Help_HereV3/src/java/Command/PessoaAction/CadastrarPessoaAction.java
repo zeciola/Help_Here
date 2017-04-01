@@ -3,11 +3,13 @@ package Command.PessoaAction;
 import Command.*;
 import DAO.*;
 import Model.*;
+import Util.*;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 public class CadastrarPessoaAction implements ICommand{
 
@@ -20,15 +22,9 @@ public class CadastrarPessoaAction implements ICommand{
         Login lo = new Login();
         
         //DAOs
-        
-        
-        
-        
-        
+
         boolean defalt = false;
-        
-        
-        
+
         //Endereco de pessoa
         DAOEndereco daoen = new DAOEndereco();
         
@@ -55,7 +51,8 @@ public class CadastrarPessoaAction implements ICommand{
         //Variavel defalt
         pe.setPenalisado(defalt);
         
-        pe.setDatanascimento(request.getParameter("datanascimento"));
+        pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
+        
         pe.setEmail(request.getParameter("email"));
         //Id Endereço foreign key
         

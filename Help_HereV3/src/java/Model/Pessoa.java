@@ -4,7 +4,7 @@ import Control.*;
 import Model.*;
 import DAO.*;
 import Util.*;
-import java.util.*;
+import java.util.Date;
 
 public class Pessoa {
 
@@ -16,7 +16,7 @@ public class Pessoa {
     private String cpf;
     private String rg;
     private boolean penalisado;
-    private String datanascimento;
+    private Date datanascimento;
     private String email;
 
     //private int IDEndereco;
@@ -53,7 +53,7 @@ public class Pessoa {
         return penalisado;
     }
 
-    public String getDatanascimento() {
+    public Date getDatanascimento() {
         return datanascimento;
     }
 
@@ -103,7 +103,7 @@ public class Pessoa {
         this.penalisado = penalisado;
     }
 
-    public void setDatanascimento(String datanascimento) {
+    public void setDatanascimento(Date datanascimento) {
         this.datanascimento = datanascimento;
     }
 

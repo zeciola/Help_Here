@@ -57,7 +57,7 @@ public class DAOPessoa implements iDAO {
 
             pstmt.setBoolean(5, pe.isPenalisado());
 
-            pstmt.setString(6, pe.getDatanascimento());
+            pstmt.setDate(6, ConvertData.converteDataParaBanco(pe.getDatanascimento()));
 
             pstmt.setString(7, pe.getEmail());
             

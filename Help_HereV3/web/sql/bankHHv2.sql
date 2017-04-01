@@ -1,4 +1,5 @@
-﻿CREATE TABLE Item (
+﻿
+CREATE TABLE Item(
 ID serial PRIMARY KEY,
 Item varchar(50),
 peso numeric,
@@ -15,12 +16,14 @@ CREATE TABLE Endereco (
 ID serial PRIMARY KEY,
 cep varchar(9),
 NomeLogradouro varchar(50),
-Numero numeric(4),
+Numero numeric(100),
 Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
 pais varchar(45)
 );
+
+-- drop table endereco cascade
 
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
@@ -29,7 +32,7 @@ IDEvento serial
 );
 
 CREATE TABLE Divulgacao (
-ID serial PRIMARY KEY,
+ID serial PRIMARY KEY,	
 dataInicial date,
 dataFinal date,
 idEvento serial,
@@ -69,10 +72,10 @@ idEndereco serial
 
 );
 
-alter table Instituicao add idEndereco serial
-select * from Instituicao
+--alter table Instituicao add idEndereco serial
+--select * from Instituicao
 
-select * from Endereco
+--select * from Endereco
 
 CREATE TABLE EnderecoIstituicao (
 ID serial PRIMARY KEY,
@@ -182,6 +185,7 @@ ID_Evento serial,
 FOREIGN KEY(idItem) REFERENCES Item (ID),
 FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
+
 -- select * from Pessoa
 -- select * from Endereco
 
