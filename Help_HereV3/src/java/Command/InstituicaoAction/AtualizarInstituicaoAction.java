@@ -26,20 +26,16 @@ public class AtualizarInstituicaoAction implements ICommand {
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
-        //Date datanas = null;
-        
         //Instanciando Objetos
         Endereco en = new Endereco();
         Instituicao inst = new Instituicao();
-        Login lo = new Login();
+        
         
         //DAOs
-        DAOEndereco daoen = new DAOEndereco();
+        
         DAOInstituicao daoi = new DAOInstituicao();
-        DAOUsuario daou = new DAOUsuario();
         
         
-        boolean defalt = false;
         
         //Instituicao
         inst.setNome(request.getParameter("nome"));
@@ -49,8 +45,8 @@ public class AtualizarInstituicaoAction implements ICommand {
         inst.setModalidade("modalidade");
         
         
-        daoi.setInstituicao();
-        daoi.Inserir();
+        daoi.setInstituicao(inst);
+      //  daoi.Inserir();
         
         //Endereco da Instituicao
         
@@ -62,18 +58,13 @@ public class AtualizarInstituicaoAction implements ICommand {
         en.setCep("cep");
         en.setPais("pais");
         
-        daoen.setEndereco(en);
-        daoen.Inserir();
+        inst.setEndereco(en);
+        daoi.Atualizar(inst);
         //Usuário
         
         //Email
         
-        lo.setId(inst.getIdInstituicao());
-        lo.setNome("email");
-        lo.setSenha("senha");
-        
-        daou.setUsuario(lo);
-        
+
         
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";

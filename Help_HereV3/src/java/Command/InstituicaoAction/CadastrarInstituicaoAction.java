@@ -36,7 +36,7 @@ public class CadastrarInstituicaoAction implements ICommand {
         
         DAOInstituicao daoi = new DAOInstituicao();
         
-        DAOEndereco daoen = new DAOEndereco();
+        
         
         
         
@@ -62,9 +62,9 @@ public class CadastrarInstituicaoAction implements ICommand {
         
         
         
-        daoi.setInstituicao();
+        inst.setEndereco(en);
+        daoi.setInstituicao(inst);
         daoi.Inserir();
-        
         
         
         
