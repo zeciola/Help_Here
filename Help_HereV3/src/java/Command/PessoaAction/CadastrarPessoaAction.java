@@ -20,9 +20,9 @@ public class CadastrarPessoaAction implements ICommand{
         Login lo = new Login();
         
         //DAOs
-        DAOEndereco daoen = new DAOEndereco();
-        DAOPessoa daop = new DAOPessoa();
-        DAOUsuario daou = new DAOUsuario();
+        
+        
+        
         
         
         boolean defalt = false;
@@ -30,6 +30,7 @@ public class CadastrarPessoaAction implements ICommand{
         
         
         //Endereco de pessoa
+        DAOEndereco daoen = new DAOEndereco();
         
         en.setNomelogradouro(request.getParameter("nomelogradouro"));
         en.setNumeroen(Integer.parseInt(request.getParameter("numeroen")));
@@ -39,10 +40,13 @@ public class CadastrarPessoaAction implements ICommand{
         en.setCep(request.getParameter("cep"));
         en.setPais(request.getParameter("pais"));
         
-        //daoen.setEndereco(en);
+        //Seta o endereco na pessoa 
         pe.setEn(en);
+        daoen.setEndereco(en);
         daoen.Inserir();
         
+        
+        DAOPessoa daop = new DAOPessoa();
         //Pessoa
         pe.setNome(request.getParameter("nome"));
         pe.setSobrenome(request.getParameter("sobrenome"));
@@ -59,20 +63,22 @@ public class CadastrarPessoaAction implements ICommand{
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
         
-        
+        en.setPe(pe);
         daop.setPessoa(pe);
         daop.Inserir();
         
         //Usuário
-
+        DAOUsuario daou = new DAOUsuario();
         //ID Pessoa
         lo.setId(pe.getId());
         
+        lo.setPerfil(PerfilDeAcesso.comum);
         //Email
         lo.setNome(request.getParameter("email"));
         lo.setSenha(request.getParameter("senha"));
         
         //Seta os valores
+        lo.setPe(pe);
         daou.setUsuario(lo);
         
         //Executa o metodo Insert

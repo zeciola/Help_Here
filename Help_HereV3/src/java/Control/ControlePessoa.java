@@ -19,7 +19,9 @@ import Util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.annotation.WebServlet;
 
+@WebServlet(name = "ControlePessoa", urlPatterns = {"/Control"})
 public class ControlePessoa extends HttpServlet {
 
     /**
@@ -41,7 +43,7 @@ public class ControlePessoa extends HttpServlet {
                 String acao = request.getParameter("acao");
 
                 //Mosta a acao
-                System.out.println("acao");
+                System.out.println(acao);
 
                 String Nomeclasse = "Command.PessoaAction." + acao + "PessoaAction";
 

@@ -398,7 +398,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="estado" class="form-control selectpicker">
-                                <option value=" " >Escolha o seu estado</option>
+                                <option value="" >Escolha o seu estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
                                 <option value="AP">Amapá</option>

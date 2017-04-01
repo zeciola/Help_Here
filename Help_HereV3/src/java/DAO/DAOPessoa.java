@@ -10,11 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DAOPessoa implements iDAO {
 
-    private Pessoa pe;
-    private Endereco en;
+    public Pessoa pe;
+    public Endereco en;
     private Connection conexao;
 
     // defalt variabel Penalisado = false
@@ -56,7 +58,8 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(6, pe.getDatanascimento());
 
             pstmt.setString(7, pe.getEmail());
-
+            
+            //Foreign Key
             pstmt.setInt(8, en.getIdEndereco());
 
             pstmt.setString(9, pe.getTelefone());
@@ -65,22 +68,41 @@ public class DAOPessoa implements iDAO {
 
             pstmt.setString(11, pe.getSexo());
 
-            pstmt.execute();
+            pstmt.executeUpdate(INSERT);
 
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();
 
             rs.next();
             
-            pe.setId(rs.getInt("ID"));
-            
-            conexao.commit();
+            if(rs.next()){
+                pe.setId(rs.getInt("ID"));
+                conexao.commit();
+            }
+
+            //conexao.commit();
 
 
         } // Verifica se a conexao foi fechada
-        catch (SQLException sqlErro) {
-            throw new RuntimeException(sqlErro);
-        } 
+        catch(SQLException e){
+              try {
+                  conexao.rollback();
+                  
+              } catch (SQLException ex) {
+                  Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            Logger.getLogger(Pessoa.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: "+ e.getMessage());
+        }finally{
+                //4
+            if(conexao != null){
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     @Override

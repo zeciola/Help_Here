@@ -9,6 +9,8 @@ import java.util.*;
 
 public class Endereco {
     
+    private Pessoa pe;
+    
     private int idEndereco;
     private String nomelogradouro;
     private int numeroen;
@@ -21,6 +23,10 @@ public class Endereco {
 
     //Gets
 
+    public Pessoa getPe() {
+        return pe;
+    }
+    
     public int getIdEndereco() {
         return idEndereco;
     }
@@ -55,6 +61,10 @@ public class Endereco {
     
     //Sets
 
+    public void setPe(Pessoa pe) {
+        this.pe = pe;
+    }
+    
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
@@ -86,7 +96,5 @@ public class Endereco {
     public void setPais(String pais) {
         this.pais = pais;
     }
-    
-    
     
 }

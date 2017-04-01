@@ -19,7 +19,7 @@ public class DAOEndereco implements iDAO {
     //Variavel tipo de metodo
     private String classTipo;
     //Endereço
-    private Endereco en;
+    public Endereco en;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
@@ -30,7 +30,7 @@ public class DAOEndereco implements iDAO {
     private static final String SELECT_ID = "select * from endereco where id=?";
 
     //Construtor
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(Endereco en) {
         this.en = en;
     }
 
@@ -59,24 +59,41 @@ public class DAOEndereco implements iDAO {
             
             pstmt.setString(7, en.getPais());
             
-            pstmt.execute();
+            pstmt.executeUpdate(INSERT);
             // Fim da pstmt insert
             
             //Resultset para id
             
             ResultSet rs = pstmt.getGeneratedKeys();
+
+            //rs.next();
             
-            rs.next();
-            
-            en.setIdEndereco(rs.getInt("ID"));
-            
-            conexao.commit();
+            if(rs.next()){
+                en.setIdEndereco(rs.getInt("ID"));
+                conexao.commit();
+            }
             
             //Fim da busca
             
         } // Verifica se a conexao foi fechada
-        catch (SQLException sqlErro) {
-            throw new RuntimeException(sqlErro);
+        catch(SQLException e){
+              try {
+                  conexao.rollback();
+                  
+              } catch (SQLException ex) {
+                  Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: "+ e.getMessage());
+        }finally{
+                //4
+            if(conexao != null){
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         } 
     }
 
