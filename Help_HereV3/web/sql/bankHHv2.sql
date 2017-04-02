@@ -1,4 +1,4 @@
-CREATE TABLE Item(
+﻿CREATE TABLE Item(
 ID serial PRIMARY KEY,
 Item varchar(50),
 peso numeric,
@@ -64,25 +64,32 @@ ID serial PRIMARY KEY,
 Nome varchar(50),
 razaoSocial VARCHAR(50 ),
 tipo varchar(15),
-CNJP varchar(19),
-modalidade VARCHAR(50),
+CNPJ varchar(19),
+modalidade varchar(50),
 email varchar(50),
-idEndereco serial
-
+idEnderecoInstituicao int
 );
 
---alter table Instituicao add idEndereco serial
+drop table Instituicao cascade 
+drop table EnderecoInstituicao cascade 
+
 --select * from Instituicao
+--select * from EnderecoInstituicao
 
---select * from Endereco
 
-CREATE TABLE EnderecoIstituicao (
+
+
+CREATE TABLE EnderecoInstituicao (
 ID serial PRIMARY KEY,
-idInstituicao serial,
-idEndereco serial,
-FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID),
-FOREIGN KEY(idEndereco) REFERENCES Endereco (ID)
+cep varchar(9),
+NomeLogradouro varchar(50),
+Numero numeric(4),
+Bairro varchar(45),
+Municipio varchar(45),
+UF varchar(10),
+pais varchar(45)
 );
+
 
 CREATE TABLE InstituicaoPessoa (
 ID serial PRIMARY KEY,
@@ -212,7 +219,7 @@ ALTER TABLE Divulgacao ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE Divulgacao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE EmailInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID);
-ALTER TABLE Instituicao ADD FOREIGN KEY (idEndereco) REFERENCES Endereco (ID);
+ALTER TABLE Instituicao ADD FOREIGN KEY (idEnderecoInstituicao) REFERENCES EnderecoInstituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);

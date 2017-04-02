@@ -30,7 +30,7 @@ public class DAOInstituicao implements iDAO {
     
     //SQL
     
-    private static final String INSERT = "INSERT INTO Instituicao(Nome, razaoSocial, tipo, CNPJ, modalidade, email) VALUES( ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO Instituicao(Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao) VALUES( ?, ?, ?, ?, ?, ?, ?)";
     
     private static final String DELETE = "DELETE from Instituicao where id=?;";
     
@@ -49,34 +49,9 @@ public class DAOInstituicao implements iDAO {
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             conexao.setAutoCommit(false);
             
-          PreparedStatement  pst = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-
-            
-            pst.setString(1, in.getNome());
-            
-            pst.setString(2, in.getRazao());
-            
-            pst.setString(3, in.getTipo());
-            
-            pst.setString(4, in.getCnpj());
-            
-            pst.setString(5, in.getModalidade());
-            
-            pst.setString(6, in.getEmail());
-            
-
-            pst.executeUpdate();
-            
-            
-            ResultSet rs = pst.getGeneratedKeys();
-            
-            rs.next();
-            
-           int idEndereco = rs.getInt("ID");
-           
-           String sqlEndereco = "insert into Endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
+           String sqlEndereco = "insert into EnderecoInstituicao (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
                    
-           PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
+           PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
            
             pstmt.setString(1, in.getEndereco().getCep());
             
@@ -93,7 +68,34 @@ public class DAOInstituicao implements iDAO {
             pstmt.setString(7, in.getEndereco().getPais());
             
             pstmt.execute();
-      
+           
+            
+            ResultSet rs = pstmt.getGeneratedKeys();
+            rs.next();
+            int idEndereco = rs.getInt("ID");
+            
+            
+            
+            PreparedStatement  pst = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            
+            pst.setString(1, in.getNome());
+            
+            pst.setString(2, in.getRazao());
+            
+            pst.setString(3, in.getTipo());
+            
+            pst.setString(4, in.getCnpj());
+            
+            pst.setString(5, in.getModalidade());
+            
+            pst.setString(6, in.getEmail());
+            
+            pst.setInt(7, idEndereco);
+            
+
+            pst.executeUpdate();
+
             conexao.commit();
            
             

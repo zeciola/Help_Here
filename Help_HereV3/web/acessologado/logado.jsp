@@ -9,5 +9,9 @@
         <h1>Pagina a ser criada quando o usuario esta logado no sitema o mesmo deve ter opções da sua conta!</h1>
         <a href="../ControleAcesso?acao=Sair">Logoff</a>
         <a href="../admin/indexLogado.jsp">admin</a>
+        
+                    <li>
+                        <a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a>
+                    </li>
     </body>
 </html>
