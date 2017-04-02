@@ -63,13 +63,13 @@ public class CadastrarPessoaAction implements ICommand{
         pe.setSexo(request.getParameter("sexo"));
         
         en.setPe(pe);
+        daop.setEndereco(en);
         daop.setPessoa(pe);
         daop.Inserir();
         
         //Usuário
         DAOUsuario daou = new DAOUsuario();
-        //ID Pessoa
-        lo.setId(pe.getId());
+        
         
         lo.setPerfil(PerfilDeAcesso.comum);
         //Email
@@ -81,7 +81,8 @@ public class CadastrarPessoaAction implements ICommand{
         daou.setUsuario(lo);
         
         //Executa o metodo Insert
-        
+        daou.setPessoa(pe);
+        daou.setUsuario(lo);
         daou.Inserir();
         
         

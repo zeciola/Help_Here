@@ -24,11 +24,16 @@ public class DAOPessoa implements iDAO {
     // defalt variabel Penalisado = false
     private boolean defalt;
 
-    //Construtor Pessoa
+    
+    //SET Pessoa
     public void setPessoa(Pessoa pe) {
         this.pe = pe;
     }
-
+    // SET Endereco
+    public void  setEndereco(Endereco en){
+        this.en = en;
+    }
+    
     //SQL
     private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo) "
             + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -74,8 +79,6 @@ public class DAOPessoa implements iDAO {
 
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();
-
-            rs.next();
             
             if(rs.next()){
                 pe.setId(rs.getInt("ID"));

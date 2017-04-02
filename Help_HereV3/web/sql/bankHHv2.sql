@@ -1,4 +1,3 @@
-﻿
 CREATE TABLE Item(
 ID serial PRIMARY KEY,
 Item varchar(50),
@@ -107,7 +106,7 @@ Sobrenome varchar(50),
 CPF varchar(15),
 RG varchar,
 Penalisado boolean,
-Datanascimento date,
+Datanascimento varchar,
 email varchar(45),
 IDEndereco serial,
 Telefone varchar(19),

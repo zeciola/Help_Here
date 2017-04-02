@@ -19,22 +19,28 @@ import java.util.logging.Logger;
 public class DAOUsuario implements iDAO {
 
     //Variaveis comuns ou tipo defalt
-    private String defalt = "comum";
+    //private String defalt = "comum";
 
     //Variaveis de chamada
     public Login lo;
     public Pessoa pe;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
-
-    private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
-    private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
-
-    //Construtor
+    
+    //Set Ususario
     public void setUsuario(Login lo) {
         this.lo = lo;
     }
 
+    //Set Pessoa
+    public void setPessoa(Pessoa pe){
+        this.pe = pe;
+    }
+    
+    private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
+    private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
+
+    
     public void cadastraNovoUsuario(Login login) throws SQLException {
         Connection conexao = null;
 
