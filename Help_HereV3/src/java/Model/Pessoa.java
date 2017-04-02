@@ -16,7 +16,7 @@ public class Pessoa {
     private String cpf;
     private String rg;
     private boolean penalisado;
-    private Date datanascimento;
+    private String datanascimento;
     private String email;
 
     //private int IDEndereco;
@@ -53,7 +53,7 @@ public class Pessoa {
         return penalisado;
     }
 
-    public Date getDatanascimento() {
+    public String getDatanascimento() {
         return datanascimento;
     }
 
@@ -103,7 +103,7 @@ public class Pessoa {
         this.penalisado = penalisado;
     }
 
-    public void setDatanascimento(Date datanascimento) {
+    public void setDatanascimento(String datanascimento) {
         this.datanascimento = datanascimento;
     }
 

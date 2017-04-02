@@ -51,7 +51,9 @@ public class CadastrarPessoaAction implements ICommand{
         //Variavel defalt
         pe.setPenalisado(defalt);
         
-        pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
+        //pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
+        pe.setDatanascimento("datanascimento");
+        
         
         pe.setEmail(request.getParameter("email"));
         //Id Endereço foreign key

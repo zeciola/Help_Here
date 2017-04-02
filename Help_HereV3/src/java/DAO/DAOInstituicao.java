@@ -134,21 +134,21 @@ public class DAOInstituicao implements iDAO {
             
             while (rsUsuario.next())
             {
-                instituicao.setIdInstituicao(rsUsuario.getInt("id"));
+                in.setIdInstituicao(rsUsuario.getInt("id"));
                 
-                instituicao.setNome(rsUsuario.getString("nome"));
+                in.setNome(rsUsuario.getString("nome"));
                 
-                instituicao.setRazao(rsUsuario.getString("razaoSocial"));
+                in.setRazao(rsUsuario.getString("razaoSocial"));
                 
-                instituicao.setTipo(rsUsuario.getString("tipo"));
+                in.setTipo(rsUsuario.getString("tipo"));
                 
-                instituicao.setCnpj(rsUsuario.getString("CNPJ"));
+                in.setCnpj(rsUsuario.getString("CNPJ"));
                 
-                instituicao.setModalidade(rsUsuario.getString("modalidade"));
+                in.setModalidade(rsUsuario.getString("modalidade"));
                 
-                instituicao.setModalidade(rsUsuario.getString("email"));
+                in.setModalidade(rsUsuario.getString("email"));
                 
-                retorno.add(instituicao);
+                retorno.add(in);
 
             }
             return retorno;
@@ -198,19 +198,19 @@ public class DAOInstituicao implements iDAO {
                    
            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
            
-            pstmt.setString(1, instituicao.getEndereco().getCep());
+            pstmt.setString(1, in.getEndereco().getCep());
             
-            pstmt.setString(2, instituicao.getEndereco().getNomelogradouro());
+            pstmt.setString(2, in.getEndereco().getNomelogradouro());
             
-            pstmt.setInt(3, instituicao.getEndereco().getNumeroen());
+            pstmt.setInt(3, in.getEndereco().getNumeroen());
             
-            pstmt.setString(4, instituicao.getEndereco().getBairro());
+            pstmt.setString(4, in.getEndereco().getBairro());
             
-            pstmt.setString(5, instituicao.getEndereco().getMunicipio());
+            pstmt.setString(5, in.getEndereco().getMunicipio());
             
-            pstmt.setString(6, instituicao.getEndereco().getEstado());
+            pstmt.setString(6, in.getEndereco().getEstado());
             
-            pstmt.setString(7, instituicao.getEndereco().getPais());
+            pstmt.setString(7, in.getEndereco().getPais());
             
             pstmt.execute();
       
@@ -237,7 +237,7 @@ public class DAOInstituicao implements iDAO {
 
             
 
-            pst.setInt(1, instituicao.getIdInstituicao());
+            pst.setInt(1, in.getIdInstituicao());
 
              pst.executeUpdate();
 
@@ -245,7 +245,7 @@ public class DAOInstituicao implements iDAO {
             ResultSet rs = pst.getGeneratedKeys();
             
             if(rs.next()){
-                instituicao.setIdInstituicao(rs.getInt("id"));
+                in.setIdInstituicao(rs.getInt("id"));
                 conexao.commit();
             }
             
