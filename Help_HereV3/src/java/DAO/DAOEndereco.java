@@ -26,6 +26,7 @@ public class DAOEndereco implements iDAO {
 
     //SQL inputs
     private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
+    private static final String UPDATE = "";
     private static final String SELECT_ALL = "select * from endereco";
     private static final String SELECT_ID = "select * from endereco where id=?";
 
