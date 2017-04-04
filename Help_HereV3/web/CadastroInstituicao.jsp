@@ -394,12 +394,12 @@
                     <div class="col-md-4">
 
                         <button type="submit" name = "acao" value="Cadastrar">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
-
+                           
                     </div>
                 </div>
 
             </fieldset>
-            <input type="submit" name="acao" value="Cadastrar">
+            
         </form>
     </div>
 <!-- /.container -->

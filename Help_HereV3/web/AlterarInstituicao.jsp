@@ -9,7 +9,7 @@
 <html lang="pt-br">
 
     <head>
-        <title>Alterar Instituição - Help Here</title>
+        <title>Atualizar dados da Instituição - Help Here</title>
         <meta charset="UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,13 +56,13 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="ControlInst" method="post" id="contact_form">
+        <form class="well form-horizontal" action="ControleInstituicao" method="post" id="contact_form">
             <fieldset>
 
 
                 <!-- Form Name -->
 
-                <legend class="titulo"><b>Alteração de Cadastro da Instituição</b></legend>
+                <legend class="titulo"><b>Atualizar dados da Instituição</b></legend>
 
 
                 <!-- nome-->
@@ -84,7 +84,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="Razao" placeholder="RazaoSocial" class="form-control" type="text">
+                            <input name="razao" placeholder="RazaoSocial" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
@@ -135,20 +135,6 @@
                     </div>
                 </div>
                 
-                <!-- Text input-->
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Senha</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input name="password" placeholder="Senha" class="form-control" type="password">
-                            <input name="password" placeholder="Confirmar Senha" class="form-control" type="password">
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <!-- Text input-->
 
@@ -157,11 +143,11 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="cep" placeholder="CEP" class="form-control" type="text">
                             <input name="endereco" placeholder="Endereço" class="form-control" type="text">
-                            <input name="bairro" placeholder="Bairro" class="form-control" type="text">
-                            <input name="numeroen" placeholder="Número" class="form-control" type="number">
+                            <input name="numero" placeholder="Número" class="form-control" type="int">
+                            <input name="bairro" placeholder="Bairro" class="form-control" type="text">                          
                             <input name="cidade" placeholder="Cidade" class="form-control" type="text">
-                            <input name="cep" placeholder="CEP" class="form-control" type="number">
                         </div>
                     </div>
                 </div>
@@ -213,7 +199,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="pais" class="form-control selectpicker">
-                                <option value=" " >Escolha o seu pais</option>
+                                <option value="" >Escolha o seu pais</option>
                                 <option value="África do Sul">África do Sul</option>
                                 <option value="Albânia">Albânia</option>
                                 <option value="Alemanha">Alemanha</option>
@@ -405,11 +391,14 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" name = "acao" value="Atualizar" class="btn btn-warning">Alterar <span class="glyphicon glyphicon-send"></span></button>
+
+                        <button type="submit" name = "acao" value="Atualizar">Atualizar <span class="glyphicon glyphicon-send"></span></button>
+
                     </div>
                 </div>
 
             </fieldset>
+            
         </form>
     </div>
 <!-- /.container -->

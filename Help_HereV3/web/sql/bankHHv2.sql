@@ -72,12 +72,13 @@ idEnderecoInstituicao int
 
 drop table Instituicao cascade 
 drop table EnderecoInstituicao cascade 
-
+alter table Instituicao drop column idPessoa
 --select * from Instituicao
 --select * from EnderecoInstituicao
+UPDATE Instituicao SET nome='deu', razaoSocial='foi', tipo='isso', CNPJ='55', modalidade='deu', email='deu@deu' WHERE CNPJ='10';
 
-
-
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID
 
 CREATE TABLE EnderecoInstituicao (
 ID serial PRIMARY KEY,

@@ -6,6 +6,10 @@
 package Command.InstituicaoAction;
 
 import Command.ICommand;
+import DAO.DAOInstituicao;
+import Model.Instituicao;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +21,15 @@ public class ListarInstituicaoAction implements ICommand {
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Instituicao> i = new ArrayList();
+        DAOInstituicao idao = new DAOInstituicao();
+        i = idao.Listar();
+        //add a lista de clientes o objeto request
+        request.setAttribute("lista", i);
+        //envia o request para o jsp
+        RequestDispatcher rd= request.getRequestDispatcher("/listaInstituicao.jsp");
+        rd.forward(request, response);
+        return "listaInstituicao.jsp";
     }
     
 }

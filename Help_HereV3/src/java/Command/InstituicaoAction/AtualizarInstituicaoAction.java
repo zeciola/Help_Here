@@ -26,6 +26,7 @@ public class AtualizarInstituicaoAction implements ICommand {
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
+    
         //Instanciando Objetos
         Endereco en = new Endereco();
         Instituicao inst = new Instituicao();
@@ -37,38 +38,43 @@ public class AtualizarInstituicaoAction implements ICommand {
         
         
         
+        
+        
+        
         //Instituicao
         inst.setNome(request.getParameter("nome"));
-        inst.setRazao("razaoSocial");
-        inst.setTipo("tipo");
-        inst.setCnpj("CNPJ");
-        inst.setModalidade("modalidade");
+        inst.setRazao(request.getParameter("razao"));
+        inst.setTipo(request.getParameter("tipo"));
+        inst.setCnpj(request.getParameter("cnpj"));
+        inst.setModalidade(request.getParameter("modalidade"));
+        inst.setEmail(request.getParameter("email"));
         
-        
-        daoi.setInstituicao(inst);
-      //  daoi.Inserir();
         
         //Endereco da Instituicao
         
-        en.setNomelogradouro("nomelogradouro");
-        en.setNumeroen(Integer.parseInt("numeroen"));   //
-        en.setMunicipio("municipio");
-        en.setEstado("estado");
-        en.setBairro("bairro");
-        en.setCep("cep");
-        en.setPais("pais");
+        en.setCep(request.getParameter("cep"));
+        en.setNomelogradouro(request.getParameter("endereco"));
+        en.setNumeroen(Integer.parseInt(request.getParameter("numero")));
+        en.setBairro(request.getParameter("bairro"));
+        en.setMunicipio(request.getParameter("cidade"));
+        en.setEstado(request.getParameter("estado"));
+        en.setPais(request.getParameter("pais"));
+        
+        
         
         inst.setEndereco(en);
-        daoi.Atualizar(inst);
-        //Usuário
+        daoi.setInstituicao(inst);
+        daoi.Atualizar();
         
-        //Email
         
-
+        
+        
         
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";
         
     }
+        
+    
     
 }

@@ -21,7 +21,11 @@ public class DAOInstituicao implements iDAO {
     
     private Connection conexao;
     public Instituicao in;
+    public Endereco en;
     
+    public void setEndereco (Endereco en){
+        this.en = en;
+    }
     
     //Set Instituicao
     public void setInstituicao (Instituicao in){
@@ -30,15 +34,15 @@ public class DAOInstituicao implements iDAO {
     
     //SQL
     
-    private static final String INSERT = "INSERT INTO Instituicao(Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao) VALUES( ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO Instituicao(ID, Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
     
     private static final String DELETE = "DELETE from Instituicao where id=?;";
     
-    private static final String UPDATE = "UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=? WHERE id=?";
+   
  
     private static final String CONSULTA = "SELECT * from Instituicao WHERE id = ?" ;
     
-    private static final String LISTAR = "SELECT * FROM Instituicao";
+    private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID";
     
     @Override
     public void Inserir() {
@@ -72,26 +76,27 @@ public class DAOInstituicao implements iDAO {
             
             ResultSet rs = pstmt.getGeneratedKeys();
             rs.next();
-            int idEndereco = rs.getInt("ID");
+            int id = rs.getInt("ID");
             
             
             
-            PreparedStatement  pst = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement  pst = conexao.prepareStatement(INSERT);
 
+            pst.setInt(1, id);
             
-            pst.setString(1, in.getNome());
+            pst.setString(2, in.getNome());
             
-            pst.setString(2, in.getRazao());
+            pst.setString(3, in.getRazao());
             
-            pst.setString(3, in.getTipo());
+            pst.setString(4, in.getTipo());
             
-            pst.setString(4, in.getCnpj());
+            pst.setString(5, in.getCnpj());
             
-            pst.setString(5, in.getModalidade());
+            pst.setString(6, in.getModalidade());
             
-            pst.setString(6, in.getEmail());
+            pst.setString(7, in.getEmail());
             
-            pst.setInt(7, idEndereco);
+            pst.setInt(8, id);
             
 
             pst.executeUpdate();
@@ -122,84 +127,65 @@ public class DAOInstituicao implements iDAO {
     
     public ArrayList<Instituicao> Listar() {
 
-        PreparedStatement pstmt = null;
-        ResultSet rsUsuario;
-
-        try 
-        {
-            conexao.setAutoCommit(false);
-            pstmt = conexao.prepareStatement(LISTAR); // prepara a instrução em sql para os parâmetros informados (?)
-            // atribui os valores nos parâmetros (?) 
-            ArrayList<Instituicao> retorno = new ArrayList<>();
-           
-            rsUsuario = pstmt.executeQuery();
-            
-            while (rsUsuario.next())
-            {
-                in.setIdInstituicao(rsUsuario.getInt("id"));
-                
-                in.setNome(rsUsuario.getString("nome"));
-                
-                in.setRazao(rsUsuario.getString("razaoSocial"));
-                
-                in.setTipo(rsUsuario.getString("tipo"));
-                
-                in.setCnpj(rsUsuario.getString("CNPJ"));
-                
-                in.setModalidade(rsUsuario.getString("modalidade"));
-                
-                in.setModalidade(rsUsuario.getString("email"));
-                
-                retorno.add(in);
-
-            }
-            return retorno;
-
-        } catch (SQLException e)
-            {
+        ArrayList<Instituicao> resul = new ArrayList();
+        try{
+            conexao = Conexao.getConexao();
+            PreparedStatement pstmt = conexao.prepareStatement(LISTAR);
+            ResultSet rs;
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                Instituicao in = new Instituicao();
+                Endereco en = new Endereco();
+                 in.setIdInstituicao(rs.getInt("ID"));
+                 in.setNome(rs.getString("Nome"));
+                 in.setRazao(rs.getString("razaoSocial"));
+                 in.setTipo(rs.getString("tipo"));
+                 in.setCnpj(rs.getString("CNPJ"));
+                 in.setModalidade(rs.getString("modalidade"));
+                 in.setEmail(rs.getString("email"));
+                 en.setIdEndereco(rs.getInt("ID"));
+                 en.setCep(rs.getString("cep"));
+                 en.setNomelogradouro(rs.getString("NomeLogradouro"));
+                 en.setNumeroen(Integer.parseInt(rs.getString("Numero")));
+                 en.setMunicipio(rs.getString("Municipio"));
+                 en.setEstado(rs.getString("UF"));
+                 en.setPais(rs.getString("pais"));
+                 in.setEndereco(en);
+                 resul.add(in);
+                 
+             }
+             return resul;
+          
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
-        
+        }
+    
     }
 
        
    
-    public void Atualizar(Instituicao instituicao) {
+    @Override
+    public void Atualizar() {
+        
+        Connection conexao = null;
+        
         try{
-            conexao.setAutoCommit(false);
+        conexao = Conexao.getConexao();
+        
+        conexao.setAutoCommit(false);
             
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             
-            PreparedStatement pst = conexao.prepareStatement(UPDATE, PreparedStatement.RETURN_GENERATED_KEYS);
-
-            
-            pst.setString(1, instituicao.getNome());
-            
-            pst.setString(2, instituicao.getRazao());
-            
-            pst.setString(3, instituicao.getTipo());
-            
-            pst.setString(4, instituicao.getCnpj());
-            
-            pst.setString(5, instituicao.getModalidade());
-            
-            pst.setString(6, instituicao.getEmail());
-            
-
-            pst.executeUpdate();
-            
-            
-            ResultSet rs = pst.getGeneratedKeys();
-            
-            rs.next();
-            
-           int idEndereco = rs.getInt("ID");
-                                //"UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=? WHERE id=?";
-           String sqlEndereco = "UPDATE Endereco SET cep=?, NomeLogradouro=?, Numero=?, Bairro=?, Municipio=?, UF=?, pais=? WHERE ID=?";
+           String sqlEndereco = "UPDATE EnderecoInstituicao  SET cep=?, NomeLogradouro=?, Numero=?, Bairro=?, Municipio=?, UF=?, pais=? WHERE CNPJ="+in.getEndereco().getIdEndereco()+";";
                    
-           PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
-           
+            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
+      
             pstmt.setString(1, in.getEndereco().getCep());
             
             pstmt.setString(2, in.getEndereco().getNomelogradouro());
@@ -214,19 +200,59 @@ public class DAOInstituicao implements iDAO {
             
             pstmt.setString(7, in.getEndereco().getPais());
             
-            pstmt.execute();
-      
-            conexao.commit();            
-            if(rs.next()){
-                instituicao.setIdInstituicao(rs.getInt("id"));
-                conexao.commit();
-            }
+            pstmt.executeUpdate();
+           
+            ResultSet rs = pstmt.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt("ID");
+            
+            
+           
+            String sqlInstituicao = "UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=?, idEnderecoInstituicao=?  WHERE CNPJ="+in.getCnpj()+";";
+            
+            PreparedStatement  pst = conexao.prepareStatement(sqlInstituicao);
+
+            pst.setInt(1, id);
+            
+            pst.setString(2, in.getNome());
+            
+            pst.setString(3, in.getRazao());
+            
+            pst.setString(4, in.getTipo());
+            
+            pst.setString(5, in.getCnpj());
+            
+            pst.setString(6, in.getModalidade());
+            
+            pst.setString(7, in.getEmail());
+            
+            pst.setInt(8, id);
+            
+
+            pst.executeUpdate();
+            conexao.commit();
+           
             
             
         }catch(SQLException e){
-            throw new RuntimeException(e);
+            try{
+                conexao.rollback();
+            }   catch (SQLException ex){
+                Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+            }
+            Logger.getLogger(DAOInstituicao.class.getName());
+                log(Level.SEVERE, "Erro ao Alterar: "+ e.getMessage());
+        }finally{
+            if(conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+                }
+            }
         }
     }
+    
         
 
     public void Deletar() {
@@ -256,17 +282,81 @@ public class DAOInstituicao implements iDAO {
             throw new RuntimeException(e);
         }
     }
-    
-
-  
-    public ArrayList Consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
-    public void Atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    public ArrayList Consultar() {
+        ArrayList<Instituicao> resul = new ArrayList();
+        ArrayList<Endereco> re = new ArrayList();
+        try{
+            conexao = Conexao.getConexao();
+            PreparedStatement pstmt = conexao.prepareStatement(LISTAR);
+            pstmt.setInt(1, in.getIdInstituicao());
+            ResultSet rs;
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                 Instituicao e = new Instituicao();
+                 Endereco en = new Endereco();
+                 e.setIdInstituicao(rs.getInt("ID"));
+                 e.setNome(rs.getString("Nome"));
+                 e.setRazao(rs.getString("razaoSocial"));
+                 e.setTipo(rs.getString("tipo"));
+                 e.setCnpj(rs.getString("CNPJ"));
+                 e.setModalidade(rs.getString("modalidade"));
+                 e.setEmail(rs.getString("email"));
+                 en.setCep(rs.getString("cep"));
+                 en.setNomelogradouro(rs.getString("NomeLogradouro"));
+                 en.setNumeroen(Integer.parseInt(rs.getString("Numero")));
+                 en.setMunicipio(rs.getString("Mnicipio"));
+                 en.setEstado(rs.getString("UF"));
+                 en.setPais(rs.getString("pais"));
+                 e.setEndereco(en);
+                 resul.add(e);
+                 
+             }
+             return resul;
+          
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     
+     
+    }
+/*
+     ArrayList<Evento> resul = new ArrayList();
+        try{
+            conexao = Conecta.getConexao();
+            PreparedStatement pstmt = conexao.prepareStatement(LISTAR_ID);
+            pstmt.setInt(1, evento.getId());
+            ResultSet rs;
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                 Evento e = new Evento();
+                 e.setId(rs.getInt("id"));
+                 e.setNome(rs.getString("nome"));
+                 e.setDescricao(rs.getString("descricao"));
+                 e.setDataCad(rs.getDate("datacadastro"));
+                 e.setInicio(rs.getDate("datainicio"));
+                 e.setDataFim(rs.getDate("datafim"));
+                 resul.add(e);
+             }
+             return resul;
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
+  */
+    
+
 }

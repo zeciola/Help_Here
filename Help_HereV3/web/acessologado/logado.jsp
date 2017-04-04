@@ -13,5 +13,16 @@
                     <li>
                         <a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a>
                     </li>
+                    <li>
+                        <a href="../CNPJ.jsp">Alterar Instituição</a>
+                    </li>
+                
+                        <h1>Listar</h1>
+        <form action="../ControleInstituicao" method="post">
+            <input type="submit" name="acao" value="Listar"><br>
+            
+        </form>
+
+                   
     </body>
 </html>
