@@ -9,20 +9,27 @@
         <h1>Pagina a ser criada quando o usuario esta logado no sitema o mesmo deve ter opções da sua conta!</h1>
         <a href="../ControleAcesso?acao=Sair">Logoff</a>
         <a href="../admin/indexLogado.jsp">admin</a>
-        
-                    <li>
-                        <a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a>
-                    </li>
-                    <li>
-                        <a href="../CNPJ.jsp">Alterar Instituição</a>
-                    </li>
-                
-                        <h1>Listar</h1>
-        <form action="../ControleInstituicao" method="post">
-            <input type="submit" name="acao" value="Listar"><br>
-            
-        </form>
 
-                   
-    </body>
+    <li>
+        <a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a>
+    </li>
+    <li>
+        <a href="../CNPJ.jsp">Alterar Instituição</a>
+    </li>
+
+    <h1>Listar Pessoa</h1>
+    <form action="../ControlePessoa" method="post">
+        <button type="submit" name="acao" value="Listar">Listar Pessoa</button>
+    </form>                    
+    
+    <br></br>
+
+    <h1>Listar Instituição</h1>
+    <form action="../ControleInstituicao" method="post">
+        <input type="submit" name="acao" value="Listar"><br>
+
+    </form>
+
+
+</body>
 </html>

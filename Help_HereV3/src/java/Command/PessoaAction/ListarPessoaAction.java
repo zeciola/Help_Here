@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Command.PessoaAction;
 
-/**
- *
- * @author 11141100670
- */
-public class ListarPessoaAction {
+import Command.*;
+import DAO.*;
+import Model.*;
+import Util.*;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+
+public class ListarPessoaAction implements ICommand{
+
+    @Override
+    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        
+    }
     
 }

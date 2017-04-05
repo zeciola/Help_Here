@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class Conexao {
 
     //Nome do banco
-    static String banco = "HelpHere";
+    static String banco = "Helphere";
     //URL de conexão
     static String url = "jdbc:postgresql://127.0.0.1:5432/" + banco;
     //login do banco

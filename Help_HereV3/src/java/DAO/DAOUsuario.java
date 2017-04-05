@@ -39,7 +39,7 @@ public class DAOUsuario implements iDAO {
     
     private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
-
+    private static final String SELECT_ALL = "select * from Usuario";
     
     public void cadastraNovoUsuario(Login login) throws SQLException {
         Connection conexao = null;
@@ -107,8 +107,50 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public ArrayList Listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Login> Listar() {
+        ArrayList<Login> result = new ArrayList();
+
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
+
+            ResultSet rs;
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                lo.setId(rs.getInt("ID"));
+                lo.setNome(rs.getString("Tipo"));
+                
+                // Login = Nome = Email
+                lo.setNome(rs.getString("Login"));
+                lo.setSenha(rs.getString("senha"));
+                
+                result.add(lo);
+
+            }
+        }// Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        //Retorno do ArrayList
+        return result;
     }
 
     //Autenticação metodo unido não necessita estar na interface!
