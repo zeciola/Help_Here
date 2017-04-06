@@ -67,18 +67,22 @@ tipo varchar(15),
 CNPJ varchar(19),
 modalidade varchar(50),
 email varchar(50),
-idEnderecoInstituicao int
+idEnderecoInstituicao int,
+senha varchar(50),
+constraint fk_Endereco Foreign Key(IdEnderecoInstituicao)
+references EnderecoInstituicao (ID) on delete cascade
 );
 
 drop table Instituicao cascade 
 drop table EnderecoInstituicao cascade 
-alter table Instituicao drop column idPessoa
---select * from Instituicao
+alter table Instituicao add column senha varchar(50)
 --select * from EnderecoInstituicao
+--delete from EnderecoInstituicao where ID = 1
 UPDATE Instituicao SET nome='deu', razaoSocial='foi', tipo='isso', CNPJ='55', modalidade='deu', email='deu@deu' WHERE CNPJ='10';
 
 select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID
 select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID
+DELETE from Instituicao, EnderecoInstituicao using Instituicao inner join EnderecoInstituicao where Instituicao.ID = EnderecoInstituicao.ID and CNPJ = '55' 
 
 CREATE TABLE EnderecoInstituicao (
 ID serial PRIMARY KEY,
@@ -220,7 +224,7 @@ ALTER TABLE Divulgacao ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE Divulgacao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE EmailInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID);
-ALTER TABLE Instituicao ADD FOREIGN KEY (idEnderecoInstituicao) REFERENCES EnderecoInstituicao (ID);
+ALTER TABLE Instituicao ADD FOREIGN KEY (idEnderecoInstituicao) REFERENCES EnderecoInstituicao (ID) on delete cascade;
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);

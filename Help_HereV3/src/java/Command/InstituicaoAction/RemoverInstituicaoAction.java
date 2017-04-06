@@ -6,6 +6,10 @@
 package Command.InstituicaoAction;
 
 import Command.ICommand;
+import DAO.DAOInstituicao;
+import Model.Instituicao;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +21,23 @@ public class RemoverInstituicaoAction implements ICommand {
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
+        DAOInstituicao idao = new DAOInstituicao();
+        String CNP = null;
+        String Sen = null;
+        
+            String acao = request.getParameter("acao");
+            if (acao.equals("Remover")) {
+                
+                CNP=(request.getParameter("txtcnpj"));
+                Sen = (request.getParameter("txtSenha"));
+ 
+            }else {
+                return "erro.jsp";
+            }
+        
+         idao.Deletar(CNP,Sen);
+        return "/sucesso.jsp";
+    }
+     
 }

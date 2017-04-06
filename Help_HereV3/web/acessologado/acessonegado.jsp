@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Acesso não autorizado</h1>
-        <a href="../acessologado/logado.jsp">index logado</a>
+        <a href="../acessologado/logado.jsp">Voltar</a>
     </body>
 </html>

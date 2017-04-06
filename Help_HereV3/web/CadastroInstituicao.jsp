@@ -136,6 +136,16 @@
                     </div>
                 </div>
                 
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Senha</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input name="password" placeholder="Senha" class="form-control" type="password">
+                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="password">
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Text input-->
 

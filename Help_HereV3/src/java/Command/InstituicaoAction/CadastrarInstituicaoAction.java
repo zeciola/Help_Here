@@ -48,6 +48,7 @@ public class CadastrarInstituicaoAction implements ICommand {
         inst.setCnpj(request.getParameter("cnpj"));
         inst.setModalidade(request.getParameter("modalidade"));
         inst.setEmail(request.getParameter("email"));
+        inst.setSenha(request.getParameter("senha"));
         
         
         //Endereco da Instituicao

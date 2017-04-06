@@ -1,26 +1,29 @@
 <%-- 
-    Document   : CNPJ
-    Created on : 03/04/2017, 09:14:21
+    Document   : CNPJsenha
+    Created on : 05/04/2017, 10:28:15
     Author     : Lucas Puglia
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>AtualizaÁ„o da dados da InstituiÁ„o</title>
+        <title>Atualiza√ß√£o da dados da Institui√ß√£o</title>
         <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
         <div class="wrapper">
             <div class="container">
-                <h1>Digite o CNPJ da InstituiÁaı</h1>
+                <h1>Digite o CNPJ da Institui√ßa√µ</h1>
                 <form class="form" method="post" action="ControleInstituicao">
                     <input type="text" name="txtcnpj" placeholder="CNPJ">
+                    <input type="password" name="txtSenha" placeholder="Senha">
                     
 
                     <!-- BOTTON Funcionando -->
-                    <button type="submit" name="acao" value="Consultar">Confirmar</button>
+                    <button type="submit" name="acao" value="Remover">Excluir</button>
+                    <button type="submit" name="acao" value="Atualizar">Alterar</button>
                     
                     <div>
                         <ul>

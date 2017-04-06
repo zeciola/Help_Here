@@ -99,17 +99,17 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public void Atualizar() {
+    public void Atualizar(String OBJ, String OB) {
 
     }
 
     @Override
-    public void Deletar() {
+    public void Deletar(String OBJ, String OB) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList Consultar() {
+    public ArrayList Consultar(String obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

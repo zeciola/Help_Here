@@ -8,9 +8,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@page import="Model.Pessoa"%>
+<%@page import="Model.Instituicao"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DAO.DAOPessoa"%>
+<%@page import="DAO.DAOInstituicao"%>
 <html>
     <head><link href="estilo.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,11 +25,11 @@
 			<nav id="menu">
 				<h1>Menu Principal</h1>
 				<ul>
-                                <li><a href="index.jsp">Home</a></li>
-                                <li><a href="index.jsp">cadastrar Instituição</a></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="CadastroInstituicao.jsp">cadastrar Instituição</a></li>
 				</ul>
                         </nav>
-        <h1>Lista de Instituições</h1>  
+        <h1>Resultado da Pesquisa</h1>  
         <table border="1" width="20%" cellpadding="2" >
             <tr align="center">
                     <td>Nome</td>
@@ -63,6 +63,10 @@
                    <td><%=e.getEndereco().getMunicipio()%></td>
                    <td><%=e.getEndereco().getEstado()%></td>
                    <td><%=e.getEndereco().getPais()%></td>
+                   <td>
+                        <a href="ControleInstituicao?acao=Consultar&id=<%=e.getIdInstituicao()%>">Alterar</a>
+                        <a href="ControleInstituicao?acao=Remover&id=<%=e.getIdInstituicao()%>">Excluir</a>
+                    </td>
                    
                 </tr>
                 <%}%>

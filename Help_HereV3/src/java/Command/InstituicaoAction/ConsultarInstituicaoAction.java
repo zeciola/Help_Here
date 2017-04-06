@@ -27,14 +27,8 @@ public class ConsultarInstituicaoAction implements ICommand {
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ArrayList<Instituicao> I = new ArrayList();
-        Instituicao ins = new Instituicao();
-        String CNPJ_ant = null;
-        request.getAttribute("CNPJ_antigo");
-        DAOInstituicao idao = new DAOInstituicao();
-        idao.Consultar();
-         RequestDispatcher rd= request.getRequestDispatcher("/listaInstituicao.jsp");
-        rd.forward(request, response);
+        ArrayList<Instituicao> institu = new ArrayList();
+        
         return "listaInstituicao.jsp";
     }
     

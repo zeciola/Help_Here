@@ -14,10 +14,21 @@ public class Instituicao {
     private String modalidade;
     private String Email;
     private Endereco endereco;
+    private String senha;
 
     
     //Gets
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    
+    
     public int getIdInstituicao() {
         return idInstituicao;
     }
