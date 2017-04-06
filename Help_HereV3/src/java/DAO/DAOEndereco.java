@@ -15,14 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DAOEndereco implements iDAO {
-    
+
     //Variavel tipo de metodo
     private String classTipo;
     //Endereço
     public Endereco en;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
-
 
     //SQL inputs
     private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
@@ -39,63 +38,59 @@ public class DAOEndereco implements iDAO {
     @Override
     public void Inserir() {
         try {
-            
+
             conexao.setAutoCommit(false);
-            
+
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            
             PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-            
+
             pstmt.setString(1, en.getCep());
-            
+
             pstmt.setString(2, en.getNomelogradouro());
-            
+
             pstmt.setInt(3, en.getNumeroen());
-            
+
             pstmt.setString(4, en.getBairro());
-            
+
             pstmt.setString(5, en.getMunicipio());
-            
+
             pstmt.setString(6, en.getEstado());
-            
+
             pstmt.setString(7, en.getPais());
-            
+
             pstmt.executeUpdate();
             // Fim da pstmt insert
-            
+
             //Resultset para id
-            
             ResultSet rs = pstmt.getGeneratedKeys();
 
             //rs.next();
-            
-            if(rs.next()){
+            if (rs.next()) {
                 en.setIdEndereco(rs.getInt("ID"));
                 conexao.commit();
             }
-            
+
             //Fim da busca
-            
         } // Verifica se a conexao foi fechada
-        catch(SQLException e){
-              try {
-                  conexao.rollback();
-                  
-              } catch (SQLException ex) {
-                  Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-              }
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Logger.getLogger(Endereco.class.getName()).
-                    log(Level.SEVERE, "Erro ao cadastrar: "+ e.getMessage());
-        }finally{
-                //4
-            if(conexao != null){
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
                 try {
                     conexao.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } 
+        }
     }
 
     @Override
@@ -114,8 +109,52 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public ArrayList Listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Endereco> Listar() {
+        ArrayList<Endereco> result = new ArrayList();
+
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
+
+            ResultSet rs;
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                en.setIdEndereco(rs.getInt("ID"));
+                en.setCep(rs.getString("cep"));
+                en.setNomelogradouro("NomeLogradouro");
+                en.setNumeroen(rs.getInt("Numero"));
+                en.setBairro(rs.getString("Bairro"));
+                en.setMunicipio(rs.getString("Municipio"));
+                en.setEstado(rs.getString("UF"));
+                en.setPais(rs.getString("pais"));
+
+                result.add(en);
+
+            }
+        }// Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        //Retorno do ArrayList
+        return result;
     }
 
 }

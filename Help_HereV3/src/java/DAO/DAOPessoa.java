@@ -39,7 +39,9 @@ public class DAOPessoa implements iDAO {
             + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String DELETE = "update pessoa set";
-
+    
+    private static final String SELECT_ALL = "select * from Pessoa";
+    
     private static final String UPDATE = "";
 
     //DAOs
@@ -126,8 +128,56 @@ public class DAOPessoa implements iDAO {
     }
 
     @Override
-    public ArrayList Listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Pessoa> Listar() {
+        
+        ArrayList<Pessoa> result = new ArrayList();
+
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
+
+            ResultSet rs;
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                pe.setId(rs.getInt("ID"));
+                pe.setNome(rs.getString("Nome"));
+                pe.setSobrenome(rs.getString("Sobrenome"));
+                pe.setCpf(rs.getString("CPF"));
+                pe.setRg(rs.getString("RG"));
+                pe.setPenalisado(rs.getBoolean("Penalisado"));
+                pe.setDatanascimento(rs.getString("Datanascimento"));
+                pe.setEmail(rs.getString("email"));
+                pe.setTelefone(rs.getString("Telefone"));
+                pe.setCelular(rs.getString("celular"));
+                pe.setSexo(rs.getString("sexo"));
+                
+                result.add(pe);
+
+            }
+        }// Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        //Retorno do ArrayList
+        return result;
     }
 
 }
