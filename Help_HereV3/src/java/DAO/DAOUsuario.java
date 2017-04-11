@@ -20,27 +20,26 @@ public class DAOUsuario implements iDAO {
 
     //Variaveis comuns ou tipo defalt
     //private String defalt = "comum";
-
     //Variaveis de chamada
     public Login lo;
     public Pessoa pe;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
-    
+
     //Set Ususario
     public void setUsuario(Login lo) {
         this.lo = lo;
     }
 
     //Set Pessoa
-    public void setPessoa(Pessoa pe){
+    public void setPessoa(Pessoa pe) {
         this.pe = pe;
     }
-    
+
     private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
     private static final String SELECT_ALL = "select * from Usuario";
-    
+
     public void cadastraNovoUsuario(Login login) throws SQLException {
         Connection conexao = null;
 
@@ -102,8 +101,41 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public ArrayList Consultar(String obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList Consultar(String email) {
+        ArrayList<Login> result = new ArrayList();
+
+        try {
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
+
+            ResultSet rs;
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Login lo = new Login();
+                lo.setId(rs.getInt("ID"));
+                lo.setNome(rs.getString("Tipo"));
+
+                // Login = Nome = Email
+                lo.setNome(rs.getString("Login"));
+                lo.setSenha(rs.getString("senha"));
+
+                result.add(lo);
+
+            }
+            //Retorno do ArrayList
+            return result;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
@@ -118,39 +150,30 @@ public class DAOUsuario implements iDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                Login lo = new Login();
                 lo.setId(rs.getInt("ID"));
                 lo.setNome(rs.getString("Tipo"));
-                
+
                 // Login = Nome = Email
                 lo.setNome(rs.getString("Login"));
                 lo.setSenha(rs.getString("senha"));
-                
+
                 result.add(lo);
 
             }
-        }// Verifica se a conexao foi fechada
-        catch (SQLException e) {
-            try {
-                conexao.rollback();
+            //Retorno do ArrayList
+            return result;
 
-            } catch (SQLException ex) {
-                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Logger.getLogger(Endereco.class.getName()).
-                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } finally {
-            //4
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
-        
-        //Retorno do ArrayList
-        return result;
+
     }
 
     //Autenticação metodo unido não necessita estar na interface!

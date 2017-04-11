@@ -24,8 +24,9 @@
                 </nav>
                 <h1>Resultado da Pesquisa</h1>
                 <br/>
-                <h1>Endereço:</h1>
+
                 <table border="1" width="20%" cellpadding="2" >
+                    <h1>Endereço:</h1>
                     <tr align="center">
                         <td>Endereco</td>
                         <td>Número</td> 
@@ -33,12 +34,12 @@
                         <td>Estado</td>
                         <td>Bairro</td>
                         <td>CEP</td>
-                        <td>Estado</td>
                         <td>Pais</td>
+                        <td>Opções</td>
                     </tr>
                     <% //recupera a lista do request
-                    ArrayList<Endereco> listaEndereco = (ArrayList<Endereco>) request.getAttribute("ListaEn");
-                    for (Endereco en : listaEndereco) {%>  
+                        ArrayList<Endereco> listaEndereco = (ArrayList<Endereco>) request.getAttribute("ListaEn");
+                        for (Endereco en : listaEndereco) {%>  
                     <tr align="center">
                         <td><%=en.getNomelogradouro()%></td>
                         <td><%=en.getNumeroen()%></td>
@@ -46,6 +47,7 @@
                         <td><%=en.getEstado()%></td>
                         <td><%=en.getBairro()%></td>
                         <td><%=en.getCep()%></td>
+                        <td><%=en.getPais()%></td>
                         <td>
                             <a href="ControlePessoa?acao=Atualizar&id=<%=en.getIdEndereco()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=en.getIdEndereco()%>">Excluir</a>
@@ -53,10 +55,13 @@
 
                     </tr>
                     <%}%>
+                    <br/>
 
                 </table>
-                    <br/>
-                    <table border="1" width="20%" cellpadding="2" >
+
+                <br/>
+                <table border="1" width="20%" cellpadding="2" >
+                    <h1>Pessoa:</h1>
                     <tr align="center">
                         <td>Nome</td>
                         <td>Sobrenome</td> 
@@ -68,10 +73,11 @@
                         <td>Telefone</td>
                         <td>Celular</td>
                         <td>Sexo</td>
+                        <td>Opções</td>
                     </tr>
                     <% //recupera a lista do request
-                    ArrayList<Pessoa> listaPessoa = (ArrayList<Pessoa>) request.getAttribute("ListaPe");
-                    for (Pessoa pe : listaPessoa) {%>  
+                        ArrayList<Pessoa> listaPessoa = (ArrayList<Pessoa>) request.getAttribute("ListaPe");
+                        for (Pessoa pe : listaPessoa) {%>  
                     <tr align="center">
                         <td><%=pe.getNome()%></td>
                         <td><%=pe.getSobrenome()%></td>
@@ -90,29 +96,23 @@
 
                     </tr>
                     <%}%>
+                    <br/>
 
                 </table>
-                    <br/>
-                    <table border="1" width="20%" cellpadding="2" >
+                <br/>
+                <table border="1" width="20%" cellpadding="2" >
+                    <h1>Usuário:</h1>
                     <tr align="center">
                         <td>Nome</td>
-                        <td>Sobrenome</td> 
-                        <td>Cpf</td>
-                        <td>Rg</td>
-                        <td>Penalisado</td>
-                        <td>Data de nascimento</td>
-                        <td>Email</td>
-                        <td>Telefone</td>
-                        <td>Celular</td>
-                        <td>Sexo</td>
+                        <td>Senha</td> 
+                        <td>Opções</td>
                     </tr>
                     <% //recupera a lista do request
-                    ArrayList<Login> listaLogin = (ArrayList<Login>) request.getAttribute("ListaUs");
-                    for (Login lo : listaLogin) {%>  
+                        ArrayList<Login> listaLogin = (ArrayList<Login>) request.getAttribute("ListaUs");
+                        for (Login lo : listaLogin) {%>  
                     <tr align="center">
                         <td><%=lo.getNome()%></td>
                         <td><%=lo.getSenha()%></td>
-                        <td><%=lo.getPerfil()%></td>
                         <td>
                             <a href="ControlePessoa?acao=Atualizar&id=<%=lo.getId()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=lo.getId()%>">Excluir</a>

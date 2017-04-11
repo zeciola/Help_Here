@@ -24,14 +24,16 @@ public class ListarPessoaAction implements ICommand{
         DAOEndereco daoen = new DAOEndereco();
         en = daoen.Listar();
         
+        request.setAttribute("ListaEn", en);
+        
         DAOPessoa daope = new DAOPessoa();
         pe = daope.Listar();
+        
+        request.setAttribute("ListaPe", pe);
         
         DAOUsuario daou = new DAOUsuario();
         lo = daou.Listar();
         
-        request.setAttribute("ListaEn", en);
-        request.setAttribute("ListaPe", pe);
         request.setAttribute("ListaUs", lo);
         
         RequestDispatcher rd = request.getRequestDispatcher("/ListarPessoa.jsp");

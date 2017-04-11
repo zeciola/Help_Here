@@ -104,8 +104,44 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public ArrayList Consultar(String obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList Consultar(String email) {
+        ArrayList<Endereco> result = new ArrayList();
+        
+        try {
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
+
+            ResultSet rs;
+
+            rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                Endereco en = new Endereco();
+                en.setIdEndereco(rs.getInt("id"));
+                en.setCep(rs.getString("cep"));
+                en.setNomelogradouro(rs.getString("nomelogradouro"));
+                en.setNumeroen(rs.getInt("numero"));
+                en.setBairro(rs.getString("bairro"));
+                en.setMunicipio(rs.getString("municipio"));
+                en.setEstado(rs.getString("uf"));
+                en.setPais(rs.getString("pais"));
+
+                result.add(en);
+
+            }
+
+            //Retorno do ArrayList
+            return result;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
@@ -119,42 +155,34 @@ public class DAOEndereco implements iDAO {
 
             rs = pstmt.executeQuery();
 
-            while (rs.next()) {
-                en.setIdEndereco(rs.getInt("ID"));
+                while (rs.next()) {
+                Endereco en = new Endereco();
+                en.setIdEndereco(rs.getInt("id"));
                 en.setCep(rs.getString("cep"));
-                en.setNomelogradouro("NomeLogradouro");
-                en.setNumeroen(rs.getInt("Numero"));
-                en.setBairro(rs.getString("Bairro"));
-                en.setMunicipio(rs.getString("Municipio"));
-                en.setEstado(rs.getString("UF"));
+                en.setNomelogradouro(rs.getString("nomelogradouro"));
+                en.setNumeroen(rs.getInt("numero"));
+                en.setBairro(rs.getString("bairro"));
+                en.setMunicipio(rs.getString("municipio"));
+                en.setEstado(rs.getString("uf"));
                 en.setPais(rs.getString("pais"));
 
                 result.add(en);
 
             }
-        }// Verifica se a conexao foi fechada
-        catch (SQLException e) {
-            try {
-                conexao.rollback();
 
-            } catch (SQLException ex) {
-                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Logger.getLogger(Endereco.class.getName()).
-                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+            //Retorno do ArrayList
+            return result;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } finally {
-            //4
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
-        
-        //Retorno do ArrayList
-        return result;
+
     }
 
 }
