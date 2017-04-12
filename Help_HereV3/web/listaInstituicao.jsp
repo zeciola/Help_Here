@@ -63,10 +63,10 @@
                    <td><%=e.getEndereco().getMunicipio()%></td>
                    <td><%=e.getEndereco().getEstado()%></td>
                    <td><%=e.getEndereco().getPais()%></td>
-                   <td>
-                        <a href="ControleInstituicao?acao=Consultar&id=<%=e.getIdInstituicao()%>">Alterar</a>
-                        <a href="ControleInstituicao?acao=Remover&id=<%=e.getIdInstituicao()%>">Excluir</a>
-                    </td>
+                    <td>
+                        <a href="CNPJsenha.jsp">Alterar</a>
+                        <a href="CNPJsenha.jsp">Excluir</a>
+                    </td>                  
                    
                 </tr>
                 <%}%>

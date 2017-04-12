@@ -23,6 +23,28 @@ public class DAOInstituicao implements iDAO {
     public Instituicao in;
     public Endereco en;
     
+    private String CNP;
+    private String Sen;
+
+    public String getCNP() {
+        return CNP;
+    }
+
+    public String getSen() {
+        return Sen;
+    }
+
+    
+    
+    public void setCNP(String CNP) {
+        this.CNP = CNP;
+    }
+
+    public void setSen(String Sen) {
+        this.Sen = Sen;
+    }
+    
+    
     public void setEndereco (Endereco en){
         this.en = en;
     }
@@ -37,6 +59,8 @@ public class DAOInstituicao implements iDAO {
     private static final String INSERT = "INSERT INTO Instituicao(ID, Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao, senha) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     private static final String DELETE = "DELETE from Instituicao where id=?;";
+    
+    private static final String AUTENTICAR_INSTITUICAO = "SELECT * FROM Instituicao WHERE CNPJ=? AND senha=?";
     
     
     private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID";
@@ -172,7 +196,7 @@ public class DAOInstituicao implements iDAO {
        
    
     @Override
-    public void Atualizar(String OBJ, String OB) {
+    public void Atualizar(String CNP, String Sen) {
         
         Connection conexao = null;
         
@@ -183,10 +207,43 @@ public class DAOInstituicao implements iDAO {
             
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             
-           String sqlEndereco = "UPDATE EnderecoInstituicao  SET cep=?, NomeLogradouro=?, Numero=?, Bairro=?, Municipio=?, UF=?, pais=? WHERE CNPJ="+in.getEndereco().getIdEndereco()+";";
+           
+            
+            
+           
+            String sqlInstituicao = "UPDATE Instituicao SET  nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=?, senha=?  WHERE CNPJ='"+CNP+"' and senha='"+Sen+"';";
+            
+            PreparedStatement  pst = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS);
+
+           
+            
+            pst.setString(1, in.getNome());
+            
+            pst.setString(2, in.getRazao());
+            
+            pst.setString(3, in.getTipo());
+            
+            pst.setString(4, in.getCnpj());
+            
+            pst.setString(5, in.getModalidade());
+            
+            pst.setString(6, in.getEmail());
+           
+            pst.setString(7, in.getSenha());
+            
+
+            pst.executeUpdate();
+            
+            ResultSet rs = pst.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt("ID");
+            
+            
+            String sqlEndereco = "UPDATE EnderecoInstituicao  SET cep=?, NomeLogradouro=?, Numero=?, Bairro=?, Municipio=?, UF=?, pais=? WHERE ID="+id+";";
                    
-            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
       
+            
             pstmt.setString(1, in.getEndereco().getCep());
             
             pstmt.setString(2, in.getEndereco().getNomelogradouro());
@@ -203,34 +260,6 @@ public class DAOInstituicao implements iDAO {
             
             pstmt.executeUpdate();
            
-            ResultSet rs = pstmt.getGeneratedKeys();
-            rs.next();
-            int id = rs.getInt("ID");
-            
-            
-           
-            String sqlInstituicao = "UPDATE Instituicao SET nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=?, idEnderecoInstituicao=?  WHERE CNPJ="+in.getCnpj()+";";
-            
-            PreparedStatement  pst = conexao.prepareStatement(sqlInstituicao);
-
-            pst.setInt(1, id);
-            
-            pst.setString(2, in.getNome());
-            
-            pst.setString(3, in.getRazao());
-            
-            pst.setString(4, in.getTipo());
-            
-            pst.setString(5, in.getCnpj());
-            
-            pst.setString(6, in.getModalidade());
-            
-            pst.setString(7, in.getEmail());
-            
-            pst.setInt(8, id);
-            
-
-            pst.executeUpdate();
             conexao.commit();
            
             
@@ -258,25 +287,122 @@ public class DAOInstituicao implements iDAO {
 
     @Override
     public void Deletar(String CNP, String SEN) {
-        Instituicao in = new Instituicao();
+        
         try{
             conexao = Conexao.getConexao();
-            String sqlDel = "delete from Instituicao where CNPJ ='"+CNP+"' and senha ='"+SEN+"';";
+            
+            String sqlDel = "DELETE from EnderecoInstituicao where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '"+CNP+"' and senha = '"+SEN+"');";
+            
             PreparedStatement pstmt = conexao.prepareStatement(sqlDel);
+            pstmt.execute();
             
+            String sqlDelInst = "DELETE from Instituicao WHERE CNPJ = '"+CNP+"' and senha = '"+SEN+"';";
             
+            pstmt = conexao.prepareStatement(sqlDelInst);
+            pstmt.execute();
+           
+           
+    
             
             
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
     }
+   
     @Override
     public ArrayList Consultar(String CNP) {
         ArrayList<Instituicao> resul = new ArrayList();
-        return resul;
-     
+        ArrayList<Endereco> re = new ArrayList();
+        try{
+            conexao = Conexao.getConexao();
+            String sqlConsulta = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ ='"+CNP+"';";
+            PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
+            ResultSet rs;
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                Instituicao in = new Instituicao();
+                Endereco en = new Endereco();
+                 in.setIdInstituicao(rs.getInt("ID"));
+                 in.setNome(rs.getString("Nome"));
+                 in.setRazao(rs.getString("razaoSocial"));
+                 in.setTipo(rs.getString("tipo"));
+                 in.setCnpj(rs.getString("CNPJ"));
+                 in.setModalidade(rs.getString("modalidade"));
+                 in.setEmail(rs.getString("email"));
+                 en.setIdEndereco(rs.getInt("ID"));
+                 en.setCep(rs.getString("cep"));
+                 en.setNomelogradouro(rs.getString("NomeLogradouro"));
+                 en.setNumeroen(Integer.parseInt(rs.getString("Numero")));
+                 en.setBairro(rs.getString("Bairro"));
+                 en.setMunicipio(rs.getString("Municipio"));
+                 en.setEstado(rs.getString("UF"));
+                 en.setPais(rs.getString("pais"));
+                 in.setEndereco(en);
+                 resul.add(in);
+                 
+             }
+             return resul;
+          
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
+    /**
+     *
+     * @param inst
+     * @return
+     */
+
+    /**
+     *
+     * @param instituicao
+     * @param inst
+     * @return
+     */
+    public Instituicao autenticaInstituicao(Instituicao instituicao) {
+        Instituicao loginAutenticado = null;
+
+        Connection conexao = null;
+        PreparedStatement pstmt = null;
+        ResultSet rsLogin = null;
+        try {
+            conexao = Conexao.getConexao();
+            pstmt = conexao.prepareStatement(AUTENTICAR_INSTITUICAO);
+            pstmt.setString(1, instituicao.getCnpj());
+            pstmt.setString(2, instituicao.getSenha());
+            rsLogin = pstmt.executeQuery();
+
+            if (rsLogin.next()) {
+                loginAutenticado = new Instituicao();
+                loginAutenticado.setCnpj(rsLogin.getString("CNPJ"));
+                loginAutenticado.setSenha(rsLogin.getString("senha"));
+                
+            }
+
+        } catch (SQLException sqlErro) {
+            throw new RuntimeException(sqlErro);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
+        return loginAutenticado;
+    }
+
+    
+     
+    
 
     
 

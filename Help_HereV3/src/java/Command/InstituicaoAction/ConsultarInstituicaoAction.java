@@ -28,7 +28,23 @@ public class ConsultarInstituicaoAction implements ICommand {
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ArrayList<Instituicao> institu = new ArrayList();
+        DAOInstituicao idao = new DAOInstituicao();
+        String CNP = null;
         
+            String acao = request.getParameter("acao");
+            if (acao.equals("Consultar")) {
+                
+                CNP=(request.getParameter("txtcnpj"));
+ 
+            }else {
+                return "erro.jsp";
+            }
+        
+        institu = idao.Consultar(CNP);
+         request.setAttribute("lista", institu);
+        //envia o request para o jsp
+        RequestDispatcher rd= request.getRequestDispatcher("/listaInstituicao.jsp");
+        rd.forward(request, response);
         return "listaInstituicao.jsp";
     }
     

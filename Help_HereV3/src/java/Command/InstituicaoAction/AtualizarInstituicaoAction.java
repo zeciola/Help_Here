@@ -12,8 +12,11 @@ import DAO.DAOUsuario;
 import Model.Endereco;
 import Model.Instituicao;
 import Model.Login;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,17 +30,27 @@ public class AtualizarInstituicaoAction implements ICommand {
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
     
-        //Instanciando Objetos
         Endereco en = new Endereco();
+        
         Instituicao inst = new Instituicao();
-        
-        
+        String CNP = null;
+        String Sen = null;
         //DAOs
         
         DAOInstituicao daoi = new DAOInstituicao();
         
+        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
         
-        
+            
+         CNP=usuarioLogado.getCnpj();
+                
+          Sen = usuarioLogado.getSenha();
+                
+          
+               
+       
+       
         
         
         
@@ -48,6 +61,7 @@ public class AtualizarInstituicaoAction implements ICommand {
         inst.setCnpj(request.getParameter("cnpj"));
         inst.setModalidade(request.getParameter("modalidade"));
         inst.setEmail(request.getParameter("email"));
+        inst.setSenha(request.getParameter("senha"));
         
         
         //Endereco da Instituicao
@@ -64,7 +78,7 @@ public class AtualizarInstituicaoAction implements ICommand {
         
         inst.setEndereco(en);
         daoi.setInstituicao(inst);
-        daoi.Atualizar();
+        daoi.Atualizar(CNP,Sen);
         
         
         
@@ -74,7 +88,5 @@ public class AtualizarInstituicaoAction implements ICommand {
         return "/sucesso.jsp";
         
     }
-        
-    
     
 }

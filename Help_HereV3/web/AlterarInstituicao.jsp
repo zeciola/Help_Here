@@ -4,6 +4,8 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="DAO.DAOInstituicao"%>
+<%@page import="Model.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -135,7 +137,16 @@
                     </div>
                 </div>
                 
-
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Senha</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input name="password" placeholder="Senha" class="form-control" type="password">
+                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="password">
+                        </div>
+                    </div>
+                </div>
                 <!-- Text input-->
 
                 <div class="form-group">
@@ -381,11 +392,6 @@
 
                 
                 
-                <!-- Success message -->
-                <div class="alert alert-success" role="alert" id="success_message">Sucesso! <i class="glyphicon glyphicon-thumbs-up"></i>Cadastro realizado com sucesso. <i style="font-size: 25px;">&#9786;</i></div>
-
-                 <!-- Error message -->
-                 <div style="background-color: firebrick" class="alert alert-success" role="alert" id="success_message">Erro <i class="glyphicon glyphicon-thumbs-down"></i>Ops! Algum erro foi encontrado <font style="font-size: 20px">&#9785;</font></div>
                 
                 <!-- Button -->
                 <div class="form-group">

@@ -1,38 +1,29 @@
 <%-- 
-    Document   : CNPJsenha
-    Created on : 05/04/2017, 10:28:15
+    Document   : ConfirmarExclusão
+    Created on : 11/04/2017, 19:32:09
     Author     : Lucas Puglia
 --%>
 
-<%@page import="DAO.DAOInstituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Atualização da dados da Instituição</title>
+        <title>Confirmar Exclusão da Instituição</title>
         <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
         <div class="wrapper">
             <div class="container">
-                <h1>Digite o CNPJ da Instituiçaõ</h1>
-                <form class="form" method="post" action="ControleAcesso">
-                    <input type="text" name="txtcnpj" placeholder="CNPJ">
-                    <input type="password" name="txtSenha" placeholder="Senha">
+                <h1>Confirma Excluir a Instituição?</h1>
+                <form class="form" method="post" action="ControleInstituicao">
+                    
                     
 
                     <!-- BOTTON Funcionando -->
-                    <button type="submit" name="acao" value="Remove">Excluir</button>
-                    <button type="submit" name="acao" value="Altera">Alterar</button>
+                    <button type="submit" name="acao" value="Remover">Confirmar</button>
                     
-                    <div>
-                        <ul>
-                            <!-- Link Esquecu Senha-->
-                            <li><a href="CadastroInstituicao.jsp" class="senha-link">Cadastrar-se</a></li>
-                            <li><a href="#" class="senha-link">Esqueceu a senha?</a></li>
-                        </ul>
-                    </div>
+                    
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
                 </form>
             </div>

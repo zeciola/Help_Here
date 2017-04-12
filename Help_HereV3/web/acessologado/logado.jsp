@@ -17,9 +17,14 @@
                     <li>
                         <a href="../CNPJ.jsp">Consultar Instituição</a>
                     </li>
-                    <h2>Alterar e Deletar</h2>
+                    </li>
+                    <h2>Alterar</h2>
                     <li>
-                        <a href="../CNPJsenha.jsp">Alterar ou Deletar Instituição</a>
+                        <a href="../CNPJ.jsp">Alterar Instituição</a>
+                    </li>
+                    <h2>Deletar</h2>
+                    <li>
+                        <a href="../CNPJsenha.jsp">Deletar Instituição</a>
                     </li>
                 
                         <h2>Listar</h2>

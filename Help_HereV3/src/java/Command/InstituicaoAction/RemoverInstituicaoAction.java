@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,22 +22,22 @@ public class RemoverInstituicaoAction implements ICommand {
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    
-        DAOInstituicao idao = new DAOInstituicao();
+        
+        DAOInstituicao daoi = new DAOInstituicao();
         String CNP = null;
         String Sen = null;
         
-            String acao = request.getParameter("acao");
-            if (acao.equals("Remover")) {
-                
-                CNP=(request.getParameter("txtcnpj"));
-                Sen = (request.getParameter("txtSenha"));
- 
-            }else {
-                return "erro.jsp";
-            }
+         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
         
-         idao.Deletar(CNP,Sen);
+            
+         CNP=usuarioLogado.getCnpj();
+                
+         Sen = usuarioLogado.getSenha();
+            
+        
+         daoi.Deletar(CNP,Sen);
+         
         return "/sucesso.jsp";
     }
      

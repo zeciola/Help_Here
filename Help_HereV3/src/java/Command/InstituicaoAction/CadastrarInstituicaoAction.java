@@ -72,7 +72,7 @@ public class CadastrarInstituicaoAction implements ICommand {
         
         
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
-        return "/sucesso.jsp";
+        return "sucesso.jsp";
         
     }
     
