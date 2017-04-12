@@ -52,7 +52,7 @@ public class CadastrarPessoaAction implements ICommand{
         pe.setPenalisado(defalt);
         
         //pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
-        pe.setDatanascimento("datanascimento");
+        pe.setDatanascimento(request.getParameter("datanascimento"));
         
         
         pe.setEmail(request.getParameter("email"));

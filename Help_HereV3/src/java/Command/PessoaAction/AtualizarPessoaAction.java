@@ -21,8 +21,8 @@ public  class AtualizarPessoaAction implements ICommand{
         
         //DAOs
 
-        boolean defalt = false;
-
+        String antemail = request.getParameter("Antemail");
+        
         //Endereco de pessoa
         DAOEndereco daoen = new DAOEndereco();
         
@@ -47,7 +47,7 @@ public  class AtualizarPessoaAction implements ICommand{
         pe.setCpf(request.getParameter("cpf"));
         pe.setRg(request.getParameter("rg"));
         //Variavel defalt
-        pe.setPenalisado(defalt);
+        //pe.setPenalisado(defalt);
         
         //pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
         pe.setDatanascimento("datanascimento");
@@ -69,7 +69,7 @@ public  class AtualizarPessoaAction implements ICommand{
         DAOUsuario daou = new DAOUsuario();
         
         
-        lo.setPerfil(PerfilDeAcesso.comum);
+        //lo.setPerfil(PerfilDeAcesso.comum);
         //Email
         lo.setNome(request.getParameter("email"));
         lo.setSenha(request.getParameter("senha"));

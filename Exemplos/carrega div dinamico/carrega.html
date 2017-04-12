@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript" src="includes/upload/jquery-3.2.0.min"></script>
+
+		<script type = "text/javascript">
+			function carregar(pagina){
+			$('#conteudo').load(pagina);
+			}
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li><a onclick="carregar('inser.html');" href="#">Novo</a></li>
+			<li><a onclick="carregar('consul.html');" href="#">Consulta</a></li>
+			<li><a onclick="carregar('consul1.html');" href="#">Consulta Simples</a></li>
+			<li><a onclick="carregar('dele.html');" href="#">Delete</a></li>
+			<li><a onclick="carregar('atualiz.html');" href="#">Atualizar Dados</a></li>
+		</ul>
+		<div id="conteudo">
+			
+		</div>
+	</body>
+</html>
