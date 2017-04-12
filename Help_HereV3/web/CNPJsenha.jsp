@@ -26,13 +26,7 @@
                     <button type="submit" name="acao" value="Remove">Excluir</button>
                     <button type="submit" name="acao" value="Altera">Alterar</button>
                     
-                    <div>
-                        <ul>
-                            <!-- Link Esquecu Senha-->
-                            <li><a href="CadastroInstituicao.jsp" class="senha-link">Cadastrar-se</a></li>
-                            <li><a href="#" class="senha-link">Esqueceu a senha?</a></li>
-                        </ul>
-                    </div>
+                    
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
                 </form>
             </div>

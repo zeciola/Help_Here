@@ -22,13 +22,6 @@
                     <!-- BOTTON Funcionando -->
                     <button type="submit" name="acao" value="Consultar">Confirmar</button>
                     
-                    <div>
-                        <ul>
-                            <!-- Link Esquecu Senha-->
-                            <li><a href="CadastroInstituicao.jsp" class="senha-link">Cadastrar-se</a></li>
-                            <li><a href="#" class="senha-link">Esqueceu a senha?</a></li>
-                        </ul>
-                    </div>
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
                 </form>
             </div>
