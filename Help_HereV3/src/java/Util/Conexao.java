@@ -18,7 +18,7 @@ public class Conexao {
     //login do banco
     static String login = "postgres";
     //senha do banco
-    static String password = "postgres";
+    static String password = "lucas";
     //driver que será utilizado
     static String driver = "org.postgresql.Driver";
 
@@ -33,7 +33,7 @@ public class Conexao {
             //driver que será utilizado
             Class.forName("org.postgresql.Driver");
             //cria um objeto de conexao com um banco especificado no caminho...
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Helphere", "postgres", "postgres");
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/HelpHere", "postgres", "lucas");
         } catch (ClassNotFoundException erro1) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar carregar o driver: " + erro1);
         } catch (SQLException erro2) {
