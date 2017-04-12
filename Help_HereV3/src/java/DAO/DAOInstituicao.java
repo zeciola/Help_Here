@@ -195,7 +195,6 @@ public class DAOInstituicao implements iDAO {
 
        
    
-    @Override
     public void Atualizar(String CNP, String Sen) {
         
         Connection conexao = null;
@@ -285,7 +284,6 @@ public class DAOInstituicao implements iDAO {
     
         
 
-    @Override
     public void Deletar(String CNP, String SEN) {
         
         try{
@@ -398,6 +396,16 @@ public class DAOInstituicao implements iDAO {
             }
         }
         return loginAutenticado;
+    }
+
+    @Override
+    public void Atualizar(String OBJ) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void Deletar(String OBJ) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
