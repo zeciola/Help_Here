@@ -19,12 +19,12 @@ public class DAOEvento implements iDAO{
     }
 
     @Override
-    public void Atualizar(String OBJ) {
+    public void Atualizar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void Deletar(String OBJ) {
+    public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

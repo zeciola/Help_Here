@@ -1,6 +1,7 @@
 package Control;
 
 import DAO.DAOInstituicao;
+import DAO.DAOPessoa;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,17 +12,17 @@ import Model.PerfilDeAcesso;
 import Model.Login;
 import DAO.DAOUsuario;
 import Model.Instituicao;
+import Model.Pessoa;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpSession;
 
-
 public class ControleAcesso extends HttpServlet {
 
-        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         try {
             String acao = request.getParameter("acao");
             if (acao.equals("Entrar")) {
@@ -46,6 +47,46 @@ public class ControleAcesso extends HttpServlet {
                 }
 
             } else //se o usuario existe no banco de dados
+            if (acao.equals("AlteraPe")) {
+                Login lo = new Login();
+                lo.setNome(request.getParameter("txtLogin"));
+                lo.setSenha(request.getParameter("txtSenha"));
+
+                DAOUsuario daous = new DAOUsuario();
+
+                //Login loginAutenticadoPe = new Login();
+                Login loginAutenticado = daous.autenticaUsuario(lo);
+                if (loginAutenticado != null) {
+                    HttpSession sessaoInst = request.getSession();
+                    sessaoInst.setAttribute("usuarioAutenticado", loginAutenticado);
+                    //redireciona para o Alterar Pessoa
+                    response.sendRedirect("AlterarPessoa.jsp");
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
+                    request.setAttribute("msg", "Login ou Senha Incorreto!");
+                    rd.forward(request, response);
+                }
+            } else if (acao.equals("RemovePe")) {
+                Login lo = new Login();
+                lo.setNome(request.getParameter("txtLogin"));
+                lo.setSenha(request.getParameter("txtSenha"));
+
+                DAOUsuario daous = new DAOUsuario();
+
+                //Login loginAutenticadoPe = new Login();
+                Login loginAutenticado = daous.autenticaUsuario(lo);
+                if (loginAutenticado != null) {
+                    HttpSession sessaoInst = request.getSession();
+                    sessaoInst.setAttribute("usuarioAutenticado", loginAutenticado);
+                    //redireciona para o Alterar Pessoa
+                    response.sendRedirect("AlterarPessoa.jsp");
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
+                    request.setAttribute("msg", "Login ou Senha Incorreto!");
+                    rd.forward(request, response);
+                }
+            }
+
             if (acao.equals("Altera")) {
                 Instituicao inst = new Instituicao();
                 inst.setCnpj(request.getParameter("txtcnpj"));
@@ -64,8 +105,7 @@ public class ControleAcesso extends HttpServlet {
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
                     rd.forward(request, response);
                 }
-            } else
-                if (acao.equals("Remove")) {
+            } else if (acao.equals("Remove")) {
                 Instituicao inst = new Instituicao();
                 inst.setCnpj(request.getParameter("txtcnpj"));
                 inst.setSenha(request.getParameter("txtSenha"));

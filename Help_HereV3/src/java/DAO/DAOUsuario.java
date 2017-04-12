@@ -91,15 +91,15 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public void Atualizar(String OBJ) {
-         try {
+    public void Atualizar(String OBJ, String ob) {
+        try {
             conexao.setAutoCommit(false);
 
-            String sqlConsultar = "UPDATE Usuario SET login=?, senha=? where id="+lo.getId()+";";
+            String sqlConsultar = "UPDATE Usuario SET login=?, senha=? where id=" + lo.getId() + ";";
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsultar, PreparedStatement.RETURN_GENERATED_KEYS);
-            
+
             //pstmt.setInt(1, pe.getId());
             //pstmt.setString(2, lo.getPerfil().toString());
             pstmt.setString(1, lo.getNome());
@@ -138,7 +138,7 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public void Deletar(String OBJ) {
+    public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -147,7 +147,7 @@ public class DAOUsuario implements iDAO {
         ArrayList<Login> result = new ArrayList();
 
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;
@@ -237,6 +237,40 @@ public class DAOUsuario implements iDAO {
                 loginAutenticado.setNome(rsLogin.getString("login"));
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
+            }
+
+        } catch (SQLException sqlErro) {
+            throw new RuntimeException(sqlErro);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
+        return loginAutenticado;
+    }
+
+    public Login autenticaPessoa(Login lo) {
+        Login loginAutenticado = null;
+
+        Connection conexao = null;
+        PreparedStatement pstmt = null;
+        ResultSet rsLogin = null;
+        try {
+            conexao = Conexao.getConexao();
+            pstmt = conexao.prepareStatement(AUTENTICAR_USUARIO);
+            pstmt.setString(1, lo.getNome());
+            pstmt.setString(2, lo.getSenha());
+            rsLogin = pstmt.executeQuery();
+
+            if (rsLogin.next()) {
+                loginAutenticado = new Login();
+                loginAutenticado.setNome(rsLogin.getString("login"));
+                loginAutenticado.setSenha(rsLogin.getString("senha"));
+                //loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
             }
 
         } catch (SQLException sqlErro) {

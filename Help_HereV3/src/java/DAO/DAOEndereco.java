@@ -94,7 +94,7 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public void Atualizar(String Antemail) {
+    public void Atualizar(String Antemail, String ob) {
         try {
 
             conexao.setAutoCommit(false);
@@ -152,7 +152,7 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public void Deletar(String OBJ) {
+    public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
