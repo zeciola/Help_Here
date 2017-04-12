@@ -25,7 +25,7 @@ public class DAOEndereco implements iDAO {
 
     //SQL inputs
     private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
-    private static final String UPDATE = "UPDATE Endereco SET cep=?, NomeLogradouro=?, NomeLogradouro=?, Bairro=?, Municipio=?, UF=?, pais=? WHERE id=?";
+    //private static final String UPDATE = "UPDATE Endereco SET cep=2222, nomelogradouro='TesteUp', numero=456, bairro='TesteUpBairro', municipio='Mogi das Cruzes', uf='SP', pais='Brasil' WHERE id=;";
     private static final String SELECT_ALL = "select * from endereco";
     private static final String SELECT_ID = "select * from endereco where id=?";
 
@@ -94,12 +94,65 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public void Atualizar(String OBJ, String OB) {
+    public void Atualizar(String Antemail) {
+        try {
 
+            conexao.setAutoCommit(false);
+            
+            String sqlUpdate = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE email="+Antemail+";";
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            PreparedStatement pstmt = conexao.prepareStatement(sqlUpdate, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, en.getCep());
+
+            pstmt.setString(2, en.getNomelogradouro());
+
+            pstmt.setInt(3, en.getNumeroen());
+
+            pstmt.setString(4, en.getBairro());
+
+            pstmt.setString(5, en.getMunicipio());
+
+            pstmt.setString(6, en.getEstado());
+
+            pstmt.setString(7, en.getPais());
+
+            pstmt.executeUpdate();
+            // Fim da pstmt insert
+
+            //Resultset para id
+            ResultSet rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                en.setIdEndereco(rs.getInt("ID"));
+                conexao.commit();
+            }
+
+            //Fim da busca
+        } // Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     @Override
-    public void Deletar(String OBJ, String OB) {
+    public void Deletar(String OBJ) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

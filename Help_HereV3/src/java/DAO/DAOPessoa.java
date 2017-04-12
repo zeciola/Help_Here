@@ -113,12 +113,75 @@ public class DAOPessoa implements iDAO {
     }
 
     @Override
-    public void Atualizar(String OBJ, String OB) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Atualizar(String OBJ) {
+        try {
+
+            conexao.setAutoCommit(false);
+
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            
+            String sqlConsultar = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id="+pe.getId()+";";
+            
+            PreparedStatement pstmt = conexao.prepareStatement(sqlConsultar, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, pe.getNome());
+
+            pstmt.setString(2, pe.getSobrenome());
+
+            pstmt.setString(3, pe.getCpf());
+
+            pstmt.setString(4, pe.getRg());
+
+            //pstmt.setBoolean(5, pe.isPenalisado());
+
+            pstmt.setString(5, pe.getDatanascimento());
+
+            pstmt.setString(6, pe.getEmail());
+
+            //Foreign Key
+            //pstmt.setInt(8, en.getIdEndereco());
+
+            pstmt.setString(7, pe.getTelefone());
+
+            pstmt.setString(8, pe.getCelular());
+
+            pstmt.setString(9, pe.getSexo());
+
+            pstmt.executeUpdate();
+
+            //Fim do pstmt inserir
+            ResultSet rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                pe.setId(rs.getInt("ID"));
+                conexao.commit();
+            }
+
+            //conexao.commit();
+        } // Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Pessoa.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     @Override
-    public void Deletar(String OBJ, String OB) {
+    public void Deletar(String OBJ) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

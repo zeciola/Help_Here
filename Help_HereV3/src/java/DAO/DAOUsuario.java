@@ -91,12 +91,54 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public void Atualizar(String OBJ, String OB) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Atualizar(String OBJ) {
+         try {
+            conexao.setAutoCommit(false);
+
+            String sqlConsultar = "UPDATE Usuario SET login=?, senha=? where id="+lo.getId()+";";
+
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            PreparedStatement pstmt = conexao.prepareStatement(sqlConsultar, PreparedStatement.RETURN_GENERATED_KEYS);
+            
+            //pstmt.setInt(1, pe.getId());
+            //pstmt.setString(2, lo.getPerfil().toString());
+            pstmt.setString(1, lo.getNome());
+            pstmt.setString(2, lo.getSenha());
+
+            pstmt.executeUpdate();
+
+            //Fim do pstmt inserir
+            ResultSet rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                lo.setId(rs.getInt("ID"));
+                conexao.commit();
+            }
+
+        } // Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Login.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     @Override
-    public void Deletar(String OBJ, String OB) {
+    public void Deletar(String OBJ) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

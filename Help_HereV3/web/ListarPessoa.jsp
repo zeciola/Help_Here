@@ -49,7 +49,7 @@
                         <td><%=en.getCep()%></td>
                         <td><%=en.getPais()%></td>
                         <td>
-                            <a href="ControlePessoa?acao=Atualizar&id=<%=en.getIdEndereco()%>">Alterar</a>
+                            <a href="ControlePessoa?acao=Atualizar&iden=<%=en.getIdEndereco()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=en.getIdEndereco()%>">Excluir</a>
                         </td>
 
@@ -90,7 +90,7 @@
                         <td><%=pe.getCelular()%></td>
                         <td><%=pe.getSexo()%></td>
                         <td>
-                            <a href="ControlePessoa?acao=Atualizar&id=<%=pe.getId()%>">Alterar</a>
+                            <a href="ControlePessoa?acao=Atualizar&idpe=<%=pe.getId()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=pe.getId()%>">Excluir</a>
                         </td>
 
@@ -114,7 +114,7 @@
                         <td><%=lo.getNome()%></td>
                         <td><%=lo.getSenha()%></td>
                         <td>
-                            <a href="ControlePessoa?acao=Atualizar&id=<%=lo.getId()%>">Alterar</a>
+                            <a href="ControlePessoa?acao=Atualizar&idlo=<%=lo.getId()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=lo.getId()%>">Excluir</a>
                         </td>
 

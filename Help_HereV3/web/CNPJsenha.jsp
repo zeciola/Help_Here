@@ -23,6 +23,7 @@
 
                     <!-- BOTTON Funcionando -->
                     <button type="submit" name="acao" value="Remover">Excluir</button>
+                    <br/>
                     <button type="submit" name="acao" value="Atualizar">Alterar</button>
                     
                     <div>

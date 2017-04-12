@@ -172,7 +172,7 @@ public class DAOInstituicao implements iDAO {
        
    
     @Override
-    public void Atualizar(String OBJ, String OB) {
+    public void Atualizar(String OBJ) {
         
         Connection conexao = null;
         
@@ -257,8 +257,9 @@ public class DAOInstituicao implements iDAO {
         
 
     @Override
-    public void Deletar(String CNP, String SEN) {
+    public void Deletar(String CNP) {
         Instituicao in = new Instituicao();
+        String SEN = "1";
         try{
             conexao = Conexao.getConexao();
             String sqlDel = "delete from Instituicao where CNPJ ='"+CNP+"' and senha ='"+SEN+"';";
