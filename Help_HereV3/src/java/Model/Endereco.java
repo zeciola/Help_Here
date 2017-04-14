@@ -19,6 +19,7 @@ public class Endereco {
     private String bairro;
     private String cep;
     private String pais;
+    private boolean status;
 
 
     //Gets
@@ -58,6 +59,11 @@ public class Endereco {
     public String getPais() {
         return pais;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+    
     
     //Sets
 
@@ -96,5 +102,10 @@ public class Endereco {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
     
 }

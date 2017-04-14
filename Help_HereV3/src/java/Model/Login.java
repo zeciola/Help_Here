@@ -11,6 +11,7 @@ public class Login {
     private String nome;
     private String senha;
     private PerfilDeAcesso perfil;
+    private boolean status;
 
     //Gets
     
@@ -42,6 +43,11 @@ public class Login {
         return perfil;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    
     //Sets
     
     public Pessoa getPe() {
@@ -63,4 +69,9 @@ public class Login {
     public void setPerfil(PerfilDeAcesso perfil) {
         this.perfil = perfil;
     }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
 }

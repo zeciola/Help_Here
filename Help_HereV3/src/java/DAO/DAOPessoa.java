@@ -37,8 +37,8 @@ public class DAOPessoa implements iDAO {
     }
 
     //SQL
-    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo) "
-            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status) "
+            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String DELETE = "update pessoa set";
 
@@ -80,6 +80,9 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(10, pe.getCelular());
 
             pstmt.setString(11, pe.getSexo());
+            
+            //status
+            pstmt.setBoolean(12, pe.isStatus());
 
             pstmt.executeUpdate();
 

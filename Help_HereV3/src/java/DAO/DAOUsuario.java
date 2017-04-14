@@ -41,7 +41,7 @@ public class DAOUsuario implements iDAO {
         this.en = en;
     }
 
-    private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
+    private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha, status) VALUES (?,?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
     private static final String SELECT_ALL = "select * from Usuario";
 
@@ -62,6 +62,7 @@ public class DAOUsuario implements iDAO {
             pstmt.setString(2, lo.getPerfil().toString());
             pstmt.setString(3, lo.getNome());
             pstmt.setString(4, lo.getSenha());
+            pstmt.setBoolean(5, lo.isStatus());
 
             pstmt.executeUpdate();
 
