@@ -11,6 +11,7 @@ ID serial PRIMARY KEY,
 idPessoa serial
 );
 
+--colocar status
 CREATE TABLE Endereco (
 ID serial PRIMARY KEY,
 cep varchar(9),
@@ -19,7 +20,8 @@ Numero numeric(100),
 Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
-pais varchar(45)
+pais varchar(45),
+status boolean
 );
 
 -- drop table endereco cascade
@@ -51,12 +53,14 @@ idInstuicao serial,
 IdEvento serial
 );
 
+--colocar status
 CREATE TABLE Usuario (
 ID serial PRIMARY KEY,
 IDPessoa serial,
 Tipo varchar(15),
 Login varchar(45),
-senha varchar(45)
+senha varchar(45),
+starus boolean
 );
 
 CREATE TABLE Instituicao (
@@ -126,6 +130,7 @@ Tipo Boolean,
 FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID)
 );
 
+--colocar status
 CREATE TABLE Pessoa (
 ID serial PRIMARY KEY,
 Nome varchar(50),
@@ -139,6 +144,7 @@ IDEndereco serial,
 Telefone varchar(19),
 celular VARCHAR(20),
 sexo varchar,
+status boolean,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
 
