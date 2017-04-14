@@ -194,7 +194,7 @@ public class DAOInstituicao implements iDAO {
     }
 
        
-   
+   @Override
     public void Atualizar(String CNP, String Sen) {
         
         Connection conexao = null;
@@ -398,6 +398,7 @@ public class DAOInstituicao implements iDAO {
         return loginAutenticado;
     }
 
+    /*
     @Override
     public void Atualizar(String OBJ) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -408,7 +409,7 @@ public class DAOInstituicao implements iDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    */
      
     
 

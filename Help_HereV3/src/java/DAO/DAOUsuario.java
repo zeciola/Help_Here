@@ -23,6 +23,7 @@ public class DAOUsuario implements iDAO {
     //Variaveis de chamada
     public Login lo;
     public Pessoa pe;
+    public Endereco en;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
@@ -34,6 +35,10 @@ public class DAOUsuario implements iDAO {
     //Set Pessoa
     public void setPessoa(Pessoa pe) {
         this.pe = pe;
+    }
+
+    public void setEndereco(Endereco en) {
+        this.en = en;
     }
 
     private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha) VALUES (?,?,?,?)";
@@ -91,30 +96,78 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public void Atualizar(String OBJ, String ob) {
+    public void Atualizar(String Email, String Senha) {
         try {
             conexao.setAutoCommit(false);
 
-            String sqlConsultar = "UPDATE Usuario SET login=?, senha=? where id=" + lo.getId() + ";";
+            String sqlUsuario = "UPDATE Usuario SET login=?, senha=? where email=" + Email + " and senha=" + Senha + ";";
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            PreparedStatement pstmt = conexao.prepareStatement(sqlConsultar, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
 
-            //pstmt.setInt(1, pe.getId());
-            //pstmt.setString(2, lo.getPerfil().toString());
-            pstmt.setString(1, lo.getNome());
-            pstmt.setString(2, lo.getSenha());
+            pst.setString(1, lo.getNome());
+            pst.setString(2, lo.getSenha());
 
-            pstmt.executeUpdate();
+            pst.executeUpdate();
 
             //Fim do pstmt inserir
-            ResultSet rs = pstmt.getGeneratedKeys();
+            ResultSet rs = pst.getGeneratedKeys();
 
-            if (rs.next()) {
-                lo.setId(rs.getInt("ID"));
-                conexao.commit();
-            }
+            rs.next();
+            int id = rs.getInt("ID");
+            
+            String sqlEndereco = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE id="+id+";";
 
+            PreparedStatement pstm = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstm.setString(1, en.getCep());
+
+            pstm.setString(2, en.getNomelogradouro());
+
+            pstm.setInt(3, en.getNumeroen());
+
+            pstm.setString(4, en.getBairro());
+
+            pstm.setString(5, en.getMunicipio());
+
+            pstm.setString(6, en.getEstado());
+
+            pstm.setString(7, en.getPais());
+
+            pstm.executeUpdate();
+            
+            String sqlPessoa = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id="+id+";";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlPessoa, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, pe.getNome());
+
+            pstmt.setString(2, pe.getSobrenome());
+
+            pstmt.setString(3, pe.getCpf());
+
+            pstmt.setString(4, pe.getRg());
+
+            //pstmt.setBoolean(5, pe.isPenalisado());
+
+            pstmt.setString(5, pe.getDatanascimento());
+
+            pstmt.setString(6, pe.getEmail());
+
+            //Foreign Key
+            //pstmt.setInt(8, en.getIdEndereco());
+
+            pstmt.setString(7, pe.getTelefone());
+
+            pstmt.setString(8, pe.getCelular());
+
+            pstmt.setString(9, pe.getSexo());
+            
+            pstmt.executeUpdate();
+            
+            conexao.commit();
+
+            
         } // Verifica se a conexao foi fechada
         catch (SQLException e) {
             try {
@@ -258,19 +311,23 @@ public class DAOUsuario implements iDAO {
 
         Connection conexao = null;
         PreparedStatement pstmt = null;
-        ResultSet rsLogin = null;
+        ResultSet rs = null;
         try {
             conexao = Conexao.getConexao();
             pstmt = conexao.prepareStatement(AUTENTICAR_USUARIO);
             pstmt.setString(1, lo.getNome());
             pstmt.setString(2, lo.getSenha());
-            rsLogin = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
 
-            if (rsLogin.next()) {
+            if (rs.next()) {
                 loginAutenticado = new Login();
-                loginAutenticado.setNome(rsLogin.getString("login"));
-                loginAutenticado.setSenha(rsLogin.getString("senha"));
-                //loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
+                loginAutenticado.setNome(rs.getString("login"));
+                loginAutenticado.setSenha(rs.getString("senha"));
+                loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rs.getString("tipo")));
+            }
+            
+            if(rs == null){
+                System.out.println("Está nulo "+rs);
             }
 
         } catch (SQLException sqlErro) {

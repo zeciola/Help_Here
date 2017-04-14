@@ -29,6 +29,10 @@
 <li>
     <a href="../emailSenha.jsp">Alterar Pessoa</a>
 </li>
+
+<li>
+    <a href="../AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
+</li>
 <h2>Deletar</h2>
 <li>
     <a href="../CNPJsenha.jsp">Deletar Instituição</a>

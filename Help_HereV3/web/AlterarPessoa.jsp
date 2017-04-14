@@ -59,23 +59,6 @@
         <form class="well form-horizontal" action="ControlePessoa" method="post" id="contact_form">
             <fieldset>
 
-
-                <!-- Form Name -->
-
-                <legend class="titulo"><b>Alterar</b></legend>
-
-
-                <!-- Email -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">E-Mail anterior</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="Antemail">
-                        </div>
-                    </div>
-                </div>
-                
                 <!-- Text input-->
 
                 <div class="form-group">
@@ -453,7 +436,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" name = "acao" value="Cadastrar" >Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name = "acao" value="Atualizar" >Alterar <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 

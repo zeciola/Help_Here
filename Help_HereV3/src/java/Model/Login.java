@@ -5,6 +5,7 @@ package Model;
 public class Login {
 
     private Pessoa pe;
+    private Endereco en;
 
     private int id;
     private String nome;
@@ -15,6 +16,14 @@ public class Login {
     
     public void setPe(Pessoa pe) {
         this.pe = pe;
+    }
+
+    public void setEn(Endereco en) {
+        this.en = en;
+    }
+
+    public Endereco getEn() {
+        return en;
     }
     
     public int getId() {

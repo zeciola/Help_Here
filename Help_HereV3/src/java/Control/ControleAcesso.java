@@ -55,7 +55,7 @@ public class ControleAcesso extends HttpServlet {
                 DAOUsuario daous = new DAOUsuario();
 
                 //Login loginAutenticadoPe = new Login();
-                Login loginAutenticado = daous.autenticaUsuario(lo);
+                Login loginAutenticado = daous.autenticaPessoa(lo);
                 if (loginAutenticado != null) {
                     HttpSession sessaoInst = request.getSession();
                     sessaoInst.setAttribute("usuarioAutenticado", loginAutenticado);
