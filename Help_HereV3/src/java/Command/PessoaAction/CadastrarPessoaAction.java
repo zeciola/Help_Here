@@ -24,6 +24,7 @@ public class CadastrarPessoaAction implements ICommand{
         //DAOs
 
         boolean defalt = false;
+        boolean status = true;
 
         //Endereco de pessoa
         DAOEndereco daoen = new DAOEndereco();
@@ -35,6 +36,8 @@ public class CadastrarPessoaAction implements ICommand{
         en.setBairro(request.getParameter("bairro"));
         en.setCep(request.getParameter("cep"));
         en.setPais(request.getParameter("pais"));
+        //status
+        en.setStatus(status);
         
         //Seta o endereco na pessoa 
         pe.setEn(en);
@@ -61,6 +64,8 @@ public class CadastrarPessoaAction implements ICommand{
         pe.setTelefone(request.getParameter("telefone"));
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
+        //status
+        pe.setStatus(status);
         
         en.setPe(pe);
         daop.setEndereco(en);
@@ -75,6 +80,8 @@ public class CadastrarPessoaAction implements ICommand{
         //Email
         lo.setNome(request.getParameter("email"));
         lo.setSenha(request.getParameter("senha"));
+        //status
+        lo.setStatus(status);
         
         //Seta os valores
         lo.setPe(pe);

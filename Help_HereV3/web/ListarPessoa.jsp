@@ -2,7 +2,6 @@
 <%@page import="Model.*"%>
 <%@page import="java.util.ArrayList" %>
 <%@page import="DAO.*"%>
-
 <!DOCTYPE html>
 <html>
     <head><link href="estilo.css" rel="stylesheet">
@@ -120,7 +119,7 @@
 
                     </tr>
                     <%}%>
-
+                    
                 </table>
                 </body>
                 </html>

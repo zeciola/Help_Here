@@ -37,13 +37,15 @@ public class DAOPessoa implements iDAO {
     }
 
     //SQL
-    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo) "
-            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status) "
+            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String DELETE = "update pessoa set";
 
     private static final String SELECT_ALL = "select * from Pessoa";
-
+    
+    private static final String AUTENTICAR_PESSOA = "SELECT * FROM Usuario WHERE Login=? AND senha=?;";    
+    
     private static final String UPDATE = "";
 
     //DAOs
@@ -78,6 +80,9 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(10, pe.getCelular());
 
             pstmt.setString(11, pe.getSexo());
+            
+            //status
+            pstmt.setBoolean(12, pe.isStatus());
 
             pstmt.executeUpdate();
 
@@ -113,7 +118,7 @@ public class DAOPessoa implements iDAO {
     }
 
     @Override
-    public void Atualizar(String OBJ) {
+    public void Atualizar(String OBJ, String ob) {
         try {
 
             conexao.setAutoCommit(false);
@@ -181,7 +186,7 @@ public class DAOPessoa implements iDAO {
     }
 
     @Override
-    public void Deletar(String OBJ) {
+    public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

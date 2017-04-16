@@ -23,6 +23,7 @@ public class Pessoa {
     private String telefone;
     private String celular;
     private String sexo;
+    private boolean status;
 
     //Gets
     public Endereco getEn() {
@@ -71,6 +72,10 @@ public class Pessoa {
 
     public String getSexo() {
         return sexo;
+    }
+
+    public boolean isStatus() {
+        return status;
     }
 
     //Sets
@@ -123,4 +128,7 @@ public class Pessoa {
         this.sexo = sexo;
     }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

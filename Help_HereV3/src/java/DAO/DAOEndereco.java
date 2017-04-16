@@ -24,7 +24,7 @@ public class DAOEndereco implements iDAO {
     private final Connection conexao = Conexao.getConexao();
 
     //SQL inputs
-    private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
+    private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais, status) values(?,?,?,?,?,?,?,?)";
     //private static final String UPDATE = "UPDATE Endereco SET cep=2222, nomelogradouro='TesteUp', numero=456, bairro='TesteUpBairro', municipio='Mogi das Cruzes', uf='SP', pais='Brasil' WHERE id=;";
     private static final String SELECT_ALL = "select * from endereco";
     private static final String SELECT_ID = "select * from endereco where id=?";
@@ -57,6 +57,9 @@ public class DAOEndereco implements iDAO {
             pstmt.setString(6, en.getEstado());
 
             pstmt.setString(7, en.getPais());
+            
+            //status
+            pstmt.setBoolean(8, en.isStatus());
 
             pstmt.executeUpdate();
             // Fim da pstmt insert
@@ -94,7 +97,7 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public void Atualizar(String Antemail) {
+    public void Atualizar(String Antemail, String ob) {
         try {
 
             conexao.setAutoCommit(false);
@@ -152,7 +155,7 @@ public class DAOEndereco implements iDAO {
     }
 
     @Override
-    public void Deletar(String OBJ) {
+    public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

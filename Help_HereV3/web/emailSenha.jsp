@@ -1,0 +1,50 @@
+<%@page import="DAO.DAOInstituicao"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Atualização de dados da Pessoa</title>
+        <link rel="stylesheet" href="css/login.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <h1>Digite o seu CPF </h1>
+                <form class="form" method="post" action="ControleAcesso">
+                    <input type="text" name="txtEmail" placeholder="Email">
+                    <input type="password" name="txtSenha" placeholder="Senha">
+                    
+
+                    <!-- BOTTON Funcionando -->
+                    <button type="submit" name="acao" value="RemovePe">Excluir</button>
+                    <br/>
+                    <button type="submit" name="acao" value="AlteraPe">Alterar</button>
+                    
+                    <div>
+                        <ul>
+                            <!-- Link Esquecu Senha-->
+                            <li><a href="CadastroPessoaForm.jsp" class="senha-link">Cadastrar-se</a></li>
+                            <li><a href="#" class="senha-link">Esqueceu a senha?</a></li>
+                        </ul>
+                    </div>
+                    <!--<button type="submit" id="singin-button">Sing in</button>-->
+                </form>
+            </div>
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+            <script src="js/login.js"></script>
+        </div>
+    </body>
+</html>

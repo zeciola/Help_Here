@@ -9,6 +9,7 @@ import Model.PerfilDeAcesso;
 import Model.Pessoa;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public  class AtualizarPessoaAction implements ICommand{
 
@@ -21,10 +22,21 @@ public  class AtualizarPessoaAction implements ICommand{
         
         //DAOs
 
-        String antemail = request.getParameter("Antemail");
+        String Email = null;
+        String Senha = null;
+        
+        //Resgatar sessão
+        
+        HttpSession sessoaUsuario =((HttpServletRequest)request).getSession();
+        Login usuarioLogado = (Login)sessoaUsuario.getAttribute("usuarioAutenticado");
+        
+        Email = usuarioLogado.getNome();
+        Senha = usuarioLogado.getSenha();
+        
+        //Usuário
+        DAOUsuario daou = new DAOUsuario();
         
         //Endereco de pessoa
-        DAOEndereco daoen = new DAOEndereco();
         
         en.setNomelogradouro(request.getParameter("nomelogradouro"));
         en.setNumeroen(Integer.parseInt(request.getParameter("numeroen")));
@@ -34,21 +46,12 @@ public  class AtualizarPessoaAction implements ICommand{
         en.setCep(request.getParameter("cep"));
         en.setPais(request.getParameter("pais"));
         
-        //Seta o endereco na pessoa 
-        pe.setEn(en);
-        daoen.setEndereco(en);
-        daoen.Atualizar();
-        
-        
-        DAOPessoa daop = new DAOPessoa();
-        //Pessoa
+
         pe.setNome(request.getParameter("nome"));
         pe.setSobrenome(request.getParameter("sobrenome"));
         pe.setCpf(request.getParameter("cpf"));
         pe.setRg(request.getParameter("rg"));
-        //Variavel defalt
-        //pe.setPenalisado(defalt);
-        
+
         //pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
         pe.setDatanascimento("datanascimento");
         
@@ -60,30 +63,13 @@ public  class AtualizarPessoaAction implements ICommand{
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
         
-        en.setPe(pe);
-        daop.setEndereco(en);
-        daop.setPessoa(pe);
-        daop.Atualizar();
-        
-        //Usuário
-        DAOUsuario daou = new DAOUsuario();
-        
-        
-        //lo.setPerfil(PerfilDeAcesso.comum);
-        //Email
-        lo.setNome(request.getParameter("email"));
-        lo.setSenha(request.getParameter("senha"));
-        
-        //Seta os valores
         lo.setPe(pe);
+        lo.setEn(en);
         daou.setUsuario(lo);
-        
-        //Executa o metodo Insert
         daou.setPessoa(pe);
-        daou.setUsuario(lo);
-        daou.Atualizar();
+        daou.setEndereco(en);
         
-        
+        daou.Atualizar(Email, Senha);
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";
     }
