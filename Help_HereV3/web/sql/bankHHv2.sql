@@ -69,34 +69,35 @@ modalidade varchar(50),
 email varchar(50),
 idEnderecoInstituicao int,
 senha varchar(50),
+status boolean,
 constraint fk_Endereco Foreign Key(IdEnderecoInstituicao)
 references EnderecoInstituicao (ID) on delete cascade
 );
 
-drop table Instituicao cascade 
-drop table EnderecoInstituicao cascade 
-alter table Instituicao add column senha varchar(50)
---select * from EnderecoInstituicao
---delete from EnderecoInstituicao where ID = 2
+
 /*
 select * from Instituicao
-delete from Instituicao where ID = 
+delete from Instituicao where ID = 15
 
-UPDATE Instituicao SET ID=6, nome='deu', razaoSocial='foi', tipo='isso', CNPJ='55', modalidade='deu', email='deu@deu' WHERE CNPJ='55' and senha='123';
+select * from EnderecoInstituicao
+delete from EnderecoInstituicao where ID = 15
 
-UPDATE EnderecoInstituicao  SET cep='9999', NomeLogradouro='alterado', Numero=9, Bairro='alterado', Municipio='alterado', UF='SP', pais='Brasil' WHERE ID=6
+alter table EnderecoInstituicao add column status boolean
 
-DELETE from Instituicao WHERE CNPJ = '10' and senha = '123'
 
+update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
+
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.status = true
 
 select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID
-select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID
+
 DELETE from Instituicao, EnderecoInstituicao using Instituicao inner join EnderecoInstituicao where Instituicao.ID = EnderecoInstituicao.ID and CNPJ = '5' 
 
 select CNPJ  from Instituicao where CNPJ = '10' and senha = '123';
 DELETE from EnderecoInstituicao where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '10' and senha = '123')
 
-select CNPJ  from Instituicao where CNPJ = '10' and senha = '456'
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ ='5' and inst.status = true;
+insert into EnderecoInstituicao (ID, cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais, status) values(22,'111','ddd',33,'ddd','mogi','sp','brasil',true)
 */
 
 CREATE TABLE EnderecoInstituicao (
@@ -107,7 +108,8 @@ Numero numeric(4),
 Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
-pais varchar(45)
+pais varchar(45),
+status boolean
 );
 
 

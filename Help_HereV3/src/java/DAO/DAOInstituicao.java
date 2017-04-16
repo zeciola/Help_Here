@@ -56,14 +56,14 @@ public class DAOInstituicao implements iDAO {
     
     //SQL
     
-    private static final String INSERT = "INSERT INTO Instituicao(ID, Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao, senha) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO Instituicao(ID, Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao, senha, status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, true)";
     
-    private static final String DELETE = "DELETE from Instituicao where id=?;";
+    
     
     private static final String AUTENTICAR_INSTITUICAO = "SELECT * FROM Instituicao WHERE CNPJ=? AND senha=?";
     
     
-    private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID";
+    private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.status = true";
     
     @Override
     public void Inserir() {
@@ -74,7 +74,7 @@ public class DAOInstituicao implements iDAO {
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             conexao.setAutoCommit(false);
             
-           String sqlEndereco = "insert into EnderecoInstituicao (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
+           String sqlEndereco = "insert into EnderecoInstituicao (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais, status) values(?,?,?,?,?,?,?,true)";
                    
            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
            
@@ -289,12 +289,12 @@ public class DAOInstituicao implements iDAO {
         try{
             conexao = Conexao.getConexao();
             
-            String sqlDel = "DELETE from EnderecoInstituicao where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '"+CNP+"' and senha = '"+SEN+"');";
+            String sqlDel = "update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '"+CNP+"' and senha = '"+SEN+"');";
             
             PreparedStatement pstmt = conexao.prepareStatement(sqlDel);
             pstmt.execute();
             
-            String sqlDelInst = "DELETE from Instituicao WHERE CNPJ = '"+CNP+"' and senha = '"+SEN+"';";
+            String sqlDelInst = "update Instituicao set status = false WHERE CNPJ = '"+CNP+"' and senha = '"+SEN+"';";
             
             pstmt = conexao.prepareStatement(sqlDelInst);
             pstmt.execute();
@@ -314,7 +314,7 @@ public class DAOInstituicao implements iDAO {
         ArrayList<Endereco> re = new ArrayList();
         try{
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ ='"+CNP+"';";
+            String sqlConsulta = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ ='"+CNP+"' and inst.status = true;";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs=pstmt.executeQuery();

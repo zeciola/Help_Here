@@ -62,4 +62,12 @@
         <filter-name>AcessoLogado</filter-name>
         <url-pattern>/acessologado/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>Instituicao</filter-name>
+        <filter-class>AutorizacaoDeAcesso.Instituicao</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Instituicao</filter-name>
+        <url-pattern>/instituicao/*</url-pattern>
+    </filter-mapping>
 </web-app>
