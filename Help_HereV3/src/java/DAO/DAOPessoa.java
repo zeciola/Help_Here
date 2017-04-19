@@ -215,6 +215,7 @@ public class DAOPessoa implements iDAO {
                 pe.setTelefone(rs.getString("Telefone"));
                 pe.setCelular(rs.getString("celular"));
                 pe.setSexo(rs.getString("sexo"));
+                pe.setStatus(rs.getBoolean("status"));
 
                 result.add(pe);
 
@@ -259,6 +260,7 @@ public class DAOPessoa implements iDAO {
                 pe.setTelefone(rs.getString("Telefone"));
                 pe.setCelular(rs.getString("celular"));
                 pe.setSexo(rs.getString("sexo"));
+                pe.setStatus(rs.getBoolean("status"));
 
                 result.add(pe);
 

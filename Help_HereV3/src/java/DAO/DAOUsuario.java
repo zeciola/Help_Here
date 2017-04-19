@@ -101,7 +101,7 @@ public class DAOUsuario implements iDAO {
         try {
             conexao.setAutoCommit(false);
 
-            String sqlUsuario = "UPDATE Usuario SET login=?, senha=? where email=" + Email + " and senha=" + Senha + ";";
+            String sqlUsuario = "UPDATE Usuario SET login=?, senha=? where login='"+Email+"' and senha='"+Senha+"';";
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             PreparedStatement pst = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -216,6 +216,7 @@ public class DAOUsuario implements iDAO {
                 // Login = Nome = Email
                 lo.setNome(rs.getString("Login"));
                 lo.setSenha(rs.getString("senha"));
+                lo.setStatus(rs.getBoolean("status"));
 
                 result.add(lo);
 
@@ -253,6 +254,7 @@ public class DAOUsuario implements iDAO {
                 // Login = Nome = Email
                 lo.setNome(rs.getString("Login"));
                 lo.setSenha(rs.getString("senha"));
+                lo.setStatus(rs.getBoolean("status"));
 
                 result.add(lo);
 
@@ -291,6 +293,7 @@ public class DAOUsuario implements iDAO {
                 loginAutenticado.setNome(rsLogin.getString("login"));
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
+                //loginAutenticado.setStatus(rsLogin.getBoolean("status"));
             }
 
         } catch (SQLException sqlErro) {

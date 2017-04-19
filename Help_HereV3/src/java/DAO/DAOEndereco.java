@@ -181,6 +181,7 @@ public class DAOEndereco implements iDAO {
                 en.setMunicipio(rs.getString("municipio"));
                 en.setEstado(rs.getString("uf"));
                 en.setPais(rs.getString("pais"));
+                en.setStatus(rs.getBoolean("status"));
 
                 result.add(en);
 
@@ -221,6 +222,7 @@ public class DAOEndereco implements iDAO {
                 en.setMunicipio(rs.getString("municipio"));
                 en.setEstado(rs.getString("uf"));
                 en.setPais(rs.getString("pais"));
+                en.setStatus(rs.getBoolean("status"));
 
                 result.add(en);
 

@@ -34,6 +34,7 @@
                         <td>Bairro</td>
                         <td>CEP</td>
                         <td>Pais</td>
+                        <td>Status</td> 
                         <td>Opções</td>
                     </tr>
                     <% //recupera a lista do request
@@ -47,6 +48,7 @@
                         <td><%=en.getBairro()%></td>
                         <td><%=en.getCep()%></td>
                         <td><%=en.getPais()%></td>
+                        <td><%=en.isStatus()%></td>
                         <td>
                             <a href="ControlePessoa?acao=Atualizar&iden=<%=en.getIdEndereco()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=en.getIdEndereco()%>">Excluir</a>
@@ -72,6 +74,7 @@
                         <td>Telefone</td>
                         <td>Celular</td>
                         <td>Sexo</td>
+                        <td>Status</td> 
                         <td>Opções</td>
                     </tr>
                     <% //recupera a lista do request
@@ -88,6 +91,7 @@
                         <td><%=pe.getTelefone()%></td>
                         <td><%=pe.getCelular()%></td>
                         <td><%=pe.getSexo()%></td>
+                        <td><%=pe.isStatus()%></td>
                         <td>
                             <a href="ControlePessoa?acao=Atualizar&idpe=<%=pe.getId()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=pe.getId()%>">Excluir</a>
@@ -103,7 +107,7 @@
                     <h1>Usuário:</h1>
                     <tr align="center">
                         <td>Nome</td>
-                        <td>Senha</td> 
+                        <td>Status</td> 
                         <td>Opções</td>
                     </tr>
                     <% //recupera a lista do request
@@ -111,7 +115,7 @@
                         for (Login lo : listaLogin) {%>  
                     <tr align="center">
                         <td><%=lo.getNome()%></td>
-                        <td><%=lo.getSenha()%></td>
+                        <td><%=lo.isStatus()%></td>
                         <td>
                             <a href="ControlePessoa?acao=Atualizar&idlo=<%=lo.getId()%>">Alterar</a>
                             <a href="ControlePessoa?acao=Deletar&id=<%=lo.getId()%>">Excluir</a>

@@ -53,7 +53,7 @@ public  class AtualizarPessoaAction implements ICommand{
         pe.setRg(request.getParameter("rg"));
 
         //pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
-        pe.setDatanascimento("datanascimento");
+        pe.setDatanascimento(request.getParameter("datanascimento"));
         
         
         pe.setEmail(request.getParameter("email"));
@@ -62,6 +62,10 @@ public  class AtualizarPessoaAction implements ICommand{
         pe.setTelefone(request.getParameter("telefone"));
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
+        
+        //Usuario
+        lo.setNome(request.getParameter("email"));
+        lo.setSenha(request.getParameter("senha"));
         
         lo.setPe(pe);
         lo.setEn(en);
