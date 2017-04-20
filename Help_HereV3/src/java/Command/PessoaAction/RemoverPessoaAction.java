@@ -31,7 +31,7 @@ public class RemoverPessoaAction implements ICommand {
         
        String EmailU = usuarioLogado.getNome();
         
-        if (1 == 1) {
+        if (Email.equals(EmailU)) {
             
             daou.setUsuario(lo);
             daou.Deletar(Email, Senha);

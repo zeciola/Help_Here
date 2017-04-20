@@ -195,7 +195,7 @@ public class DAOPessoa implements iDAO {
         ArrayList<Pessoa> result = new ArrayList();
         
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;

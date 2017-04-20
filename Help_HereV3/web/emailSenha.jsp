@@ -10,7 +10,7 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <h1>Digite o seu CPF </h1>
+                <h1>Digite o seu Email e senha </h1>
                 <form class="form" method="post" action="ControlePessoa">
                     <input type="text" name="txtEmail" placeholder="Email">
                     <input type="password" name="txtSenha" placeholder="Senha">
