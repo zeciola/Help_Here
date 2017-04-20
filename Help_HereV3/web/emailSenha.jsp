@@ -11,15 +11,13 @@
         <div class="wrapper">
             <div class="container">
                 <h1>Digite o seu CPF </h1>
-                <form class="form" method="post" action="ControleAcesso">
+                <form class="form" method="post" action="ControlePessoa">
                     <input type="text" name="txtEmail" placeholder="Email">
                     <input type="password" name="txtSenha" placeholder="Senha">
                     
 
                     <!-- BOTTON Funcionando -->
-                    <button type="submit" name="acao" value="RemovePe">Excluir</button>
-                    <br/>
-                    <button type="submit" name="acao" value="AlteraPe">Alterar</button>
+                    <button type="submit" name="acao" value="Remover">Remover</button>
                     
                     <div>
                         <ul>

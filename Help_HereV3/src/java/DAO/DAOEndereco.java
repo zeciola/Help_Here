@@ -26,7 +26,7 @@ public class DAOEndereco implements iDAO {
     //SQL inputs
     private static final String INSERT = "insert into endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais, status) values(?,?,?,?,?,?,?,?)";
     //private static final String UPDATE = "UPDATE Endereco SET cep=2222, nomelogradouro='TesteUp', numero=456, bairro='TesteUpBairro', municipio='Mogi das Cruzes', uf='SP', pais='Brasil' WHERE id=;";
-    private static final String SELECT_ALL = "select * from endereco";
+    private static final String SELECT_ALL = "select * from endereco where status=true";
     private static final String SELECT_ID = "select * from endereco where id=?";
 
     //set model
@@ -164,7 +164,7 @@ public class DAOEndereco implements iDAO {
         ArrayList<Endereco> result = new ArrayList();
         
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;

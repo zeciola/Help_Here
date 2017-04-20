@@ -42,7 +42,7 @@ public class DAOPessoa implements iDAO {
 
     private static final String DELETE = "update pessoa set";
 
-    private static final String SELECT_ALL = "select * from Pessoa";
+    private static final String SELECT_ALL = "select * from Pessoa where status=true";
     
     private static final String AUTENTICAR_PESSOA = "SELECT * FROM Usuario WHERE Login=? AND senha=?;";    
     
@@ -195,7 +195,7 @@ public class DAOPessoa implements iDAO {
         ArrayList<Pessoa> result = new ArrayList();
         
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;

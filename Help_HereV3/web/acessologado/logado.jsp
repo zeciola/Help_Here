@@ -36,6 +36,8 @@
 <h2>Deletar</h2>
 <li>
     <a href="../CNPJsenha.jsp">Deletar Instituição</a>
+    <br/>
+    <a href="../emailSenha.jsp">Deletar Pessoa</a>
 </li>
 
 <h2>Listar Instituição</h2>

@@ -1,0 +1,47 @@
+package Command.PessoaAction;
+
+import Command.*;
+import DAO.*;
+import Model.*;
+import Util.*;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+import javax.servlet.http.HttpSession;
+
+public class RemoverPessoaAction implements ICommand {
+
+    @Override
+    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Endereco en = new Endereco();
+        Pessoa pe = new Pessoa();
+        Login lo = new Login();
+
+        //Instanciando Objetos
+        DAOUsuario daou = new DAOUsuario();
+
+        String Email = request.getParameter("txtEmail");
+        String Senha = request.getParameter("txtSenha");;
+
+        HttpSession sessoaUsuario = ((HttpServletRequest) request).getSession();
+        Login usuarioLogado = (Login) sessoaUsuario.getAttribute("usuarioAutenticado");
+        
+       String EmailU = usuarioLogado.getNome();
+        
+        if (1 == 1) {
+            
+            daou.setUsuario(lo);
+            daou.Deletar(Email, Senha);
+
+            //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
+            return "/sucesso.jsp";
+
+        } else {
+            return "/Erro.jsp";
+        }
+
+    }
+}

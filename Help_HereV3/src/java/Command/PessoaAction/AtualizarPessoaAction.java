@@ -20,8 +20,6 @@ public  class AtualizarPessoaAction implements ICommand{
         Pessoa pe = new Pessoa();
         Login lo = new Login();
         
-        //DAOs
-
         String Email = null;
         String Senha = null;
         
