@@ -42,8 +42,8 @@ public class DAOUsuario implements iDAO {
     }
 
     private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha, status) VALUES (?,?,?,?,?)";
-    private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE Login=? AND senha=?";
-    private static final String SELECT_ALL = "select * from Usuario";
+    private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE status=true and Login=? AND senha=?";
+    private static final String SELECT_ALL = "select * from Usuario where status=true";
 
     public void cadastraNovoUsuario(Login login) throws SQLException {
         Connection conexao = null;
@@ -101,7 +101,7 @@ public class DAOUsuario implements iDAO {
         try {
             conexao.setAutoCommit(false);
 
-            String sqlUsuario = "UPDATE Usuario SET login=?, senha=? where email=" + Email + " and senha=" + Senha + ";";
+            String sqlUsuario = "UPDATE Usuario SET login=?, senha=? where login='"+Email+"' and senha='"+Senha+"';";
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             PreparedStatement pst = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -192,8 +192,58 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public void Deletar(String OBJ, String ob) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Deletar(String Email, String Senha) {
+        try {
+            conexao.setAutoCommit(false);
+
+            String sqlUsuario = "UPDATE Usuario SET status = false where login='"+Email+"' and senha='"+Senha+"';";
+
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            PreparedStatement pst = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pst.executeUpdate();
+
+            //Fim do pstmt inserir
+            ResultSet rs = pst.getGeneratedKeys();
+
+            rs.next();
+            int id = rs.getInt("ID");
+            
+            String sqlEndereco = "UPDATE Endereco SET status = false WHERE id="+id+";";
+
+            PreparedStatement pstm = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstm.executeUpdate();
+            
+            String sqlPessoa = "UPDATE Pessoa SET status = false where id="+id+";";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlPessoa, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstmt.executeUpdate();
+            
+            conexao.commit();
+
+            
+        } // Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Login.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     @Override
@@ -201,7 +251,7 @@ public class DAOUsuario implements iDAO {
         ArrayList<Login> result = new ArrayList();
 
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;
@@ -216,6 +266,7 @@ public class DAOUsuario implements iDAO {
                 // Login = Nome = Email
                 lo.setNome(rs.getString("Login"));
                 lo.setSenha(rs.getString("senha"));
+                lo.setStatus(rs.getBoolean("status"));
 
                 result.add(lo);
 
@@ -253,6 +304,7 @@ public class DAOUsuario implements iDAO {
                 // Login = Nome = Email
                 lo.setNome(rs.getString("Login"));
                 lo.setSenha(rs.getString("senha"));
+                lo.setStatus(rs.getBoolean("status"));
 
                 result.add(lo);
 
@@ -291,6 +343,7 @@ public class DAOUsuario implements iDAO {
                 loginAutenticado.setNome(rsLogin.getString("login"));
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
+                //loginAutenticado.setStatus(rsLogin.getBoolean("status"));
             }
 
         } catch (SQLException sqlErro) {
