@@ -1,5 +1,6 @@
 package Control;
 
+
 import DAO.DAOInstituicao;
 import DAO.DAOPessoa;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import DAO.DAOUsuario;
 import Model.Instituicao;
 import Model.Pessoa;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 public class ControleAcesso extends HttpServlet {
@@ -97,9 +99,9 @@ public class ControleAcesso extends HttpServlet {
 
                 if (InstituicaoAutenticada != null) {
                     HttpSession sessaoInst = request.getSession();
-                    sessaoInst.setAttribute("usuarioAutenticado", InstituicaoAutenticada);
-                    //redireciona para a pagina princiapal
-                    response.sendRedirect("AlterarInstituicao.jsp");
+                    sessaoInst.setAttribute("InstAutenticado", InstituicaoAutenticada);
+                    
+                   response.sendRedirect("AlterarInstituicao.jsp");
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
@@ -118,6 +120,24 @@ public class ControleAcesso extends HttpServlet {
                     sessaoInst.setAttribute("usuarioAutenticado", InstituicaoAutenticada);
                     //redireciona para a pagina princiapal
                     response.sendRedirect("ConfirmarExclusao.jsp");
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
+                    request.setAttribute("msg", "Login ou Senha Incorreto!");
+                    rd.forward(request, response);
+                }
+            }else if (acao.equals("CriarEvento")) {
+                Instituicao inst = new Instituicao();
+                inst.setCnpj(request.getParameter("txtcnpj"));
+                inst.setSenha(request.getParameter("txtSenha"));
+
+                DAOInstituicao daoinst = new DAOInstituicao();
+                Instituicao InstituicaoAutenticada = daoinst.autenticaInstituicao(inst);
+
+                if (InstituicaoAutenticada != null) {
+                    HttpSession sessaoInst = request.getSession();
+                    sessaoInst.setAttribute("EventoAutorizado", InstituicaoAutenticada);
+                    
+                   response.sendRedirect("CriarEventoInst.jsp");
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");

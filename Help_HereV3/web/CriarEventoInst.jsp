@@ -1,18 +1,20 @@
 <%-- 
-    Document   : AlterarInstituicao
-    Created on : 28/03/2017, 22:31:33
+    Document   : CriarEvento
+    Created on : 25/04/2017, 10:52:40
     Author     : Lucas Puglia
 --%>
+
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.DAOInstituicao"%>
 <%@page import="Model.Instituicao"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
-        <title>Atualizar dados da Instituição - Help Here</title>
+        <title>Criar Evento - Help Here</title>
         <meta charset="UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +55,6 @@
 
 <body>
 
-
     <script src="js/jquery.mim.js"></script>
     <script src="js/bootstrap.mim.js"></script>
     <script src="js/cadform.js"></script>
@@ -66,23 +67,20 @@
 
                 <!-- Form Name -->
 
-                <legend class="titulo"><b>Atualizar dados da Instituição</b></legend>
+                <legend class="titulo"><b>Criar Evento</b></legend>
 
-
-                <!-- nome-->
-                    
                 <% //recupera a lista do request
-                Instituicao e = (Instituicao) session.getAttribute("InstAutenticado");
+                Instituicao e = (Instituicao) session.getAttribute("EventoAutorizado");
                 if(e != null){  %>
 
+                <!-- nome-->
+
                 <div class="form-group">
-                    
-                    <label class="col-md-4 control-label">Nome</label>
-                    
+                    <label class="col-md-4 control-label">Data Inicio</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%= e.getNome()%>">
+                            <input name="inicio" placeholder="inicio" class="form-control" type="date">
                         </div>
                     </div>
                 </div>
@@ -90,83 +88,88 @@
                 <!-- razaosocial-->
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Razão Social</label>
+                    <label class="col-md-4 control-label">Data Fim</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="razao" placeholder="RazaoSocial" class="form-control" type="text" value="<%= e.getRazao()%>">
+                            <input name="fim" placeholder="fim" class="form-control" type="date">
                         </div>
                     </div>
                 </div>
                 
                 <!-- Tipo-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Tipo</label>
+                    <label class="col-md-4 control-label">Nome</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="tipo" placeholder="Tipo" class="form-control" type="text" value="<%= e.getTipo()%>">
+                            <input name="nome" placeholder="nome do evento" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+      
+                <!-- Modalidade -->
+                 <div class="form-group">
+                    <label class="col-md-4 control-label">Tipo de Evento</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                            <select name="tipoEven" class="form-control selectpicker">
+                                <option value=" " >Escolha o tipo </option>
+                                <option value="Campanha">Campanha</option>
+                                <option value="Voluntariado">Voluntariado</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 
                 <!-- CNPJ -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label">CNPJ</label>
+                    <label class="col-md-4 control-label">Descrição</label>
                     <div class="col-md-4 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="cnpj" placeholder="CNPJ" class="form-control" type="number" value="<%= e.getCnpj()%>">
+                            <input name="descricao" placeholder="Descrição" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
                 
-                <!-- Modalidade -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Modalidade</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="modalidade" placeholder="Modalidade" class="form-control" type="text" value="<%= e.getModalidade()%>">
-                        </div>
-                    </div>
-                </div>
-
+                <br /> <br />
                 
-
-                <!-- Email -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">E-Mail</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email" value="<%= e.getEmail()%>">
-                        </div>
-                    </div>
-                </div>
+                <script>
+var j=0;
+function duplicarCampos(){
+	if(j<=3){
+		var clone = document.getElementById('origem').cloneNode(true);
+		var destino = document.getElementById('destino');
+		destino.appendChild (clone);
+		var camposClonados = clone.getElementsByTagName('input');
+		for(i=0; i<camposClonados.length;i++){
+			camposClonados[i].value = '';
+		}
+	++j;
+	}
+}
+function removerCampos(id){
+	var node1 = document.getElementById('destino');
+	node1.removeChild(node1.childNodes[0]);
+	--j;
+}
+</script>
                 
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Senha</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input name="password" placeholder="Senha" class="form-control" type="text" value="<%= e.getSenha()%>">
-                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="text" value="<%= e.getSenha()%>">
-                        </div>
-                    </div>
-                </div>
-                <!-- Text input-->
-
-                <div class="form-group">
+                <legend class="titulo"><b>Endereço do Evento</b></legend>
+             <div id="origem" align="center">
+                 <br /> <br />
+                 <div class="form-group">
                     <label class="col-md-4 control-label">Endereço</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="cep" placeholder="CEP" class="form-control" type="text" value="<%= e.getEndereco().getCep()%>">
-                            <input name="endereco" placeholder="Endereço" class="form-control" type="text" value="<%= e.getEndereco().getNomelogradouro()%>">
-                            <input name="numero" placeholder="Número" class="form-control" type="int" value="<%= e.getEndereco().getNumeroen()%>">
-                            <input name="bairro" placeholder="Bairro" class="form-control" type="text" value="<%= e.getEndereco().getBairro()%>">                          
-                            <input name="cidade" placeholder="Cidade" class="form-control" type="text" value="<%= e.getEndereco().getMunicipio()%>">
+                            <input name="cep" placeholder="CEP" class="form-control" type="text">
+                            <input name="endereco" placeholder="Rua" class="form-control" type="text">
+                            <input name="numero" placeholder="Número" class="form-control" type="int">
+                            <input name="bairro" placeholder="Bairro" class="form-control" type="text">                          
+                            <input name="cidade" placeholder="Cidade" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
@@ -176,7 +179,7 @@
                     <div class="col-md-4 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                            <select name="estado" class="form-control selectpicker" > 
+                            <select name="estado" class="form-control selectpicker">
                                 <option value=" " >Escolha o seu estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -217,7 +220,7 @@
                     <div class="col-md-4 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                            <select name="pais" class="form-control selectpicker" value="<%= e.getEndereco().getPais()%>">
+                            <select name="pais" class="form-control selectpicker">
                                 <option value="" >Escolha o seu pais</option>
                                 <option value="África do Sul">África do Sul</option>
                                 <option value="Albânia">Albânia</option>
@@ -397,7 +400,83 @@
                         </div>
                     </div>
                 </div>
+             </div> 
+                
+             <div id="destino">
+             </div>
+                
+	<input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
+	<input type="button" value="Remover Endereços" onclick="removerCampos(this);"> 
+        
+                <br /> <br />
+                <br /> <br />
+                <legend class="titulo"><b>Instituição</b></legend>
+                <!-- Modalidade -->
+                <div class="form-group">
+                    
+                    <label class="col-md-4 control-label">Instituição</label>
+                    
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="inst" placeholder="Instituição" class="form-control" type="text" value="<%= e.getNome()%>">
+                        </div>
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Razão Social</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="razao" placeholder="RazaoSocial" class="form-control" type="text" value="<%= e.getRazao()%>">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Tipo</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="tipo" placeholder="Tipo" class="form-control" type="text" value="<%= e.getTipo()%>">
+                        </div>
+                    </div>
+                </div>
+                        
+                <!-- CNPJ -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">CNPJ</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="cnpj" placeholder="CNPJ" class="form-control" type="number" value="<%= e.getCnpj()%>">
+                        </div>
+                    </div>
+                </div>
+                        
+                <!-- Modalidade -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Modalidade</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="modalidade" placeholder="Modalidade" class="form-control" type="text" value="<%= e.getModalidade()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">E-Mail</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email" value="<%= e.getEmail()%>">
+                        </div>
+                    </div>
+                </div>
+                
                 
                 
                 
@@ -405,9 +484,9 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-
-                        <button type="submit" name = "acao" value="Atualizar">Atualizar <span class="glyphicon glyphicon-send"></span></button>
-
+                         <br /> <br />
+                        <button type="submit" name = "acao" value="Cadastrar">Criar <span class="glyphicon glyphicon-send"></span></button>
+                           
                     </div>
                 </div>
                 
@@ -418,7 +497,6 @@
         </form>
     </div>
 <!-- /.container -->
-    
 </body>
 
 </html>

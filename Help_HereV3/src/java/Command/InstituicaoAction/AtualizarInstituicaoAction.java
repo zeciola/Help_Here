@@ -40,7 +40,7 @@ public class AtualizarInstituicaoAction implements ICommand {
         DAOInstituicao daoi = new DAOInstituicao();
         
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
-        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
+        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("InstAutenticado");
         
             
          CNP=usuarioLogado.getCnpj();

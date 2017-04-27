@@ -1,4 +1,4 @@
-CREATE TABLE Item(
+﻿CREATE TABLE Item(
 ID serial PRIMARY KEY,
 Item varchar(50),
 peso numeric,
@@ -11,7 +11,6 @@ ID serial PRIMARY KEY,
 idPessoa serial
 );
 
---colocar status
 CREATE TABLE Endereco (
 ID serial PRIMARY KEY,
 cep varchar(9),
@@ -20,8 +19,7 @@ Numero numeric(100),
 Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
-pais varchar(45),
-status boolean
+pais varchar(45)
 );
 
 -- drop table endereco cascade
@@ -53,14 +51,12 @@ idInstuicao serial,
 IdEvento serial
 );
 
---colocar status
 CREATE TABLE Usuario (
 ID serial PRIMARY KEY,
 IDPessoa serial,
 Tipo varchar(15),
 Login varchar(45),
-senha varchar(45),
-starus boolean
+senha varchar(45)
 );
 
 CREATE TABLE Instituicao (
@@ -81,19 +77,19 @@ references EnderecoInstituicao (ID) on delete cascade
 
 /*
 select * from Instituicao
-delete from Instituicao where ID = 15
+delete from Instituicao where ID = 20
 
 select * from EnderecoInstituicao
-delete from EnderecoInstituicao where ID = 15
+delete from EnderecoInstituicao where ID = 20
 
 alter table EnderecoInstituicao add column status boolean
 
 
 update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
 
-select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.status = true
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID 
 
-select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.CNPJ = '100' and inst.senha = '456'
 
 DELETE from Instituicao, EnderecoInstituicao using Instituicao inner join EnderecoInstituicao where Instituicao.ID = EnderecoInstituicao.ID and CNPJ = '5' 
 
@@ -132,7 +128,6 @@ Tipo Boolean,
 FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID)
 );
 
---colocar status
 CREATE TABLE Pessoa (
 ID serial PRIMARY KEY,
 Nome varchar(50),
@@ -146,7 +141,6 @@ IDEndereco serial,
 Telefone varchar(19),
 celular VARCHAR(20),
 sexo varchar,
-status boolean,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
 

@@ -60,7 +60,7 @@ public class DAOInstituicao implements iDAO {
     
     
     
-    private static final String AUTENTICAR_INSTITUICAO = "SELECT * FROM Instituicao WHERE CNPJ=? AND senha=?";
+    private static final String AUTENTICAR_INSTITUICAO = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.CNPJ = ? and inst.senha = ?";
     
     
     private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.status = true";
@@ -380,9 +380,25 @@ public class DAOInstituicao implements iDAO {
 
             if (rsLogin.next()) {
                 loginAutenticado = new Instituicao();
+                Endereco en = new Endereco();
                 loginAutenticado.setCnpj(rsLogin.getString("CNPJ"));
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
+                loginAutenticado.setNome(rsLogin.getString("nome"));
+                loginAutenticado.setRazao(rsLogin.getString("razaoSocial"));
+                loginAutenticado.setTipo(rsLogin.getString("tipo"));
+                loginAutenticado.setModalidade(rsLogin.getString("modalidade"));
+                loginAutenticado.setEmail(rsLogin.getString("email"));
+                loginAutenticado.setModalidade(rsLogin.getString("modalidade"));
                 
+                en.setCep(rsLogin.getString("cep"));
+                en.setNomelogradouro(rsLogin.getString("NomeLogradouro"));
+                en.setNumeroen(rsLogin.getInt("Numero"));
+                en.setCep(rsLogin.getString("cep"));
+                en.setBairro(rsLogin.getString("Bairro"));
+                en.setMunicipio(rsLogin.getString("Municipio"));
+                en.setPais(rsLogin.getString("Pais"));
+                
+                loginAutenticado.setEndereco(en);
             }
 
         } catch (SQLException sqlErro) {

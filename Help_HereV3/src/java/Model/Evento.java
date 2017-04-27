@@ -10,11 +10,31 @@ public class Evento {
 
     private Date dataInicio;
     private Date dataFim;
-    private Date dataCad;
     private String nome;
     private String descricao;
-    private ArrayList<Pessoa> responsavel = new ArrayList();
+    private String tipoEvento;
+    private Pessoa responsavel;
+    private Instituicao instResponsavel;
     private Endereco endereco;
+
+    
+    
+    
+    public Pessoa getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(Pessoa responsavel) {
+        this.responsavel = responsavel;
+    }
+
+    public Instituicao getInstResponsavel() {
+        return instResponsavel;
+    }
+
+    public void setInstResponsavel(Instituicao instResponsavel) {
+        this.instResponsavel = instResponsavel;
+    }
 
     //Gets
     public Date getDataInicio() {
@@ -25,9 +45,6 @@ public class Evento {
         return dataFim;
     }
 
-    public Date getDataCad() {
-        return dataCad;
-    }
 
     public String getNome() {
         return nome;
@@ -37,9 +54,6 @@ public class Evento {
         return descricao;
     }
 
-    public ArrayList<Pessoa> getResponsavel() {
-        return responsavel;
-    }
 
     public Endereco getEndereco() {
         return endereco;
@@ -54,9 +68,6 @@ public class Evento {
         this.dataFim = dataFim;
     }
 
-    public void setDataCad(Date dataCad) {
-        this.dataCad = dataCad;
-    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -66,9 +77,6 @@ public class Evento {
         this.descricao = descricao;
     }
 
-    public void setResponsavel(ArrayList<Pessoa> responsavel) {
-        this.responsavel = responsavel;
-    }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
