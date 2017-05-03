@@ -19,10 +19,12 @@ Numero numeric(100),
 Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
-pais varchar(45)
+pais varchar(45),
+status boolean default true
 );
+insert into endereco values( 1 ,'08888888', 'rua 1', 1, 'bairro', 'municipio', 'estado', 'pais');
 
--- drop table endereco cascade
+alter table endereco add column status boolean default true
 
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
@@ -56,8 +58,18 @@ ID serial PRIMARY KEY,
 IDPessoa serial,
 Tipo varchar(15),
 Login varchar(45),
-senha varchar(45)
+senha varchar(45),
+status boolean default true
 );
+insert into usuario values(1, 1, 'administrador', '1', '1');
+insert into usuario values(2, 2, 'comum', '2', '2');
+
+alter table usuario drop column status
+alter table usuario add column status boolean default true;
+
+select * from usuario
+
+update usuario set status = true;
 
 CREATE TABLE Instituicao (
 ID serial PRIMARY KEY,
@@ -141,8 +153,13 @@ IDEndereco serial,
 Telefone varchar(19),
 celular VARCHAR(20),
 sexo varchar,
+status boolean default true
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
+Insert into pessoa values(1, 'pessoa admin', 'admin', '1', '1', false, '01/01/2000', 'email@email.com', 1, '47474747', '967676767', 'm');
+Insert into pessoa values(2, 'pessoa COMUM', 'COMUM', '1', '1', false, '01/01/2000', 'email@email.com', 1, '47474747', '967676767', 'm');
+
+alter table pessoa add column status boolean default true
 
 CREATE TABLE Responsavel(
 ID serial PRIMARY KEY,

@@ -41,7 +41,12 @@ public class ControleAcesso extends HttpServlet {
                     HttpSession sessaoUsuario = request.getSession();
                     sessaoUsuario.setAttribute("usuarioAutenticado", usuarioAutenticado);
                     //redireciona para a pagina princiapal
-                    response.sendRedirect("acessologado/logado.jsp");
+                    
+                    if(usuarioAutenticado!=null && usuarioAutenticado.getPerfil().equals(PerfilDeAcesso.administrador)){
+                        response.sendRedirect("admin/production/index.html");
+                    }else{
+                        response.sendRedirect("acessologado/logado.jsp");
+                    }
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/Erro.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
