@@ -61,7 +61,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="ControleInstituicao" method="post" id="contact_form">
+        <form class="well form-horizontal" action="ControleEvento" method="post" id="contact_form">
             <fieldset>
 
 
