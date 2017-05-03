@@ -8,40 +8,63 @@ import java.util.*;
 
 public class Evento {
 
-    private Date dataInicio;
-    private Date dataFim;
+    private String dataInicio;
+    private String dataFim;
     private String nome;
-    private String descricao;
     private String tipoEvento;
-    private Pessoa responsavel;
-    private Instituicao instResponsavel;
-    private Endereco endereco;
+    private String descricao;
+    private ArrayList<Pessoa> responsavel = new ArrayList();
+    private ArrayList<Instituicao> instResponsavel = new ArrayList();
+    private ArrayList<Endereco> endereco = new ArrayList();
 
     
     
     
-    public Pessoa getResponsavel() {
+    
+    
+    
+    
+    public ArrayList<Endereco> getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(ArrayList<Endereco> endereco) {
+        this.endereco = endereco;
+    }
+    
+    public ArrayList<Pessoa> getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(Pessoa responsavel) {
+    public void setResponsavel(ArrayList<Pessoa> responsavel) {
         this.responsavel = responsavel;
     }
 
-    public Instituicao getInstResponsavel() {
+    public ArrayList<Instituicao> getInstResponsavel() {
         return instResponsavel;
     }
 
-    public void setInstResponsavel(Instituicao instResponsavel) {
+    public void setInstResponsavel(ArrayList<Instituicao> instResponsavel) {
         this.instResponsavel = instResponsavel;
     }
 
+    public String getTipoEvento() {
+        return tipoEvento;
+    }
+
+    public void setTipoEvento(String tipoEvento) {
+        this.tipoEvento = tipoEvento;
+    }
+
+    
+    
+
     //Gets
-    public Date getDataInicio() {
+    public String getDataInicio() {
         return dataInicio;
     }
 
-    public Date getDataFim() {
+    public String getDataFim() {
         return dataFim;
     }
 
@@ -55,16 +78,14 @@ public class Evento {
     }
 
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+
 
     //Sets
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(String dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public void setDataFim(Date dataFim) {
+    public void setDataFim(String dataFim) {
         this.dataFim = dataFim;
     }
 
@@ -78,8 +99,6 @@ public class Evento {
     }
 
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+
 
 }

@@ -5,8 +5,10 @@
  */
 package Control;
 
+import Command.ICommand;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,15 +34,30 @@ public class ControleEvento extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControleEvento</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControleEvento at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+           try {
+                String acao = request.getParameter("acao");
+
+                //Mosta a acao
+                System.out.println("acao");
+
+                String Nomeclasse = "Command.EventoAction." + acao + "EventoAction";
+
+                Class classeAction = Class.forName(Nomeclasse);
+
+                ICommand commandAction = (ICommand) classeAction.newInstance();
+
+                String pageDispatcher = commandAction.executar(request, response);
+
+                RequestDispatcher rd = request.getRequestDispatcher(pageDispatcher);
+
+                rd.forward(request, response);
+
+            } catch (Exception erro) {
+                //Exibe pagina de erro ao usário
+                request.setAttribute("erro", erro);
+                RequestDispatcher rd = request.getRequestDispatcher("//erro.jsp");
+                    rd.forward(request, response);
+            }
         }
     }
 
