@@ -35,7 +35,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.jsp" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -61,53 +61,53 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.html">Dashboard</a></li>
-                      <li><a href="index2.html">Dashboard2</a></li>
-                      <li><a href="index3.html">Dashboard3</a></li>
+                      <li><a href="index.jsp">Dashboard</a></li>
+                      <li><a href="index2.jsp">Dashboard2</a></li>
+                      <li><a href="index3.jsp">Dashboard3</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
+                      <li><a href="form.jsp">General Form</a></li>
+                      <li><a href="form_advanced.jsp">Advanced Components</a></li>
+                      <li><a href="form_validation.jsp">Form Validation</a></li>
+                      <li><a href="form_wizards.jsp">Form Wizard</a></li>
+                      <li><a href="form_upload.jsp">Form Upload</a></li>
+                      <li><a href="form_buttons.jsp">Form Buttons</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="typography.html">Typography</a></li>
-                      <li><a href="icons.html">Icons</a></li>
-                      <li><a href="glyphicons.html">Glyphicons</a></li>
-                      <li><a href="widgets.html">Widgets</a></li>
-                      <li><a href="invoice.html">Invoice</a></li>
-                      <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
+                      <li><a href="general_elements.jsp">General Elements</a></li>
+                      <li><a href="media_gallery.jsp">Media Gallery</a></li>
+                      <li><a href="typography.jsp">Typography</a></li>
+                      <li><a href="icons.jsp">Icons</a></li>
+                      <li><a href="glyphicons.jsp">Glyphicons</a></li>
+                      <li><a href="widgets.jsp">Widgets</a></li>
+                      <li><a href="invoice.jsp">Invoice</a></li>
+                      <li><a href="inbox.jsp">Inbox</a></li>
+                      <li><a href="calendar.jsp">Calendar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                      <li><a href="tables.jsp">Tables</a></li>
+                      <li><a href="tables_dynamic.jsp">Table Dynamic</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="chartjs.html">Chart JS</a></li>
-                      <li><a href="chartjs2.html">Chart JS2</a></li>
-                      <li><a href="morisjs.html">Moris JS</a></li>
-                      <li><a href="echarts.html">ECharts</a></li>
-                      <li><a href="other_charts.html">Other Charts</a></li>
+                      <li><a href="chartjs.jsp">Chart JS</a></li>
+                      <li><a href="chartjs2.jsp">Chart JS2</a></li>
+                      <li><a href="morisjs.jsp">Moris JS</a></li>
+                      <li><a href="echarts.jsp">ECharts</a></li>
+                      <li><a href="other_charts.jsp">Other Charts</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                      <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                      <li><a href="fixed_sidebar.jsp">Fixed Sidebar</a></li>
+                      <li><a href="fixed_footer.jsp">Fixed Footer</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -117,21 +117,21 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="e_commerce.html">E-commerce</a></li>
-                      <li><a href="projects.html">Projects</a></li>
-                      <li><a href="project_detail.html">Project Detail</a></li>
-                      <li><a href="contacts.html">Contacts</a></li>
-                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="e_commerce.jsp">E-commerce</a></li>
+                      <li><a href="projects.jsp">Projects</a></li>
+                      <li><a href="project_detail.jsp">Project Detail</a></li>
+                      <li><a href="contacts.jsp">Contacts</a></li>
+                      <li><a href="profile.jsp">Profile</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">403 Error</a></li>
-                      <li><a href="page_404.html">404 Error</a></li>
-                      <li><a href="page_500.html">500 Error</a></li>
-                      <li><a href="plain_page.html">Plain Page</a></li>
-                      <li><a href="login.html">Login Page</a></li>
-                      <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                      <li><a href="page_403.jsp">403 Error</a></li>
+                      <li><a href="page_404.jsp">404 Error</a></li>
+                      <li><a href="page_500.jsp">500 Error</a></li>
+                      <li><a href="plain_page.jsp">Plain Page</a></li>
+                      <li><a href="login.jsp">Login Page</a></li>
+                      <li><a href="pricing_tables.jsp">Pricing Tables</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
@@ -139,7 +139,7 @@
                         <li><a href="#level1_1">Level One</a>
                         <li><a>Level One<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="level2.html">Level Two</a>
+                            <li class="sub_menu"><a href="level2.jsp">Level Two</a>
                             </li>
                             <li><a href="#level2_1">Level Two</a>
                             </li>
@@ -169,7 +169,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.jsp">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -200,7 +200,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
