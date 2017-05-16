@@ -20,11 +20,15 @@ Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
 pais varchar(45),
-status boolean default true
+status boolean
 );
-insert into endereco values( 1 ,'08888888', 'rua 1', 1, 'bairro', 'municipio', 'estado', 'pais');
 
-alter table endereco add column status boolean default true
+-- drop table endereco cascade
+alter table Endereco add column status boolean default true
+
+alter table Endereco drop column status 
+
+select * from Endereco
 
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
@@ -59,17 +63,12 @@ IDPessoa serial,
 Tipo varchar(15),
 Login varchar(45),
 senha varchar(45),
-status boolean default true
+status boolean
 );
-insert into usuario values(1, 1, 'administrador', '1', '1');
-insert into usuario values(2, 2, 'comum', '2', '2');
 
-alter table usuario drop column status
-alter table usuario add column status boolean default true;
-
+alter table usuario add column status boolean default true 
 select * from usuario
 
-update usuario set status = true;
 
 CREATE TABLE Instituicao (
 ID serial PRIMARY KEY,
@@ -152,14 +151,12 @@ email varchar(45),
 IDEndereco serial,
 Telefone varchar(19),
 celular VARCHAR(20),
-sexo varchar,
-status boolean default true
+sexo varchar
+status boolean
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
-Insert into pessoa values(1, 'pessoa admin', 'admin', '1', '1', false, '01/01/2000', 'email@email.com', 1, '47474747', '967676767', 'm');
-Insert into pessoa values(2, 'pessoa COMUM', 'COMUM', '1', '1', false, '01/01/2000', 'email@email.com', 1, '47474747', '967676767', 'm');
 
-alter table pessoa add column status boolean default true
+alter table Pessoa add column status boolean default true
 
 CREATE TABLE Responsavel(
 ID serial PRIMARY KEY,
@@ -202,14 +199,48 @@ FOREIGN KEY(idValor) REFERENCES ValoresDoados (ID)
 
 CREATE TABLE Evento (
 ID serial PRIMARY KEY,
-idEndereco serial,
-Data date,
-Nome varchar(50),
-dataInicio date,
-dataFim date,
+dataInicio varchar(50),
+dataFim varchar(50),
+nome varchar(50),
+tipo varchar(50),
 descricao varchar(100),
-FOREIGN KEY(idEndereco) REFERENCES Endereco (ID)
+status boolean
 );
+
+alter table Evento add column status boolean default true
+drop table Evento cascade
+
+alter table Evento drop column idInstituicao
+select * from Evento
+
+insert into Evento (dataInicio,datafim,nome,tipo,descricao) values ('28/04/2017','29/08/2017','agasalho','campanha','doação');
+insert into Evento (dataInicio,datafim,nome,tipo,descricao) values ('28/04/2017','29/08/2017','agasalho2','campanha2','doação2');
+
+insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values ('28/04/2017','29/08/2020','agasalho4','campanha4','doação4');
+
+create table EnderecoEvento (
+ID serial,
+idEvento	int,
+idEndereco	int,
+FOREIGN KEY(idEvento) REFERENCES Evento (ID),
+FOREIGN KEY(idEndereco) REFERENCES Endereco (ID)
+)
+select * from Endereco
+insert into EnderecoEvento (idEvento, idEndereco) values (1,8
+
+insert into EnderecoEvento (idEvento, idEndereco) values (1,7)
+
+insert into EnderecoEvento (idEvento, idEndereco) values (2,7)
+
+select * from enderecoevento eve, evento ev, endereco e where e.id = eve.idendereco and ev.id = eve.idevento; 
+
+-- todos enderecos do evento 1
+select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve.idevento = 1;
+
+-- mostra todos eventos que ocorreram no endereco 7
+
+select * from enderecoevento eve, evento ev where ev.id = eve.idevento and eve.idendereco = 7;
+
 
 CREATE TABLE CampanhaDinheiro (
 ID serial PRIMARY KEY,

@@ -7,47 +7,41 @@ import Util.*;
 import java.util.*;
 
 public class Evento {
-
+    
+    private int idEvento;
     private String dataInicio;
     private String dataFim;
     private String nome;
     private String tipoEvento;
     private String descricao;
-    private ArrayList<Pessoa> responsavel = new ArrayList();
-    private ArrayList<Instituicao> instResponsavel = new ArrayList();
-    private ArrayList<Endereco> endereco = new ArrayList();
+    private boolean status;
+   
 
     
     
     
+    public int getIdEvento() {
+        return idEvento;
+    }
+
+    public void setIdEvento(int idEvento) {
+        this.idEvento = idEvento;
+    }
+
     
     
     
     
-    public ArrayList<Endereco> getEndereco() {
-        return endereco;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setEndereco(ArrayList<Endereco> endereco) {
-        this.endereco = endereco;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
+
     
-    public ArrayList<Pessoa> getResponsavel() {
-        return responsavel;
-    }
-
-    public void setResponsavel(ArrayList<Pessoa> responsavel) {
-        this.responsavel = responsavel;
-    }
-
-    public ArrayList<Instituicao> getInstResponsavel() {
-        return instResponsavel;
-    }
-
-    public void setInstResponsavel(ArrayList<Instituicao> instResponsavel) {
-        this.instResponsavel = instResponsavel;
-    }
-
+  
     public String getTipoEvento() {
         return tipoEvento;
     }

@@ -80,7 +80,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="inicio" placeholder="inicio" class="form-control" type="date">
+                            <input name="inicio" placeholder="dd/mm/aa" class="form-control" type="date">
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="fim" placeholder="fim" class="form-control" type="date">
+                            <input name="fim" placeholder="dd/mm/aa" class="form-control" type="date">
                         </div>
                     </div>
                 </div>
@@ -166,8 +166,8 @@ function removerCampos(id){
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                             <input name="cep" placeholder="CEP" class="form-control" type="text">
-                            <input name="endereco" placeholder="Rua" class="form-control" type="text">
-                            <input name="numero" placeholder="Número" class="form-control" type="int">
+                            <input name="nomeendereco" placeholder="Rua" class="form-control" type="text">
+                            <input name="numeroendereco" placeholder="Número" class="form-control" type="int">
                             <input name="bairro" placeholder="Bairro" class="form-control" type="text">                          
                             <input name="cidade" placeholder="Cidade" class="form-control" type="text">
                         </div>
@@ -411,11 +411,25 @@ function removerCampos(id){
                 <br /> <br />
                 <br /> <br />
                 <legend class="titulo"><b>Instituição</b></legend>
+                
+                
+                
+                
+               
+                
                 <!-- Modalidade -->
-                <div class="form-group">
-                    
-                    <label class="col-md-4 control-label">Instituição</label>
-                    
+                <div class="form-group">                   
+                    <label class="col-md-4 control-label">ID</label> 
+                    <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="idInst" placeholder="Id" class="form-control" type="text" value="<%= e.getIdInstituicao()%>">
+                            </div>
+                    </div>   
+                </div>
+                
+                <div class="form-group">                   
+                    <label class="col-md-4 control-label">Instituição</label>                    
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

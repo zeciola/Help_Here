@@ -381,6 +381,7 @@ public class DAOInstituicao implements iDAO {
             if (rsLogin.next()) {
                 loginAutenticado = new Instituicao();
                 Endereco en = new Endereco();
+                loginAutenticado.setIdInstituicao(rsLogin.getInt("ID"));
                 loginAutenticado.setCnpj(rsLogin.getString("CNPJ"));
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setNome(rsLogin.getString("nome"));
