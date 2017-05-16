@@ -266,6 +266,7 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 
 -- select * from Pessoa
 -- select * from Endereco
+-- select * from Usuario
 
 -- DROP ALL
 --drop table CampanhaItens, CampanhaDinheiro, Evento, ValorDoador, DoadoDoador, ItemDoado, ValoresDoados, Responsavel, Pessoa, TelCelInstituicao, InstituicaoPessoa, EnderecoIstituicao, Instituicao, Usuario, InstituicaoEvento, EmailInstituicao, Voluntario, Endereco, Doador, Item
