@@ -1,4 +1,4 @@
-﻿CREATE TABLE Item(
+CREATE TABLE Item(
 ID serial PRIMARY KEY,
 Item varchar(50),
 peso numeric,
@@ -20,15 +20,15 @@ Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
 pais varchar(45),
-status boolean
+status boolean default true
 );
 
 -- drop table endereco cascade
-alter table Endereco add column status boolean default true
+--alter table Endereco add column status boolean default true
 
-alter table Endereco drop column status 
+--alter table Endereco drop column status 
 
-select * from Endereco
+--select * from Endereco
 
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
@@ -63,11 +63,11 @@ IDPessoa serial,
 Tipo varchar(15),
 Login varchar(45),
 senha varchar(45),
-status boolean
+status boolean default true
 );
 
-alter table usuario add column status boolean default true 
-select * from usuario
+--alter table usuario add column status boolean default true 
+--select * from usuario
 
 
 CREATE TABLE Instituicao (
@@ -80,7 +80,7 @@ modalidade varchar(50),
 email varchar(50),
 idEnderecoInstituicao int,
 senha varchar(50),
-status boolean,
+status boolean default true,
 constraint fk_Endereco Foreign Key(IdEnderecoInstituicao)
 references EnderecoInstituicao (ID) on delete cascade
 );
@@ -120,7 +120,7 @@ Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
 pais varchar(45),
-status boolean
+status boolean default true
 );
 
 
@@ -151,12 +151,12 @@ email varchar(45),
 IDEndereco serial,
 Telefone varchar(19),
 celular VARCHAR(20),
-sexo varchar
-status boolean
+sexo varchar,
+status boolean default true,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
 
-alter table Pessoa add column status boolean default true
+--alter table Pessoa add column status boolean default true
 
 CREATE TABLE Responsavel(
 ID serial PRIMARY KEY,
@@ -204,9 +204,9 @@ dataFim varchar(50),
 nome varchar(50),
 tipo varchar(50),
 descricao varchar(100),
-status boolean
+status boolean default true
 );
-
+/*
 alter table Evento add column status boolean default true
 drop table Evento cascade
 
@@ -217,14 +217,16 @@ insert into Evento (dataInicio,datafim,nome,tipo,descricao) values ('28/04/2017'
 insert into Evento (dataInicio,datafim,nome,tipo,descricao) values ('28/04/2017','29/08/2017','agasalho2','campanha2','doação2');
 
 insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values ('28/04/2017','29/08/2020','agasalho4','campanha4','doação4');
-
+*/
 create table EnderecoEvento (
 ID serial,
 idEvento	int,
 idEndereco	int,
 FOREIGN KEY(idEvento) REFERENCES Evento (ID),
 FOREIGN KEY(idEndereco) REFERENCES Endereco (ID)
-)
+);
+
+/*
 select * from Endereco
 insert into EnderecoEvento (idEvento, idEndereco) values (1,8
 
@@ -240,7 +242,7 @@ select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve
 -- mostra todos eventos que ocorreram no endereco 7
 
 select * from enderecoevento eve, evento ev where ev.id = eve.idevento and eve.idendereco = 7;
-
+*/
 
 CREATE TABLE CampanhaDinheiro (
 ID serial PRIMARY KEY,
