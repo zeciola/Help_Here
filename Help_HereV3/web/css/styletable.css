@@ -1,0 +1,32 @@
+body{
+    margin-bottom: 5%;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+table{
+    border: 1px;
+    width:20%;
+    cellpadding:2;
+}
+
+thead{
+    background-color: rgba(0, 199, 149, 0.73);   
+}
+
+tbody{
+    background-color: #e6e6e6;
+}
+
+tr{
+    align-items: center;
+    align-self: center;
+    align-self: center
+}
+
+h2{
+    margin-top: 5%;
+}
+
+

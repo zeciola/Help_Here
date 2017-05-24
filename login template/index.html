@@ -48,7 +48,19 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
+
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="page-scroll">
+                    <a href="../ControleAcesso?acao=Sair">Sair</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="../admin/indexLogado.jsp">Admin</a>
+                </li>
+            </ul>
+
             <ul class="nav navbar-nav navbar-nav">
                 <li class="hidden">
                     <a href="#page-top"></a>
@@ -63,19 +75,25 @@
 
                         <li><a href="../CNPJ.jsp">Alterar</a></li>
 
-                        <li><a href="#">Listar</a></li>
-
-                        <li class="divider"></li>
+                        <li><a href="../ControleInstituicao?acao=Listar" methods="post">Listar</a></li>
 
                     </ul>
 
                 </li>
                 <li class="page-scroll">
-                    <a href="#about">About</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pessoa<b class="caret"></b></a>
+
+                    <ul class="dropdown-menu multi-level">
+
+                        <li><a href="../email.jsp">Consultar</a></li>
+
+                        <li><a href="../AlterarPessoa.jsp">Alterar</a></li>
+
+                        <li><a href="../ControlePessoa?acao=Listar" methods="post">Listar</a></li>
+
+                    </ul>
                 </li>
-                <li class="page-scroll">
-                    <a href="#contact">Contact</a>
-                </li>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -83,17 +101,19 @@
     <!-- /.container-fluid -->
 </nav>
 
-<!-- Header -->
+
 <header>
     <div class="container" id="maincontent" tabindex="-1">
         <div class="row">
             <div class="col-lg-12">
                 <img class="img-responsive" src="img/profile.png" alt="">
+                <!--
                 <div class="intro-text">
                     <h1 class="name">Start Bootstrap</h1>
                     <hr class="star-light">
                     <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
                 </div>
+                -->
             </div>
         </div>
     </div>

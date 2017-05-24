@@ -47,6 +47,8 @@
         </form>
 
         <h2>Listar Pessoa</h2>
+        
+        <a href="../ControlePessoa?acao=Listar" methods="post">Listar Pessoa Test</a>
         <form action="../ControlePessoa" method="post">
             <input type="submit" name="acao" value="Listar"><br>
 
