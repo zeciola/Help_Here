@@ -27,36 +27,35 @@
             </li>
         </ul>
         <h2>Alterar</h2>
-        <li>
-            <a href="../CNPJ.jsp">Alterar Instituição</a>
-        </li>
-        <li>
-    <a href="../emailSenha.jsp">Alterar Pessoa</a>
-</li>
+    <li>
+        <a href="../CNPJ.jsp">Alterar Instituição</a>
+    </li>
 
-<li>
-    <a href="../AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
-</li>
-<h2>Deletar</h2>
-<li>
-    <a href="../CNPJsenha.jsp">Deletar Instituição</a>
-    <br/>
-    <a href="../emailSenha.jsp">Deletar Pessoa</a>
-</li>
+    <li>
+        <a href="../AlterarPessoa.jsp">Alterar Pessoa</a>
+    </li>
+    <h2>Deletar</h2>
+    <li>
+        <a href="../CNPJsenha.jsp">Deletar Instituição</a>
+        <br/>
+        <a href="../emailSenha.jsp">Deletar Pessoa</a>
+    </li>
 
-<h2>Listar Instituição</h2>
-<li>
-    <form action="../ControleInstituicao" method="post">
-        <input type="submit" name="acao" value="Listar"><br>
+    <h2>Listar Instituição</h2>
+    <li>
+        <form action="../ControleInstituicao" method="post">
+            <input type="submit" name="acao" value="Listar"><br>
 
-    </form>
+        </form>
 
-    <h2>Listar Pessoa</h2>
-    <form action="../ControlePessoa" method="post">
-        <input type="submit" name="acao" value="Listar"><br>
+        <h2>Listar Pessoa</h2>
+        
+        <a href="../ControlePessoa?acao=Listar" methods="post">Listar Pessoa Test</a>
+        <form action="../ControlePessoa" method="post">
+            <input type="submit" name="acao" value="Listar"><br>
 
-    </form>
+        </form>
 
-</li>
+    </li>
 </body>
 </html>
