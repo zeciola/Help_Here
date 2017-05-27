@@ -12,6 +12,9 @@ import Model.Endereco;
 import Model.Evento;
 import Model.Instituicao;
 import Model.Pessoa;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,10 +84,22 @@ public class CadastrarEventoAction implements ICommand{
                 inst.add(in);
             
         }
+        
+        Date datahoje = new Date(System.currentTimeMillis());
+                
+                String data1 = request.getParameter("inicio");
+                     DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                     java.sql.Date data = new java.sql.Date(fmt.parse(data1).getTime());
+                    
+                    
+                ev.setDataInicio(data);
+                String data2 = request.getParameter("fim");
+                    
+                     DateFormat fmt2 = new SimpleDateFormat("dd/MM/yyyy");
+                     java.sql.Date dataf = new java.sql.Date(fmt2.parse(data2).getTime());
+                ev.setDataFim(dataf);
+                
     
-    
-        ev.setDataInicio(request.getParameter("inicio"));
-        ev.setDataFim(request.getParameter("fim"));
         ev.setNome(request.getParameter("nome"));
         ev.setTipoEvento(request.getParameter("tipoEven"));
         ev.setDescricao(request.getParameter("descricao"));

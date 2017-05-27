@@ -20,12 +20,14 @@ Bairro varchar(45),
 Municipio varchar(45),
 UF varchar(10),
 pais varchar(45),
-status boolean
+status boolean default true
 );
 
+select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve.idevento = 1
 -- drop table endereco cascade
 alter table Endereco add column status boolean default true
 
+alter table Endereco drop 
 alter table Endereco drop column status 
 
 select * from Endereco
@@ -51,11 +53,6 @@ idInstituicao serial,
 Email varchar(50)
 );
 
-CREATE TABLE InstituicaoEvento (
-ID serial PRIMARY KEY,
-idInstuicao serial,
-IdEvento serial
-);
 
 CREATE TABLE Usuario (
 ID serial PRIMARY KEY,
@@ -89,7 +86,7 @@ references EnderecoInstituicao (ID) on delete cascade
 /*
 select * from Instituicao
 delete from Instituicao where ID = 20
-
+drop table instituicao cascade
 select * from EnderecoInstituicao
 delete from EnderecoInstituicao where ID = 20
 
@@ -199,39 +196,78 @@ FOREIGN KEY(idValor) REFERENCES ValoresDoados (ID)
 
 CREATE TABLE Evento (
 ID serial PRIMARY KEY,
-dataInicio varchar(50),
-dataFim varchar(50),
+dataInicio date,
+dataFim date,
 nome varchar(50),
 tipo varchar(50),
 descricao varchar(100),
-status boolean
+status boolean default true
 );
 
-alter table Evento add column status boolean default true
+/*alter table Evento add column dataFim date 
 drop table Evento cascade
 
-alter table Evento drop column idInstituicao
-select * from Evento
+update Evento set descricao = 'Ir ao local' where id = 2
+
+alter table Evento drop column dataFim
+select * from Evento where nome ilike '%agasalho%' and status = true
 
 insert into Evento (dataInicio,datafim,nome,tipo,descricao) values ('28/04/2017','29/08/2017','agasalho','campanha','doação');
-insert into Evento (dataInicio,datafim,nome,tipo,descricao) values ('28/04/2017','29/08/2017','agasalho2','campanha2','doação2');
+insert into Evento (dataInicio,datafim,nome,tipo,descricao,status) values ('28/04/2017','29/08/2017','agasalho2','campanha2','doação2',true);
 
 insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values ('28/04/2017','29/08/2020','agasalho4','campanha4','doação4');
+*/
+
+create table Mensagem(
+ID serial,
+mensagem1	varchar(50),
+mensagem2	varchar(50),
+);
+
+Alter table Mensagem drop column mensagem3
+CREATE TABLE InstituicaoEvento (
+IDtab serial PRIMARY KEY,
+idInstituicao int,
+IdEvento int
+);
+
+drop table InstituicaoEvento cascade
+	-- todas instituições do evento 1
+select * from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and eve.idEvento = 1;
+
+-- deletar evento usando cnpj e senha da instituicao ---
+ update Evento set status = false where nome = 'agasalhe um idoso' and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '123')
+select * from evento
+
+ --drop table InstituicaoEvento cascade
+-- select * from InstituicaoEvento
 
 create table EnderecoEvento (
-ID serial,
+IDTab serial,
 idEvento	int,
 idEndereco	int,
 FOREIGN KEY(idEvento) REFERENCES Evento (ID),
 FOREIGN KEY(idEndereco) REFERENCES Endereco (ID)
 )
-select * from Endereco
-insert into EnderecoEvento (idEvento, idEndereco) values (1,8
 
-insert into EnderecoEvento (idEvento, idEndereco) values (1,7)
+ drop table EnderecoEvento cascade
+
+ insert into EnderecoEvento (idEvento, idEndereco) values(1,2)
+
+select * from EnderecoEvento
+
+select * from Endereco
+insert into InstituicaoEvento (idEvento, idInstituicao) values (11,2)
+
+insert into InstituicaoEvento (idEvento, idInstituicao) values (11,2)
+
+select * from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and eve.idEvento = 1
 
 insert into EnderecoEvento (idEvento, idEndereco) values (2,7)
 
+select * from Evento E, EnderecoEvento ee, InstituicaoEvento ie where E.ID = ee.IDTab and E.ID = ie.IDTab and E.nome = 'Campanha do agasalho'
+
+delete from Evento where nome = 'Campanha do agasalho' 
 select * from enderecoevento eve, evento ev, endereco e where e.id = eve.idendereco and ev.id = eve.idevento; 
 
 -- todos enderecos do evento 1
@@ -288,7 +324,7 @@ ALTER TABLE Voluntario ADD FOREIGN KEY(IDEvento) REFERENCES Evento (ID);
 ALTER TABLE Divulgacao ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE Divulgacao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE EmailInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
-ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID);
+ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);

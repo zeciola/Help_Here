@@ -5,12 +5,13 @@ import Model.*;
 import DAO.*;
 import Util.*;
 import java.util.*;
+import java.sql.Date;
 
 public class Evento {
     
     private int idEvento;
-    private String dataInicio;
-    private String dataFim;
+    private Date dataInicio;
+    private Date dataFim;
     private String nome;
     private String tipoEvento;
     private String descricao;
@@ -54,11 +55,11 @@ public class Evento {
     
 
     //Gets
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
@@ -75,11 +76,11 @@ public class Evento {
 
 
     //Sets
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 

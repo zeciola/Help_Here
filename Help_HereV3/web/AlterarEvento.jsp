@@ -1,14 +1,10 @@
 <%-- 
-    Document   : CriarEvento
-    Created on : 25/04/2017, 10:52:40
+    Document   : AlterarEvento
+    Created on : 24/05/2017, 14:16:52
     Author     : Lucas Puglia
 --%>
 
-
-<%@page import="java.util.ArrayList"%>
-<%@page import="DAO.DAOInstituicao"%>
 <%@page import="Model.Instituicao"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -70,7 +66,7 @@
                 <legend class="titulo"><b>Criar Evento</b></legend>
 
                 <% //recupera a lista do request
-                Instituicao e = (Instituicao) session.getAttribute("EventoAutorizado");
+                Instituicao e = (Instituicao) session.getAttribute("AlterarEVautorizado");
                 if(e != null){  %>
 
                 <!-- nome-->
