@@ -55,7 +55,7 @@ public class Login {
     }
     
     public void setId(int CodPessoa) {
-        this.id = id;
+        this.id = CodPessoa;
     }
     
     public void setNome(String nome) {
