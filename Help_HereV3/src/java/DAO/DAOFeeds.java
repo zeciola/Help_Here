@@ -32,7 +32,7 @@ public class DAOFeeds {
            
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(LISTAR);
-            pstmt.setInt(1, 3);
+            pstmt.setInt(1, iduser);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 //RETORNO MAXIO SERA 5 PELO PARAMETRO LIMIT NA CONSULTA TRAZFEED

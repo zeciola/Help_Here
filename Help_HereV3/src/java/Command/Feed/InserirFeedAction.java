@@ -22,10 +22,10 @@ public class InserirFeedAction implements ICommand{
         
         DAOFeeds daof = new DAOFeeds();
         
-        //String tipo = request.getParameter("tipo");
-        String tipo = "Doação";
-        int idev = 6;
-        //int idev = Integer.parseInt(request.getParameter("idev"));
+        String tipo = request.getParameter("tipo");
+        //String tipo = "Doação";
+        //int idev = 6;
+        int idev = Integer.parseInt(request.getParameter("idev"));
         
         ArrayList<Integer> ids = daof.Interessados(tipo);
         

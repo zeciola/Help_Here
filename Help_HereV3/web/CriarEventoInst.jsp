@@ -116,7 +116,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="tipoEven" class="form-control selectpicker">
                                 <option value=" " >Escolha o tipo </option>
-                                <option value="Campanha">Campanha</option>
+                                <option value="Doacao">Doação</option>
                                 <option value="Voluntariado">Voluntariado</option>
                             </select>
                         </div>

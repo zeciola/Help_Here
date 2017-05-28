@@ -8,6 +8,7 @@ package Command.EventoAction;
 import Command.ICommand;
 import DAO.DAOEndereco;
 import DAO.DAOEvento;
+import DAO.DAOFeeds;
 import Model.Endereco;
 import Model.Evento;
 import Model.Instituicao;
@@ -32,6 +33,7 @@ public class CadastrarEventoAction implements ICommand{
     ArrayList<Endereco> end = new ArrayList();
     Evento ev = new Evento();
     DAOEvento daoevento = new DAOEvento();
+    DAOFeeds daof = new DAOFeeds();
     
     // endereco do evento
     String[] cepend = request.getParameterValues("cep");
@@ -119,6 +121,14 @@ public class CadastrarEventoAction implements ICommand{
             
             DAOEvento Ed = new DAOEvento();
             Ed.InserirAuxEnderecoEvento(idEnd, ev.getIdEvento());
+        }
+        String tipo = request.getParameter("tipoEven");
+        int idev = ev.getIdEvento();
+        
+        ArrayList<Integer> ids = daof.Interessados(tipo);
+        
+        for(int i=0; i< ids.size(); i++){
+            daof.adicionarFeed(ids.get(i), idev);
         }
         
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima

@@ -207,7 +207,7 @@ status boolean default true
 /*alter table Evento add column dataFim date 
 drop table Evento cascade
 
-update Evento set descricao = 'Ir ao local' where id = 2
+update Evento set tipo = 'Doação' where id = 
 
 alter table Evento drop column dataFim
 select * from Evento where nome ilike '%agasalho%' and status = true
@@ -217,6 +217,67 @@ insert into Evento (dataInicio,datafim,nome,tipo,descricao,status) values ('28/0
 
 insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values ('28/04/2017','29/08/2020','agasalho4','campanha4','doação4');
 */
+
+create table Interesses(
+ID serial PRIMARY KEY,
+IDUsuario integer references Usuario(id),
+Interesse varchar(45)
+);
+
+insert into Interesses (IDUsuario, Interesse)values(2 , 'Voluntariado');
+insert into Interesses (IDUsuario, Interesse)values(2 , 'Doacao');
+select * from Evento where tipo = 'Doacao';
+delete from interesses where id = 1
+
+--Listar ids para buscar usuarios que tem interesse no evento
+select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'Doação';
+
+select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'Voluntariado';
+
+--inserir no feeds
+insert into feeds (IDUsuario, IDEvento)values(2, 2); 
+
+--Trazer para o banco
+--Trazer para o banco
+
+select * from evento e, feeds f, usuario u where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 2;
+select * from feeds;
+select * from interesses;
+
+select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'Doacao'
+
+select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where
+ e.id = f.idevento and u.id = f.idusuario and f.idusuario = 2 and  CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim LIMIT 5;
+
+SELECT * FROM Usuario WHERE status=true and Login='teste' AND senha='teste'
+
+SELECT CURRENT_DATE;
+SELECT CURRENT_TIME;
+
+select e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where
+ e.id = f.idevento and u.id = 2 and '20/05/2017' >= e.datainicio and '20/05/2017' <= e.datafim ;
+
+select * from evento;
+
+update evento set tipo = 'Voluntariado' where id = 4;
+
+create table Feeds (
+ID serial PRIMARY KEY,
+IDUsuario integer references Usuario(id),
+IDEvento integer references Evento(id)
+);
+insert into feeds(IDUsuario, IDEvento) values (3, 4)
+
+select * from feeds;
+
+select * from feeds f, evento e where f.idEvento = e.id and datainicio >= '26/05/2017';  
+
+select * from usuario;
+
+insert into feeds (IDUsuario, IDEvento)values(3, 1); 
+
+--insert into evento(idendereco, data, nome, datainicio, datafim, descricao)values(1, '25/05/2017', 'Evento com nome teste', '20/05/2017', '25/05/2017', 'Doação');
+
 
 create table Mensagem(
 ID serial,

@@ -340,6 +340,7 @@ public class DAOUsuario implements iDAO {
 
             if (rsLogin.next()) {
                 loginAutenticado = new Login();
+                loginAutenticado.setId(rsLogin.getInt("id"));
                 loginAutenticado.setNome(rsLogin.getString("login"));
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
