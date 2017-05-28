@@ -20,6 +20,14 @@
         <servlet-name>ControleInstituicao</servlet-name>
         <servlet-class>Control.ControleInstituicao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControleAdmin</servlet-name>
+        <servlet-class>Control.ControleAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControleFeed</servlet-name>
+        <servlet-class>Control.ControleFeed</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>
         <url-pattern>/ControleAcesso</url-pattern>
@@ -40,6 +48,14 @@
         <servlet-name>ControleInstituicao</servlet-name>
         <url-pattern>/ControleInstituicao</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControleAdmin</servlet-name>
+        <url-pattern>/ControleAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControleFeed</servlet-name>
+        <url-pattern>/ControleFeed</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -52,7 +68,7 @@
     </filter>
     <filter-mapping>
         <filter-name>AcessoAdministrativo</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/admin2/*</url-pattern>
     </filter-mapping>
     <filter>
         <filter-name>AcessoLogado</filter-name>
