@@ -360,42 +360,4 @@ public class DAOUsuario implements iDAO {
         }
         return loginAutenticado;
     }
-
-    public Login autenticaPessoa(Login lo) {
-        Login loginAutenticado = null;
-
-        Connection conexao = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        try {
-            conexao = Conexao.getConexao();
-            pstmt = conexao.prepareStatement(AUTENTICAR_USUARIO);
-            pstmt.setString(1, lo.getNome());
-            pstmt.setString(2, lo.getSenha());
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                loginAutenticado = new Login();
-                loginAutenticado.setNome(rs.getString("login"));
-                loginAutenticado.setSenha(rs.getString("senha"));
-                loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rs.getString("tipo")));
-            }
-            
-            if(rs == null){
-                System.out.println("Está nulo "+rs);
-            }
-
-        } catch (SQLException sqlErro) {
-            throw new RuntimeException(sqlErro);
-        } finally {
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        }
-        return loginAutenticado;
-    }
 }

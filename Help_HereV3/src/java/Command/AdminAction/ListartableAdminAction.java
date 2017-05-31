@@ -23,7 +23,7 @@ public class ListartableAdminAction implements ICommand{
         ArrayList<Pessoa> p = daop.Listar();
         request.setAttribute("pessoa", p);
         
-        ArrayList<Instituicao> i = daoi.Listar2();
+        ArrayList<Instituicao> i = daoi.Listar();
         request.setAttribute("instituicao", i);
         String url = request.getParameter("url");
         

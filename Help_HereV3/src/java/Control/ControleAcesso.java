@@ -54,46 +54,6 @@ public class ControleAcesso extends HttpServlet {
                 }
 
             } else //se o usuario existe no banco de dados
-            if (acao.equals("AlteraPe")) {
-                Login lo = new Login();
-                lo.setNome(request.getParameter("txtLogin"));
-                lo.setSenha(request.getParameter("txtSenha"));
-
-                DAOUsuario daous = new DAOUsuario();
-
-                //Login loginAutenticadoPe = new Login();
-                Login loginAutenticado = daous.autenticaPessoa(lo);
-                if (loginAutenticado != null) {
-                    HttpSession sessaoInst = request.getSession();
-                    sessaoInst.setAttribute("usuarioAutenticado", loginAutenticado);
-                    //redireciona para o Alterar Pessoa
-                    response.sendRedirect("AlterarPessoa.jsp");
-                } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
-                    request.setAttribute("msg", "Login ou Senha Incorreto!");
-                    rd.forward(request, response);
-                }
-            } else if (acao.equals("RemovePe")) {
-                Login lo = new Login();
-                lo.setNome(request.getParameter("txtLogin"));
-                lo.setSenha(request.getParameter("txtSenha"));
-
-                DAOUsuario daous = new DAOUsuario();
-
-                //Login loginAutenticadoPe = new Login();
-                Login loginAutenticado = daous.autenticaUsuario(lo);
-                if (loginAutenticado != null) {
-                    HttpSession sessaoInst = request.getSession();
-                    sessaoInst.setAttribute("usuarioAutenticado", loginAutenticado);
-                    //redireciona para o Alterar Pessoa
-                    response.sendRedirect("AlterarPessoa.jsp");
-                } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
-                    request.setAttribute("msg", "Login ou Senha Incorreto!");
-                    rd.forward(request, response);
-                }
-            }
-
             if (acao.equals("Altera")) {
                 Instituicao inst = new Instituicao();
                 inst.setCnpj(request.getParameter("txtcnpj"));
