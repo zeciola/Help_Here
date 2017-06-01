@@ -415,4 +415,35 @@ public class DAOInstituicao implements iDAO {
         }
         return loginAutenticado;
     }     
+    
+    public ArrayList<Instituicao> Listar2() {
+        ArrayList<Instituicao> resul = new ArrayList();
+        try{
+            conexao = Conexao.getConexao();
+            PreparedStatement pstmt = conexao.prepareStatement(LISTAR2);
+            ResultSet rs;
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                Instituicao in = new Instituicao();
+                 in.setIdInstituicao(rs.getInt("ID"));
+                 in.setNome(rs.getString("Nome"));
+                 in.setRazao(rs.getString("razaoSocial"));
+                 in.setTipo(rs.getString("tipo"));
+                 in.setCnpj(rs.getString("CNPJ"));
+                 in.setModalidade(rs.getString("modalidade"));
+                 in.setEmail(rs.getString("email"));
+                 resul.add(in);
+             }
+             return resul;
+          
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
