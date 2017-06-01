@@ -92,9 +92,12 @@ public class CadastrarPessoaAction implements ICommand{
         daou.setUsuario(lo);
         daou.Inserir();
         
+        int i = pe.getId();
+        //adiciona id para cadastro de interesses
+        request.setAttribute("pessoaident", i);
         
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
-        return "/login.jsp";
+        return "/checkbox.html";
         
     }
     

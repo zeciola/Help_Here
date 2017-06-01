@@ -43,7 +43,7 @@ public class ControleAcesso extends HttpServlet {
                     //redireciona para a pagina princiapal
                     
                     if(usuarioAutenticado!=null && usuarioAutenticado.getPerfil().equals(PerfilDeAcesso.administrador)){
-                        response.sendRedirect("admin/production/index.html");
+                        response.sendRedirect("admin2/index.html");
                     }else{
                         response.sendRedirect("acessologado/logado.jsp");
                     }
