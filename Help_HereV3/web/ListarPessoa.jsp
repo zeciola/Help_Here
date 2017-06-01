@@ -10,12 +10,12 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        
+
         <!-- CSS Style Table-->
         <link href="css/styletable.css" rel="stylesheet">
     </head>
-    <body>
 
+    <header>
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -46,12 +46,13 @@
             <!-- /.container -->
         </nav>
 
+    </header>
+    <body>
 
-
-        <div class="row-fluid" id="corpo">
+        <div class="row-fluid">
 
             <h1>Resultado da Pesquisa</h1>
-            
+
             <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >
                 <h2>Endereço:</h2>
                 <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
@@ -70,7 +71,7 @@
                 <% //recupera a lista do request
                     ArrayList<Endereco> listaEndereco = (ArrayList<Endereco>) request.getAttribute("ListaEn");
                     for (Endereco en : listaEndereco) {%>  
-                    <tbody style="background-color: #e6e6e6">
+                <tbody style="background-color: #e6e6e6">
                     <tr align="center">
                         <td><%=en.getNomelogradouro()%></td>
                         <td><%=en.getNumeroen()%></td>

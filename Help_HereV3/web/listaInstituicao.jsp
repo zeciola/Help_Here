@@ -5,12 +5,10 @@
 --%>
 <%@page import="Model.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@page import="Model.Instituicao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.DAOInstituicao"%>
+<!DOCTYPE HTML>
 <html>
     <head><link href="estilo.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,6 +19,7 @@
         <!-- CSS Style Table-->
         <link href="css/styletable.css" rel="stylesheet">
     </head>
+    
     <body>
 
         <!-- Navigation -->
@@ -53,7 +52,7 @@
         <!-- /.container -->
     </nav>
 
-    <div class="row-fluid" id="corpo">
+    <div class="row-fluid">
 
         <h1>Resultado da Pesquisa</h1>  
         <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%" cellpadding="2" >
@@ -73,6 +72,7 @@
                     <td>Cidade </td>
                     <td>Estado</td>
                     <td>Pais</td>
+                    <td>Opções</td>
                 </tr>
             </thead>
             <% //recupera a lista do request
