@@ -17,7 +17,7 @@ public class DAOPessoa implements iDAO {
 
     public Pessoa pe;
     public Endereco en;
-    
+
     public String emailpes;
 
     //Variable connection
@@ -39,13 +39,15 @@ public class DAOPessoa implements iDAO {
     //SQL
     private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status) "
             + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    private static final String INSERT_INTERESSE="insert into Interesses (IDUsuario, Interesse)values(?,?)";
 
     private static final String DELETE = "update pessoa set";
 
     private static final String SELECT_ALL = "select * from Pessoa where status=true";
-    
-    private static final String AUTENTICAR_PESSOA = "SELECT * FROM Usuario WHERE Login=? AND senha=?;";    
-    
+
+    private static final String AUTENTICAR_PESSOA = "SELECT * FROM Usuario WHERE Login=? AND senha=?;";
+
     private static final String UPDATE = "";
 
     //DAOs
@@ -80,7 +82,7 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(10, pe.getCelular());
 
             pstmt.setString(11, pe.getSexo());
-            
+
             //status
             pstmt.setBoolean(12, pe.isStatus());
 
@@ -117,6 +119,33 @@ public class DAOPessoa implements iDAO {
         }
     }
 
+    public void InserirInteresse(int id, String interesse) {
+        try {
+            conexao.setAutoCommit(false);
+            PreparedStatement pstmt = conexao.prepareStatement(INSERT_INTERESSE);
+            pstmt.setInt(1, id);
+            pstmt.setString(2, interesse);
+            pstmt.execute();
+        }
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Pessoa.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
     @Override
     public void Atualizar(String OBJ, String ob) {
         try {
@@ -124,9 +153,8 @@ public class DAOPessoa implements iDAO {
             conexao.setAutoCommit(false);
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            
-            String sqlConsultar = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id="+pe.getId()+";";
-            
+            String sqlConsultar = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id=" + pe.getId() + ";";
+
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsultar, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, pe.getNome());
@@ -138,14 +166,12 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(4, pe.getRg());
 
             //pstmt.setBoolean(5, pe.isPenalisado());
-
             pstmt.setString(5, pe.getDatanascimento());
 
             pstmt.setString(6, pe.getEmail());
 
             //Foreign Key
             //pstmt.setInt(8, en.getIdEndereco());
-
             pstmt.setString(7, pe.getTelefone());
 
             pstmt.setString(8, pe.getCelular());
@@ -193,9 +219,9 @@ public class DAOPessoa implements iDAO {
     @Override
     public ArrayList Consultar(String email) {
         ArrayList<Pessoa> result = new ArrayList();
-        
+
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;
@@ -222,7 +248,7 @@ public class DAOPessoa implements iDAO {
             }
             //Retorno do ArrayList
             return result;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -232,7 +258,7 @@ public class DAOPessoa implements iDAO {
                 throw new RuntimeException(e);
             }
         }
-        
+
     }
 
     @Override
@@ -267,7 +293,7 @@ public class DAOPessoa implements iDAO {
             }
             //Retorno do ArrayList
             return result;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
