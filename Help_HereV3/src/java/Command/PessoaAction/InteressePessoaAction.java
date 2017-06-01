@@ -7,6 +7,8 @@ package Command.PessoaAction;
 
 import Command.ICommand;
 import DAO.DAOPessoa;
+import Model.Login;
+import Model.Pessoa;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,12 +24,12 @@ public class InteressePessoaAction implements ICommand{
         String[] interesses = request.getParameterValues("interesse");
         
         HttpSession sessao = request.getSession();
-        int i = (int) sessao.getAttribute("pessoaident");
+        Login o = (Login) sessao.getAttribute("userid");
         
         DAOPessoa daop = new DAOPessoa();
         
-        for(int j = 0; j <= interesses.length; j++){
-            daop.InserirInteresse(i, interesses[j]);
+        for(int j = 0; j < interesses.length; j++){
+            daop.InserirInteresse(o.getId(), interesses[j]);
         }
         
        return "login.jsp";

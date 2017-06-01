@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import javax.servlet.http.HttpSession;
 
 public class CadastrarPessoaAction implements ICommand{
 
@@ -17,7 +18,7 @@ public class CadastrarPessoaAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
         //Instanciando Objetos
-        Endereco en = new Endereco();
+            Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
         Login lo = new Login();
         
@@ -92,9 +93,11 @@ public class CadastrarPessoaAction implements ICommand{
         daou.setUsuario(lo);
         daou.Inserir();
         
-        int i = pe.getId();
+        
         //adiciona id para cadastro de interesses
-        request.setAttribute("pessoaident", i);
+        HttpSession sessaousuario = request.getSession();
+        sessaousuario.setAttribute("userid", lo);
+        
         
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/checkbox.html";

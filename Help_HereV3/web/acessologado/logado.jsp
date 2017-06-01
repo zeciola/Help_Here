@@ -141,7 +141,7 @@
 
 
 
-        <%-- comment 
+        
         <%
             Login usuario = (Login) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
@@ -164,9 +164,9 @@
             <b>aqui poderia ser um link para consultar o evento diretamente</b>
             
         </div><%}%>
-            <a href="../ControleFeed?acao=Inserir">salva feed</a>
+            
         
-        --%>
+        
 
 
     </body>
