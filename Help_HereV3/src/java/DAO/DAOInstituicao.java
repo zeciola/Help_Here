@@ -62,6 +62,7 @@ public class DAOInstituicao implements iDAO {
     
     private static final String AUTENTICAR_INSTITUICAO = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.CNPJ = ? and inst.senha = ?";
     
+    private static final String LISTAR2 = "select * from Instituicao WHERE STATUS = TRUE";
     
     private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.status = true";
     
