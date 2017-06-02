@@ -148,6 +148,9 @@ references EnderecoInstituicao (ID) on delete cascade
 );
 
 select * from usuario;
+
+select * from instituicao;
+delete from instituicao where id = 2
 /*
 select * from Instituicao
 delete from Instituicao where ID = 20
@@ -217,6 +220,9 @@ sexo varchar,
 status boolean default true,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
+
+insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status)
+ values('Nome 1', 'Sobrenome 2', '1', '2', false, '13/12/1999', 'teste@teste.com', 1, '34343434', '9099999', 'f', true);
 
 insert into Pessoa (id, nome, sobrenome, cpf, rg, penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo)
  values(3, 'novo', 'user', '3', '3', false, '01/01/1990', 'pessoa@email.com', 1, '2323-2323', '9999999', 'f');
