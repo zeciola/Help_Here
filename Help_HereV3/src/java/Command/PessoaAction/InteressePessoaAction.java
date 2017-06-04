@@ -21,17 +21,15 @@ public class InteressePessoaAction implements ICommand{
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        DAOPessoa daop = new DAOPessoa();
         String[] interesses = request.getParameterValues("interesse");
-        
+ 
         HttpSession sessao = request.getSession();
         Login o = (Login) sessao.getAttribute("userid");
-        
-        DAOPessoa daop = new DAOPessoa();
         
         for(int j = 0; j < interesses.length; j++){
             daop.InserirInteresse(o.getId(), interesses[j]);
         }
-        
        return "login.jsp";
     }
     

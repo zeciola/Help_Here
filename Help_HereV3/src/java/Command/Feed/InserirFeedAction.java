@@ -34,6 +34,5 @@ public class InserirFeedAction implements ICommand{
         }
         
         return "/acessologado/logado.jsp";
-    }
-    
+    } 
 }
