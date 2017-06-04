@@ -16,7 +16,7 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <h1>Digite o CNPJ da Instituiçaõ</h1>
+                <h1>Digite o CNPJ da Instituição</h1>
                 <form class="form" method="post" action="ControleAcesso">
                     <input type="text" name="txtcnpj" placeholder="CNPJ">
                     <input type="password" name="txtSenha" placeholder="Senha">
