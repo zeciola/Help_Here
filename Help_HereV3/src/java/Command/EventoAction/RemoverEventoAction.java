@@ -8,7 +8,9 @@ package Command.EventoAction;
 import Command.ICommand;
 import DAO.DAOEvento;
 import DAO.DAOInstituicao;
+import Model.Evento;
 import Model.Instituicao;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,30 +24,31 @@ public class RemoverEventoAction implements ICommand{
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         DAOEvento daoi = new DAOEvento();
-        String CNP = null;
-        String Sen = null;
-        String NomeEV = null;
         
-        String acao = request.getParameter("acao");
-            if (acao.equals("Remover")) {
-                
-                NomeEV=(request.getParameter("txtnomeEV"));
- 
-            }else {
-                return "erro.jsp";
-            }
+        DAOEvento idao = new DAOEvento();
+        ArrayList<Evento> eve = new ArrayList();
         
-         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        
+        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
         Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
+        String SEN = usuarioLogado.getSenha();
+        String CNP = usuarioLogado.getCnpj();
+        String url = request.getParameter("url");
         
+      
             
-         CNP=usuarioLogado.getCnpj();
+
+                String NomeEV = request.getParameter("txtnomeEV");
                 
-         Sen = usuarioLogado.getSenha();
-            
-        
-         daoi.Deletar(NomeEV,Sen);
-         
+                eve = idao.ConsultarEVinst(NomeEV,SEN);
+
+                if (eve.isEmpty())
+                {
+                    return "/EventoErrado.jsp"; 
+                       
+                }else {
+                        daoi.Deletar(NomeEV,SEN);
+                }
         return "/sucesso.jsp";
     }
     

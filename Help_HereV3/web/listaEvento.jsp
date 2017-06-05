@@ -60,7 +60,7 @@
                         <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Informações Completas</a>
                        </td>
                         <td>
-                        <a href="CNPJsenhaEvento.jsp">Excluir</a>
+                        <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a>
                         </td>
                         <td>
                         <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->

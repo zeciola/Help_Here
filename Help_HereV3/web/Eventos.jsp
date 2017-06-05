@@ -40,6 +40,7 @@
                                 <li><a href="CNPJsenhaEvento.jsp">Excluir</a></li>
                                 <li><a href="ControleEvento?acao=Listar">Listar</a></li>
                                 <li><a href="ControleEvento?acao=Listar">Alterar</a></li>
+                                <li><a href="ControleAcesso?acao=Sair">Sair</a></li>
            
 				</ul>
                         </nav>
@@ -59,8 +60,8 @@
            <b>Dia de Inicio:</b> <%=e.getDataInicio()%><br>
            <b>Dia de Encerramento:</b> <%=e.getDataFim()%><br>
             <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Abrir</a>
-            <a href="CNPJsenhaEvento.jsp">Excluir</a>
-            <a href="CNPJsenhaEvento.jsp">Alterar</a>
+            <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a>
+            <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a>
         </article>
          <%}%>
         </div>

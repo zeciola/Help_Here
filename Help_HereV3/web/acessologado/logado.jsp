@@ -60,7 +60,7 @@
                     </li>
 
 
-                    <li><a href="../Eventos.jsp">Eventos</a></li>
+                    <li><a href="../tipoAcesso.jsp">Eventos</a></li>
 
                     <li><a href="../admin/indexLogado.jsp">Admin</a></li>
 

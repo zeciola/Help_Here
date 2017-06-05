@@ -13,7 +13,7 @@
     <body>
         <h1>Este evento não é seu!!!</h1>
         
-        <h2>Alterações são possiveis apenas a quem criou o evento</h2>
+        <h2>Alterações e exclusões são possiveis apenas para quem criou o evento</h2>
         
         
     <li><a href="index.html">Home</a><li>
