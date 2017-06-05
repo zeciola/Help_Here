@@ -84,12 +84,15 @@ insert into Interesses (IDUsuario, Interesse)values(2 , 'Doação');
 select * from Evento where tipo = 'Doação';
 
 --Listar ids para buscar usuarios que tem interesse no evento
-select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'Doação';
+select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'doacao';
 
-select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'Voluntariado';
+select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'voluntariado';
+
+select * from interesses
 
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
+
 
 --Trazer para o banco
 --Trazer para o banco
@@ -101,7 +104,12 @@ select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from 
  e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and '27/05/2017' >= e.datainicio and '27/05/2017' <= e.datafim LIMIT 5;
 
 select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where
- e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and  CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim LIMIT 5;
+ e.id = f.idevento and u.id = f.idusuario  and  CURRENT_DATE >= e.datainicio and CURRENT_DATE < e.datafim LIMIT 5;
+
+
+
+select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where
+ e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio or e.datafim >= CURRENT_DATE  ;
 
 SELECT * FROM Usuario WHERE status=true and Login='3' AND senha='3'
 
