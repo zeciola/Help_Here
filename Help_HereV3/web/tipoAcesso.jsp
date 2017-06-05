@@ -23,7 +23,7 @@
                     <!-- BOTTON Funcionando -->
                   <!--  <button type="submit" name="acao" value="Atualizar&url=ok">Confirmar</button>-->
                  
-                  <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV">Pessoa Fisica</a> <br /> <br />
+                  <!--<a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV">Pessoa Fisica</a> <br /> <br />-->
                   <a href="SENHAentrarEventos.jsp">Pessoa Juridica</a>
                   
                     

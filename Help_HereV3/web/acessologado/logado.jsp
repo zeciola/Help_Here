@@ -125,9 +125,6 @@
                 <br/>
                 <a href="../emailSenha.jsp">Deletar Pessoa</a>
             </li>
-
-
-            <li>
         </ul>
 
         <h2>Listar Instituição</h2>
@@ -138,9 +135,6 @@
         <form action="../ControlePessoa" method="post">
             <input type="submit" name="acao" value="Listar"><br>
         </form>
-
-
-
         
         <%
             Login usuario = (Login) session.getAttribute("usuarioAutenticado");
@@ -150,13 +144,12 @@
         <h2><%= usuario.getId()%></h2>
         <%}%>
     
-    
         <h1> Aqui vai o feeds </h1>
         
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
-    }%>
+        }%>
         <%for (Feeds e : Lista) {%>  
         <div id="feed">
             Conheça o Evento <%=e.getNomeEvento()%><br>
@@ -164,10 +157,5 @@
             <b>aqui poderia ser um link para consultar o evento diretamente</b>
             
         </div><%}%>
-            
-        
-        
-
-
     </body>
 </html>
