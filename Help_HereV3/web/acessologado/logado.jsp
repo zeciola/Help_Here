@@ -88,7 +88,13 @@
     </header>
 
     <body>
-        <h1>Bem Vindo</h1>
+        <%
+            Login usuario = (Login) session.getAttribute("usuarioAutenticado");
+            if (usuario != null) {
+        %> 
+        <h1>Bem vindo Usuario, <%= usuario.getNome()%>! </h1>
+
+        <%}%>
 
         <a href="../ControleAcesso?acao=Sair">Logoff</a>
         <a href="../admin/indexLogado.jsp">admin</a>
@@ -112,10 +118,11 @@
             <li>
                 <a href="../CNPJsenha.jsp">Alterar Instituição</a>
             </li>
+            <!--
             <li>
                 <a href="../emailSenha.jsp">Alterar Pessoa</a>
             </li>
-
+            -->
             <li>
                 <a href="../AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
             </li>
@@ -135,27 +142,21 @@
         <form action="../ControlePessoa" method="post">
             <input type="submit" name="acao" value="Listar"><br>
         </form>
-        
-        <%
-            Login usuario = (Login) session.getAttribute("usuarioAutenticado");
-            if (usuario != null) {
-        %> 
-        <h1>Bem vindo Usuario, <%= usuario.getNome()%>! </h1>
-        <h2><%= usuario.getId()%></h2>
-        <%}%>
-    
+
+
+
         <h1> Aqui vai o feeds </h1>
-        
+
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
-        }%>
+            }%>
         <%for (Feeds e : Lista) {%>  
         <div id="feed">
             Conheça o Evento <%=e.getNomeEvento()%><br>
             A partir do dia: <%=e.getDatainiev()%> ate: <%=e.getDatafimev()%>
             <b>aqui poderia ser um link para consultar o evento diretamente</b>
-            
+
         </div><%}%>
     </body>
 </html>
