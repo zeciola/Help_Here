@@ -92,7 +92,7 @@
 
         <a href="../ControleAcesso?acao=Sair">Logoff</a>
         <a href="../admin/indexLogado.jsp">admin</a>
-        <a href="../Eventos.jsp">Eventos</a>
+        <a href="../tipoAcesso.jsp">Eventos</a>
         <h2>Cadastrar</h2>
         <ul>
             <li>

@@ -30,7 +30,7 @@ alter table Endereco add column status boolean default true
 alter table Endereco drop 
 alter table Endereco drop column status 
 
-select * from Endereco
+select * from Endereco where id =3
 
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
@@ -207,10 +207,16 @@ status boolean default true
 /*alter table Evento add column dataFim date 
 drop table Evento cascade
 
+update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id = ''
+
+update Evento set (datainicio, datafim, nome, tipo, descricao) = ('01/01/2017','12/12/2017','campanhas do agasalho','Doacao','doar muito') where nome = 'campanha do agasalho'
+
 update Evento set tipo = 'Doação' where id = 
 
 alter table Evento drop column dataFim
 select * from Evento where nome ilike '%agasalho%' and status = true
+
+select * from Evento where nome = 'campanha do agasalho' and status = true and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '123')
 
 insert into Evento (dataInicio,datafim,nome,tipo,descricao) values ('28/04/2017','29/08/2017','agasalho','campanha','doação');
 insert into Evento (dataInicio,datafim,nome,tipo,descricao,status) values ('28/04/2017','29/08/2017','agasalho2','campanha2','doação2',true);
@@ -324,6 +330,8 @@ insert into InstituicaoEvento (idEvento, idInstituicao) values (11,2)
 
 select * from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and eve.idEvento = 1
 
+update Endereco set (cep, nomelogradouro, numero, bairro, municipio, uf, pais) = ('0111','rua nove',09,'jardim camila','MOGI','SP','Brasil')   where id = 3
+
 insert into EnderecoEvento (idEvento, idEndereco) values (2,7)
 
 select * from Evento E, EnderecoEvento ee, InstituicaoEvento ie where E.ID = ee.IDTab and E.ID = ie.IDTab and E.nome = 'Campanha do agasalho'
@@ -332,7 +340,7 @@ delete from Evento where nome = 'Campanha do agasalho'
 select * from enderecoevento eve, evento ev, endereco e where e.id = eve.idendereco and ev.id = eve.idevento; 
 
 -- todos enderecos do evento 1
-select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve.idevento = 1;
+select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve.idevento = 2;
 
 -- mostra todos eventos que ocorreram no endereco 7
 

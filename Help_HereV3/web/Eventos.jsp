@@ -39,6 +39,7 @@
                                 <li><a href="ConsultaNomeEvento.jsp">Consultar</a></li>
                                 <li><a href="CNPJsenhaEvento.jsp">Excluir</a></li>
                                 <li><a href="ControleEvento?acao=Listar">Listar</a></li>
+                                <li><a href="ControleEvento?acao=Listar">Alterar</a></li>
            
 				</ul>
                         </nav>

@@ -4,13 +4,20 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="Model.Endereco"%>
 <%@page import="Model.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@page import="Model.Evento"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.DAOEvento"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
-        <title>Criar Evento - Help Here</title>
+        <title>Alterar Evento - Help Here</title>
         <meta charset="UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,20 +70,30 @@
 
                 <!-- Form Name -->
 
-                <legend class="titulo"><b>Criar Evento</b></legend>
+                <legend class="titulo"><b>Alterar Evento</b></legend>
 
                 <% //recupera a lista do request
-                Instituicao e = (Instituicao) session.getAttribute("AlterarEVautorizado");
-                if(e != null){  %>
+                ArrayList<Evento> listaEvento = (ArrayList<Evento>)request.getAttribute("listaEV");
+                for(Evento e: listaEvento){  %> 
 
                 <!-- nome-->
+                
+                <div class="form-group">                   
+                    <label class="col-md-4 control-label">ID</label> 
+                    <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="idEve" placeholder="Id" class="form-control" type="text" value="<%= e.getIdEvento()%>">
+                            </div>
+                    </div>   
+                </div>
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Data Inicio</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="inicio" placeholder="dd/mm/aaaa" class="form-control" type=text>
+                            <input name="inicio" placeholder="dd/mm/aaaa" class="form-control" type="text"  value="<%= e.getDataInicio()%>">
                         </div>
                     </div>
                 </div>
@@ -88,7 +105,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="fim" placeholder="dd/mm/aaaa" class="form-control" type="text">
+                            <input name="fim" placeholder="dd/mm/aaaa" class="form-control" type="text"  value="<%= e.getDataFim()%>">
                         </div>
                     </div>
                 </div>
@@ -99,7 +116,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="nome" placeholder="nome do evento" class="form-control" type="text">
+                            <input name="nome" placeholder="nome do evento" class="form-control" type="text"  value="<%= e.getNome()%>">
                         </div>
                     </div>
                 </div>
@@ -111,8 +128,8 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="tipoEven" class="form-control selectpicker">
-                                <option value=" " >Escolha o tipo </option>
-                                <option value="Campanha">Campanha</option>
+                                <option value="<%= e.getTipoEvento()%> " ><%= e.getTipoEvento()%></option>
+                                <option value="Doacao">Doação</option>
                                 <option value="Voluntariado">Voluntariado</option>
                             </select>
                         </div>
@@ -125,11 +142,11 @@
                     <div class="col-md-4 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="descricao" placeholder="Descrição" class="form-control" type="text">
+                            <input name="descricao" placeholder="Descrição" class="form-control" type="text"  value="<%= e.getDescricao()%>">
                         </div>
                     </div>
                 </div>
-                
+            <%}%>
                 <br /> <br />
                 
                 <script>
@@ -154,18 +171,25 @@ function removerCampos(id){
 </script>
                 
                 <legend class="titulo"><b>Endereço do Evento</b></legend>
+              <% //recupera a lista do request
+                ArrayList<Endereco> EnderecoEvento = (ArrayList<Endereco>)request.getAttribute("listaEnd");
+                for(Endereco en: EnderecoEvento){  %>   
+              
              <div id="origem" align="center">
                  <br /> <br />
                  <div class="form-group">
+                    
+                <div class="form-group">
                     <label class="col-md-4 control-label">Endereço</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="cep" placeholder="CEP" class="form-control" type="text">
-                            <input name="nomeendereco" placeholder="Rua" class="form-control" type="text">
-                            <input name="numeroendereco" placeholder="Número" class="form-control" type="int">
-                            <input name="bairro" placeholder="Bairro" class="form-control" type="text">                          
-                            <input name="cidade" placeholder="Cidade" class="form-control" type="text">
+                            <input name="idEnd" placeholder="ID" class="form-control" type="text" value="<%= en.getIdEndereco()%>">
+                            <input name="cep" placeholder="CEP" class="form-control" type="text" value="<%= en.getCep()%>">
+                            <input name="endereco" placeholder="Endereço" class="form-control" type="text" value="<%= en.getNomelogradouro()%>">
+                            <input name="numero" placeholder="Número" class="form-control" type="int" value="<%= en.getNumeroen()%>">
+                            <input name="bairro" placeholder="Bairro" class="form-control" type="text" value="<%= en.getBairro()%>">                          
+                            <input name="cidade" placeholder="Cidade" class="form-control" type="text" value="<%= en.getMunicipio()%>">
                         </div>
                     </div>
                 </div>
@@ -176,7 +200,7 @@ function removerCampos(id){
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="estado" class="form-control selectpicker">
-                                <option value=" " >Escolha o seu estado</option>
+                                <option value="<%= en.getEstado()%>" ><%= en.getEstado()%></option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
                                 <option value="AP">Amapá</option>
@@ -217,7 +241,7 @@ function removerCampos(id){
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="pais" class="form-control selectpicker">
-                                <option value="" >Escolha o seu pais</option>
+                                <option value="<%= en.getPais()%>" >Escolha o seu pais</option>
                                 <option value="África do Sul">África do Sul</option>
                                 <option value="Albânia">Albânia</option>
                                 <option value="Alemanha">Alemanha</option>
@@ -396,13 +420,15 @@ function removerCampos(id){
                         </div>
                     </div>
                 </div>
-             </div> 
-                
+             </div>
+               
+              <%}%> 
+              
+	<input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
+	<input type="button" value="Remover Endereços" onclick="removerCampos(this);">
              <div id="destino">
              </div>
-                
-	<input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
-	<input type="button" value="Remover Endereços" onclick="removerCampos(this);"> 
+                 
         
                 <br /> <br />
                 <br /> <br />
@@ -410,7 +436,9 @@ function removerCampos(id){
                 
                 
                 
-                
+                <% //recupera a lista do request
+                Instituicao e = (Instituicao) session.getAttribute("usuarioAutenticado");
+                if(e != null){  %>
                
                 
                 <!-- Modalidade -->
@@ -495,7 +523,7 @@ function removerCampos(id){
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
                          <br /> <br />
-                        <button type="submit" name = "acao" value="Cadastrar">Criar <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name = "acao" value="Atualizar">Alterar <span class="glyphicon glyphicon-send"></span></button>
                            
                     </div>
                 </div>

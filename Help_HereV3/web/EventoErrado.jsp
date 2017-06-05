@@ -1,9 +1,8 @@
 <%-- 
-    Document   : sucesso
-    Created on : 29/03/2017, 18:09:52
-    Author     : jrciola
+    Document   : EventoErrado
+    Created on : 04/06/2017, 13:15:46
+    Author     : Lucas Puglia
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,10 +11,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Funcionou!</h1>
+        <h1>Este evento não é seu!!!</h1>
+        
+        <h2>Alterações são possiveis apenas a quem criou o evento</h2>
+        
         
     <li><a href="index.html">Home</a><li>
     <li><a href="Eventos.jsp">Eventos</a><li>
-        
     </body>
 </html>
+

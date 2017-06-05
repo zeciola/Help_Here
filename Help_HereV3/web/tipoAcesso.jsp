@@ -9,19 +9,23 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Confirmar Alteração de Evento</title>
+        <title>tipo de acesso</title>
         <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
         <div class="wrapper">
             <div class="container">
-                <h1>Digite o Nome do Evento a ser Alterado?</h1>
+                <h1>Selecione seu tipo de acesso</h1> <br /> <br />
                 <form class="form" method="post" action="ControleEvento">
                     
-                    <input type="text" name="txtnome" placeholder="nome">
+                    
 
                     <!-- BOTTON Funcionando -->
-                    <button type="submit" name="acao" value="Atualizar">Confirmar</button>
+                  <!--  <button type="submit" name="acao" value="Atualizar&url=ok">Confirmar</button>-->
+                 
+                  <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV">Pessoa Fisica</a> <br /> <br />
+                  <a href="SENHAentrarEventos.jsp">Pessoa Juridica</a>
+                  
                     
                     
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
