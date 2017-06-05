@@ -20,14 +20,14 @@ import javax.servlet.http.HttpSession;
 public class InteressePessoaAction implements ICommand{
 
     @Override
-    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-     DAOPessoa daop = new DAOPessoa();
+    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {     
         String[] interesses = request.getParameterValues("interesse");
  
         HttpSession sessao = request.getSession();
         Login o = (Login) sessao.getAttribute("userid");
         
         for(int j = 0; j < interesses.length; j++){
+            DAOPessoa daop = new DAOPessoa();
             daop.InserirInteresse(o.getId(), interesses[j]);
         }
        return "login.jsp";
