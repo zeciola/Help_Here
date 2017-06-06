@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Model.Endereco;
@@ -21,10 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static jdk.nashorn.internal.objects.NativeMath.log;
 
-/**
- *
- * @author 11141104689
- */
 public class DAOEvento implements iDAO {
 
     private Evento ev;
