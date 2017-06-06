@@ -10,7 +10,7 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
-public class Quartz {
+public class QuartzEvento {
 
     /**
      * @param args the command line arguments
@@ -21,12 +21,12 @@ public class Quartz {
         try {
             Scheduler scheduler = shedFact.getScheduler();
             scheduler.start();
-            JobDetail job = JobBuilder.newJob(ValidadorJob.class)
-                    .withIdentity("validadorJOB", "grupo01")
+            JobDetail job = JobBuilder.newJob(AvaliarEvento.class)
+                    .withIdentity("validadorJOB", "grupo02")
                     .build();
             Trigger trigger = TriggerBuilder.newTrigger()
-                    .withIdentity("validadorTRIGGER", "grupo01")
-                    .withSchedule(CronScheduleBuilder.cronSchedule("0/20 * * * * ?"))
+                    .withIdentity("validadorTRIGGER", "grupo02")
+                    .withSchedule(CronScheduleBuilder.cronSchedule("0/50 * * * * ?"))
                     .build();
             scheduler.scheduleJob(job, trigger);
         } catch (SchedulerException e) {
