@@ -18,7 +18,7 @@ public class AvaliarEvento implements Job {
             for (Evento e : evlist) {
             if (e.getDataFim().before(datahoje)) {
                 edao.Desativar(e);
-                System.out.println("passou aqui");
+                System.out.println("Atualizado um registro.");
             }
         }
     }

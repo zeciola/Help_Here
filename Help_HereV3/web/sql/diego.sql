@@ -288,6 +288,11 @@ descricao varchar(100),
 status boolean default true
 );
 
+
+select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u
+ where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true;
+
+
 select * from Evento;
 
 update evento set status = true;

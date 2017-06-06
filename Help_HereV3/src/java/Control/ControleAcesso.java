@@ -1,6 +1,5 @@
 package Control;
 
-
 import DAO.DAOInstituicao;
 import DAO.DAOPessoa;
 import java.io.IOException;
