@@ -287,6 +287,11 @@ tipo varchar(50),
 descricao varchar(100),
 status boolean default true
 );
+
+select * from Evento;
+
+update evento set status = true;
+
 /*
 alter table Evento add column tipo varchar(50)
 

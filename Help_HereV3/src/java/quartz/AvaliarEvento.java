@@ -18,12 +18,12 @@ import org.quartz.JobExecutionException;
  * @author Diego
  */
 public class AvaliarEvento implements Job {
-
+    DAOEvento edao = new DAOEvento();
+    ArrayList<Evento> evlist = edao.Listar();
+    Date datahoje = new Date(System.currentTimeMillis());
+    
     @Override
-    public void execute(JobExecutionContext jec) throws JobExecutionException {
-        DAOEvento edao = new DAOEvento();
-        ArrayList<Evento> evlist = edao.Listar();
-        Date datahoje = new Date(System.currentTimeMillis());
+    public void execute(JobExecutionContext jec) throws JobExecutionException {    
         for (Evento e : evlist) {
             if (e.getDataFim().before(datahoje)) {
                 edao.Desativar(e);
