@@ -22,6 +22,7 @@ public class CadastrarPessoaAction implements ICommand{
         Pessoa pe = new Pessoa();
         Login lo = new Login();
         
+        
         //DAOs
 
         boolean defalt = false;
@@ -92,6 +93,14 @@ public class CadastrarPessoaAction implements ICommand{
         daou.setPessoa(pe);
         daou.setUsuario(lo);
         daou.Inserir();
+        
+        //enviar e-mail
+        EmailJava email = new EmailJava();
+        String from = "HelpHereBr@gmail.com"; 
+        String subject = "Bem Vindo ao HelpHere";
+        String msg = "Seu cadastro foi efetuado com sucesso";
+        String to = request.getParameter("email");
+        email.enviarEmail(from, subject, msg, to);
         
         
         //adiciona id para cadastro de interesses
