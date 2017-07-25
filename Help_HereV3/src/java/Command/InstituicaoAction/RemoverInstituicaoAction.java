@@ -28,7 +28,7 @@ public class RemoverInstituicaoAction implements ICommand {
         String Sen = null;
         
          HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
-        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
+        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("InstAutenticado");
         
             
          CNP=usuarioLogado.getCnpj();

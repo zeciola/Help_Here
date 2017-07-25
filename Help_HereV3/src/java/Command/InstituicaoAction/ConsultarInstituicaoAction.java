@@ -43,9 +43,9 @@ public class ConsultarInstituicaoAction implements ICommand {
         institu = idao.Consultar(CNP);
          request.setAttribute("lista", institu);
         //envia o request para o jsp
-        RequestDispatcher rd= request.getRequestDispatcher("/listaInstituicao.jsp");
+        RequestDispatcher rd= request.getRequestDispatcher("/acessologado/listaInstituicao.jsp");
         rd.forward(request, response);
-        return "listaInstituicao.jsp";
+        return "acessologado/listaInstituicao.jsp";
     }
     
 }

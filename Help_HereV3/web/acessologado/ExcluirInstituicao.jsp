@@ -10,13 +10,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Confirmar Exclusão da Instituição</title>
-        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="../css/login.css">
     </head>
     <body>
         <div class="wrapper">
             <div class="container">
                 <h1>Confirma Excluir a Instituição?</h1>
-                <form class="form" method="post" action="ControleInstituicao">
+                <form class="form" method="post" action="../ControleInstituicao">
                     
                     
 

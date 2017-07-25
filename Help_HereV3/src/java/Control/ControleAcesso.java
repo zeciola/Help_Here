@@ -66,7 +66,7 @@ public class ControleAcesso extends HttpServlet {
                     HttpSession sessaoInst = request.getSession();
                     sessaoInst.setAttribute("InstAutenticado", InstituicaoAutenticada);
                     
-                   response.sendRedirect("AlterarInstituicao.jsp");
+                   response.sendRedirect("acessologado/AlterarInstituicao.jsp");
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
@@ -82,9 +82,9 @@ public class ControleAcesso extends HttpServlet {
 
                 if (InstituicaoAutenticada != null) {
                     HttpSession sessaoInst = request.getSession();
-                    sessaoInst.setAttribute("usuarioAutenticado", InstituicaoAutenticada);
+                    sessaoInst.setAttribute("InstAutenticado", InstituicaoAutenticada);
                     //redireciona para a pagina princiapal
-                    response.sendRedirect("ConfirmarExclusao.jsp");
+                    response.sendRedirect("acessologado/ExcluirInstituicao.jsp");
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");

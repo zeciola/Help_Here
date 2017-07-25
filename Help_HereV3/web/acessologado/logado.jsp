@@ -100,7 +100,7 @@
             </li>
             <li><h2>Consultar</h2></li>
             <li>
-                <a href="../CNPJ.jsp">Consultar Instituição</a>
+                <a href="ConsultarInstituicao.jsp">Consultar Instituição</a>
             </li>
 
             <li>
