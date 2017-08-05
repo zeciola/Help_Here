@@ -32,6 +32,10 @@
         <servlet-name>ControleFeed</servlet-name>
         <servlet-class>Control.ControleFeed</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>uploadIMg</servlet-name>
+        <servlet-class>Control.uploadIMg</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>
         <url-pattern>/ControleAcesso</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>ControleFeed</servlet-name>
         <url-pattern>/ControleFeed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uploadIMg</servlet-name>
+        <url-pattern>/uploadIMg</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
