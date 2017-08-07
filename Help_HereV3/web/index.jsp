@@ -126,22 +126,13 @@
                         }%>
                 <%for (Evento e : Lista) {%>
                 <div class="col-sm-4">
-                    <img class="img-circle img-responsive img-center" src="img/defaut.jpg" alt="">
+                    <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
                     <h2><%=e.getNome()%></h2>
                     <p><%=e.getDescricao()%></p>
                     <p><%=e.getDataInicio()%></p>
                     <p><%=e.getDataFim()%></p>
                 </div>
                 <%}%>
-
-
-
-                <div class="col-sm-4">
-                    <img class="img-circle img-responsive img-center" src="img/defaut.jpg" alt="">
-                    <h2>Marketing</h2>
-                    <p>.</p>
-                </div>
-
             </div>
             <!-- /.row -->
 

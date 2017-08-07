@@ -298,6 +298,12 @@ status boolean default true,
 img varchar(100) default('defaut2.jpg')
 );
 
+insert into evento (idendereco, data, nome, datainicio, datafim, descricao, tipo) values (1, '07/08/2017', 'EVENTO CARREGA INDEX', '07/08/2017', '30/09/2017', 'CARREGA INDEX 1', 'Doação');
+insert into evento (idendereco, data, nome, datainicio, datafim, descricao, tipo) values (1, '07/08/2017', 'EVENTO CARREGA INDEX', '07/08/2017', '30/09/2017', 'CARREGA INDEX 2', 'Voluntario');
+
+
+select * from Evento;
+
 select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u
  where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true;
 
