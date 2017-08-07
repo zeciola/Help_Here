@@ -1,0 +1,3 @@
+sets e gets
+
+evento img(string) e galeria(array)
