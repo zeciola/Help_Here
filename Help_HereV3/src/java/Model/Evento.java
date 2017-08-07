@@ -16,6 +16,7 @@ public class Evento {
     private String tipoEvento;
     private String descricao;
     private boolean status;
+    private String img;
    
 
     

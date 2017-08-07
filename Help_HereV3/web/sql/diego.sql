@@ -9,6 +9,7 @@ descricao VARCHAR(100)
 CREATE TABLE Doador (
 ID serial PRIMARY KEY,
 idPessoa serial
+idPessoa serial
 );
 
 CREATE TABLE Endereco (
@@ -278,6 +279,14 @@ FOREIGN KEY(idDoador) REFERENCES Doador (ID),
 FOREIGN KEY(idValor) REFERENCES ValoresDoados (ID)
 );
 
+Create Table GaleriaEV(
+	ID serial primary key,
+	IDEV integer references Evento(ID) not null,
+	nomeImg varchar(100) default('defaut.jpg')
+);
+
+alter table Evento add column img varchar(100) default('defaut2.jpg');
+
 CREATE TABLE Evento (
 ID serial PRIMARY KEY,
 dataInicio varchar(50),
@@ -285,9 +294,9 @@ dataFim varchar(50),
 nome varchar(50),
 tipo varchar(50),
 descricao varchar(100),
-status boolean default true
+status boolean default true,
+img varchar(100) default('defaut2.jpg')
 );
-
 
 select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u
  where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true;
@@ -349,8 +358,6 @@ Duracao date,
 ID_Evento serial,
 FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
-
-
 
 CREATE TABLE CampanhaItens (
 ID serial PRIMARY KEY,
