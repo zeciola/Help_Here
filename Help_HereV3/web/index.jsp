@@ -122,7 +122,7 @@
 
                 <% ArrayList<Evento> Lista = (ArrayList<Evento>) request.getAttribute("evento");
                     if (Lista == null) {
-                        request.getRequestDispatcher("/ControleEvento?acao=Listar").forward(request, response);
+                        request.getRequestDispatcher("/ControleEvento?acao=Listar1").forward(request, response);
                         }%>
                 <%for (Evento e : Lista) {%>
                 <div class="col-sm-4">
