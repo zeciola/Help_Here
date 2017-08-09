@@ -167,7 +167,7 @@ public class ControleAcesso extends HttpServlet {
             if (acao.equals("Sair")) {
                 HttpSession sessaoUsuario = request.getSession();
                 sessaoUsuario.removeAttribute("usuarioAutenticado");
-                response.sendRedirect("index.html");
+                response.sendRedirect("index.jsp");
 
             }
         } catch (Exception erro) {
