@@ -68,9 +68,11 @@
             <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
         </figure>
         
+        <p>Descrição do evento</p>
+        <p>Tipo Evento</p>
+        <p>Contéudo</p>
         
-
-        
-
+        <a href="" style="display : none">Se Voluntariar</a>
+        <a href="" style="display : none">Doar</a>
     </body>
 </html>
