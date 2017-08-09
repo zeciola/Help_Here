@@ -131,6 +131,7 @@
                     <p><%=e.getDescricao()%></p>
                     <p><%=e.getDataInicio()%></p>
                     <p><%=e.getDataFim()%></p>
+                    <button><a href="#">link teste</a></button>
                 </div>
                 <%}%>
             </div>
