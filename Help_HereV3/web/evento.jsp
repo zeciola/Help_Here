@@ -1,6 +1,5 @@
-<%@page import="Model.Feeds"%>
+<%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Model.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -53,25 +52,31 @@
                                 <a href="../ControleAcesso?acao=Sair" style="display : none">Sair</a>
                                 <a href="login.jsp">Login</a>
                             </li>
-
                         </ul>
                     </div>
-
-
                     <!-- /.navbar-collapse -->
                 </div>
                 <!-- /.container -->
             </nav>
         </header>
+
+        <% ArrayList<Evento> Lista = (ArrayList<Evento>) request.getAttribute("evento");
+            System.out.println(Lista.get(0).getDescricao());
+        %>
+
+
         <figure class="figure">
-        <h2>Evento x</h2>    
+
+
+
+            <h2>Evento <%= Lista.get(0).getNome()%></h2>    
             <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
         </figure>
-        
+
         <p>Descrição do evento</p>
         <p>Tipo Evento</p>
         <p>Contéudo</p>
-        
+
         <a href="" style="display : none">Se Voluntariar</a>
         <a href="" style="display : none">Doar</a>
     </body>

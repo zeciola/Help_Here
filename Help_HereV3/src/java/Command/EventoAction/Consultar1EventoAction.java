@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Command.EventoAction;
 
 import Command.ICommand;
@@ -16,43 +11,26 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ConsultarEventoAction implements ICommand{
+public class Consultar1EventoAction implements ICommand{
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ArrayList<Evento> eve = new ArrayList();
+        Evento eve = new Evento();
         ArrayList<Endereco> end = new ArrayList();
         ArrayList<Instituicao> inst = new ArrayList();
         DAOEvento idao = new DAOEvento();
-        String N = null;
+        Integer id = null;    
         
-        
-        
-        String acao = request.getParameter("acao");
-            if (acao.equals("Consultar")) {
+        id = (Integer.parseInt(request.getParameter("ID")));
+        eve = idao.Consultar1(id);        
                 
-                N=(request.getParameter("txtnome"));
- 
-            }else {
-                return "erro.jsp";
-            }
-        eve = idao.Consultar(N);
-         
-        
-        for(int j = 0; j < eve.size(); j++){
-            
-            
-            end = idao.EventoEndereco(eve.get(j).getIdEvento());
-            
-            inst = idao.InstituicaoEvento(eve.get(j).getIdEvento());
-            
-        }   
-            
+        end = idao.EventoEndereco(eve.getIdEvento());
+        inst = idao.InstituicaoEvento(eve.getIdEvento());
+           
         //despachar tudo 
          request.setAttribute("listaEV", eve);
          request.setAttribute("listaEnd", end);
          request.setAttribute("listaInst", inst);
-
         
         String url = request.getParameter("url");
         if(url!=null){
@@ -61,9 +39,7 @@ public class ConsultarEventoAction implements ICommand{
         }else{
             RequestDispatcher rd= request.getRequestDispatcher("/listaEvento.jsp");
         rd.forward(request, response);
-        }
-        
+        }   
         return "listaEvento.jsp";
     }
-    // falta os metodos da daoEvento  inst metodo errado
 }
