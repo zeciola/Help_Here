@@ -16,11 +16,25 @@ public class Evento {
     private String tipoEvento;
     private String descricao;
     private boolean status;
-   
+    private String img;
+    private ArrayList<String> galeria;
+    
+    public ArrayList<String> getGaleria() {
+        return galeria;
+    }
 
+    public void setGaleria(ArrayList<String> galeria) {
+        this.galeria = galeria;
+    }
     
-    
-    
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+       
     public int getIdEvento() {
         return idEvento;
     }
@@ -28,10 +42,6 @@ public class Evento {
     public void setIdEvento(int idEvento) {
         this.idEvento = idEvento;
     }
-
-    
-    
-    
     
     public boolean getStatus() {
         return status;
@@ -40,8 +50,6 @@ public class Evento {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    
   
     public String getTipoEvento() {
         return tipoEvento;
@@ -50,9 +58,6 @@ public class Evento {
     public void setTipoEvento(String tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
-
-    
-    
 
     //Gets
     public Date getDataInicio() {
@@ -63,7 +68,6 @@ public class Evento {
         return dataFim;
     }
 
-
     public String getNome() {
         return nome;
     }
@@ -71,9 +75,6 @@ public class Evento {
     public String getDescricao() {
         return descricao;
     }
-
-
-
 
     //Sets
     public void setDataInicio(Date dataInicio) {
@@ -84,7 +85,6 @@ public class Evento {
         this.dataFim = dataFim;
     }
 
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -92,8 +92,4 @@ public class Evento {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-
-
-
 }

@@ -124,7 +124,7 @@ public class CadastrarEventoAction implements ICommand{
         }
         String tipo = request.getParameter("tipoEven");
         int idev = ev.getIdEvento();
-        
+        //feeds
         ArrayList<Integer> ids = daof.Interessados(tipo);
         
         for(int i=0; i< ids.size(); i++){

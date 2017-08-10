@@ -19,8 +19,8 @@ import java.util.Date;
 public class DAOFeeds {
 
     private Connection conexao;
-    private static final String LISTAR = "select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where\n"
-            + " e.id = f.idevento and u.id = f.idusuario and f.idusuario = ? and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim LIMIT 30";
+    private static final String LISTAR = "select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u\n" +
+" where e.id = f.idevento and u.id = f.idusuario and f.idusuario = ? and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true limit 5";
     private static final String INTERESSADOS = "select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = ?";
     private static final String INSER = "insert into feeds (IDUsuario, IDEvento)values(?, ?)";
     

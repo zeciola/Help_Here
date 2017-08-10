@@ -9,6 +9,7 @@ descricao VARCHAR(100)
 CREATE TABLE Doador (
 ID serial PRIMARY KEY,
 idPessoa serial
+idPessoa serial
 );
 
 CREATE TABLE Endereco (
@@ -84,12 +85,15 @@ insert into Interesses (IDUsuario, Interesse)values(2 , 'Doação');
 select * from Evento where tipo = 'Doação';
 
 --Listar ids para buscar usuarios que tem interesse no evento
-select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'Doação';
+select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'doacao';
 
-select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'Voluntariado';
+select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'voluntariado';
+
+select * from interesses
 
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
+
 
 --Trazer para o banco
 --Trazer para o banco
@@ -101,7 +105,12 @@ select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from 
  e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and '27/05/2017' >= e.datainicio and '27/05/2017' <= e.datafim LIMIT 5;
 
 select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where
- e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and  CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim LIMIT 5;
+ e.id = f.idevento and u.id = f.idusuario  and  CURRENT_DATE >= e.datainicio and CURRENT_DATE < e.datafim LIMIT 5;
+
+
+
+select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where
+ e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio or e.datafim >= CURRENT_DATE  ;
 
 SELECT * FROM Usuario WHERE status=true and Login='3' AND senha='3'
 
@@ -270,6 +279,14 @@ FOREIGN KEY(idDoador) REFERENCES Doador (ID),
 FOREIGN KEY(idValor) REFERENCES ValoresDoados (ID)
 );
 
+Create Table GaleriaEV(
+	ID serial primary key,
+	IDEV integer references Evento(ID) not null,
+	nomeImg varchar(100) default('defaut.jpg')
+);
+
+alter table Evento add column img varchar(100) default('defaut2.jpg');
+
 CREATE TABLE Evento (
 ID serial PRIMARY KEY,
 dataInicio varchar(50),
@@ -277,8 +294,24 @@ dataFim varchar(50),
 nome varchar(50),
 tipo varchar(50),
 descricao varchar(100),
-status boolean default true
+status boolean default true,
+img varchar(100) default('defaut2.jpg')
 );
+
+insert into evento (idendereco, data, nome, datainicio, datafim, descricao, tipo) values (1, '07/08/2017', 'EVENTO CARREGA INDEX', '07/08/2017', '30/09/2017', 'CARREGA INDEX 1', 'Doação');
+insert into evento (idendereco, data, nome, datainicio, datafim, descricao, tipo) values (1, '07/08/2017', 'EVENTO CARREGA INDEX', '07/08/2017', '30/09/2017', 'CARREGA INDEX 2', 'Voluntario');
+
+
+select * from Evento;
+
+select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u
+ where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true;
+
+
+select * from Evento;
+
+update evento set status = true;
+
 /*
 alter table Evento add column tipo varchar(50)
 
@@ -331,8 +364,6 @@ Duracao date,
 ID_Evento serial,
 FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 );
-
-
 
 CREATE TABLE CampanhaItens (
 ID serial PRIMARY KEY,

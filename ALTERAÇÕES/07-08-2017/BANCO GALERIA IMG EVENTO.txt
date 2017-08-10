@@ -1,0 +1,7 @@
+Create Table GaleriaEV(
+	ID serial primary key,
+	IDEV integer references Evento(ID) not null,
+	nomeImg varchar(100) default('defaut.jpg')
+);
+
+alter table Evento add column img varchar(100) default('defaut2.jpg');

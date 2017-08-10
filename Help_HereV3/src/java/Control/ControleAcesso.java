@@ -1,6 +1,5 @@
 package Control;
 
-
 import DAO.DAOInstituicao;
 import DAO.DAOPessoa;
 import java.io.IOException;
@@ -168,7 +167,7 @@ public class ControleAcesso extends HttpServlet {
             if (acao.equals("Sair")) {
                 HttpSession sessaoUsuario = request.getSession();
                 sessaoUsuario.removeAttribute("usuarioAutenticado");
-                response.sendRedirect("index.html");
+                response.sendRedirect("index.jsp");
 
             }
         } catch (Exception erro) {

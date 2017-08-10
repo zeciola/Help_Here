@@ -4,6 +4,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -43,9 +44,9 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pessoa
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
+                            <li><a href="../email.jsp">Consultar Pessoa</a></li>
+                            <li><a href="../AlterarPessoa.jsp">Alterar Pessoa</a></li>
+                            <li><a href="../emailSenha.jsp">Deletar Pessoa</a></li>
                         </ul>
                     </li>
 
@@ -53,9 +54,10 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Instituição
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
+                            <li><a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
+                            <li><a href="../CNPJ.jsp">Consultar Instituição</a></li>
+                            <li><a href="../CNPJsenha.jsp">Alterar Instituição</a></li>
+                            <li><a href="../CNPJsenha.jsp">Deletar Instituição</a></li>
                         </ul>
                     </li>
 
@@ -88,7 +90,20 @@
     </header>
 
     <body>
-        <h1>Bem Vindo</h1>
+
+        <figure class="figure">
+            <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+            <figcaption class="figure-caption">A caption for the above image.</figcaption>
+        </figure>
+
+        <%
+            Login usuario = (Login) session.getAttribute("usuarioAutenticado");
+            if (usuario != null) {
+        %>
+        <h1>Bem vindo Usuario,
+            <%= usuario.getNome()%>! </h1>
+
+        <%}%>
 
         <a href="../ControleAcesso?acao=Sair">Logoff</a>
         <a href="../admin/indexLogado.jsp">admin</a>
@@ -98,7 +113,9 @@
             <li>
                 <a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a>
             </li>
-            <li><h2>Consultar</h2></li>
+            <li>
+                <h2>Consultar</h2>
+            </li>
             <li>
                 <a href="ConsultarInstituicao.jsp">Consultar Instituição</a>
             </li>
@@ -112,22 +129,22 @@
             <li>
                 <a href="../CNPJsenha.jsp">Alterar Instituição</a>
             </li>
-            <li>
-                <a href="../emailSenha.jsp">Alterar Pessoa</a>
-            </li>
-
+            <!--
+<li>
+<a href="../emailSenha.jsp">Alterar Pessoa</a>
+</li>
+            -->
             <li>
                 <a href="../AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
             </li>
-            <li><h2>Deletar</h2></li>
+            <li>
+                <h2>Deletar</h2>
+            </li>
             <li>
                 <a href="../CNPJsenha.jsp">Deletar Instituição</a>
                 <br/>
                 <a href="../emailSenha.jsp">Deletar Pessoa</a>
             </li>
-
-
-            <li>
         </ul>
 
         <h2>Listar Instituição</h2>
@@ -141,33 +158,21 @@
 
 
 
-        
-        <%
-            Login usuario = (Login) session.getAttribute("usuarioAutenticado");
-            if (usuario != null) {
-        %> 
-        <h1>Bem vindo Usuario, <%= usuario.getNome()%>! </h1>
-        <h2><%= usuario.getId()%></h2>
-        <%}%>
-    
-    
         <h1> Aqui vai o feeds </h1>
-        
+
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
-    }%>
-        <%for (Feeds e : Lista) {%>  
+                                }%>
+        <%for (Feeds e : Lista) {%>
         <div id="feed">
-            Conheça o Evento <%=e.getNomeEvento()%><br>
-            A partir do dia: <%=e.getDatainiev()%> ate: <%=e.getDatafimev()%>
+            Conheça o Evento
+            <%=e.getNomeEvento()%><br> A partir do dia:
+            <%=e.getDatainiev()%> ate:
+            <%=e.getDatafimev()%>
             <b>aqui poderia ser um link para consultar o evento diretamente</b>
-            
-        </div><%}%>
-            
-        
-        
-
-
+        </div>
+        <%}%>
     </body>
+
 </html>
