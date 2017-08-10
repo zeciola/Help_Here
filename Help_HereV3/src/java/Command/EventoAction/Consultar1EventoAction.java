@@ -25,21 +25,14 @@ public class Consultar1EventoAction implements ICommand{
         eve = idao.Consultar1(id);        
                 
         end = idao.EventoEndereco(eve.getIdEvento());
-        inst = idao.InstituicaoEvento(eve.getIdEvento());
-           
-        //despachar tudo 
-         request.setAttribute("listaEV", eve);
-         request.setAttribute("listaEnd", end);
-         request.setAttribute("listaInst", inst);
+        eve.setEnds(end);
         
-        String url = request.getParameter("url");
-        if(url!=null){
-          RequestDispatcher rd= request.getRequestDispatcher("/listaEVCompleto.jsp");
-        rd.forward(request, response);  
-        }else{
-            RequestDispatcher rd= request.getRequestDispatcher("/listaEvento.jsp");
-        rd.forward(request, response);
-        }   
-        return "listaEvento.jsp";
+        inst = idao.InstituicaoEvento(eve.getIdEvento());
+        
+        //despachar tudo 
+         request.setAttribute("evento", eve);
+        request.setAttribute("resp", inst);
+
+        return "evento.jsp";
     }
 }

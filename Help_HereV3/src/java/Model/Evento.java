@@ -10,6 +10,8 @@ import java.sql.Date;
 public class Evento {
     
     private int idEvento;
+    Endereco end;
+    ArrayList<Endereco> ends;
     private Date dataInicio;
     private Date dataFim;
     private String nome;
@@ -18,6 +20,22 @@ public class Evento {
     private boolean status;
     private String img;
     private ArrayList<String> galeria;
+
+    public ArrayList<Endereco> getEnds() {
+        return ends;
+    }
+
+    public void setEnds(ArrayList<Endereco> ends) {
+        this.ends = ends;
+    }
+
+    public Endereco getEnd() {
+        return end;
+    }
+
+    public void setEnd(Endereco end) {
+        this.end = end;
+    }
     
     public ArrayList<String> getGaleria() {
         return galeria;

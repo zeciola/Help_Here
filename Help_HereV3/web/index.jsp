@@ -131,7 +131,7 @@
                     <p><%=e.getDescricao()%></p>
                     <p><%=e.getDataInicio()%></p>
                     <p><%=e.getDataFim()%></p>
-                    <a href="/ControleEvento?acao=Consultar&ID=<%=e.getIdEvento()%>">link teste</a>
+                    <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">link teste</a>
                 </div>
                 <%}%>
             </div>

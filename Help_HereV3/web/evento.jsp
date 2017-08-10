@@ -3,7 +3,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -17,10 +16,8 @@
         <!-- JavaStript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     </head>
     <body>
-
         <header>
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -60,16 +57,12 @@
             </nav>
         </header>
 
-        <% ArrayList<Evento> Lista = (ArrayList<Evento>) request.getAttribute("evento");
-            System.out.println(Lista.get(0).getDescricao());
+        <%
+            Evento Lista = (Evento) request.getAttribute("evento");
         %>
 
-
         <figure class="figure">
-
-
-
-            <h2>Evento <%= Lista.get(0).getNome()%></h2>    
+            <h2>Evento <%= Lista.getNome()%></h2>    
             <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
         </figure>
 
