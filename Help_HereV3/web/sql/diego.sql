@@ -169,12 +169,13 @@ delete from EnderecoInstituicao where ID = 20
 
 alter table EnderecoInstituicao add column status boolean
 
+update usuario set login = 'admin' where ID = 37
 
 update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
 
 select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID 
 
-select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.CNPJ = '100' and inst.senha = '456'
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.CNPJ = '30' and inst.senha = '123'
 
 DELETE from Instituicao, EnderecoInstituicao using Instituicao inner join EnderecoInstituicao where Instituicao.ID = EnderecoInstituicao.ID and CNPJ = '5' 
 

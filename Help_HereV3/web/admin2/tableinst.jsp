@@ -122,7 +122,7 @@
                                                 <th>Cnpj</th>
                                                 <th>Razao</th>
                                                 <th>Modalidade</th>
-                                                <th>Tio</th>
+                                                <th>Tipo</th>
                                                 <th>E-mail</th>
 
                                             </tr>
