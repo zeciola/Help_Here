@@ -70,7 +70,16 @@
         <p>Tipo: <%= Lista.getTipoEvento()%></p>
         <p>Contéudo <%= Lista.getDescricao()%></p>
 
-        <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" style="display : none">Ajude</a>
+        <div id="doar" style="display : none">
+            Contador da campanha
+        </div>
+        
+        <div id="volun" style="display : none">
+            Contador voluntarios
+        </div>
+        
+        
+        <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Ajude</a>
         
         
     <script src="js/contribuicao.js"></script>
