@@ -12,7 +12,9 @@
 
         <!-- CSS Style Table-->
         <link href="css/logado.css" rel="stylesheet">
-
+        
+        <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
+        
         <!-- JavaStript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -75,18 +77,22 @@
         
         <p>Contéudo <%= Lista.getDescricao()%></p>
 
-        <div id="doar" class = "ocultar">
+        <div id="doar" class= "paraExibicao">
             Contador da campanha
         </div>
         
-        <div id="volun" class = "ocultar">
-            Contador voluntarios
+        <div id="volun" class="paraExibicao">
+            Contador voluntarios 
         </div>
         
+        <canvas class="loader2"></canvas>
         
         <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Ajude</a>
         
-        
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
+    <script src="js2/jquery.classyloader.min.js"></script>
     <script src="js2/contribuicao.js"></script>
+    <script src="js2/loader.js"></script>
+    
     </body>   
 </html>
