@@ -67,14 +67,19 @@
         </figure>
 
         <p>Descrição do evento</p>
-        <p>Tipo: <%= Lista.getTipoEvento()%></p>
+        <p>Tipo:
+            <span id="tipo">
+                <%= Lista.getTipoEvento()%>
+            </span>
+        </p>
+        
         <p>Contéudo <%= Lista.getDescricao()%></p>
 
-        <div id="doar" style="display : none">
+        <div id="doar" class = "ocultar">
             Contador da campanha
         </div>
         
-        <div id="volun" style="display : none">
+        <div id="volun" class = "ocultar">
             Contador voluntarios
         </div>
         
@@ -82,6 +87,6 @@
         <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Ajude</a>
         
         
-    <script src="js/contribuicao.js"></script>
+    <script src="js2/contribuicao.js"></script>
     </body>   
 </html>
