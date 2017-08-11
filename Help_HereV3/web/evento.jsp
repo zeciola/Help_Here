@@ -67,10 +67,12 @@
         </figure>
 
         <p>Descrição do evento</p>
-        <p>Tipo Evento</p>
-        <p>Contéudo</p>
+        <p>Tipo: <%= Lista.getTipoEvento()%></p>
+        <p>Contéudo <%= Lista.getDescricao()%></p>
 
-        <a href="" style="display : none">Se Voluntariar</a>
-        <a href="" style="display : none">Doar</a>
-    </body>
+        <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" style="display : none">Ajude</a>
+        
+        
+    <script src="js/contribuicao.js"></script>
+    </body>   
 </html>
