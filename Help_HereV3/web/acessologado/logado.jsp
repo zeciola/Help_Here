@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Help Here</a>
+                    <a class="navbar-brand" href="../index.jsp">Help Here</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-left">
@@ -72,7 +72,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="index.jsp">Home</a>
                         </li>
                         <li>
                             <a href="../ControleAcesso?acao=Sair">Sair</a>

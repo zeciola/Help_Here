@@ -1,3 +1,4 @@
+<%@page import="Model.Login"%>
 <%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,7 +33,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html">Help Here</a>
+                        <a class="navbar-brand" href="index.jsp">Help Here</a>
                     </div>
 
                     <ul class="nav navbar-nav navbar-left">
@@ -60,9 +61,10 @@
         </header>
 
         <%
+            Login user = (Login) request.getAttribute("usuarioAutenticado");
             Evento Lista = (Evento) request.getAttribute("evento");
         %>
-
+        
         <figure class="figure">
             <h2>Evento <%= Lista.getNome()%></h2>    
             <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
@@ -87,12 +89,18 @@
         
         <canvas class="loader2"></canvas>
         
-        <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Ajude</a>
         
+        <% if(user == null){%>   
+        
+         <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Realiza login ou se cadastre para ajudar</a>
+         
+        <%}else{%>
+            <a href="acessologado/ajudar.jsp" >Ajude</a>
+        <%}%>
+       
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
     <script src="js2/jquery.classyloader.min.js"></script>
     <script src="js2/contribuicao.js"></script>
-    <script src="js2/loader.js"></script>
-    
+    <script src="js2/loader.js"></script>    
     </body>   
 </html>
