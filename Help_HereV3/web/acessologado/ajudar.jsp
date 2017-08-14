@@ -1,4 +1,4 @@
-<%@page import="Model.Login"%>
+<%@page import="Model.Usuario"%>
 <%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -65,11 +65,7 @@
             Login user = (Login) request.getAttribute("user");
         %>
 
-        <figure class="figure">
-            <h2>Ajude o(a) <%= Lista.getNome()%></h2>    
-            <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
-        </figure>
-
+       
         <form method="post" action="">
             <h3>Confime seu dados</h3>
             Nome Completo: <input type="Text"><br>

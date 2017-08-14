@@ -30,7 +30,7 @@ public class Consultar1EventoAction implements ICommand{
         inst = idao.InstituicaoEvento(eve.getIdEvento());
         
         //despachar tudo 
-         request.setAttribute("evento", eve);
+        request.setAttribute("evento", eve);
         request.setAttribute("resp", inst);
 
         return "evento.jsp";

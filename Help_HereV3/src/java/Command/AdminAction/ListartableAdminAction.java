@@ -7,7 +7,7 @@ import DAO.DAOPessoa;
 import DAO.DAOUsuario;
 import Model.Endereco;
 import Model.Instituicao;
-import Model.Login;
+import Model.Usuario;
 import Model.Pessoa;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +33,7 @@ public class ListartableAdminAction implements ICommand{
         ArrayList<Endereco> e = daoe.Listar();
         request.setAttribute("endereco", e);
         
-        ArrayList<Login> u = daou.Listar();
+        ArrayList<Usuario> u = daou.Listar();
         request.setAttribute("usuario", u);
        
                 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Command.EventoAction;
 
 import Command.ICommand;
@@ -83,8 +78,7 @@ public class CadastrarEventoAction implements ICommand{
                 in.setModalidade(modalidadeinst[i]);
                 in.setEmail(emailinst[i]);
                 
-                inst.add(in);
-            
+                inst.add(in);    
         }
         
         Date datahoje = new Date(System.currentTimeMillis());

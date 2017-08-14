@@ -1,6 +1,6 @@
+<%@page import="Model.Usuario"%>
 <%@page import="Model.Feeds"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Model.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -97,7 +97,7 @@
         </figure>
 
         <%
-            Login usuario = (Login) session.getAttribute("usuarioAutenticado");
+            Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
         %>
         <h1>Bem vindo 
