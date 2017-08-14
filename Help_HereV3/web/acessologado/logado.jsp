@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Help Here</a>
+                    <a class="navbar-brand" href="../index.jsp">Help Here</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-left">
@@ -55,7 +55,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
-                            <li><a href="../CNPJ.jsp">Consultar Instituição</a></li>
+                            <li><a href="ConsultarInstituicao.jsp">Consultar Instituição</a></li>
                             <li><a href="../CNPJsenha.jsp">Alterar Instituição</a></li>
                             <li><a href="../CNPJsenha.jsp">Deletar Instituição</a></li>
                         </ul>
@@ -72,7 +72,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="index.jsp">Home</a>
                         </li>
                         <li>
                             <a href="../ControleAcesso?acao=Sair">Sair</a>
@@ -100,61 +100,30 @@
             Login usuario = (Login) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
         %>
-        <h1>Bem vindo Usuario,
+        <h1>Bem vindo 
             <%= usuario.getNome()%>! </h1>
 
         <%}%>
+            
 
-        <a href="../ControleAcesso?acao=Sair">Logoff</a>
-        <a href="../admin/indexLogado.jsp">admin</a>
-        <a href="../tipoAcesso.jsp">Eventos</a>
-        <h2>Cadastrar</h2>
+        
         <ul>
-            <li>
-                <a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a>
-            </li>
-            <li>
-                <h2>Consultar</h2>
-            </li>
-            <li>
-                <a href="ConsultarInstituicao.jsp">Consultar Instituição</a>
-            </li>
+            
 
             <li>
                 <a href="../email.jsp">Consultar Pessoa</a>
             </li>
-        </ul>
-        <h2>Alterar</h2>
-        <ul>
-            <li>
-                <a href="../CNPJsenha.jsp">Alterar Instituição</a>
-            </li>
-            <!--
-<li>
-<a href="../emailSenha.jsp">Alterar Pessoa</a>
-</li>
-            -->
             <li>
                 <a href="../AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
             </li>
             <li>
-                <h2>Deletar</h2>
-            </li>
-            <li>
-                <a href="../CNPJsenha.jsp">Deletar Instituição</a>
-                <br/>
                 <a href="../emailSenha.jsp">Deletar Pessoa</a>
             </li>
+            <li>
+                <a href="../ControlePessoa?acao=Listar">Listar Pessoa</a>
+            </li>
         </ul>
-
-        <h2>Listar Instituição</h2>
-        <form action="../ControleInstituicao" method="post">
-            <input type="submit" name="acao" value="Listar"><br>
-        </form>
-        <h2>Listar Pessoa</h2>
-        <form action="../ControlePessoa" method="post">
-            <input type="submit" name="acao" value="Listar"><br>
-        </form>
+        
 
 
 

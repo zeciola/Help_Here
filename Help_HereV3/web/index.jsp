@@ -75,7 +75,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <a href="index.html">
+                        <a href="index.jsp">
                             <h1 class="tagline">Help Here - Ajude quem mais precisa!</h1>
                         </a>
                     </div>

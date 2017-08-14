@@ -13,9 +13,9 @@
 
         <!-- CSS Style Table-->
         <link href="css/logado.css" rel="stylesheet">
-        
+
         <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
-        
+
         <!-- JavaStript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -33,7 +33,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.jsp">Help Here</a>
+                        <a class="navbar-brand" href="index.html">Help Here</a>
                     </div>
 
                     <ul class="nav navbar-nav navbar-left">
@@ -61,46 +61,29 @@
         </header>
 
         <%
-            Login user = (Login) request.getAttribute("usuarioAutenticado");
             Evento Lista = (Evento) request.getAttribute("evento");
+            Login user = (Login) request.getAttribute("user");
         %>
-        
+
         <figure class="figure">
-            <h2>Evento <%= Lista.getNome()%></h2>    
+            <h2>Ajude o(a) <%= Lista.getNome()%></h2>    
             <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
         </figure>
 
-        <p>Descrição do evento</p>
-        <p>Tipo:
-            <span id="tipo">
-                <%= Lista.getTipoEvento()%>
-            </span>
-        </p>
-        
-        <p>Contéudo <%= Lista.getDescricao()%></p>
+        <form method="post" action="">
+            <h3>Confime seu dados</h3>
+            Nome Completo: <input type="Text"><br>
+            RG:
+            CPF:
+            Data Nascimento:
+            Valor:
+            <select>
+                <option></option>
+            </select>
+        </form>
 
-        <div id="doar" class= "paraExibicao">
-            Contador da campanha
-        </div>
-        
-        <div id="volun" class="paraExibicao">
-            Contador voluntarios 
-        </div>
-        
-        <canvas class="loader2"></canvas>
-        
-        
-        <% if(user == null){%>   
-        
-         <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Realiza login ou se cadastre para ajudar</a>
-         
-        <%}else{%>
-            <a href="acessologado/ajudar.jsp" >Ajude</a>
-        <%}%>
-       
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
-    <script src="js2/jquery.classyloader.min.js"></script>
-    <script src="js2/contribuicao.js"></script>
-    <script src="js2/loader.js"></script>    
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
+        <script src="js2/jquery.classyloader.min.js"></script>
+
     </body>   
 </html>
