@@ -1,4 +1,4 @@
-<%@page import="Model.Login"%>
+<%@page import="Model.Usuario"%>
 <%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -61,7 +61,7 @@
         </header>
 
         <%
-            Login user = (Login) request.getAttribute("usuarioAutenticado");
+            Usuario user = (Usuario) request.getAttribute("usuarioAutenticado");
             Evento Lista = (Evento) request.getAttribute("evento");
         %>
         
