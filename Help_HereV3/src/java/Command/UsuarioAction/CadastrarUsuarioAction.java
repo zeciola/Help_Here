@@ -15,7 +15,7 @@ public class CadastrarUsuarioAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
         //Instanciando Objetos
-        Login lo = new Login();
+        Usuario lo = new Usuario();
         
         //DAOs
         DAOUsuario daou = new DAOUsuario();

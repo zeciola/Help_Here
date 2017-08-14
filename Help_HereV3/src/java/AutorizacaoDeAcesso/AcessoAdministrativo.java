@@ -16,7 +16,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import Model.Login;
+import Model.Usuario;
 
 /**
  *
@@ -33,7 +33,7 @@ public class AcessoAdministrativo implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
                //recupera a sessão
         HttpSession sessaoUsuario = ((HttpServletRequest)request).getSession();
-        Login usuario = (Login) sessaoUsuario.getAttribute("usuarioAutenticado");
+        Usuario usuario = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");
         
         if(usuario!=null && usuario.getPerfil().equals(PerfilDeAcesso.administrador)){
             chain.doFilter(request, response);

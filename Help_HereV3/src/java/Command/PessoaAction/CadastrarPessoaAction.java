@@ -20,7 +20,7 @@ public class CadastrarPessoaAction implements ICommand{
         //Instanciando Objetos
             Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
-        Login lo = new Login();
+        Usuario lo = new Usuario();
         
         
         //DAOs

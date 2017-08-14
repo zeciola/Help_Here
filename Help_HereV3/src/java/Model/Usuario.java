@@ -1,8 +1,8 @@
 package Model;
 
-// Login é a tabela Usuário
-// Login is the table Usuário
-public class Login {
+// Usuario é a tabela Usuário
+// Usuario is the table Usuário
+public class Usuario {
 
     private Pessoa pe;
     private Endereco en;

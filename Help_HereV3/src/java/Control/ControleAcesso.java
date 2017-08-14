@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.PerfilDeAcesso;
-import Model.Login;
+import Model.Usuario;
 import DAO.DAOUsuario;
 import Model.Instituicao;
 import Model.Pessoa;
@@ -27,12 +27,12 @@ public class ControleAcesso extends HttpServlet {
         try {
             String acao = request.getParameter("acao");
             if (acao.equals("Entrar")) {
-                Login login = new Login();
+                Usuario login = new Usuario();
                 login.setNome(request.getParameter("txtLogin"));
                 login.setSenha(request.getParameter("txtSenha"));
 
                 DAOUsuario daousuario = new DAOUsuario();
-                Login usuarioAutenticado = daousuario.autenticaUsuario(login);
+                Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
 
                 if (usuarioAutenticado != null) {
 

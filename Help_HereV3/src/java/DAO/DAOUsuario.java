@@ -21,14 +21,14 @@ public class DAOUsuario implements iDAO {
     //Variaveis comuns ou tipo defalt
     //private String defalt = "comum";
     //Variaveis de chamada
-    public Login lo;
+    public Usuario lo;
     public Pessoa pe;
     public Endereco en;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
     //Set Ususario
-    public void setUsuario(Login lo) {
+    public void setUsuario(Usuario lo) {
         this.lo = lo;
     }
 
@@ -45,7 +45,7 @@ public class DAOUsuario implements iDAO {
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE status=true and Login=? AND senha=?";
     private static final String SELECT_ALL = "select * from Usuario where status=true";
 
-    public void cadastraNovoUsuario(Login login) throws SQLException {
+    public void cadastraNovoUsuario(Usuario login) throws SQLException {
         Connection conexao = null;
 
     }
@@ -82,7 +82,7 @@ public class DAOUsuario implements iDAO {
             } catch (SQLException ex) {
                 Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Logger.getLogger(Login.class.getName()).
+            Logger.getLogger(Usuario.class.getName()).
                     log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
         } finally {
             //4
@@ -177,7 +177,7 @@ public class DAOUsuario implements iDAO {
             } catch (SQLException ex) {
                 Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Logger.getLogger(Login.class.getName()).
+            Logger.getLogger(Usuario.class.getName()).
                     log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
         } finally {
             //4
@@ -232,7 +232,7 @@ public class DAOUsuario implements iDAO {
             } catch (SQLException ex) {
                 Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Logger.getLogger(Login.class.getName()).
+            Logger.getLogger(Usuario.class.getName()).
                     log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
         } finally {
             //4
@@ -248,7 +248,7 @@ public class DAOUsuario implements iDAO {
 
     @Override
     public ArrayList Consultar(String email) {
-        ArrayList<Login> result = new ArrayList();
+        ArrayList<Usuario> result = new ArrayList();
 
         try {
             String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
@@ -259,11 +259,11 @@ public class DAOUsuario implements iDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Login lo = new Login();
+                Usuario lo = new Usuario();
                 lo.setId(rs.getInt("ID"));
                 lo.setNome(rs.getString("Tipo"));
 
-                // Login = Nome = Email
+                // Usuario = Nome = Email
                 lo.setNome(rs.getString("Login"));
                 lo.setSenha(rs.getString("senha"));
                 lo.setStatus(rs.getBoolean("status"));
@@ -286,8 +286,8 @@ public class DAOUsuario implements iDAO {
     }
 
     @Override
-    public ArrayList<Login> Listar() {
-        ArrayList<Login> result = new ArrayList();
+    public ArrayList<Usuario> Listar() {
+        ArrayList<Usuario> result = new ArrayList();
 
         try {
             PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
@@ -297,11 +297,11 @@ public class DAOUsuario implements iDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Login lo = new Login();
+                Usuario lo = new Usuario();
                 lo.setId(rs.getInt("ID"));
                 lo.setNome(rs.getString("Tipo"));
 
-                // Login = Nome = Email
+                // Usuario = Nome = Email
                 lo.setNome(rs.getString("Login"));
                 lo.setSenha(rs.getString("senha"));
                 lo.setStatus(rs.getBoolean("status"));
@@ -325,8 +325,8 @@ public class DAOUsuario implements iDAO {
     }
 
     //Autenticação metodo unido não necessita estar na interface!
-    public Login autenticaUsuario(Login login) {
-        Login loginAutenticado = null;
+    public Usuario autenticaUsuario(Usuario login) {
+        Usuario loginAutenticado = null;
 
         Connection conexao = null;
         PreparedStatement pstmt = null;
@@ -339,7 +339,7 @@ public class DAOUsuario implements iDAO {
             rsLogin = pstmt.executeQuery();
 
             if (rsLogin.next()) {
-                loginAutenticado = new Login();
+                loginAutenticado = new Usuario();
                 loginAutenticado.setId(rsLogin.getInt("id"));
                 loginAutenticado.setNome(rsLogin.getString("login"));
                 loginAutenticado.setSenha(rsLogin.getString("senha"));

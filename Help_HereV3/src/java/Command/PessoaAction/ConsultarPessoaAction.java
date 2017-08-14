@@ -19,7 +19,7 @@ public class ConsultarPessoaAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ArrayList<Endereco> en = new ArrayList();
         ArrayList<Pessoa> pe = new ArrayList();
-        ArrayList<Login> lo = new ArrayList();
+        ArrayList<Usuario> lo = new ArrayList();
         
         
         //Variaveis

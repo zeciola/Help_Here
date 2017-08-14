@@ -34,7 +34,7 @@ public class ControleUsuario extends HttpServlet {
          
     if (acao.equals("Cadastrar")) {
         
-        Login login = new Login();
+        Usuario login = new Usuario();
         login.setNome(request.getParameter("txtLogin"));
         login.setSenha(request.getParameter("txtSenha"));
         String perfil = request.getParameter("optPerfil");

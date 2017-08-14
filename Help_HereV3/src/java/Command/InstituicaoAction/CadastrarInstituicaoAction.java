@@ -10,7 +10,7 @@ import DAO.*;
 import DAO.DAOInstituicao;
 import DAO.DAOUsuario;
 import Model.Endereco;
-import Model.Login;
+import Model.Usuario;
 import Model.Instituicao;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
