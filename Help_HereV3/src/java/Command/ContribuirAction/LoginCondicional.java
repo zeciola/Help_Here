@@ -11,7 +11,9 @@ public class LoginCondicional implements ICommand {
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+        
+        //cria campo de login e senha para o mesmo digitar e ja enviar o login do evento
+        
         Login login1 = (Login) request.getAttribute("usuarioAutenticado");
 
         if (login1 == null) {

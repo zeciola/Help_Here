@@ -95,7 +95,7 @@
          <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Realiza login ou se cadastre para ajudar</a>
          
         <%}else{%>
-            <a href="acessologado/ajudar.jsp" >Ajude</a>
+            <a href="acessologado/ajudar.jsp">Ajude</a>
         <%}%>
        
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
