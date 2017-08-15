@@ -1,6 +1,7 @@
+<%@page import="Model.Instituicao"%>
 <%@page import="Model.Evento"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.Usuario"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,9 +51,11 @@
         <%
             Usuario user = (Usuario) request.getAttribute("user");
             Evento ev = (Evento) request.getAttribute("evento");
+            //Instituicao inst = (Instituicao) request.getAttribute("resp");
         %>
         <form method="post" action="">
             <h3>Confime seus dados senhor <%=user.getNome()%> no evento<%=ev.getNome()%></h3>
+            <h2></h2>
             
             Nome Completo: <input type="Text" value=""><br>
             RG:
