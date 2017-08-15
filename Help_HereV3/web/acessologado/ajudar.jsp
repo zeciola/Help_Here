@@ -1,3 +1,4 @@
+<%@page import="Model.Instituicao"%>
 <%@page import="Model.Usuario"%>
 <%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
@@ -62,13 +63,14 @@
 
         <%
             Evento Lista = (Evento) request.getAttribute("evento");
-            Login user = (Login) request.getAttribute("user");
+            Usuario user = (Usuario) request.getAttribute("user");
+            Instituicao inst = (Instituicao) request.getAttribute("resp");
         %>
 
        
         <form method="post" action="">
-            <h3>Confime seu dados</h3>
-            Nome Completo: <input type="Text"><br>
+            <h3>Confime seus dados no evento <%=Lista.getNome()%></h3>
+            Nome Completo: <input type="Text" value="<%=user.getNome()%>"><br>
             RG:
             CPF:
             Data Nascimento:

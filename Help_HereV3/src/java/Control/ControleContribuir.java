@@ -34,23 +34,15 @@ public class ControleContribuir extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
                 String acao = request.getParameter("acao");
-
                 //Mosta a acao
                 System.out.println("acao");
-
-                String Nomeclasse = "Command.ContribuirAction."+acao+"EventoAction";
-
+                String Nomeclasse = "Command.ContribuirAction."+acao+"Condicional";
                 Class classeAction = Class.forName(Nomeclasse);
-
                 ICommand commandAction = (ICommand) classeAction.newInstance();
-
                 String pageDispatcher = commandAction.executar(request, response);
-
                 RequestDispatcher rd = request.getRequestDispatcher(pageDispatcher);
-
                 rd.forward(request, response);
-
-            } catch (Exception erro) {
+        }catch (Exception erro) {
                 //Exibe pagina de erro ao usário
                 request.setAttribute("erro", erro);
                 RequestDispatcher rd = request.getRequestDispatcher("//erro.jsp");

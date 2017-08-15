@@ -8,7 +8,6 @@ import Model.Evento;
 import Model.Instituicao;
 import Model.Usuario;
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,7 +32,7 @@ public class LoginCondicional implements ICommand {
         Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
 
         //pegar id do evento
-        int id = Integer.parseInt(request.getParameter("ID"));
+        int id = Integer.parseInt(request.getParameter("txtid"));
         
         //consultar evento
         eve = idao.Consultar1(id);                 
@@ -45,7 +44,6 @@ public class LoginCondicional implements ICommand {
         HttpSession sessaoUsuario = request.getSession();
         sessaoUsuario.setAttribute("user", usuarioAutenticado);
         request.setAttribute("evento", eve);
-        
         request.setAttribute("resp", inst);
         
         return "acessologado/ajudar.jsp";

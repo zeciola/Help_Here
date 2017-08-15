@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 11141104689
- */
 public class CadastrarEventoAction implements ICommand{
 
     @Override
@@ -123,10 +119,8 @@ public class CadastrarEventoAction implements ICommand{
         
         for(int i=0; i< ids.size(); i++){
             daof.adicionarFeed(ids.get(i), idev);
-        }
-        
+        }        
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "sucesso.jsp";
     }
-    
 }

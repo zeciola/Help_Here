@@ -90,11 +90,11 @@
         <br>
         
         <div id="minhaDiv" style="display: none">
-            <form class="form" method="post" action="ControleAcesso">
+            <form class="form" method="post" action="ControleContribuir">
                 <input type="text" name="txtid" value="<%=Lista.getIdEvento()%>" style="display: none">
                 <input type="text" name="txtLogin" placeholder="Usuario">
                 <input type="password" name="txtSenha" placeholder="Senha">
-                <button type="submit" name="acao" value="Entrar">Entrar</button>
+                <button type="submit" name="acao" value="Login">Entrar</button>
                 <div>
                     <ul>
                         <li><a href="CadastroPessoaForm.jsp" class="senha-link">Cadastrar-se</a></li>
