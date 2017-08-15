@@ -41,11 +41,13 @@ public class LoginCondicional implements ICommand {
         inst = idao.InstituicaoEvento(eve.getIdEvento());
         
         //cria sessao do user e joga outros
-        HttpSession sessaoUsuario = request.getSession();
-        sessaoUsuario.setAttribute("user", usuarioAutenticado);
+        //HttpSession sessaoUsuario = request.getSession();
+        request.setAttribute("user", usuarioAutenticado);
         request.setAttribute("evento", eve);
         request.setAttribute("resp", inst);
         
-        return "ajudar.jsp";
+        //response.sendRedirect("acessologado/ajudar.jsp");
+        return "acessologado/ajudemais.jsp";
+        
     }
 }

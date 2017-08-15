@@ -9,12 +9,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
 
-        <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- CSS Style Table-->
         <link href="css/logado.css" rel="stylesheet">
-
         <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
 
         <!-- JavaStript -->
