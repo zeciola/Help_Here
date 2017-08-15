@@ -13,9 +13,9 @@
 
         <!-- CSS Style Table-->
         <link href="css/logado.css" rel="stylesheet">
-        
+
         <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
-        
+
         <!-- JavaStript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -37,9 +37,7 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-left">
-
                         <!-- Dropdown submenu -->
-
                     </ul>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,10 +59,9 @@
         </header>
 
         <%
-            Usuario user = (Usuario) request.getAttribute("usuarioAutenticado");
             Evento Lista = (Evento) request.getAttribute("evento");
         %>
-        
+
         <figure class="figure">
             <h2>Evento <%= Lista.getNome()%></h2>    
             <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
@@ -76,31 +73,40 @@
                 <%= Lista.getTipoEvento()%>
             </span>
         </p>
-        
+
         <p>Contéudo <%= Lista.getDescricao()%></p>
 
         <div id="doar" class= "paraExibicao">
             Contador da campanha
         </div>
-        
+
         <div id="volun" class="paraExibicao">
             Contador voluntarios 
         </div>
-        
+
         <canvas class="loader2"></canvas>
+
+        <button type="button" onclick="Mudarestado('minhaDiv')">Click Para Ajudar</button>
+        <br>
         
-        
-        <% if(user == null){%>   
-        
-         <a href="ControleContribuir?acao=LoginCondicional&ID=<%=Lista.getIdEvento()%>" >Realiza login ou se cadastre para ajudar</a>
-         
-        <%}else{%>
-            <a href="acessologado/ajudar.jsp">Ajude</a>
-        <%}%>
-       
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
-    <script src="js2/jquery.classyloader.min.js"></script>
-    <script src="js2/contribuicao.js"></script>
-    <script src="js2/loader.js"></script>    
+        <div id="minhaDiv" style="display: none">
+            <form class="form" method="post" action="ControleAcesso">
+                <input type="text" name="txtid" value="<%=Lista.getIdEvento()%>" style="display: none">
+                <input type="text" name="txtLogin" placeholder="Usuario">
+                <input type="password" name="txtSenha" placeholder="Senha">
+                <button type="submit" name="acao" value="Entrar">Entrar</button>
+                <div>
+                    <ul>
+                        <li><a href="CadastroPessoaForm.jsp" class="senha-link">Cadastrar-se</a></li>
+                        <li><a href="#" class="senha-link">Esqueceu a senha?</a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
+        <script src="js2/jquery.classyloader.min.js"></script>
+        <script src="js2/loader.js"></script>   
+        <script src="js2/contribuicao.js"></script>
     </body>   
 </html>
