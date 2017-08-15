@@ -46,6 +46,6 @@ public class LoginCondicional implements ICommand {
         request.setAttribute("evento", eve);
         request.setAttribute("resp", inst);
         
-        return "acessologado/ajudar.jsp";
+        return "ajudar.jsp";
     }
 }

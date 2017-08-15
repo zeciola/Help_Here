@@ -45,7 +45,7 @@ public class ControleContribuir extends HttpServlet {
         }catch (Exception erro) {
                 //Exibe pagina de erro ao usário
                 request.setAttribute("erro", erro);
-                RequestDispatcher rd = request.getRequestDispatcher("//erro.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
                     rd.forward(request, response);
             }
     }
