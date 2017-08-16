@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,11 +26,28 @@ public class ListarEventoAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
        ArrayList<Evento> i = new ArrayList();
         DAOEvento idao = new DAOEvento();
+        String URL = request.getParameter("URL");
         String UR = request.getParameter("UR");
-       
+        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
+        int ID = usuarioLogado.getIdInstituicao();
         
         
-        if(UR != null){
+        
+        
+        if (URL!= null){
+         i = idao.ListarPorID(ID);
+        //add a lista de evento o objeto request
+        request.setAttribute("listaEV", i);
+        //envia o request para o jsp
+        RequestDispatcher rd= request.getRequestDispatcher("/listaEvento.jsp");
+        rd.forward(request, response);
+        return "listaEvento.jsp";   
+            
+            
+        }
+        
+        else if(UR != null){
             
         i = idao.ListarPorData();
         //add a lista de evento o objeto request

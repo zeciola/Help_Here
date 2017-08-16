@@ -4,6 +4,7 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="Model.Instituicao"%>
 <%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +15,12 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
+            <% 
+            Instituicao instituicao = (Instituicao) session.getAttribute("usuarioAutenticado"); 
+            if (instituicao != null) { 
+            %>
+        
         <div id="corpo">
         <header id="cabecalhop">  <!-- CABEÇALHO DA PAGINA-->
 			<header>
@@ -32,14 +39,15 @@
 			</div>
 			</header>
             <h1>Eventos</h1>
+            
 			<nav id="menu">
 				
 				<ul>
-                                <li><a href="CNPJsenhaEvento.jsp">Criar</a></li>
+                                <li><a href="ControleAcesso?acao=CriarEvento&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Criar</a> </li>
                                 <li><a href="ConsultaNomeEvento.jsp">Consultar</a></li>
-                                <li><a href="CNPJsenhaEvento.jsp">Excluir</a></li>
+                                <li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Excluir</a></li>
                                 <li><a href="ControleEvento?acao=Listar">Listar</a></li>
-                                <li><a href="ControleEvento?acao=Listar">Alterar</a></li>
+                                <li><a href="ControleEvento?acao=Listar&URL=ok">Alterar</a></li>
                                 <li><a href="ControleAcesso?acao=Sair">Sair</a></li>
            
 				</ul>
@@ -63,6 +71,7 @@
             <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a>
             <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a>
         </article>
+         <%}%>
          <%}%>
         </div>
     </body>
