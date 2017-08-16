@@ -1,5 +1,5 @@
 $('.loader2').ClassyLoader({
-    percentage: 60,
+    percentage: 75,
     speed: 8,
     diameter: 70,
     showText: true,

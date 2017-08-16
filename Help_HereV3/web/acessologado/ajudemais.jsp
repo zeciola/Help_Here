@@ -7,11 +7,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pagina ajude mais</title>
-        
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/logado.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
-        
+
     </head>
     <body>
         <header>
@@ -26,7 +26,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html">Help Here</a>
+                        <a class="navbar-brand" href="../acessologado/logado.jsp">Seu Pérfil</a>
                     </div>
                     <ul class="nav navbar-nav navbar-left">
                         <!-- Dropdown submenu -->
@@ -35,11 +35,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="index.jsp">Home</a>
-                            </li>
-                            <li>
-                                <a href="../ControleAcesso?acao=Sair" style="display : none">Sair</a>
-                                <a href="login.jsp">Login</a>
+                                <a href="ControleAcesso?acao=Sair">Sair</a>   
                             </li>
                         </ul>
                     </div>
@@ -49,17 +45,25 @@
             </nav>
         </header>
         <%
-            Usuario user = (Usuario) request.getAttribute("user");
+            Usuario user = (Usuario) request.getAttribute("usuarioAutenticado");
             Evento ev = (Evento) request.getAttribute("evento");
             //Instituicao inst = (Instituicao) request.getAttribute("resp");
         %>
         <h3>Confime seus dados senhor <%=user.getNome()%> no evento<%=ev.getNome()%></h3>
         <h2></h2>
-        <% if(ev.getTipoEvento() == "Voluntariado"){%>
-            <h1>Voluntariado</h1>
-        <%}else{%>
-            <h1>Doação</h1>
-        <%}%>
+        <% if (ev.getTipoEvento() == "Voluntariado") {%>
+        <h1>Voluntariado</h1>
+        <form method="post" action=""> 
+            Nome Completo: <input type="Text" value=""><br>
+            Quantidade voluntarios:
+            <select>
+                <option></option>
+            </select>
+            <button type="submit" name="acao" value="Login">Entrar</button>
+        </form>
+
+        <%} else {%>
+        <h1>Doação</h1>
         <form method="post" action=""> 
             Nome Completo: <input type="Text" value=""><br>
             RG:
@@ -69,8 +73,10 @@
             <select>
                 <option></option>
             </select>
-        </form>        
-        
+            <button type="submit" name="acao" value="Login">Entrar</button>
+        </form>
+        <%}%>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>

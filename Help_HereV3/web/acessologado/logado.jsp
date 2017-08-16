@@ -132,7 +132,7 @@
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
-                                }%>
+            }%>
         <%for (Feeds e : Lista) {%>
         <div id="feed">
             Conheça o Evento

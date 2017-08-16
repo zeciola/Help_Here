@@ -42,7 +42,7 @@ public class LoginCondicional implements ICommand {
         
         //cria sessao do user e joga outros
         //HttpSession sessaoUsuario = request.getSession();
-        request.setAttribute("user", usuarioAutenticado);
+        request.setAttribute("usuarioAutenticado", usuarioAutenticado);
         request.setAttribute("evento", eve);
         request.setAttribute("resp", inst);
         
