@@ -102,8 +102,9 @@
         %>
         <h1>Bem vindo 
             <%= usuario.getNome()%>! </h1>
-
-        <%}%>
+            <h2>Nome<%= usuario.getPe().getNome()%> </h2>
+        <h2><%= usuario.getPe().getSobrenome()%> </h2>
+            <%}%>
             
 
         

@@ -345,6 +345,9 @@ public class DAOUsuario implements iDAO {
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
                 loginAutenticado.setStatus(rsLogin.getBoolean("status"));
+                Pessoa p = new Pessoa();
+                p.setId(rsLogin.getInt("idpessoa"));
+                loginAutenticado.setPe(p);
             }
 
         } catch (SQLException sqlErro) {

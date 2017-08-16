@@ -11,8 +11,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/logado.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
-
     </head>
+    
     <body>
         <header>
             <!-- Navigation -->
@@ -49,15 +49,24 @@
             Evento ev = (Evento) request.getAttribute("evento");
             //Instituicao inst = (Instituicao) request.getAttribute("resp");
         %>
-        <h3>Confime seus dados senhor <%=user.getNome()%> no evento<%=ev.getNome()%></h3>
+        <h3>Confirme seus dados senhor</h3>
         <h2></h2>
         <% if (ev.getTipoEvento() == "Voluntariado") {%>
         <h1>Voluntariado</h1>
+        <p>Confirme seu dados para se voluntariar no Evento: <%=ev.getNome()%></p>
         <form method="post" action=""> 
-            Nome Completo: <input type="Text" value=""><br>
+            Nome Completo: <input type="Text" value="<%=user.getNome()%>"><br>
             Quantidade voluntarios:
             <select>
-                <option></option>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>50</option>
+                <option>70</option>
+                <option>90</option>
+                <option>110</option>
+                <option>130</option>
+                <option>150</option>                
             </select>
             <button type="submit" name="acao" value="Login">Entrar</button>
         </form>

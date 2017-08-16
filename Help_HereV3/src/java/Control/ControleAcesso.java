@@ -33,7 +33,13 @@ public class ControleAcesso extends HttpServlet {
 
                 DAOUsuario daousuario = new DAOUsuario();
                 Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
-
+                
+                DAOPessoa pdao = new DAOPessoa();
+                int id = usuarioAutenticado.getPe().getId();
+                Pessoa p =  pdao.ConsultarId(id);
+                
+                usuarioAutenticado.setPe(p);
+                
                 if (usuarioAutenticado != null) {
 
                     //cria uma sessao para o usuario
