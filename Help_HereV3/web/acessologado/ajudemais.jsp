@@ -53,10 +53,14 @@
             Evento ev = (Evento) request.getAttribute("evento");
             //Instituicao inst = (Instituicao) request.getAttribute("resp");
         %>
-        <form method="post" action="">
-            <h3>Confime seus dados senhor <%=user.getNome()%> no evento<%=ev.getNome()%></h3>
-            <h2></h2>
-            
+        <h3>Confime seus dados senhor <%=user.getNome()%> no evento<%=ev.getNome()%></h3>
+        <h2></h2>
+        <% if(ev.getTipoEvento() == "Voluntariado"){%>
+            <h1>Voluntariado</h1>
+        <%}else{%>
+            <h1>Doação</h1>
+        <%}%>
+        <form method="post" action=""> 
             Nome Completo: <input type="Text" value=""><br>
             RG:
             CPF:
