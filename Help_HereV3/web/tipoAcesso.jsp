@@ -29,7 +29,7 @@
                   <!--  <button type="submit" name="acao" value="Atualizar&url=ok">Confirmar</button>-->
                  
                   <!--<a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV">Pessoa Fisica</a> <br /> <br />-->
-                  <a href="SENHAentrarEventos.jsp">Pessoa Juridica</a>
+                  <a href="SENHAentrarEventos.jsp">Pessoa Juridica</a> <br /> <br />
 
                   <a href="ControleAcesso?acao=EntrarEVPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Pessoa Fisica</a> 
                    
@@ -52,5 +52,6 @@
             <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
             <script src="js/login.js"></script>
         </div>
+      <%}%>
     </body>
 </html>

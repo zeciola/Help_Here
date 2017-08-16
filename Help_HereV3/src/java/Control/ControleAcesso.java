@@ -95,6 +95,25 @@ public class ControleAcesso extends HttpServlet {
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
                     rd.forward(request, response);
                 }
+            }else if (acao.equals("EntrarEVPessoa")) {
+                Usuario login = new Usuario();
+                login.setNome(request.getParameter("txtLogin"));
+                login.setSenha(request.getParameter("txtSenha"));
+
+                DAOUsuario daousuario = new DAOUsuario();
+                Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
+
+                if (usuarioAutenticado != null) {
+                    HttpSession sessaoInst = request.getSession();
+                    sessaoInst.setAttribute("usuarioAutenticado", usuarioAutenticado);
+                    //redireciona para a pagina princiapal
+                    response.sendRedirect("Eventos.jsp");
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
+                    request.setAttribute("msg", "Login ou Senha Incorreto!");
+                    rd.forward(request, response);
+                }
+                
             }else if (acao.equals("EntrarEV")) {
                 Instituicao inst = new Instituicao();
                 inst.setCnpj(request.getParameter("txtcnpj"));
