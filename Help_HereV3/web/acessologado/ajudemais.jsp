@@ -51,7 +51,7 @@
         %>
         <h3>Confirme seus dados senhor</h3>
         <h2></h2>
-        <% if (ev.getTipoEvento() == "Voluntariado") {%>
+        <% if (ev.getTipoEvento().equals("Voluntariado")) {%>
         <h1>Voluntariado</h1>
         <p>Confirme seu dados para se voluntariar no Evento: <%=ev.getNome()%></p>
         <form method="post" action=""> 
