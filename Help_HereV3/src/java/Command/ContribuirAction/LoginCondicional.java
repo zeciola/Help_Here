@@ -2,10 +2,12 @@ package Command.ContribuirAction;
 
 import Command.ICommand;
 import DAO.DAOEvento;
+import DAO.DAOPessoa;
 import DAO.DAOUsuario;
 import Model.Endereco;
 import Model.Evento;
 import Model.Instituicao;
+import Model.Pessoa;
 import Model.Usuario;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +41,11 @@ public class LoginCondicional implements ICommand {
         end = idao.EventoEndereco(eve.getIdEvento());
         eve.setEnds(end);
         inst = idao.InstituicaoEvento(eve.getIdEvento());
+        
+        DAOPessoa pdao = new DAOPessoa();
+        int id2 = usuarioAutenticado.getPe().getId();
+        Pessoa p =  pdao.ConsultarId(id2);
+        usuarioAutenticado.setPe(p);
         
         //cria sessao do user e joga outros
         //HttpSession sessaoUsuario = request.getSession();

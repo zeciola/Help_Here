@@ -26,7 +26,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="../acessologado/logado.jsp">Seu Pérfil</a>
+                        <a class="navbar-brand" href="logado.jsp">Seu Pérfil</a>
                     </div>
                     <ul class="nav navbar-nav navbar-left">
                         <!-- Dropdown submenu -->
@@ -55,7 +55,11 @@
         <h1>Voluntariado</h1>
         <p>Confirme seu dados para se voluntariar no Evento: <%=ev.getNome()%></p>
         <form method="post" action=""> 
-            Nome Completo: <input type="Text" value="<%=user.getNome()%>"><br>
+            Nome Completo: <input type="Text" value="<%=user.getPe().getNome() %>"><br>
+            CPF: <input type="Text" value="<%=user.getPe().getCpf()%>"><br>
+            RG: <input type="Text" value="<%=user.getPe().getRg()%>"><br>
+            Data Nascimento: <input type="Text" value="<%=user.getPe().getDatanascimento() %>"><br>
+            Sexo: <input type="Text" value="<%=user.getPe().getSexo() %>"><br>
             Quantidade voluntarios:
             <select>
                 <option>10</option>
@@ -67,7 +71,7 @@
                 <option>110</option>
                 <option>130</option>
                 <option>150</option>                
-            </select>
+            </select><br>
             <button type="submit" name="acao" value="Login">Entrar</button>
         </form>
 
