@@ -9,11 +9,10 @@
 
 
 
-MANDAR ID NO EVENTO NOME E SENHA DE USER
 E CARREGAR DADOS NA PAGINA AJUDAR COM CONDIÇÃO CASO SEJA VOLUNTARIO U DOAR
 
 
-
+mostra campo valor doação ou numero voluntarios
 
 
 

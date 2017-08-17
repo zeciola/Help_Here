@@ -12,8 +12,13 @@
         <link href="css/logado.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
     </head>
-    
+
     <body>
+        <%
+            Usuario user = (Usuario) request.getAttribute("usuarioAutenticado");
+            Evento ev = (Evento) request.getAttribute("evento");
+            //Instituicao inst = (Instituicao) request.getAttribute("resp");
+        %>
         <header>
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -26,7 +31,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="logado.jsp">Seu Pérfil</a>
+
+                        <a class="navbar-brand" href="ControleAcesso?acao=Entrar&txtLogin=<%= user.getNome()%>&txtSenha=<%=user.getSenha()%>">Seu Pérfil</a>
+
                     </div>
                     <ul class="nav navbar-nav navbar-left">
                         <!-- Dropdown submenu -->
@@ -44,22 +51,18 @@
                 <!-- /.container -->
             </nav>
         </header>
-        <%
-            Usuario user = (Usuario) request.getAttribute("usuarioAutenticado");
-            Evento ev = (Evento) request.getAttribute("evento");
-            //Instituicao inst = (Instituicao) request.getAttribute("resp");
-        %>
+
         <h3>Confirme seus dados senhor</h3>
         <h2></h2>
         <% if (ev.getTipoEvento().equals("Voluntariado")) {%>
         <h1>Voluntariado</h1>
         <p>Confirme seu dados para se voluntariar no Evento: <%=ev.getNome()%></p>
         <form method="post" action=""> 
-            Nome Completo: <input type="Text" value="<%=user.getPe().getNome() %>"><br>
+            Nome Completo: <input type="Text" value="<%=user.getPe().getNome()%>"><br>
             CPF: <input type="Text" value="<%=user.getPe().getCpf()%>"><br>
             RG: <input type="Text" value="<%=user.getPe().getRg()%>"><br>
-            Data Nascimento: <input type="Text" value="<%=user.getPe().getDatanascimento() %>"><br>
-            Sexo: <input type="Text" value="<%=user.getPe().getSexo() %>"><br>
+            Data Nascimento: <input type="Text" value="<%=user.getPe().getDatanascimento()%>"><br>
+            Sexo: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
             Quantidade voluntarios:
             <select>
                 <option>10</option>
