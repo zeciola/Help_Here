@@ -73,7 +73,7 @@
                 <option>90</option>
                 <option>110</option>
                 <option>130</option>
-                <option>150</option>                
+                <option>150</option>
             </select><br>
             <button type="submit" name="acao" value="Login">Entrar</button>
         </form>
