@@ -53,16 +53,20 @@
         </header>
 
         <h3>Confirme seus dados senhor</h3>
-        <h2></h2>
         <% if (ev.getTipoEvento().equals("Voluntariado")) {%>
         <h1>Voluntariado</h1>
         <p>Confirme seu dados para se voluntariar no Evento: <%=ev.getNome()%></p>
-        <form method="post" action=""> 
-            Nome Completo: <input type="Text" value="<%=user.getPe().getNome()%>"><br>
+        <form method="post" action="ControleContribuir"> 
+            Nome: <input type="Text" value="<%=user.getPe().getNome()%>"><br>
+            Sobrenome: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
             CPF: <input type="Text" value="<%=user.getPe().getCpf()%>"><br>
             RG: <input type="Text" value="<%=user.getPe().getRg()%>"><br>
             Data Nascimento: <input type="Text" value="<%=user.getPe().getDatanascimento()%>"><br>
             Sexo: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
+            Telefone: <input type="Text" value="<%=user.getPe().getTelefone() %>"><br>
+            Celular: <input type="Text" value="<%=user.getPe().getCelular() %>"><br>
+            E-mail: <input type="Text" value="<%=user.getPe().getEmail() %>"><br>
+
             Quantidade voluntarios:
             <select>
                 <option>10</option>
@@ -75,21 +79,33 @@
                 <option>130</option>
                 <option>150</option>
             </select><br>
-            <button type="submit" name="acao" value="Login">Entrar</button>
+            <button type="submit" name="acao" value="Volun">Participar</button>
         </form>
 
         <%} else {%>
         <h1>Doação</h1>
-        <form method="post" action=""> 
-            Nome Completo: <input type="Text" value=""><br>
-            RG:
-            CPF:
-            Data Nascimento:
+        <form method="post" action="ControleContribuir"> 
+            Nome: <input type="Text" value="<%=user.getPe().getNome()%>"><br>
+            Sobrenome: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
+            CPF: <input type="Text" value="<%=user.getPe().getCpf()%>"><br>
+            RG: <input type="Text" value="<%=user.getPe().getRg()%>"><br>
+            Data Nascimento: <input type="Text" value="<%=user.getPe().getDatanascimento()%>"><br>
+            Sexo: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
+            Telefone: <input type="Text" value="<%=user.getPe().getTelefone() %>"><br>
+            Celular: <input type="Text" value="<%=user.getPe().getCelular() %>"><br>
+            E-mail: <input type="Text" value="<%=user.getPe().getEmail() %>"><br>
             Valor:
             <select>
-                <option></option>
+                <option>R$ 5.00</option>
+                <option>R$ 10.00</option>
+                <option>R$ 15.00</option>
+                <option>R$ 30.00</option>
+                <option>R$ 45.00</option>
+                <option>R$ 60.00</option>
+                <option>R$ 75.00</option>
+                <option>R$ 100.00</option>
             </select>
-            <button type="submit" name="acao" value="Login">Entrar</button>
+            <button type="submit" name="acao" value="Doar">Ajudar</button>
         </form>
         <%}%>
 

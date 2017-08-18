@@ -1,6 +1,6 @@
 <%-- 
-    Document   : logado2
-    Created on : 17/08/2017, 10:15:27
+    Document   : ok
+    Created on : 18/08/2017, 10:15:06
     Author     : Diego
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Testando as comands apenas!</h1>
     </body>
 </html>
