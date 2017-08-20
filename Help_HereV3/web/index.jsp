@@ -130,6 +130,7 @@
                 </div>
                 <%}%>
             </div>
+            <a href="NewServlet">Teste link</a>
             <!-- /.row -->
             <hr>
             <!-- Footer -->
