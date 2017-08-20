@@ -7,6 +7,10 @@ package Control;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -51,11 +55,21 @@ public class NewServlet extends HttpServlet {
                 PdfWriter.getInstance(doc, os);
                 //abre o documento
                 doc.open();
-                //adiciona o texto ao PDF
-                Paragraph p = new Paragraph("Meu primeiro arquivo PDF!");
-                doc.add(p);
-
                 
+        	Image img = Image.getInstance("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/defaut.jpg");
+                img.setAlignment(Element.ALIGN_CENTER);
+        	doc.add(img);
+
+                //adiciona o texto ao PDF 
+                Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
+                Paragraph p1 = new Paragraph("Meu primeiro arquivo PDF!", f);
+                p1.setAlignment(Element.ALIGN_CENTER);
+                p1.setSpacingAfter(20);
+                doc.add(p1);
+
+                Paragraph p2 = new Paragraph("Estou utilizando a classe Paragraph para criar um bloco de texto na geração do meu primeiro arquivo PDF.");
+                doc.add(p2);
+
             } finally {
                 if (doc != null) {
                     //fechamento do documento
