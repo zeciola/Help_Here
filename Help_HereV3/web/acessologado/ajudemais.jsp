@@ -1,4 +1,4 @@
-<%@page import="Model.Instituicao"%>
+
 <%@page import="Model.Evento"%>
 <%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
