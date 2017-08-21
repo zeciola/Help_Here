@@ -252,8 +252,19 @@ CREATE TABLE ValoresDoados (
 ID serial PRIMARY KEY,
 Valor numeric(20),
 dataDoado date,
-idCampanha serial
+idCampanha serial,
+IDPessoa serial
 );
+
+alter table valoresdoados add column IDPessoa serial references Pessoa(id);
+
+select * from doador;
+drop table doador cascade;
+drop table valordoador cascade;
+drop table doadodoador cascade;
+
+select * from doadodoador;
+select * from valordoador;
 
 CREATE TABLE ItemDoado (
 ID serial PRIMARY KEY,
