@@ -24,13 +24,6 @@ pais varchar(45),
 status boolean default true
 );
 
--- drop table endereco cascade
---alter table Endereco add column status boolean default true
-
---alter table Endereco drop column status 
-
---select * from Endereco
-
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
 idPessoa serial,
@@ -69,11 +62,6 @@ status boolean default true
 
 insert into Usuario (id, IDPessoa, Tipo, Login, senha) values(3 ,3, 'comum', '3', '3');
 
-select * from usuario;
-
---alter table usuario add column status boolean default true 
---select * from usuario
-
 create table Interesses(
 ID serial PRIMARY KEY,
 IDUsuario integer references Usuario(id),
@@ -94,8 +82,6 @@ select * from interesses
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
 
-
---Trazer para o banco
 --Trazer para o banco
 
 select * from evento e, feeds f, usuario u where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3;
@@ -258,7 +244,8 @@ IDPessoa serial
 
 alter table valoresdoados add column IDPessoa serial references Pessoa(id);
 
-select * from doador;
+alter table Voluntario add column DataVoluntario date;
+
 drop table doador cascade;
 drop table valordoador cascade;
 drop table doadodoador cascade;

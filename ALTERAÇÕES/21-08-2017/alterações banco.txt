@@ -1,0 +1,11 @@
+alter table valoresdoados add column IDPessoa serial references Pessoa(id);
+
+alter table Voluntario add column DataVoluntario date;
+
+drop table doador cascade;
+drop table valordoador cascade;
+drop table doadodoador cascade;
+
+
+
+
