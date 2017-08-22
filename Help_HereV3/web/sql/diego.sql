@@ -250,6 +250,12 @@ drop table doador cascade;
 drop table valordoador cascade;
 drop table doadodoador cascade;
 
+drop table itemdoado cascade;
+drop table item cascade;
+
+drop table campanhaitens cascade;
+drop table campanhadinheiro cascade;
+
 select * from doadodoador;
 select * from valordoador;
 
