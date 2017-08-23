@@ -95,7 +95,7 @@
             Celular: <input type="Text" value="<%=user.getPe().getCelular() %>"><br>
             E-mail: <input type="Text" value="<%=user.getPe().getEmail() %>"><br>
             Valor:
-            <select>
+            <select name="valor">
                 <option>R$ 5.00</option>
                 <option>R$ 10.00</option>
                 <option>R$ 15.00</option>

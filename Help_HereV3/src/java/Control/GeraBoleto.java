@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,12 +46,12 @@ public class GeraBoleto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, InterruptedException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
- /*
+            /*
                  * INFORMANDO DADOS SOBRE O CEDENTE.
              */
             Cedente cedente = new Cedente("Help Here", "00.000.208/0001-00");
@@ -139,6 +141,9 @@ public class GeraBoleto extends HttpServlet {
             // WINDOWS: boletoViewer.getAsPDF("C:/Temp/MeuBoleto.pdf");
             // LINUX: boletoViewer.getAsPDF("/home/temp/MeuBoleto.pdf");
             File arquivoPdf = boletoViewer.getPdfAsFile("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/MeuPrimeiroBoleto2.pdf");  
+            System.out.println("antes de 5 segundo");
+            new Thread().sleep(5000);
+            System.out.println("despoi de 5 segundos");
             response.sendRedirect("teste2.jsp");  
         }
         
@@ -156,7 +161,11 @@ public class GeraBoleto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GeraBoleto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -170,7 +179,11 @@ public class GeraBoleto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GeraBoleto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
