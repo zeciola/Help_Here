@@ -37,7 +37,7 @@ public class DoarCondicional implements ICommand {
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
         Evento e = (Evento) sessaoUsuario.getAttribute("evento");
         Usuario u =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
-
+        
         Double valor = Double.parseDouble(request.getParameter("valor"));
 
         //vincular ao banco 
