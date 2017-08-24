@@ -12,36 +12,39 @@
 <html>
     <head><link href="estilo.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
+        <title>Eventos</title>
 
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- CSS Style Table-->
+        <link href="css/styletable.css" rel="stylesheet">
+    </head>
+
+    <header>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Help Here</a>
+                </div>
+                
         <%
             Instituicao instituicao = (Instituicao) session.getAttribute("usuarioAutenticado");
             if (instituicao != null) {
         %>
-
-        <div id="corpo">
-            <header id="cabecalhop">  <!-- CABEÇALHO DA PAGINA-->
-                <header>
-                    <a href="index.jsp"></a>
-                    <div id="login">
-                        <a href="#" onclick="abrefecha('divum');"></a> 
-                        <a href="Cadastre-se.html"></a>
-                        <div id="divum" style="display:none;">
-                            <form>
-                                Login:<input type="text" /><br>
-                                Senha:<input type="password" /><br>
-                                <input type="submit" value="Login" />
-                                <input type="reset" value="cancelar" onclick="abrefecha('divum');"/>
-                            </form>
-                        </div>
-                    </div>
-                </header>
-                <h1>Eventos</h1>
-
-                <nav id="menu">
-                    <ul>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    
+                   
+                    <ul class="nav navbar-nav navbar-right">
                         <li><a href="ControleAcesso?acao=CriarEvento&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Criar</a> </li>
                         <li><a href="ConsultaNomeEvento.jsp">Consultar</a></li>
                         <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Excluir</a></li>-->
@@ -50,7 +53,22 @@
                         <li><a href="ControleAcesso?acao=Sair">Sair</a></li>
 
                     </ul>
-                </nav>
+            
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+    </header>
+    <body>
+
+        
+
+        
+                <h1>Eventos</h1>
+
+                
                 <%
                     //Recupera eventos
                     ArrayList<Evento> listaEvento = (ArrayList<Evento>) request.getAttribute("listaEVdata");
