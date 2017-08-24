@@ -64,11 +64,11 @@
     <body>
 
         
-
+        <br></br>
         
-                <h1>Eventos</h1>
+        <h1>Eventos</h1><br></br>
 
-                
+                <div class="row">
                 <%
                     //Recupera eventos
                     ArrayList<Evento> listaEvento = (ArrayList<Evento>) request.getAttribute("listaEVdata");
@@ -78,7 +78,7 @@
                 %>
                 <%
                     for (Evento e : listaEvento) {%>  
-                <article id="materias">
+                <div class="col-sm-4">
                     <b><h1><%=e.getNome()%></h1></b><br>
                     <b>Descrição:</b><%=e.getDescricao()%><br>
                     <b>Tipo de Evento:</b> <%=e.getTipoEvento()%><br>
@@ -87,7 +87,7 @@
                     <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Abrir</a>
                    <!-- <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a>
                     <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a>-->
-                </article>
+                 </div>  
                 <%}%>
                 <%}%>
         </div>
