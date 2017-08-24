@@ -44,9 +44,9 @@
                     <ul>
                         <li><a href="ControleAcesso?acao=CriarEvento&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Criar</a> </li>
                         <li><a href="ConsultaNomeEvento.jsp">Consultar</a></li>
-                        <li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Excluir</a></li>
+                        <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Excluir</a></li>-->
                         <li><a href="ControleEvento?acao=Listar">Listar</a></li>
-                        <li><a href="ControleEvento?acao=Listar&URL=ok">Alterar</a></li>
+                        <li><a href="ControleEvento?acao=Listar&URL=ok">Meus Eventos</a></li>
                         <li><a href="ControleAcesso?acao=Sair">Sair</a></li>
 
                     </ul>
@@ -67,8 +67,8 @@
                     <b>Dia de Inicio:</b> <%=e.getDataInicio()%><br>
                     <b>Dia de Encerramento:</b> <%=e.getDataFim()%><br>
                     <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Abrir</a>
-                    <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a>
-                    <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a>
+                   <!-- <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a>
+                    <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a>-->
                 </article>
                 <%}%>
                 <%}%>
