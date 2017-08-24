@@ -23,38 +23,38 @@ public class LoginCondicional implements ICommand {
         ArrayList<Endereco> end = new ArrayList();
         ArrayList<Instituicao> inst = new ArrayList();
         DAOEvento idao = new DAOEvento();
-        
+
         //pegar login e senha
         Usuario login = new Usuario();
         login.setNome(request.getParameter("txtLogin"));
         login.setSenha(request.getParameter("txtSenha"));
-        
+
         // realizar login
         DAOUsuario daousuario = new DAOUsuario();
         Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
 
         //pegar id do evento
         int id = Integer.parseInt(request.getParameter("txtid"));
-        
+
         //consultar evento
-        eve = idao.Consultar1(id);                 
+        eve = idao.Consultar1(id);
         end = idao.EventoEndereco(eve.getIdEvento());
         eve.setEnds(end);
         inst = idao.InstituicaoEvento(eve.getIdEvento());
-        
+
         DAOPessoa pdao = new DAOPessoa();
         int id2 = usuarioAutenticado.getPe().getId();
-        Pessoa p =  pdao.ConsultarId(id2);
+        Pessoa p = pdao.ConsultarId(id2);
         usuarioAutenticado.setPe(p);
-        
+
         //cria sessao do user e joga outros
-        //HttpSession sessaoUsuario = request.getSession();
-        request.setAttribute("usuarioAutenticado", usuarioAutenticado);
-        request.setAttribute("evento", eve);
-        request.setAttribute("resp", inst);
-        
+        HttpSession sessaoUsuario = request.getSession();
+        sessaoUsuario.setAttribute("usuarioAutenticado", usuarioAutenticado);
+        sessaoUsuario.setAttribute("evento", eve);
+        sessaoUsuario.setAttribute("resp", inst);
+
         //response.sendRedirect("acessologado/ajudar.jsp");
         return "acessologado/ajudemais.jsp";
-        
+
     }
 }
