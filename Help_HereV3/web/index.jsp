@@ -130,7 +130,8 @@
                 </div>
                 <%}%>
             </div>
-            <a href="NewServlet">Teste link</a>
+            <a href="NewServlet">Teste certificado</a>
+            <a href="GeraBoleto">Teste Geraboleto</a>
             <!-- /.row -->
             <hr>
             <!-- Footer -->
