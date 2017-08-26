@@ -18,7 +18,7 @@
             Usuario user = (Usuario) session.getAttribute("usuarioAutenticado");
             Evento ev = (Evento) session.getAttribute("evento");
             //Instituicao inst = (Instituicao) request.getAttribute("resp");
-%>
+        %>
         <header>
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -82,14 +82,14 @@
             E-mail: <input type="Text" value="<%=user.getPe().getEmail()%>"><br>
             Valor:
             <select name="valor">
-                <option>R$ 5.00</option>
-                <option>R$ 10.00</option>
-                <option>R$ 15.00</option>
-                <option>R$ 30.00</option>
-                <option>R$ 45.00</option>
-                <option>R$ 60.00</option>
-                <option>R$ 75.00</option>
-                <option>R$ 100.00</option>
+                <option value="5">R$ 5.00</option>
+                <option value="10">R$ 10.00</option>
+                <option value="15">R$ 15.00</option>
+                <option value="30">R$ 30.00</option>
+                <option value="45">R$ 45.00</option>
+                <option value="60">R$ 60.00</option>
+                <option value="75">R$ 75.00</option>
+                <option value="100">R$ 100.00</option>
             </select>
             <button type="submit" name="acao" value="Doar">Ajudar</button>
         </form>
