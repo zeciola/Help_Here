@@ -1,12 +1,13 @@
 package DAO;
 
+import Model.Contribuicao;
 import Model.Usuario;
 import Model.Evento;
 
 public class DAOContribuir {
     
     
-    public void DoarValor(Usuario user, Evento ev){
+    public void DoarValor(Contribuicao c){
         
     }
 }
