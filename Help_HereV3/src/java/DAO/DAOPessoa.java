@@ -347,22 +347,22 @@ public class DAOPessoa implements iDAO {
     public Endereco ConsultarEndPessoa(Pessoa p) {
         Endereco end = new Endereco();
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select * from pessoa p, endereco e where p.id=? and e.id = p.idendereco");
+            Connection conexao2 = Conexao.getConexao();
+            PreparedStatement pstmt = conexao2.prepareStatement("select * from pessoa p, endereco e where p.id=? and e.id = p.idendereco");
             pstmt.setInt(1, p.getId());
             ResultSet rs;
-
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                end.setBairro("bairro");
-                end.setCep("cep");
-                end.setEstado("uf");
-                end.setIdEndereco(Integer.parseInt("id"));
-                end.setMunicipio("municipio");
-                end.setNomelogradouro("nomelogradouro");
-                end.setNumeroen(Integer.parseInt("numero"));
-                end.setPais("pais");
-                end.setStatus( Boolean.parseBoolean("status"));
+                end.setBairro(rs.getString("bairro"));
+                end.setCep(rs.getString("cep"));
+                end.setEstado(rs.getString("uf"));
+                end.setIdEndereco(Integer.parseInt(rs.getString("id")));
+                end.setMunicipio(rs.getString("municipio"));
+                end.setNomelogradouro(rs.getString("nomelogradouro"));
+                end.setNumeroen(rs.getInt("numero"));
+                end.setPais(rs.getString("pais"));
+                end.setStatus(rs.getBoolean("status"));
 
             }
             //Retorno do ArrayList
