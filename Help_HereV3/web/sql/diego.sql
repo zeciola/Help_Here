@@ -242,6 +242,10 @@ idCampanha serial,
 IDPessoa serial
 );
 
+insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa) values(100.00, CURRENT_DATE, 1, 2);
+
+select * from valoresdoados;
+
 alter table valoresdoados add column IDPessoa serial references Pessoa(id);
 
 alter table Voluntario add column DataVoluntario date;
@@ -414,7 +418,13 @@ ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
 
+select * from endereco;
 
-select * from evento;
+select e.id, e.cep, e.nomelogradouro, e.numero, e.bairro, e.municipio, e.uf, e.pais, e.status from pessoa p, endereco e where p.id=2 and e.id = p.idendereco; 
 
-update evento set datafim='10/01/2017' where nome != 'EVENTO CARREGA INDEX';
+
+
+
+
+
+
