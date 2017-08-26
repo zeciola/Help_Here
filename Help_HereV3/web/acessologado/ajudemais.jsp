@@ -65,18 +65,6 @@
             Celular: <input type="Text" value="<%=user.getPe().getCelular()%>"><br>
             E-mail: <input type="Text" value="<%=user.getPe().getEmail()%>"><br>
 
-            Quantidade voluntarios:
-            <select name="quant">
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-                <option>50</option>
-                <option>70</option>
-                <option>90</option>
-                <option>110</option>
-                <option>130</option>
-                <option>150</option>
-            </select><br>
             <button type="submit" name="acao" value="Volun">Participar</button>
         </form>
 
