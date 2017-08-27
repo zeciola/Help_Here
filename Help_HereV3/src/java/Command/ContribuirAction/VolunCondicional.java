@@ -5,6 +5,7 @@ import DAO.DAOContribuir;
 import Model.Contribuicao;
 import Model.Evento;
 import Model.Usuario;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,9 +23,15 @@ public class VolunCondicional implements ICommand{
         c.setUser(u);
         
         DAOContribuir cdao = new DAOContribuir();
-        cdao.Voluntariar(c);
+        ArrayList<Contribuicao> retorno = cdao.ListarVoluntarios(c);
+        if(retorno.size() == 0){
+            cdao.Voluntariar(c);
+            return "acessologado/logado.jsp";
+            
+        }else{
+            return "aerrovolun.jsp";
+        }
         
-        return "acessologado/logado.jsp";
     }
     
 }

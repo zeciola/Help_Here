@@ -182,9 +182,7 @@ public class DAOEndereco implements iDAO {
                 en.setStatus(rs.getBoolean("status"));
 
                 result.add(en);
-
             }
-
             //Retorno do ArrayList
             return result;
             
