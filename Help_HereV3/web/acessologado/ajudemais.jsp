@@ -17,7 +17,8 @@
         <%
             Usuario user = (Usuario) session.getAttribute("usuarioAutenticado");
             Evento ev = (Evento) session.getAttribute("evento");
-            //Instituicao inst = (Instituicao) request.getAttribute("resp");
+            
+        //Instituicao inst = (Instituicao) request.getAttribute("resp");
         %>
         <header>
             <!-- Navigation -->
@@ -64,7 +65,7 @@
             Telefone: <input type="Text" value="<%=user.getPe().getTelefone()%>"><br>
             Celular: <input type="Text" value="<%=user.getPe().getCelular()%>"><br>
             E-mail: <input type="Text" value="<%=user.getPe().getEmail()%>"><br>
-
+            
             <button type="submit" name="acao" value="Volun">Participar</button>
         </form>
 

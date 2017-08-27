@@ -38,4 +38,31 @@ public class DAOContribuir {
             }
         }
     }
+
+    public void Voluntariar(Contribuicao c) {
+        Connection conexao = Conexao.getConexao();
+        try {
+            conexao.setAutoCommit(false);
+            PreparedStatement pstmt = conexao.prepareStatement("");
+            pstmt.setInt(1, c.getEv().getIdEvento());
+            pstmt.setInt(2, c.getUser().getId());
+            pstmt.execute();
+            conexao.commit();
+
+        } catch (SQLException e) {
+            try {
+                conexao.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
 }

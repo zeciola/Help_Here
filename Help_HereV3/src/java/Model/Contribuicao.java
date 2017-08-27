@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Contribuicao {
     private Evento ev;
-    private Date dataInicio;
+    private Date datacad;
     private Usuario user;
     private Double valor;
 
@@ -42,11 +42,11 @@ public class Contribuicao {
     }
 
     public Date getDataInicio() {
-        return dataInicio;
+        return datacad;
     }
 
     public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
+        this.datacad = dataInicio;
     }
      
 }
