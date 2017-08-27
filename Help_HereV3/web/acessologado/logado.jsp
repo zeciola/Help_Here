@@ -10,10 +10,10 @@
         <title>JSP Page</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- CSS Style Table-->
-        <link href="../css/logado.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/logado.css" rel="stylesheet">
 
         <!-- JavaStript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../index.jsp">Help Here</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Help Here</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-left">
@@ -44,9 +44,9 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pessoa
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../email.jsp">Consultar Pessoa</a></li>
-                            <li><a href="../AlterarPessoa.jsp">Alterar Pessoa</a></li>
-                            <li><a href="../emailSenha.jsp">Deletar Pessoa</a></li>
+                            <li><a href="${pageContext.request.contextPath}/email.jsp">Consultar Pessoa</a></li>
+                            <li><a href="${pageContext.request.contextPath}/AlterarPessoa.jsp">Alterar Pessoa</a></li>
+                            <li><a href="${pageContext.request.contextPath}/emailSenha.jsp">Deletar Pessoa</a></li>
                         </ul>
                     </li>
 
@@ -54,17 +54,17 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Instituição
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
                             <li><a href="ConsultarInstituicao.jsp">Consultar Instituição</a></li>
-                            <li><a href="../CNPJsenha.jsp">Alterar Instituição</a></li>
-                            <li><a href="../CNPJsenha.jsp">Deletar Instituição</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CNPJsenha.jsp">Alterar Instituição</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CNPJsenha.jsp">Deletar Instituição</a></li>
                         </ul>
                     </li>
 
 
-                    <li><a href="../tipoAcesso.jsp">Eventos</a></li>
+                    <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
 
-                    <li><a href="../admin/indexLogado.jsp">Admin</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/indexLogado.jsp">Admin</a></li>
 
                 </ul>
 
@@ -75,7 +75,7 @@
                             <a href="index.jsp">Home</a>
                         </li>
                         <li>
-                            <a href="../ControleAcesso?acao=Sair">Sair</a>
+                            <a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a>
                         </li>
 
                     </ul>
@@ -112,16 +112,16 @@
             
 
             <li>
-                <a href="../email.jsp">Consultar Pessoa</a>
+                <a href="${pageContext.request.contextPath}/email.jsp">Consultar Pessoa</a>
             </li>
             <li>
-                <a href="../AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
+                <a href="${pageContext.request.contextPath}/AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
             </li>
             <li>
-                <a href="../emailSenha.jsp">Deletar Pessoa</a>
+                <a href="${pageContext.request.contextPath}/emailSenha.jsp">Deletar Pessoa</a>
             </li>
             <li>
-                <a href="../ControlePessoa?acao=Listar">Listar Pessoa</a>
+                <a href="${pageContext.request.contextPath}/ControlePessoa?acao=Listar">Listar Pessoa</a>
             </li>
         </ul>
         

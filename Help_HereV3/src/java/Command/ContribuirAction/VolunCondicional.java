@@ -24,7 +24,7 @@ public class VolunCondicional implements ICommand{
         DAOContribuir cdao = new DAOContribuir();
         cdao.Voluntariar(c);
         
-        return "logado.jsp";
+        return "acessologado/logado.jsp";
     }
     
 }

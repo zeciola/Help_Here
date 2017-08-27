@@ -418,11 +418,11 @@ ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
 
-select * from endereco;
+select * from voluntario;
 
-select e.id, e.cep, e.nomelogradouro, e.numero, e.bairro, e.municipio, e.uf, e.pais, e.status from pessoa p, endereco e where p.id=2 and e.id = p.idendereco; 
+insert into voluntario (idpessoa, idevento, datavoluntario) values(1,1,CURRENT_DATE);
 
-
+delete from voluntario where id in (2,3,4,5);
 
 
 
