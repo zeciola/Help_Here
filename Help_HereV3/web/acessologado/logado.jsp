@@ -63,9 +63,9 @@
 
 
                     <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
-
-                    <li><a href="${pageContext.request.contextPath}/admin/indexLogado.jsp">Admin</a></li>
-
+                    <li><a href="${pageContext.request.contextPath}#">Meu Perfil</a></li>
+                    <li><a href="${pageContext.request.contextPath}#">Meus Eventos</a></li>                  
+                    
                 </ul>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -86,11 +86,8 @@
             </div>
             <!-- /.container -->
         </nav>
-
     </header>
-
     <body>
-
         <figure class="figure">
             <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
             <figcaption class="figure-caption">A caption for the above image.</figcaption>

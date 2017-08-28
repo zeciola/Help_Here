@@ -27,8 +27,17 @@ status boolean default true
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
 idPessoa serial,
-IDEvento serial
+IDEvento serial,
+datavoluntario date,
+certificado boolean default false,
+analisado boolean default false
 );
+
+select * from voluntario;
+
+alter table voluntario add column certificado boolean default false;
+alter table voluntario add column analisado boolean default false;
+
 
 CREATE TABLE Divulgacao (
 ID serial PRIMARY KEY,	
@@ -403,7 +412,6 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 
 -- TRUNCATE TABLE Pessoa cascade
 
-
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(IDEvento) REFERENCES Evento (ID);
@@ -417,17 +425,5 @@ ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
-
-
-insert into voluntario (idpessoa, idevento, datavoluntario) values(1,1,CURRENT_DATE);
-
-delete from voluntario where id in (1, 2,3,4,5);
-
-select v.id, v.idevento, v.datavoluntario, v.idpessoa from voluntario v, pessoa p, evento e where p.id = v.idpessoa and v.idevento = e.id and p.id = 1 and e.id = 1;
-
-
-select * from pessoa;
-
-
 
 select * from voluntario;
