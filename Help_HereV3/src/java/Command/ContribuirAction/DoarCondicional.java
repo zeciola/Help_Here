@@ -5,6 +5,7 @@ import java.util.Date;
 import java.io.File;
 import Command.ICommand;
 import DAO.DAOContribuir;
+import Model.Contribuicao;
 import Model.Evento;
 import Model.Usuario;
 import javax.servlet.http.HttpServletRequest;
@@ -42,11 +43,16 @@ public class DoarCondicional implements ICommand {
 
         //vincular ao banco 
         DAOContribuir dao = new DAOContribuir();
-        dao.DoarValor(u, e);
+        Contribuicao c = new Contribuicao();
+        c.setEv(e);
+        c.setUser(u);
+        c.setValor(valor);
+        
+        dao.DoarValor(c);
 
         //GERA BOLETO
         /*
-         * INFORMANDO DADOS SOBRE O CEDENTE.
+         *INFORMANDO DADOS SOBRE O CEDENTE.
          */
         Cedente cedente = new Cedente("Help Here", "00.000.208/0001-00");
 

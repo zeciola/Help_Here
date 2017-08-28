@@ -27,8 +27,17 @@ status boolean default true
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
 idPessoa serial,
-IDEvento serial
+IDEvento serial,
+datavoluntario date,
+certificado boolean default false,
+analisado boolean default false
 );
+
+select * from voluntario;
+
+alter table voluntario add column certificado boolean default false;
+alter table voluntario add column analisado boolean default false;
+
 
 CREATE TABLE Divulgacao (
 ID serial PRIMARY KEY,	
@@ -242,6 +251,10 @@ idCampanha serial,
 IDPessoa serial
 );
 
+insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa) values(100.00, CURRENT_DATE, 1, 2);
+
+select * from valoresdoados;
+
 alter table valoresdoados add column IDPessoa serial references Pessoa(id);
 
 alter table Voluntario add column DataVoluntario date;
@@ -399,7 +412,6 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 
 -- TRUNCATE TABLE Pessoa cascade
 
-
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(IDEvento) REFERENCES Evento (ID);
@@ -414,7 +426,4 @@ ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
 
-
-select * from evento;
-
-update evento set datafim='10/01/2017' where nome != 'EVENTO CARREGA INDEX';
+select * from voluntario;

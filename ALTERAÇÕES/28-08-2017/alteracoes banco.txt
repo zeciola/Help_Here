@@ -1,0 +1,4 @@
+
+alter table voluntario add column certificado boolean default false;
+
+alter table voluntario add column analisado boolean default false;

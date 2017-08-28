@@ -36,7 +36,7 @@ public class NewServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, DocumentException {
+            throws ServletException, IOException, DocumentException, InterruptedException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Document doc = null;
@@ -75,6 +75,7 @@ public class NewServlet extends HttpServlet {
                     os.close();
                 }
             }
+            new Thread().sleep(4000);
             response.sendRedirect("teste.jsp");
         }
     }
@@ -95,6 +96,8 @@ public class NewServlet extends HttpServlet {
             processRequest(request, response);
         } catch (DocumentException ex) {
             Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -112,6 +115,8 @@ public class NewServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DocumentException ex) {
+            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

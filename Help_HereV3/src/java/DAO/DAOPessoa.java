@@ -39,8 +39,8 @@ public class DAOPessoa implements iDAO {
     //SQL
     private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status) "
             + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
-    private static final String INSERT_INTERESSE="insert into Interesses (IDUsuario, Interesse)values(? , ?)";
+
+    private static final String INSERT_INTERESSE = "insert into Interesses (IDUsuario, Interesse)values(? , ?)";
 
     private static final String DELETE = "update pessoa set";
 
@@ -127,9 +127,8 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(2, interesse);
             pstmt.execute();
             conexao.commit();
-            
-        }
-        catch (SQLException e) {
+
+        } catch (SQLException e) {
             try {
                 conexao.rollback();
             } catch (SQLException ex) {
@@ -342,6 +341,41 @@ public class DAOPessoa implements iDAO {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }   
+        }
+    }
+
+    public Endereco ConsultarEndPessoa(Pessoa p) {
+        Endereco end = new Endereco();
+        try {
+            Connection conexao2 = Conexao.getConexao();
+            PreparedStatement pstmt = conexao2.prepareStatement("select * from pessoa p, endereco e where p.id=? and e.id = p.idendereco");
+            pstmt.setInt(1, p.getId());
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                end.setBairro(rs.getString("bairro"));
+                end.setCep(rs.getString("cep"));
+                end.setEstado(rs.getString("uf"));
+                end.setIdEndereco(Integer.parseInt(rs.getString("id")));
+                end.setMunicipio(rs.getString("municipio"));
+                end.setNomelogradouro(rs.getString("nomelogradouro"));
+                end.setNumeroen(rs.getInt("numero"));
+                end.setPais(rs.getString("pais"));
+                end.setStatus(rs.getBoolean("status"));
+
+            }
+            //Retorno do ArrayList
+            return end;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

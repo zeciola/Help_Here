@@ -1,5 +1,6 @@
 package Control;
 
+import DAO.DAOEndereco;
 import DAO.DAOEvento;
 import DAO.DAOInstituicao;
 import DAO.DAOPessoa;
@@ -33,14 +34,16 @@ public class ControleAcesso extends HttpServlet {
                 Usuario login = new Usuario();
                 login.setNome(request.getParameter("txtLogin"));
                 login.setSenha(request.getParameter("txtSenha"));
-
+                
                 DAOUsuario daousuario = new DAOUsuario();
                 Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
 
                 DAOPessoa pdao = new DAOPessoa();
                 int id = usuarioAutenticado.getPe().getId();
                 Pessoa p = pdao.ConsultarId(id);
-
+                                
+                p.setEn(pdao.ConsultarEndPessoa(p));
+                
                 usuarioAutenticado.setPe(p);
 
                 if (usuarioAutenticado != null) {
