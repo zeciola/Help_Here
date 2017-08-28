@@ -1,3 +1,4 @@
+alter table Voluntario add column NumBoleto varchar(54);
 
 alter table voluntario add column certificado boolean default false;
 

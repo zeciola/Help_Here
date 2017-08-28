@@ -259,6 +259,9 @@ alter table valoresdoados add column IDPessoa serial references Pessoa(id);
 
 alter table Voluntario add column DataVoluntario date;
 
+alter table Voluntario add column NumBoleto varchar(54);
+
+
 drop table doador cascade;
 drop table valordoador cascade;
 drop table doadodoador cascade;
