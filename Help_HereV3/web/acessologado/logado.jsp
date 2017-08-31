@@ -64,7 +64,7 @@
 
                     <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
                     <li><a href="${pageContext.request.contextPath}#">Meu Perfil</a></li>
-                    <li><a href="${pageContext.request.contextPath}#">Meus Eventos</a></li>                  
+                                      
                     
                 </ul>
 
