@@ -10,6 +10,7 @@ import DAO.DAOEvento;
 import DAO.DAOInstituicao;
 import Model.Evento;
 import Model.Instituicao;
+import Model.Usuario;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -26,16 +27,19 @@ public class ListarEventoAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
        ArrayList<Evento> i = new ArrayList();
         DAOEvento idao = new DAOEvento();
+        String URLP = request.getParameter("URLP");
         String URL = request.getParameter("URL");
         String UR = request.getParameter("UR");
+        String U = request.getParameter("U");
+        
+        
+        
+        
+        
+         if (URL!= null){
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
         Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
         int ID = usuarioLogado.getIdInstituicao();
-        
-        
-        
-        
-        if (URL!= null){
          i = idao.ListarPorID(ID);
         //add a lista de evento o objeto request
         request.setAttribute("listaEV", i);
@@ -45,6 +49,31 @@ public class ListarEventoAction implements ICommand{
         return "listaEvento.jsp";   
             
             
+        }
+        //listar eventos da pessoa esta ok falta a DAO 
+        else if (URLP!= null){
+        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        Usuario usuarioLogado =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
+        int ID = usuarioLogado.getId();
+         i = idao.ListarPorID(ID);
+        //add a lista de evento o objeto request
+        request.setAttribute("listaEV", i);
+        //envia o request para o jsp
+        RequestDispatcher rd= request.getRequestDispatcher("/listaEvento.jsp");
+        rd.forward(request, response);
+        return "listaEvento.jsp";   
+            
+            
+        }
+        
+        else if(U != null){
+            
+        i = idao.ListarPorData();
+        //add a lista de evento o objeto request
+        request.setAttribute("listaEVdataP", i);
+        RequestDispatcher rd= request.getRequestDispatcher("/EventosPessoa.jsp");
+        rd.forward(request, response); 
+        return "EventosPessoa.jsp";
         }
         
         else if(UR != null){

@@ -36,12 +36,12 @@
                     <br />
                     
                     
-                    <input style="background-color: white;color: #00c795;" type="button" onclick="location.href='Eventos.jsp';" value="Pessoa Fisica" />
+                    <%--<input style="background-color: white;color: #00c795;" type="button" onclick="location.href='Eventos.jsp';" value="Pessoa Fisica" />--%>
                     <!--<a href="SENHAentrarEventos.jsp">Pessoa Juridica</a> <br /> <br />-->
 
                     
                     
-                    <%--<a href="ControleAcesso?acao=EntrarEVPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Pessoa Fisica</a> --%>
+                    <a href="ControleAcesso?acao=EntrarEVPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Pessoa Fisica</a> 
 
 
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
