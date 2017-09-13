@@ -323,6 +323,44 @@ public class DAOUsuario implements iDAO {
         }
 
     }
+    public Usuario ConsultarId(int id) {
+        Pessoa pe = new Pessoa();
+        Usuario U = new Usuario();
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado from usuario u, pessoa p where u.id=? and p.id = u.idpessoa");
+            pstmt.setInt(1, id);
+            ResultSet rs;
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                pe.setId(rs.getInt("ID"));
+                pe.setNome(rs.getString("Nome"));
+                pe.setSobrenome(rs.getString("Sobrenome"));
+                pe.setCpf(rs.getString("CPF"));
+                pe.setRg(rs.getString("RG"));
+                pe.setPenalisado(rs.getBoolean("Penalisado"));
+                pe.setDatanascimento(rs.getString("Datanascimento"));
+                pe.setEmail(rs.getString("email"));
+                pe.setTelefone(rs.getString("Telefone"));
+                pe.setCelular(rs.getString("celular"));
+                pe.setSexo(rs.getString("sexo"));
+                pe.setStatus(rs.getBoolean("status"));
+                U.setPe(pe);
+            }
+            //Retorno do ArrayList
+            return U;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 
     //Autenticação metodo unido não necessita estar na interface!
     public Usuario autenticaUsuario(Usuario login) {

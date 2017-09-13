@@ -197,7 +197,9 @@ public class ControleAcesso extends HttpServlet {
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
                     rd.forward(request, response);
                 }
-            } else if (acao.equals("CriarEvento")) {
+            }
+            
+             else if (acao.equals("CriarEvento")) {
                 Instituicao inst = new Instituicao();
                 inst.setCnpj(request.getParameter("txtcnpj"));
                 inst.setSenha(request.getParameter("txtSenha"));
@@ -210,6 +212,26 @@ public class ControleAcesso extends HttpServlet {
                     sessaoInst.setAttribute("EventoAutorizado", InstituicaoAutenticada);
 
                     response.sendRedirect("CriarEventoInst.jsp");
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
+                    request.setAttribute("msg", "Login ou Senha Incorreto!");
+                    rd.forward(request, response);
+                }
+            }
+            
+            else if (acao.equals("CriarEventoPessoa")) {
+                Usuario login = new Usuario();
+                login.setNome(request.getParameter("txtLogin"));
+                login.setSenha(request.getParameter("txtSenha"));
+
+                DAOUsuario daousuario = new DAOUsuario();
+                Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
+
+                if (usuarioAutenticado != null) {
+                    HttpSession sessaoUsuario = request.getSession();
+                    sessaoUsuario.setAttribute("usuarioAutenticado", usuarioAutenticado);
+                    //redireciona para a pagina princiapal
+                    request.getRequestDispatcher("/ControlePessoa?acao=Consultar&URL=ok").forward(request, response);
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");

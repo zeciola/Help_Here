@@ -4,6 +4,7 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="Model.Pessoa"%>
 <%@page import="Model.Endereco"%>
 <%@page import="Model.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -123,13 +124,16 @@
                     </tr>
                     <%}%>
                     <br/>
-
+                
+                <%    
+                ArrayList<Instituicao> listaInstituicao = (ArrayList<Instituicao>)request.getAttribute("listaInst");
+                ArrayList<Pessoa> listasPessoa = (ArrayList<Pessoa>)request.getAttribute("listaPessoa");
+                if (listasPessoa.size() == 0 ) { %>
                 </table><br/><br/>
                  <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >                  
                 <h2>Instituição Responsavel</h2>
                 <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
-        
-            <tr align="center">
+                <tr align="center">
                     <td>Nome</td>
                     <td>Razao Social</td> 
                     <td>Tipo</td>
@@ -138,9 +142,7 @@
                     <td>E-mail</td>
                     
                 </tr>
-                <% //recupera a lista do request
-                ArrayList<Instituicao> listaInstituicao = (ArrayList<Instituicao>)request.getAttribute("listaInst");
-                for(Instituicao e: listaInstituicao){  %>  
+                <%for(Instituicao e: listaInstituicao){  %>  
                 <tbody style="background-color: #e6e6e6">
                 <tr align="center">
                     <td><%=e.getNome()%></td>
@@ -155,6 +157,36 @@
                 <%}%>
                 <br/>
            </table>
+                <% } else { %>
+                </table><br/><br/>
+                 <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >                  
+                <h2>Pessoa Responsavel</h2>
+                <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
+        
+            <tr align="center">
+                    <td>Nome</td>
+                    <td>Sobrenome</td> 
+                    <td>E-mail</td>
+                    <td>CPF</td>
+                    
+                </tr>
+                <% //recupera a lista do request
+                //ArrayList<Pessoa> listPessoa = (ArrayList<Pessoa>)request.getAttribute("listaPessoa");
+                for(Pessoa e: listasPessoa){  %>  
+                <tbody style="background-color: #e6e6e6">
+                <tr align="center">
+                    <td><%=e.getNome()%></td>
+                    <td><%=e.getSobrenome()%></td>
+                    <td><%=e.getEmail()%></td>
+                   <td><%=e.getCpf()%></td>
+                                   
+                   
+                </tr>
+                <%}%>
+                <br/>
+           </table>
+                <%}%>
+            
                
                 
     </body>

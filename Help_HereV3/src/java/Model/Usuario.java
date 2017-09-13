@@ -15,6 +15,8 @@ public class Usuario {
 
     //Gets
     
+    
+    
     public void setPe(Pessoa pe) {
         this.pe = pe;
     }

@@ -232,9 +232,10 @@ insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email,
 insert into Pessoa (id, nome, sobrenome, cpf, rg, penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo)
  values(3, 'novo', 'user', '3', '3', false, '01/01/1990', 'pessoa@email.com', 1, '2323-2323', '9999999', 'f');
 
+select * from PessoaEvento eve, Pessoa e where e.id = eve.idPessoa and eve.idEvento = 12
 --alter table Pessoa add column status boolean default true
 
-select * from pessoa
+select * from pessoa where id = 0
 
 CREATE TABLE Responsavel(
 ID serial PRIMARY KEY,
@@ -351,6 +352,15 @@ insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values ('28/04/2
 */
 insert into evento (idendereco, data, nome, datainicio, datafim, descricao, tipo) values (1, '25/05/2017', 'EVENTO 5 HOJE', '27/05/2017', '31/05/2017', 'Evento 4', 'Doação');
 
+
+create table PessoaEvento (
+ID serial,
+idPessoa	int,
+idEvento	int,
+FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID),
+FOREIGN KEY(idEvento) REFERENCES Evento (ID)
+);
+
 create table EnderecoEvento (
 ID serial,
 idEvento	int,
@@ -423,6 +433,8 @@ ALTER TABLE Divulgacao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID
 ALTER TABLE EmailInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
+ALTER TABLE PessoaEvento ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
+ALTER TABLE PessoaEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);

@@ -45,10 +45,10 @@
                     
                    
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="ControleAcesso?acao=CriarEvento&txtcnpj=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Criar</a> </li>
+                        <li><a href="ControleAcesso?acao=CriarEventoPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Criar</a> </li>
                         <li><a href="ConsultaNomeEvento.jsp">Consultar</a></li>
                         <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Excluir</a></li>-->
-                        <li><a href="ControleEvento?acao=Listar">Listar</a></li>
+                        <li><a href="ControleEvento?acao=Listar&URP=ok">Listar</a></li>
                         <li><a href="ControleEvento?acao=Listar&URLP=ok">Meus Eventos</a></li>
                         <li><a href="ControleAcesso?acao=Sair">Sair</a></li>
 
