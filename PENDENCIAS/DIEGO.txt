@@ -5,23 +5,23 @@
 * PREENCHER DADOS DO BOLETO (FALAR COM LUCAS).
 * NOTIFICAÇÃO POR E-MAIL CERTIFICADO PRONTO(FALAR COM LUCAS).
 * BAIXA BANCARIA(SIMULAÇÃO).
-* BOLETO GERAR NUMERO E SALVAR NO BANCO PARA A BAIXA.
+* BOLETO GERAR cNUMERO E SALVAR NO BANCO PARA A BAIXA.
 * VOLUNTARIO BAIXAR CERTIFICADO(PERFIL MEUS CERTIFICADOS).
 * PERGUNTAR LUCAS NUMERO GERA BOLETO AONDE FICA ?
 
 
 
 
+Pessoa fisica
+pessoa logada -> eventos -> visualiza todos os eventos que criou e interagiu
 
-pessoa logada -> acessa meus eventos -> visualiza todos os eventos que interagiu ou criou
+*eventos que participou -> ele visualiza suas doações e participações como voluntario
+	podendo baixar certificados se estiver disponivel
+*E visualiza evento em que ele ajudou com doações
 
-eventos que participou -> ele visualiza suas doações e participações como voluntario
-podendo baixar certificados se estiver disponivel
-
-eventos criados -> ele  visualiza informações de como esta o andamento de seus eventos
-
-eventos criados tipo voluntariado ->dentro do evento aparece os voluntarios aguardando check
-
+Pessoa juridica
+*eventos criados -> ele  visualiza informações de como esta o andamento de seus eventos
+*eventos de voluntariado ->abrindo o evento aparece os voluntarios aguardando check e a lista de candidatos
 
 
 ******A FAZER******
