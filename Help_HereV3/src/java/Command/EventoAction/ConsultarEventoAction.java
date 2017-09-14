@@ -11,15 +11,12 @@ import DAO.DAOInstituicao;
 import Model.Endereco;
 import Model.Evento;
 import Model.Instituicao;
+import Model.Pessoa;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 11141104689
- */
 public class ConsultarEventoAction implements ICommand{
 
     @Override
@@ -27,6 +24,7 @@ public class ConsultarEventoAction implements ICommand{
         ArrayList<Evento> eve = new ArrayList();
         ArrayList<Endereco> end = new ArrayList();
         ArrayList<Instituicao> inst = new ArrayList();
+        ArrayList<Pessoa> pe = new ArrayList();
         DAOEvento idao = new DAOEvento();
         String N = null;
         
@@ -50,24 +48,40 @@ public class ConsultarEventoAction implements ICommand{
             
             inst = idao.InstituicaoEvento(eve.get(j).getIdEvento());
             
+            pe = idao.PessoaEvento(eve.get(j).getIdEvento());
+            
         }   
             
         //despachar tudo 
+        
+          request.setAttribute("listaEV", eve);
+         request.setAttribute("listaEnd", end);
+         request.setAttribute("listaInst", inst);
+         request.setAttribute("listaPessoa", pe);
+         
+       // String urla = request.getParameter("urla");
+        String url = request.getParameter("url");
+        
+       /* if(urla!=null){
+            RequestDispatcher rd= request.getRequestDispatcher("/listaEVCompletoPessoa.jsp");
+        rd.forward(request, response);  
+        
+        }*/
+        
+        if(url!=null){
          request.setAttribute("listaEV", eve);
          request.setAttribute("listaEnd", end);
          request.setAttribute("listaInst", inst);
-
-        
-        String url = request.getParameter("url");
-        if(url!=null){
+         request.setAttribute("listaPessoa", pe);
           RequestDispatcher rd= request.getRequestDispatcher("/listaEVCompleto.jsp");
         rd.forward(request, response);  
         }else{
-            RequestDispatcher rd= request.getRequestDispatcher("/listaEvento.jsp");
+            request.setAttribute("listaEV", eve);
+            RequestDispatcher rd= request.getRequestDispatcher("/ConsultaEvento.jsp");
         rd.forward(request, response);
         }
         
-        return "listaEvento.jsp";
+        return "ConsultaEvento.jsp";
     }
     // falta os metodos da daoEvento  inst metodo errado
 }

@@ -27,9 +27,9 @@ public class ListarInstituicaoAction implements ICommand {
         //add a lista de clientes o objeto request
         request.setAttribute("lista", i);
         //envia o request para o jsp
-        RequestDispatcher rd= request.getRequestDispatcher("/listaInstituicao.jsp");
+        RequestDispatcher rd= request.getRequestDispatcher("/acessologado/listaInstituicao.jsp");
         rd.forward(request, response);
-        return "listaInstituicao.jsp";
+        return "acessologado/listaInstituicao.jsp";
     }
     
 }

@@ -18,9 +18,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
 
         <!-- barra de superior -->
 
@@ -60,7 +60,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="ControleInstituicao" method="post" id="contact_form">
+        <form class="well form-horizontal" action="../ControleInstituicao" method="post" id="contact_form">
             <fieldset>
 
 

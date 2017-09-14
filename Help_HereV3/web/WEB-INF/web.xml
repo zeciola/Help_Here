@@ -36,6 +36,22 @@
         <servlet-name>uploadIMg</servlet-name>
         <servlet-class>Control.uploadIMg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControleContribuir</servlet-name>
+        <servlet-class>Control.ControleContribuir</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>testeItext</servlet-name>
+        <servlet-class>.testeItext</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>Control.NewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GeraBoleto</servlet-name>
+        <servlet-class>Control.GeraBoleto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>
         <url-pattern>/ControleAcesso</url-pattern>
@@ -67,6 +83,22 @@
     <servlet-mapping>
         <servlet-name>uploadIMg</servlet-name>
         <url-pattern>/uploadIMg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControleContribuir</servlet-name>
+        <url-pattern>/ControleContribuir</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>testeItext</servlet-name>
+        <url-pattern>/testeItext</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeraBoleto</servlet-name>
+        <url-pattern>/GeraBoleto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

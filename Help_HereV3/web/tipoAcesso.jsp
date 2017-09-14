@@ -4,6 +4,7 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,21 +14,36 @@
         <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
+        <%
+            Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
+            if (usuario != null) {
+        %> 
         <div class="wrapper">
             <div class="container">
                 <h1>Selecione seu tipo de acesso</h1> <br /> <br />
                 <form class="form" method="post" action="ControleEvento">
-                    
-                    
+
+
 
                     <!-- BOTTON Funcionando -->
-                  <!--  <button type="submit" name="acao" value="Atualizar&url=ok">Confirmar</button>-->
-                 
-                  <!--<a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV">Pessoa Fisica</a> <br /> <br />-->
-                  <a href="SENHAentrarEventos.jsp">Pessoa Juridica</a>
-                  
+                    <!--  <button type="submit" name="acao" value="Atualizar&url=ok">Confirmar</button>-->
+
+                    <!--<a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV">Pessoa Fisica</a> <br /> <br />-->
                     
                     
+                    <input style="background-color: white;color: #00c795;" type="button" onclick="location.href='SENHAentrarEventos.jsp';" value="Pessoa Juridica" />
+
+                    <br />
+                    
+                    
+                    <%--<input style="background-color: white;color: #00c795;" type="button" onclick="location.href='Eventos.jsp';" value="Pessoa Fisica" />--%>
+                    <!--<a href="SENHAentrarEventos.jsp">Pessoa Juridica</a> <br /> <br />-->
+
+                    
+                    
+                    <a href="ControleAcesso?acao=EntrarEVPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Pessoa Fisica</a> 
+
+
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
                 </form>
             </div>
@@ -46,5 +62,6 @@
             <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
             <script src="js/login.js"></script>
         </div>
+        <%}%>
     </body>
 </html>

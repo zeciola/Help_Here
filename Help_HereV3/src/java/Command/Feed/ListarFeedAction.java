@@ -3,7 +3,7 @@ package Command.Feed;
 import Command.ICommand;
 import DAO.DAOFeeds;
 import Model.Feeds;
-import Model.Login;
+import Model.Usuario;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +15,7 @@ public class ListarFeedAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
         HttpSession sessaoUsuario = request.getSession();
-        Login l = (Login) sessaoUsuario.getAttribute("usuarioAutenticado");      
+        Usuario l = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");      
         
         int i = Integer.parseInt(request.getParameter("iduser"));
         DAOFeeds daofeed = new DAOFeeds();

@@ -9,13 +9,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Atualização da dados da Instituição</title>
-        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="../css/login.css">
     </head>
     <body>
         <div class="wrapper">
             <div class="container">
                 <h1>Digite o CNPJ da Instituiçaõ</h1>
-                <form class="form" method="post" action="ControleInstituicao">
+                <form class="form" method="post" action="../ControleInstituicao">
                     <input type="text" name="txtcnpj" placeholder="CNPJ">
                     
 

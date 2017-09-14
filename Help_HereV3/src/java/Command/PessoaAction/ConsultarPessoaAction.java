@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 public class ConsultarPessoaAction implements ICommand{
 
@@ -19,16 +20,34 @@ public class ConsultarPessoaAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ArrayList<Endereco> en = new ArrayList();
         ArrayList<Pessoa> pe = new ArrayList();
-        ArrayList<Login> lo = new ArrayList();
+        Usuario U = new Usuario();
+        ArrayList<Usuario> lo = new ArrayList();
+        DAOUsuario idao = new DAOUsuario();
         
-        
+        String URL = request.getParameter("URL");
         //Variaveis
         String email = null;
         
         //Acao
         String acao = request.getParameter("acao");
         
-        if(acao.equals("Consultar")){
+        if (URL!= null){
+        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        Usuario usuarioLogado =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
+        int ID = usuarioLogado.getPe().getId();
+        //parei aqui 
+         U = idao.ConsultarId(ID); 
+        //add a lista de evento o objeto request
+        request.setAttribute("pessoa", U);
+        //envia o request para o jsp
+        RequestDispatcher rd= request.getRequestDispatcher("/CriarEventoPessoa.jsp");
+        rd.forward(request, response);
+        return "CriarEventoPessoa.jsp";   
+            
+            
+        }
+        
+        else if(acao.equals("Consultar")){
             email = (request.getParameter("txtemail"));
         }else{
             return "erro.jsp";

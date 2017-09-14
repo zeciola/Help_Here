@@ -211,7 +211,7 @@ update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) whe
 
 update Evento set (datainicio, datafim, nome, tipo, descricao) = ('01/01/2017','12/12/2017','campanhas do agasalho','Doacao','doar muito') where nome = 'campanha do agasalho'
 
-update Evento set tipo = 'Doação' where id = 
+update Evento set datafim = '02/04/2017' where id = 3
 
 alter table Evento drop column dataFim
 select * from Evento where nome ilike '%agasalho%' and status = true
@@ -328,7 +328,7 @@ insert into InstituicaoEvento (idEvento, idInstituicao) values (11,2)
 
 insert into InstituicaoEvento (idEvento, idInstituicao) values (11,2)
 
-select * from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and eve.idEvento = 1
+select * from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and eve.idEvento = 4
 
 update Endereco set (cep, nomelogradouro, numero, bairro, municipio, uf, pais) = ('0111','rua nove',09,'jardim camila','MOGI','SP','Brasil')   where id = 3
 

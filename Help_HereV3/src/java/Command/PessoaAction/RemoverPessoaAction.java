@@ -18,7 +18,7 @@ public class RemoverPessoaAction implements ICommand {
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
-        Login lo = new Login();
+        Usuario lo = new Usuario();
 
         //Instanciando Objetos
         DAOUsuario daou = new DAOUsuario();
@@ -27,7 +27,7 @@ public class RemoverPessoaAction implements ICommand {
         String Senha = request.getParameter("txtSenha");;
 
         HttpSession sessoaUsuario = ((HttpServletRequest) request).getSession();
-        Login usuarioLogado = (Login) sessoaUsuario.getAttribute("usuarioAutenticado");
+        Usuario usuarioLogado = (Usuario) sessoaUsuario.getAttribute("usuarioAutenticado");
         
        String EmailU = usuarioLogado.getNome();
         

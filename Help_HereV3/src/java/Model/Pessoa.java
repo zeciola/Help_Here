@@ -9,7 +9,6 @@ import java.util.Date;
 public class Pessoa {
 
     private Endereco en;
-
     private int id;
     private String nome;
     private String sobrenome;
@@ -18,7 +17,6 @@ public class Pessoa {
     private boolean penalisado;
     private String datanascimento;
     private String email;
-
     //private int IDEndereco;
     private String telefone;
     private String celular;

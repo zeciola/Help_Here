@@ -1,141 +1,112 @@
-<%@page import="Model.Feeds"%>
+<%@page import="Model.Usuario"%>
+<%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Model.Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- CSS Style Table-->
-        <link href="../css/logado.css" rel="stylesheet">
+        <link href="css/logado.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css2/ocultar.css">
 
         <!-- JavaStript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     </head>
+    <body>
+        <header>
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.jsp">Help Here</a>
+                    </div>
 
-    <header>
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">Help Here</a>
+                    <ul class="nav navbar-nav navbar-left">
+                        <!-- Dropdown submenu -->
+                    </ul>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="index.jsp">Home</a>
+                            </li>
+                            <li>
+                                <a href="../ControleAcesso?acao=Sair" style="display : none">Sair</a>
+                                <a href="login.jsp">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
                 </div>
+                <!-- /.container -->
+            </nav>
+        </header>
 
-                <ul class="nav navbar-nav navbar-left">
+        <%
+            Evento Lista = (Evento) request.getAttribute("evento");
+        %>
 
-                    <!-- Dropdown submenu -->
+        <figure class="figure">
+            <h2>Evento <%= Lista.getNome()%></h2>    
+            <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
+        </figure>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pessoa
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../email.jsp">Consultar Pessoa</a></li>
-                            <li><a href="../AlterarPessoa.jsp">Alterar Pessoa</a></li>
-                            <li><a href="../emailSenha.jsp">Deletar Pessoa</a></li>
-                        </ul>
-                    </li>
+        <p>Descrição do evento</p>
+        <p>Tipo:
+            <span id="tipo">
+                <%= Lista.getTipoEvento()%>
+            </span>
+        </p>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Instituição
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
-                            <li><a href="../CNPJ.jsp">Consultar Instituição</a></li>
-                            <li><a href="../CNPJsenha.jsp">Alterar Instituição</a></li>
-                            <li><a href="../CNPJsenha.jsp">Deletar Instituição</a></li>
-                        </ul>
-                    </li>
+        <p>Contéudo <%= Lista.getDescricao()%></p>
 
+        <div id="doar" class= "paraExibicao">
+            Contador da campanha
+        </div>
 
-                    <li><a href="../tipoAcesso.jsp">Eventos</a></li>
+        <div id="volun" class="paraExibicao">
+            Contador voluntarios 
+        </div>
 
-                    <li><a href="../admin/indexLogado.jsp">Admin</a></li>
+        <canvas class="loader2"></canvas>
 
-                </ul>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="../ControleAcesso?acao=Sair">Sair</a>
-                        </li>
-
+        <button type="button" onclick="Mudarestado('minhaDiv')">Click Para Ajudar</button>
+        <br>
+        
+        <div id="minhaDiv" style="display: none">
+            <form class="form" method="post" action="ControleAcesso">
+                <input type="text" name="txtid" value="<%=Lista.getIdEvento()%>" style="display: none">
+                <input type="text" name="txtLogin" placeholder="Usuario">
+                <input type="password" name="txtSenha" placeholder="Senha">
+                <button type="submit" name="acao" value="Entrar">Entrar</button>
+                <div>
+                    <ul>
+                        <li><a href="CadastroPessoaForm.jsp" class="senha-link">Cadastrar-se</a></li>
+                        <li><a href="#" class="senha-link">Esqueceu a senha?</a></li>
                     </ul>
                 </div>
+            </form>
+        </div>
 
-
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-    </header>
-    <body>
-        <figure class="figure">
-            <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-            <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>
-        <a href="../ControleAcesso?acao=Sair">Logoff</a>
-        <a href="../admin/indexLogado.jsp">admin</a>
-        <a href="../tipoAcesso.jsp">Eventos</a>
-        <h2>Cadastrar</h2>
-        <ul>
-            <li>
-                <a href="../CadastroInstituicao.jsp">Cadastrar Instituição</a>
-            </li>
-            <li>
-                <h2>Consultar</h2>
-            </li>
-            <li>
-                <a href="../CNPJ.jsp">Consultar Instituição</a>
-            </li>
-
-            <li>
-                <a href="../email.jsp">Consultar Pessoa</a>
-            </li>
-        </ul>
-        <h2>Alterar</h2>
-        <ul>
-            <li>
-                <a href="../CNPJsenha.jsp">Alterar Instituição</a>
-            </li>
-            <li>
-                <a href="../AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
-            </li>
-            <li>
-                <h2>Deletar</h2>
-            </li>
-            <li>
-                <a href="../CNPJsenha.jsp">Deletar Instituição</a>
-                <br/>
-                <a href="../emailSenha.jsp">Deletar Pessoa</a>
-            </li>
-        </ul>
-
-        <h2>Listar Instituição</h2>
-        <form action="../ControleInstituicao" method="post">
-            <input type="submit" name="acao" value="Listar"><br>
-        </form>
-        <h2>Listar Pessoa</h2>
-        <form action="../ControlePessoa" method="post">
-            <input type="submit" name="acao" value="Listar"><br>
-        </form>
-    </body>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
+        <script src="js2/jquery.classyloader.min.js"></script>
+        <script src="js2/loader.js"></script>   
+        <script src="js2/contribuicao.js"></script>
+    </body>   
 </html>

@@ -11,7 +11,7 @@ import DAO.DAOInstituicao;
 import DAO.DAOUsuario;
 import Model.Endereco;
 import Model.Instituicao;
-import Model.Login;
+import Model.Usuario;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;

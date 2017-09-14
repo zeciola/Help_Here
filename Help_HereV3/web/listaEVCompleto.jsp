@@ -4,6 +4,7 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="Model.Pessoa"%>
 <%@page import="Model.Endereco"%>
 <%@page import="Model.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,27 +15,58 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.DAOEvento"%>
 <html>
-    <head><link href="estilo.css" rel="stylesheet">
+     <head><link href="estilo.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Listar Pessoa</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- CSS Style Table-->
+        <link href="css/styletable.css" rel="stylesheet">
     </head>
+
+    <header>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Help Here</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                                <li>
+                                    <a href="Eventos.jsp">Eventos</a>
+                                </li>
+                                <li>
+                                    <a href="CNPJsenhaEvento.jsp">cadastrar Evento</a>
+                                </li>
+			
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+    </header>
     <body>
-        <div id="corpo">
-        <header id="cabecalhop">  <!-- CABEÇALHO DA PAGINA-->
-			<header>
-				<a href="index.jsp"></a>
-			</header>
-			<nav id="menu">
-				<h1>Menu Principal</h1>
-				<ul>
-                                <li><a href="Eventos.jsp">Eventos</a></li>
-                                <li><a href="CriarEventoInst.jsp">cadastrar Evento</a></li>
-				</ul>
-                        </nav>
-        <h1>Resultado da Pesquisa</h1> <br /> <br />
+        <div class="row-fluid">
         
+        <h1>Resultado da Pesquisa</h1> <br /> <br />
+        <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >
         <h2>Evento</h2><br /> 
-        <table border="1" width="20%" cellpadding="2" >
+        <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
             <tr align="center">
                     <td>Data Inicio</td>
                     <td>Data Fim</td> 
@@ -45,7 +77,8 @@
             </tr>
                 <% //recupera a lista do request
                 ArrayList<Evento> listaEvento = (ArrayList<Evento>)request.getAttribute("listaEV");
-                for(Evento e: listaEvento){  %>  
+                for(Evento e: listaEvento){  %> 
+                 <tbody style="background-color: #e6e6e6">
                 <tr align="center">
                     <td><%=e.getDataInicio()%></td>
                     <td><%=e.getDataFim()%></td>
@@ -60,9 +93,9 @@
            
         </table><br /><br />
            
-               
+        <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >       
         <h2>Endereço</h2><br /> 
-        <table border="1" width="20%" cellpadding="2" >
+        <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
             <tr align="center">
                         <td>Endereco</td>
                         <td>Número</td> 
@@ -76,6 +109,7 @@
                 <% //recupera a lista do request
                 ArrayList<Endereco> EnderecoEvento = (ArrayList<Endereco>)request.getAttribute("listaEnd");
                 for(Endereco en: EnderecoEvento){  %>  
+                <tbody style="background-color: #e6e6e6">
                 <tr align="center">
                         <td><%=en.getNomelogradouro()%></td>
                         <td><%=en.getNumeroen()%></td>
@@ -90,12 +124,16 @@
                     </tr>
                     <%}%>
                     <br/>
-
+                
+                <%    
+                ArrayList<Instituicao> listaInstituicao = (ArrayList<Instituicao>)request.getAttribute("listaInst");
+                ArrayList<Pessoa> listasPessoa = (ArrayList<Pessoa>)request.getAttribute("listaPessoa");
+                if (listasPessoa.size() == 0 ) { %>
                 </table><br/><br/>
-                                   
-                <h2>Instituição Responsavel</h2>  
-        <table border="1" width="20%" cellpadding="2" >
-            <tr align="center">
+                 <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >                  
+                <h2>Instituição Responsavel</h2>
+                <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
+                <tr align="center">
                     <td>Nome</td>
                     <td>Razao Social</td> 
                     <td>Tipo</td>
@@ -104,9 +142,8 @@
                     <td>E-mail</td>
                     
                 </tr>
-                <% //recupera a lista do request
-                ArrayList<Instituicao> listaInstituicao = (ArrayList<Instituicao>)request.getAttribute("listaInst");
-                for(Instituicao e: listaInstituicao){  %>  
+                <%for(Instituicao e: listaInstituicao){  %>  
+                <tbody style="background-color: #e6e6e6">
                 <tr align="center">
                     <td><%=e.getNome()%></td>
                     <td><%=e.getRazao()%></td>
@@ -120,6 +157,36 @@
                 <%}%>
                 <br/>
            </table>
+                <% } else { %>
+                </table><br/><br/>
+                 <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >                  
+                <h2>Pessoa Responsavel</h2>
+                <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
+        
+            <tr align="center">
+                    <td>Nome</td>
+                    <td>Sobrenome</td> 
+                    <td>E-mail</td>
+                    <td>CPF</td>
+                    
+                </tr>
+                <% //recupera a lista do request
+                //ArrayList<Pessoa> listPessoa = (ArrayList<Pessoa>)request.getAttribute("listaPessoa");
+                for(Pessoa e: listasPessoa){  %>  
+                <tbody style="background-color: #e6e6e6">
+                <tr align="center">
+                    <td><%=e.getNome()%></td>
+                    <td><%=e.getSobrenome()%></td>
+                    <td><%=e.getEmail()%></td>
+                   <td><%=e.getCpf()%></td>
+                                   
+                   
+                </tr>
+                <%}%>
+                <br/>
+           </table>
+                <%}%>
+            
                
                 
     </body>

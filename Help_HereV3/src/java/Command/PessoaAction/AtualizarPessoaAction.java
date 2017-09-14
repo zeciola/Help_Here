@@ -4,7 +4,7 @@ import DAO.DAOEndereco;
 import DAO.DAOPessoa;
 import DAO.DAOUsuario;
 import Model.Endereco;
-import Model.Login;
+import Model.Usuario;
 import Model.PerfilDeAcesso;
 import Model.Pessoa;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ public  class AtualizarPessoaAction implements ICommand{
         //Instanciando Objetos
         Endereco en = new Endereco();
         Pessoa pe = new Pessoa();
-        Login lo = new Login();
+        Usuario lo = new Usuario();
         
         String Email = null;
         String Senha = null;
@@ -26,7 +26,7 @@ public  class AtualizarPessoaAction implements ICommand{
         //Resgatar sessão
         
         HttpSession sessoaUsuario =((HttpServletRequest)request).getSession();
-        Login usuarioLogado = (Login)sessoaUsuario.getAttribute("usuarioAutenticado");
+        Usuario usuarioLogado = (Usuario)sessoaUsuario.getAttribute("usuarioAutenticado");
         
         Email = usuarioLogado.getNome();
         Senha = usuarioLogado.getSenha();

@@ -43,9 +43,8 @@
                     <li> </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="Sobre.html">Sobre</a></li>
-                    <li><a href="#">Cadastrar-se</a> </li>
-                    <li><a href="login.jsp">Entrar</a> </li>
+                    <li><a href="Eventos.jsp">Eventos</a> </li>
+                    <li><a href="ControleAcesso?acao=Sair">Sair</a> </li>
                 </ul>
 
             </div>

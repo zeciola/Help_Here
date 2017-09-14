@@ -24,18 +24,20 @@ pais varchar(45),
 status boolean default true
 );
 
--- drop table endereco cascade
---alter table Endereco add column status boolean default true
-
---alter table Endereco drop column status 
-
---select * from Endereco
-
 CREATE TABLE Voluntario (
 ID serial PRIMARY KEY,
 idPessoa serial,
-IDEvento serial
+IDEvento serial,
+datavoluntario date,
+certificado boolean default false,
+analisado boolean default false
 );
+
+select * from voluntario;
+
+alter table voluntario add column certificado boolean default false;
+alter table voluntario add column analisado boolean default false;
+
 
 CREATE TABLE Divulgacao (
 ID serial PRIMARY KEY,	
@@ -69,11 +71,6 @@ status boolean default true
 
 insert into Usuario (id, IDPessoa, Tipo, Login, senha) values(3 ,3, 'comum', '3', '3');
 
-select * from usuario;
-
---alter table usuario add column status boolean default true 
---select * from usuario
-
 create table Interesses(
 ID serial PRIMARY KEY,
 IDUsuario integer references Usuario(id),
@@ -94,8 +91,6 @@ select * from interesses
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
 
-
---Trazer para o banco
 --Trazer para o banco
 
 select * from evento e, feeds f, usuario u where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3;
@@ -169,12 +164,13 @@ delete from EnderecoInstituicao where ID = 20
 
 alter table EnderecoInstituicao add column status boolean
 
+update usuario set login = 'admin' where ID = 37
 
 update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
 
 select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID 
 
-select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.CNPJ = '100' and inst.senha = '456'
+select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.CNPJ = '30' and inst.senha = '123'
 
 DELETE from Instituicao, EnderecoInstituicao using Instituicao inner join EnderecoInstituicao where Instituicao.ID = EnderecoInstituicao.ID and CNPJ = '5' 
 
@@ -236,9 +232,10 @@ insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email,
 insert into Pessoa (id, nome, sobrenome, cpf, rg, penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo)
  values(3, 'novo', 'user', '3', '3', false, '01/01/1990', 'pessoa@email.com', 1, '2323-2323', '9999999', 'f');
 
+select * from PessoaEvento eve, Pessoa e where e.id = eve.idPessoa and eve.idEvento = 12
 --alter table Pessoa add column status boolean default true
 
-select * from pessoa
+select * from pessoa where id = 0
 
 CREATE TABLE Responsavel(
 ID serial PRIMARY KEY,
@@ -251,8 +248,33 @@ CREATE TABLE ValoresDoados (
 ID serial PRIMARY KEY,
 Valor numeric(20),
 dataDoado date,
-idCampanha serial
+idCampanha serial,
+IDPessoa serial
 );
+
+insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa) values(100.00, CURRENT_DATE, 1, 2);
+
+select * from valoresdoados;
+
+alter table valoresdoados add column IDPessoa serial references Pessoa(id);
+
+alter table Voluntario add column DataVoluntario date;
+
+alter table Voluntario add column NumBoleto varchar(54);
+
+
+drop table doador cascade;
+drop table valordoador cascade;
+drop table doadodoador cascade;
+
+drop table itemdoado cascade;
+drop table item cascade;
+
+drop table campanhaitens cascade;
+drop table campanhadinheiro cascade;
+
+select * from doadodoador;
+select * from valordoador;
 
 CREATE TABLE ItemDoado (
 ID serial PRIMARY KEY,
@@ -330,6 +352,15 @@ insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values ('28/04/2
 */
 insert into evento (idendereco, data, nome, datainicio, datafim, descricao, tipo) values (1, '25/05/2017', 'EVENTO 5 HOJE', '27/05/2017', '31/05/2017', 'Evento 4', 'Doação');
 
+
+create table PessoaEvento (
+ID serial,
+idPessoa	int,
+idEvento	int,
+FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID),
+FOREIGN KEY(idEvento) REFERENCES Evento (ID)
+);
+
 create table EnderecoEvento (
 ID serial,
 idEvento	int,
@@ -394,7 +425,6 @@ FOREIGN KEY(ID_Evento) REFERENCES Evento (ID)
 
 -- TRUNCATE TABLE Pessoa cascade
 
-
 ALTER TABLE Doador ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Voluntario ADD FOREIGN KEY(IDEvento) REFERENCES Evento (ID);
@@ -403,8 +433,12 @@ ALTER TABLE Divulgacao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID
 ALTER TABLE EmailInstituicao ADD FOREIGN KEY(idInstituicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(idInstuicao) REFERENCES Instituicao (ID);
 ALTER TABLE InstituicaoEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
+ALTER TABLE PessoaEvento ADD FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID);
+ALTER TABLE PessoaEvento ADD FOREIGN KEY(IdEvento) REFERENCES Evento (ID);
 ALTER TABLE Usuario ADD FOREIGN KEY(IDPessoa) REFERENCES Pessoa (ID);
 ALTER TABLE InstituicaoPessoa ADD FOREIGN KEY(ID_Pessoa) REFERENCES Pessoa (ID);
 ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
+
+select * from voluntario;

@@ -2,9 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="pt-br">
-
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,7 +75,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <a href="index.html">
+                        <a href="index.jsp">
                             <h1 class="tagline">Help Here - Ajude quem mais precisa!</h1>
                         </a>
                     </div>
@@ -115,14 +113,11 @@
                 </div>
             </div>
             <!-- /.row -->
-
             <hr>
-
             <div class="row">
-
                 <% ArrayList<Evento> Lista = (ArrayList<Evento>) request.getAttribute("evento");
                     if (Lista == null) {
-                        request.getRequestDispatcher("/ControleEvento?acao=Listar").forward(request, response);
+                        request.getRequestDispatcher("/ControleEvento?acao=Listar1").forward(request, response);
                         }%>
                 <%for (Evento e : Lista) {%>
                 <div class="col-sm-4">
@@ -131,13 +126,14 @@
                     <p><%=e.getDescricao()%></p>
                     <p><%=e.getDataInicio()%></p>
                     <p><%=e.getDataFim()%></p>
+                    <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">link teste</a>
                 </div>
                 <%}%>
             </div>
+            <a href="NewServlet">Teste certificado</a>
+            <a href="GeraBoleto">Teste Geraboleto</a>
             <!-- /.row -->
-
             <hr>
-
             <!-- Footer -->
             <footer>
                 <div class="row">

@@ -39,8 +39,8 @@ public class DAOPessoa implements iDAO {
     //SQL
     private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status) "
             + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
-    private static final String INSERT_INTERESSE="insert into Interesses (IDUsuario, Interesse)values(? , ?)";
+
+    private static final String INSERT_INTERESSE = "insert into Interesses (IDUsuario, Interesse)values(? , ?)";
 
     private static final String DELETE = "update pessoa set";
 
@@ -127,9 +127,8 @@ public class DAOPessoa implements iDAO {
             pstmt.setString(2, interesse);
             pstmt.execute();
             conexao.commit();
-            
-        }
-        catch (SQLException e) {
+
+        } catch (SQLException e) {
             try {
                 conexao.rollback();
             } catch (SQLException ex) {
@@ -308,4 +307,75 @@ public class DAOPessoa implements iDAO {
 
     }
 
+    public Pessoa ConsultarId(int id) {
+        Pessoa pe = new Pessoa();
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado from usuario u, pessoa p where u.id=? and p.id = u.idpessoa");
+            pstmt.setInt(1, id);
+            ResultSet rs;
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                pe.setId(rs.getInt("ID"));
+                pe.setNome(rs.getString("Nome"));
+                pe.setSobrenome(rs.getString("Sobrenome"));
+                pe.setCpf(rs.getString("CPF"));
+                pe.setRg(rs.getString("RG"));
+                pe.setPenalisado(rs.getBoolean("Penalisado"));
+                pe.setDatanascimento(rs.getString("Datanascimento"));
+                pe.setEmail(rs.getString("email"));
+                pe.setTelefone(rs.getString("Telefone"));
+                pe.setCelular(rs.getString("celular"));
+                pe.setSexo(rs.getString("sexo"));
+                pe.setStatus(rs.getBoolean("status"));
+            }
+            //Retorno do ArrayList
+            return pe;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public Endereco ConsultarEndPessoa(Pessoa p) {
+        Endereco end = new Endereco();
+        try {
+            Connection conexao2 = Conexao.getConexao();
+            PreparedStatement pstmt = conexao2.prepareStatement("select * from pessoa p, endereco e where p.id=? and e.id = p.idendereco");
+            pstmt.setInt(1, p.getId());
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                end.setBairro(rs.getString("bairro"));
+                end.setCep(rs.getString("cep"));
+                end.setEstado(rs.getString("uf"));
+                end.setIdEndereco(Integer.parseInt(rs.getString("id")));
+                end.setMunicipio(rs.getString("municipio"));
+                end.setNomelogradouro(rs.getString("nomelogradouro"));
+                end.setNumeroen(rs.getInt("numero"));
+                end.setPais(rs.getString("pais"));
+                end.setStatus(rs.getBoolean("status"));
+
+            }
+            //Retorno do ArrayList
+            return end;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
