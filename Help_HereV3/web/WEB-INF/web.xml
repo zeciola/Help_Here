@@ -49,8 +49,8 @@
         <servlet-class>Control.NewServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GeraBoleto</servlet-name>
-        <servlet-class>Control.GeraBoleto</servlet-class>
+        <servlet-name>GeraBoleto2</servlet-name>
+        <servlet-class>Control.GeraBoleto2</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>
@@ -97,8 +97,8 @@
         <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GeraBoleto</servlet-name>
-        <url-pattern>/GeraBoleto</url-pattern>
+        <servlet-name>GeraBoleto2</servlet-name>
+        <url-pattern>/GeraBoleto2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
