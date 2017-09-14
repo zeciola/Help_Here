@@ -48,8 +48,9 @@ public class GeraBoleto2 extends HttpServlet {
             OutputStream os = null;
             try {
                 //cria o documento tamanho A4, margens de 2,54c
+                
                 doc = new Document(PageSize.A4.rotate(), 72, 72, 72, 72);
-                //cria a stream de saída
+                //stream de saída
                 os = new FileOutputStream("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/MeuPrimeiroBoleto2.pdf");
                 //associa a stream de saída ao
                 PdfWriter.getInstance(doc, os);
@@ -58,6 +59,7 @@ public class GeraBoleto2 extends HttpServlet {
 
                 //adiciona o texto ao PDF 
                 Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
+                
                 Paragraph p1 = new Paragraph("Meu primeiro arquivo PDF!", f);
                 p1.setAlignment(Element.ALIGN_CENTER);
                 p1.setSpacingAfter(20);

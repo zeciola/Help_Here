@@ -249,8 +249,13 @@ ID serial PRIMARY KEY,
 Valor numeric(20),
 dataDoado date,
 idCampanha serial,
-IDPessoa serial
+IDPessoa serial,
+boleto varchar(53)
 );
+
+alter table ValoresDoados add column boleto varchar(53);
+
+
 
 insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa) values(100.00, CURRENT_DATE, 1, 2);
 
