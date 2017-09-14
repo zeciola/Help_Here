@@ -4,7 +4,7 @@
 <%@page import="DAO.*"%>
 <!DOCTYPE html>
 <html>
-    <head><link href="estilo.css" rel="stylesheet">
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listar Pessoa</title>
 

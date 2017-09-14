@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public  class AtualizarPessoaAction implements ICommand{
-
+    
+    private final Endereco en = new Endereco();
+    private final Pessoa pe = new Pessoa();
+    private final Usuario lo = new Usuario();
+    private final DAOUsuario daou = new DAOUsuario();
+    
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //Instanciando Objetos
-        Endereco en = new Endereco();
-        Pessoa pe = new Pessoa();
-        Usuario lo = new Usuario();
         
         String Email = null;
         String Senha = null;
@@ -30,9 +32,6 @@ public  class AtualizarPessoaAction implements ICommand{
         
         Email = usuarioLogado.getNome();
         Senha = usuarioLogado.getSenha();
-        
-        //Usuário
-        DAOUsuario daou = new DAOUsuario();
         
         //Endereco de pessoa
         

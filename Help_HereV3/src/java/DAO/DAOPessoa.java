@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DAOPessoa implements iDAO {
+public class DAOPessoa /*implements iDAO*/ {
 
     public Pessoa pe;
     public Endereco en;
@@ -51,7 +51,7 @@ public class DAOPessoa implements iDAO {
     private static final String UPDATE = "";
 
     //DAOs
-    @Override
+    //@Override
     public void Inserir() {
         try {
 
@@ -147,7 +147,7 @@ public class DAOPessoa implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public void Atualizar(String OBJ, String ob) {
         try {
 
@@ -212,12 +212,12 @@ public class DAOPessoa implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    //@Override
     public ArrayList Consultar(String email) {
         ArrayList<Pessoa> result = new ArrayList();
 
@@ -262,7 +262,7 @@ public class DAOPessoa implements iDAO {
 
     }
 
-    @Override
+    //@Override
     public ArrayList<Pessoa> Listar() {
 
         ArrayList<Pessoa> result = new ArrayList();
