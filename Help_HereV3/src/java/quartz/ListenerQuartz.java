@@ -22,7 +22,7 @@ import org.quartz.impl.StdSchedulerFactory;
  *
  * @author Diego
  */
-public class NewServletListener implements ServletContextListener {
+public class ListenerQuartz implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -30,14 +30,18 @@ public class NewServletListener implements ServletContextListener {
         try {
             Scheduler scheduler = shedFact.getScheduler();
             scheduler.start();
+            
             JobDetail job = JobBuilder.newJob(AvaliarEvento.class)
                     .withIdentity("validadorJOB", "grupo02")
                     .build();
+            
             Trigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("validadorTRIGGER", "grupo02")
                     .withSchedule(CronScheduleBuilder.cronSchedule("0/50 * * * * ?"))
                     .build();
+            
             scheduler.scheduleJob(job, trigger);
+            
         } catch (SchedulerException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

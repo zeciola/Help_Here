@@ -245,15 +245,35 @@ FOREIGN KEY(idPessoa) REFERENCES Pessoa (ID)
 );
 
 CREATE TABLE ValoresDoados (
-ID serial PRIMARY KEY,
-Valor numeric(20),
-dataDoado date,
-idCampanha serial,
-IDPessoa serial,
-boleto varchar(53)
+	ID serial PRIMARY KEY,
+	Valor numeric(20),
+	dataDoado date,
+	idCampanha serial,
+	IDPessoa serial,
+	boleto varchar(53),
+	databaixa date,
+	statusbaixa boolean default(false),
+	alter table ValoresDoados add column numeroboleto numeric
 );
 
 alter table ValoresDoados add column boleto varchar(53);
+
+alter table ValoresDoados add column databaixa date;
+
+alter table ValoresDoados add column statusbaixa boolean default(false);
+
+select * from valoresdoados;
+
+create table ultimoboleto(
+	ID serial PRIMARY KEY,
+	numero numeric(20)default null
+)
+
+insert into ultimoboleto (numero) values(11111111111111111111);
+
+drop table ultimoboleto
+
+select * from ultimoboleto;
 
 
 
@@ -266,7 +286,6 @@ alter table valoresdoados add column IDPessoa serial references Pessoa(id);
 alter table Voluntario add column DataVoluntario date;
 
 alter table Voluntario add column NumBoleto varchar(54);
-
 
 drop table doador cascade;
 drop table valordoador cascade;

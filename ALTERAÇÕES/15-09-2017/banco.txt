@@ -1,0 +1,9 @@
+alter table ValoresDoados add column databaixa date;
+alter table ValoresDoados add column statusbaixa boolean default(false);
+
+create table ultimoboleto(
+	ID serial PRIMARY KEY,
+	numero numeric(20)default null
+)
+
+insert into ultimoboleto (numero) values(11111111111111111111);
