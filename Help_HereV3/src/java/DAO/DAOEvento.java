@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static jdk.nashorn.internal.objects.NativeMath.log;
 
-public class DAOEvento implements iDAO {
+public class DAOEvento /*implements iDAO*/ {
 
     private Evento ev;
     private Mensagem ms;
@@ -54,7 +54,7 @@ public class DAOEvento implements iDAO {
     private static final String LISTAevATIVO = "select * from Evento where current_date between  datainicio and   datafim and status = true";
 
     //DAO Metodos
-    @Override
+    //@Override
     public void Inserir() {
         try {
 
@@ -163,12 +163,12 @@ public class DAOEvento implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public void Atualizar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    //@Override
     public void Deletar(String NomeEV, String SEN) {
         Connection conexao = null;
         try {
@@ -220,7 +220,7 @@ public class DAOEvento implements iDAO {
 
     }
 
-    @Override
+    //@Override
     public ArrayList Consultar(String N) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
@@ -316,7 +316,7 @@ public class DAOEvento implements iDAO {
         }
     }    
     
-    @Override
+    //@Override
     public ArrayList Listar() {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
