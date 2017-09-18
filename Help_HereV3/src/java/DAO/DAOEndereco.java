@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DAOEndereco implements iDAO {
+public class DAOEndereco /*implements iDAO*/ {
 
     //Variavel tipo de metodo
     private String classTipo;
@@ -35,7 +35,7 @@ public class DAOEndereco implements iDAO {
     }
 
     //DAO Metodos
-    @Override
+    //@Override
     public void Inserir() {
         try {
 
@@ -94,7 +94,7 @@ public class DAOEndereco implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public void Atualizar(String Antemail, String ob) {
         try {
 
@@ -152,12 +152,12 @@ public class DAOEndereco implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    //@Override
     public ArrayList Consultar(String email) {
         ArrayList<Endereco> result = new ArrayList();
         
@@ -197,7 +197,7 @@ public class DAOEndereco implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public ArrayList<Endereco> Listar() {
         ArrayList<Endereco> result = new ArrayList();
 

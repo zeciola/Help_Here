@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DAOUsuario implements iDAO {
+public class DAOUsuario /*implements iDAO*/ {
 
     //Variaveis comuns ou tipo defalt
     //private String defalt = "comum";
@@ -50,7 +50,7 @@ public class DAOUsuario implements iDAO {
 
     }
 
-    @Override
+    //@Override
     public void Inserir() {
         try {
             conexao.setAutoCommit(false);
@@ -96,7 +96,7 @@ public class DAOUsuario implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public void Atualizar(String Email, String Senha) {
         try {
             conexao.setAutoCommit(false);
@@ -191,7 +191,7 @@ public class DAOUsuario implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public void Deletar(String Email, String Senha) {
         try {
             conexao.setAutoCommit(false);
@@ -246,7 +246,7 @@ public class DAOUsuario implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public ArrayList Consultar(String email) {
         ArrayList<Usuario> result = new ArrayList();
 
@@ -285,7 +285,7 @@ public class DAOUsuario implements iDAO {
         }
     }
 
-    @Override
+    //@Override
     public ArrayList<Usuario> Listar() {
         ArrayList<Usuario> result = new ArrayList();
 

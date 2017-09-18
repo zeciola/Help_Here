@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import static jdk.nashorn.internal.objects.NativeMath.log;
 
 
-public class DAOInstituicao implements iDAO {
+public class DAOInstituicao /*implements iDAO*/ {
     
     
     private Connection conexao;
@@ -66,7 +66,7 @@ public class DAOInstituicao implements iDAO {
     
     private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.status = true";
     
-    @Override
+    //@Override
     public void Inserir() {
         Connection conexao = null;
         
@@ -149,7 +149,7 @@ public class DAOInstituicao implements iDAO {
     }
     
     
-    @Override
+    //@Override
     public ArrayList<Instituicao> Listar() {
 
         ArrayList<Instituicao> resul = new ArrayList();
@@ -196,7 +196,7 @@ public class DAOInstituicao implements iDAO {
 
        
    
-    @Override
+    //@Override
     public void Atualizar(String CNP, String Sen) {
         
         Connection conexao = null;
@@ -310,7 +310,7 @@ public class DAOInstituicao implements iDAO {
         }
     }
    
-    @Override
+    //@Override
     public ArrayList Consultar(String CNP) {
         ArrayList<Instituicao> resul = new ArrayList();
         ArrayList<Endereco> re = new ArrayList();
