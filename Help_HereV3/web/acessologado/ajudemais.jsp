@@ -32,7 +32,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="logado.jsp">Seu Pérfil</a>
+                        <a class="navbar-brand" href="logado.jsp">Seu Perfil</a>
                     </div>
                     <ul class="nav navbar-nav navbar-left">
                         <!-- Dropdown submenu -->
@@ -51,49 +51,302 @@
             </nav>
         </header>
 
-        <h3>Confirme seus dados senhor</h3>
-        <% if (ev.getTipoEvento().equals("Voluntariado")) {%>
-        <h1>Voluntariado</h1>
-        <p>Confirme seu dados para se voluntariar no Evento: <%=ev.getNome()%></p>
-        <form method="post" action="${pageContext.request.contextPath}/ControleContribuir"> 
-            Nome: <input type="Text" value="<%=user.getPe().getNome()%>"><br>
-            Sobrenome: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
-            CPF: <input type="Text" value="<%=user.getPe().getCpf()%>"><br>
-            RG: <input type="Text" value="<%=user.getPe().getRg()%>"><br>
-            Data Nascimento: <input type="Text" value="<%=user.getPe().getDatanascimento()%>"><br>
-            Sexo: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
-            Telefone: <input type="Text" value="<%=user.getPe().getTelefone()%>"><br>
-            Celular: <input type="Text" value="<%=user.getPe().getCelular()%>"><br>
-            E-mail: <input type="Text" value="<%=user.getPe().getEmail()%>"><br>
-            
-            <button type="submit" name="acao" value="Volun">Participar</button>
+        
+        <% if (ev.getTipoEvento().equals("Doacao")) {%>
+        <h1>Doação</h1>
+        <h3>Bem vindo</h3>
+        <p>Confirme seus dados para doar no Evento: <%=ev.getNome()%></p>
+        <form class="well form-horizontal" action="../ControleInstituicao" method="post" id="contact_form">
+            <fieldset>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Nome</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getNome()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Sobrenome</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getSobrenome()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">CPF</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getCpf()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">RG</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getRg()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Data Nascimento</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getDatanascimento()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">sexo</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getSexo()%>">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Telefone</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getTelefone()%>">
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Celular</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getCelular()%>">
+                        </div>
+                    </div>
+                </div>          
+
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">E-mail</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getEmail()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">valor</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                            <select name="valor" class="form-control selectpicker" > 
+                                <option value="5">R$ 5.00</option>
+                                <option value="10">R$ 10.00</option>
+                                <option value="15">R$ 15.00</option>
+                                <option value="30">R$ 30.00</option>
+                                <option value="45">R$ 45.00</option>
+                                <option value="60">R$ 60.00</option>
+                                <option value="75">R$ 75.00</option>
+                                <option value="100">R$ 100.00</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+
+
+                        <button type="submit" name="acao" value="Doar">Ajudar<span class="glyphicon glyphicon-send"></span></button>
+                    </div>
+                </div>
+
+
+
+            </fieldset>
+
         </form>
+       
 
         <%} else {%>
-        <h1>Doação</h1>
-        <form method="post" action="${pageContext.request.contextPath}/ControleContribuir"> 
-            Nome: <input type="Text" value="<%=user.getPe().getNome()%>"><br>
-            Sobrenome: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
-            CPF: <input type="Text" value="<%=user.getPe().getCpf()%>"><br>
-            RG: <input type="Text" value="<%=user.getPe().getRg()%>"><br>
-            Data Nascimento: <input type="Text" value="<%=user.getPe().getDatanascimento()%>"><br>
-            Sexo: <input type="Text" value="<%=user.getPe().getSexo()%>"><br>
-            Telefone: <input type="Text" value="<%=user.getPe().getTelefone()%>"><br>
-            Celular: <input type="Text" value="<%=user.getPe().getCelular()%>"><br>
-            E-mail: <input type="Text" value="<%=user.getPe().getEmail()%>"><br>
-            Valor:
-            <select name="valor">
-                <option value="5">R$ 5.00</option>
-                <option value="10">R$ 10.00</option>
-                <option value="15">R$ 15.00</option>
-                <option value="30">R$ 30.00</option>
-                <option value="45">R$ 45.00</option>
-                <option value="60">R$ 60.00</option>
-                <option value="75">R$ 75.00</option>
-                <option value="100">R$ 100.00</option>
-            </select>
-            <button type="submit" name="acao" value="Doar">Ajudar</button>
-        </form>
+        <h1>Voluntariado</h1>
+        <h3>Bem vindo!</h3>
+        <p>Confirme seus dados para se voluntariar no Evento: <%=ev.getNome()%><p>
+        <form class="well form-horizontal" action="../ControleInstituicao" method="post" id="contact_form">
+            <fieldset>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Nome</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getNome()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Sobrenome</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getSobrenome()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">CPF</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getCpf()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">RG</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getRg()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Data Nascimento</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getDatanascimento()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">sexo</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getSexo()%>">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Telefone</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getTelefone()%>">
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">Celular</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getCelular()%>">
+                        </div>
+                    </div>
+                </div>          
+
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label">E-mail</label>
+
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="Instituição" class="form-control" type="text" value="<%=user.getPe().getEmail()%>">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+
+
+                        <button type="submit" name="acao" value="Volun">Participar</button> 
+                    </div>
+                </div>
+
+
+
+            </fieldset>
+
+        </form>             
+           
+                        
+              
         <%}%>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
