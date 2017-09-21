@@ -21,11 +21,15 @@
                     <input type="text" name="txtcnpj" placeholder="CNPJ">
                     <input type="password" name="txtSenha" placeholder="Senha">
                     
-
+                    <% 
+                        String URL = request.getParameter("url");
+                        if (URL != null) {%>
                     <!-- BOTTON Funcionando -->
                     <button type="submit" name="acao" value="Remove">Excluir</button><br /> <br />
-                    <button type="submit" name="acao" value="Altera">Alterar</button>
                     
+                    <%} else {%>
+                    <button type="submit" name="acao" value="Altera">Alterar</button>
+                    <%}%>
                     
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
                 </form>

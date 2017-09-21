@@ -20,7 +20,7 @@
                     
 
                     <!-- BOTTON Funcionando -->
-                    <button type="submit" name="acao" value="Consultar">Confirmar</button>
+                    <button type="submit" name="acao" value="Consultar">Consultar</button>
                     
                     <!--<button type="submit" id="singin-button">Sing in</button>-->
                 </form>

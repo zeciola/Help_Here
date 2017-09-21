@@ -57,7 +57,7 @@
                             <li><a href="${pageContext.request.contextPath}/CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
                             <li><a href="ConsultarInstituicao.jsp">Consultar Instituição</a></li>
                             <li><a href="${pageContext.request.contextPath}/CNPJsenha.jsp">Alterar Instituição</a></li>
-                            <li><a href="${pageContext.request.contextPath}/CNPJsenha.jsp">Deletar Instituição</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CNPJsenha.jsp?url=ok">Deletar Instituição</a></li>
                         </ul>
                     </li>
 
