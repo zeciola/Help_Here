@@ -134,10 +134,11 @@
         <%for (Feeds e : Lista) {%>
         <div id="feed">
             Conheça o Evento
+            <br><br>
             <%=e.getNomeEvento()%><br> A partir do dia:
-            <%=e.getDatainiev()%> ate:
-            <%=e.getDatafimev()%>
-            <b>aqui poderia ser um link para consultar o evento diretamente</b>
+            <%=e.getDatainiev()%> ate:<br>
+            <%=e.getDatafimev()%><br>
+            <b>link para consultar o evento diretamente</b>
         </div>
         <%}%>
     </body>
