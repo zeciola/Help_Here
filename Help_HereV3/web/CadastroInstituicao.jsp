@@ -393,17 +393,19 @@
                 
                 
                 <!-- Success message -->
-                <div class="alert alert-success" role="alert" id="success_message">Sucesso! <i class="glyphicon glyphicon-thumbs-up"></i>Cadastro realizado com sucesso. <i style="font-size: 25px;">&#9786;</i></div>
+                <!--<div class="alert alert-success" role="alert" id="success_message">Parabéns! <i class="glyphicon glyphicon-thumbs-up"></i>Cadastro realizado com sucesso. <i style="font-size: 25px;">&#9786;</i></div>-->
 
                  <!-- Error message -->
-                 <div style="background-color: firebrick" class="alert alert-success" role="alert" id="success_message">Erro <i class="glyphicon glyphicon-thumbs-down"></i>Ops! Algum erro foi encontrado <font style="font-size: 20px">&#9785;</font></div>
+                 <!--<div style="background-color: firebrick" class="alert alert-success" role="alert" id="success_message">Erro <i class="glyphicon glyphicon-thumbs-down"></i>Ops! Algum erro foi encontrado <font style="font-size: 20px">&#9785;</font></div>-->
                 
                 <!-- Button -->
+                
                 <div class="form-group">
+                    <br></br> <br></br>
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
 
-                        <button type="submit" name = "acao" value="Cadastrar">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
+                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  <button type="submit" name = "acao" value="Cadastrar">Cadastrar <span class="glyphicon glyphicon-send"></span></button>
                            
                     </div>
                 </div>
