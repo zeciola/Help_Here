@@ -12,10 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Diego
- */
+
 public class DAOFeeds {
 
     private Connection conexao;
