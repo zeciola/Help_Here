@@ -1,6 +1,8 @@
 package DAO;
 
+import Model.Evento;
 import Model.Feeds;
+import Model.Pessoa;
 import Util.Conexao;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
@@ -12,10 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Diego
- */
 public class DAOFeeds {
 
     private Connection conexao;
@@ -29,7 +27,6 @@ public class DAOFeeds {
         ArrayList<Feeds> f = new ArrayList();
 
         try {
-           
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(LISTAR);
             pstmt.setInt(1, iduser);
@@ -56,8 +53,8 @@ public class DAOFeeds {
         }
     }
 
-    public ArrayList<Integer> Interessados(String tipo) {
-        ArrayList ids = new ArrayList();
+    public ArrayList<Pessoa> Interessados(String tipo) {
+        ArrayList<Pessoa> ids = new ArrayList();
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(INTERESSADOS);
@@ -65,7 +62,9 @@ public class DAOFeeds {
             ResultSet rs;
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                ids.add( rs.getInt("id"));
+                Pessoa pe = new Pessoa();
+                pe.setId(rs.getInt("id"));
+                ids.add(pe);
             }
             return ids;
         } catch (SQLException e) {
@@ -80,12 +79,12 @@ public class DAOFeeds {
         }
     }
 
-    public void adicionarFeed(int iduser, int idev) {
+    public void adicionarFeed(Pessoa pe, Evento ev) {
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(INSER);
-            pstmt.setInt(1, iduser);
-            pstmt.setInt(2, idev);
+            pstmt.setInt(1, pe.getId());
+            pstmt.setInt(2, ev.getIdEvento());
             pstmt.execute();
             
         } catch (SQLException e) {

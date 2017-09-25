@@ -2,6 +2,8 @@ package Command.Feed;
 
 import Command.ICommand;
 import DAO.DAOFeeds;
+import Model.Evento;
+import Model.Pessoa;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,10 +20,15 @@ public class InserirFeedAction implements ICommand{
         //int idev = 6;
         int idev = Integer.parseInt(request.getParameter("idev"));
         
-        ArrayList<Integer> ids = daof.Interessados(tipo);
+        Evento ev = new Evento();
+        ev.setIdEvento(idev);
+                
+       ArrayList<Pessoa> ps = daof.Interessados(tipo);
         
-        for(int i=0; i< ids.size(); i++){
-            daof.adicionarFeed(ids.get(i), idev);
+       //ArrayList<Integer> ids = daof.Interessados(tipo);
+        
+        for(int i=0; i< ps.size(); i++){
+            daof.adicionarFeed(ps.get(i), ev);
         }
         
         return "/acessologado/logado.jsp";
