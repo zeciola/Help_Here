@@ -114,11 +114,13 @@ public class CadastrarEventoAction implements ICommand{
         }
         String tipo = request.getParameter("tipoEven");
         int idev = ev.getIdEvento();
+        Evento evento = new Evento();
+        evento.setIdEvento(idev);
         //feeds
-        ArrayList<Integer> ids = daof.Interessados(tipo);
+        ArrayList<Pessoa> ids = daof.Interessados(tipo);
         
         for(int i=0; i< ids.size(); i++){
-            daof.adicionarFeed(ids.get(i), idev);
+            daof.adicionarFeed(ids.get(i), evento);
         }        
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "sucesso.jsp";
