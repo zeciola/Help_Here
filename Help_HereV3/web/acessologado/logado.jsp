@@ -121,10 +121,6 @@
                 <a href="${pageContext.request.contextPath}/ControlePessoa?acao=Listar">Listar Pessoa</a>
             </li>
         </ul>
-        
-
-
-
         <h1> Aqui vai o feeds </h1>
 
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
