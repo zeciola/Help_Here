@@ -19,7 +19,7 @@ public class ListarFeedAction implements ICommand{
         
         int i = Integer.parseInt(request.getParameter("iduser"));
         DAOFeeds daofeed = new DAOFeeds();
-        ArrayList<Feeds> lista = daofeed.Listar(l.getId());
+        ArrayList<Feeds> lista = daofeed.Listar(l);
         if(lista.isEmpty()){
             Feeds f = new Feeds();
             f.setNomeEvento("Não tem");

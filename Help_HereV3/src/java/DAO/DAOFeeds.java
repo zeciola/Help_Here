@@ -3,6 +3,7 @@ package DAO;
 import Model.Evento;
 import Model.Feeds;
 import Model.Pessoa;
+import Model.Usuario;
 import Util.Conexao;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
@@ -22,14 +23,14 @@ public class DAOFeeds {
     private static final String INTERESSADOS = "select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = ?";
     private static final String INSER = "insert into feeds (IDUsuario, IDEvento)values(?, ?)";
     
-    public ArrayList<Feeds> Listar(int iduser) {
+    public ArrayList<Feeds> Listar(Usuario u) {
         Date a = new Date();
         ArrayList<Feeds> f = new ArrayList();
 
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(LISTAR);
-            pstmt.setInt(1, iduser);
+            pstmt.setInt(1, u.getId());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 //RETORNO MAXIO SERA 5 PELO PARAMETRO LIMIT NA CONSULTA TRAZFEED
@@ -53,12 +54,12 @@ public class DAOFeeds {
         }
     }
 
-    public ArrayList<Pessoa> Interessados(String tipo) {
+    public ArrayList<Pessoa> Interessados(Evento tipo) {
         ArrayList<Pessoa> ids = new ArrayList();
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(INTERESSADOS);
-            pstmt.setString(1, tipo);
+            pstmt.setString(1, tipo.getTipoEvento());
             ResultSet rs;
             rs = pstmt.executeQuery();
             while (rs.next()) {
