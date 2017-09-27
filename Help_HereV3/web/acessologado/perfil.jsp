@@ -1,6 +1,10 @@
+<%-- 
+    Document   : perfil
+    Created on : 27/09/2017, 09:42:35
+    Author     : Diego
+--%>
+
 <%@page import="Model.Usuario"%>
-<%@page import="Model.Feeds"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,6 +23,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <h1>Perfil</h1>
+
         <header>
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -58,7 +64,7 @@
                         </li>
 
                         <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
-                        <li><a href="${pageContext.request.contextPath}/acessologado/perfil.jsp">Meu Perfil</a></li>                    
+                        <li><a href="${pageContext.request.contextPath}#">Meu Perfil</a></li>                    
                     </ul>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -77,50 +83,27 @@
                 </div>
                 <!-- /.container -->
             </nav>
-        </header>    
-
-        <figure class="figure">
-            <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-            <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>
+        </header>
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
         %>
-        <h1>Bem vindo 
-            <%= usuario.getNome()%>! </h1>
-        <h2>Nome<%= usuario.getPe().getNome()%> </h2>
-        <h2><%= usuario.getPe().getSobrenome()%> </h2>
+        <h1>Usuário</h1>
+        <h2><%= usuario.getNome()%>!</h2>
+        <h1>Pessoa</h1>
+        <h2>Nome<%= usuario.getPe().getNome()%></h2>
+        <h2><%= usuario.getPe().getSobrenome()%></h2>
+        <h1>Endereco</h1>
+        <h2></h2>
+        
         <%}%>
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/email.jsp">Consultar Pessoa</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/emailSenha.jsp">Deletar Pessoa</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/ControlePessoa?acao=Listar">Listar Pessoa</a>
-            </li>
-        </ul>
-        <h1> Aqui vai o feeds </h1>
-
-        <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
-            if (Lista == null) {
-                request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
-            }%>
-        <%for (Feeds e : Lista) {%>
-        <div id="feed">
-            Conheça o Evento
-            <br><br>
-            <%=e.getNomeEvento()%><br> A partir do dia:
-            <%=e.getDatainiev()%> ate:<br>
-            <%=e.getDatafimev()%><br>
-            <b>link para consultar o evento diretamente</b>
-        </div>
-        <%}%>
+        
+        <br>
+        <br>
+        <h1>Meus certificados</h1>
+        
+        
+        
+        
     </body>
 </html>
