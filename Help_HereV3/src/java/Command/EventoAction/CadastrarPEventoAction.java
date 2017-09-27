@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Command.EventoAction;
 
 import Command.ICommand;
@@ -11,18 +6,17 @@ import DAO.DAOEvento;
 import DAO.DAOFeeds;
 import Model.Endereco;
 import Model.Evento;
+import Model.Feeds;
 import Model.Instituicao;
 import Model.Pessoa;
+import Model.Usuario;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-/**
- *
- * @author Lucas Puglia
- */
+
 public class CadastrarPEventoAction implements ICommand{
 
     @Override
@@ -120,11 +114,18 @@ public class CadastrarPEventoAction implements ICommand{
         Evento evento = new Evento();
         evento.setIdEvento(idev);
         evento.setTipoEvento(tipo);
-        //feeds
-       ArrayList<Pessoa> ps = daof.Interessados(evento);
+        
+        Feeds f = new Feeds();
+        f.setE(evento);
+        
+        //Feeds
+       ArrayList<Pessoa> ps = daof.Interessados(f);
         
         for(int i=0; i< ps.size(); i++){
-            daof.adicionarFeed(ps.get(i), evento);
+            Usuario u = new Usuario();
+            u.setPe(ps.get(i));
+            f.setU(u);
+            daof.adicionarFeed(f);
         }        
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "sucesso.jsp";

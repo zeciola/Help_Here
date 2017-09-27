@@ -6,8 +6,10 @@ import DAO.DAOEvento;
 import DAO.DAOFeeds;
 import Model.Endereco;
 import Model.Evento;
+import Model.Feeds;
 import Model.Instituicao;
 import Model.Pessoa;
+import Model.Usuario;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -114,14 +116,22 @@ public class CadastrarEventoAction implements ICommand{
         }
         String tipo = request.getParameter("tipoEven");
         int idev = ev.getIdEvento();
+        
         Evento evento = new Evento();
         evento.setIdEvento(idev);
         evento.setTipoEvento(tipo);
+        
+        Feeds f = new Feeds();
+        f.setE(ev);
+        
         //feeds
-        ArrayList<Pessoa> ids = daof.Interessados(evento);
+        ArrayList<Pessoa> ids = daof.Interessados(f);
         
         for(int i=0; i< ids.size(); i++){
-            daof.adicionarFeed(ids.get(i), evento);
+            Usuario u = new Usuario();
+            u.setPe(ids.get(i));
+            f.setU(u);
+            daof.adicionarFeed(f);
         }        
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "sucesso.jsp";

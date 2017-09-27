@@ -2,6 +2,7 @@ package Command.Feed;
 
 import Command.ICommand;
 import DAO.DAOFeeds;
+import Model.Evento;
 import Model.Feeds;
 import Model.Usuario;
 import java.util.ArrayList;
@@ -16,13 +17,17 @@ public class ListarFeedAction implements ICommand{
         
         HttpSession sessaoUsuario = request.getSession();
         Usuario l = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");      
+
+        Feeds f2 = new Feeds();        
+        f2.setU(l);
+        f2.getU().setId(Integer.parseInt(request.getParameter("iduser")));
         
-        int i = Integer.parseInt(request.getParameter("iduser"));
         DAOFeeds daofeed = new DAOFeeds();
-        ArrayList<Feeds> lista = daofeed.Listar(l);
+        ArrayList<Feeds> lista = daofeed.Listar(f2);
         if(lista.isEmpty()){
             Feeds f = new Feeds();
-            f.setNomeEvento("Não tem");
+            Evento e = new Evento();
+            e.setNome("Não tem");
             lista.add(f);
         }
         request.setAttribute("feed", lista);

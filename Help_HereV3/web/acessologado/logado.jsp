@@ -116,9 +116,9 @@
         <div id="feed">
             Conheça o Evento
             <br><br>
-            <%=e.getNomeEvento()%><br> A partir do dia:
-            <%=e.getDatainiev()%> ate:<br>
-            <%=e.getDatafimev()%><br>
+            <%=e.getE().getNome()%><br> A partir do dia:
+            <%=e.getE().getDataInicio()%> ate:<br>
+            <%=e.getE().getDataFim() %><br>
             <b>link para consultar o evento diretamente</b>
         </div>
         <%}%>

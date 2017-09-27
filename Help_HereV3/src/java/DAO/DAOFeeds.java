@@ -23,22 +23,23 @@ public class DAOFeeds {
     private static final String INTERESSADOS = "select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interesse = ?";
     private static final String INSER = "insert into feeds (IDUsuario, IDEvento)values(?, ?)";
     
-    public ArrayList<Feeds> Listar(Usuario u) {
+    public ArrayList<Feeds> Listar(Feeds u) {
         Date a = new Date();
         ArrayList<Feeds> f = new ArrayList();
-
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(LISTAR);
-            pstmt.setInt(1, u.getId());
+            pstmt.setInt(1, u.getU().getId());
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 //RETORNO MAXIO SERA 5 PELO PARAMETRO LIMIT NA CONSULTA TRAZFEED
                 Feeds feed = new Feeds();
-                feed.setIdEV(Integer.parseInt(rs.getString("id")));
-                feed.setDatainiev(rs.getDate("datainicio"));
-                feed.setDatafimev(rs.getDate("datafim"));
-                feed.setNomeEvento(rs.getString("nome"));
+                Evento e = new Evento();
+                e.setIdEvento(Integer.parseInt(rs.getString("id")));
+                e.setDataInicio(rs.getDate("datainicio"));
+                e.setDataFim(rs.getDate("datafim"));
+                e.setNome(rs.getString("nome"));
+                feed.setE(e);
                 f.add(feed);
             }
             return f;
@@ -54,12 +55,12 @@ public class DAOFeeds {
         }
     }
 
-    public ArrayList<Pessoa> Interessados(Evento tipo) {
+    public ArrayList<Pessoa> Interessados(Feeds tipo) {
         ArrayList<Pessoa> ids = new ArrayList();
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(INTERESSADOS);
-            pstmt.setString(1, tipo.getTipoEvento());
+            pstmt.setString(1, tipo.getE().getTipoEvento());
             ResultSet rs;
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -80,12 +81,12 @@ public class DAOFeeds {
         }
     }
 
-    public void adicionarFeed(Pessoa pe, Evento ev) {
+    public void adicionarFeed(Feeds f) {
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(INSER);
-            pstmt.setInt(1, pe.getId());
-            pstmt.setInt(2, ev.getIdEvento());
+            pstmt.setInt(1, f.getU().getId());
+            pstmt.setInt(2, f.getE().getIdEvento());
             pstmt.execute();
             
         } catch (SQLException e) {
