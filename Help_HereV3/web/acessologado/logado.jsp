@@ -116,17 +116,10 @@
         <div id="feed">
             Conheça o Evento
             <br><br>
-<<<<<<< Updated upstream
             <%=e.getE().getNome()%><br> A partir do dia:
             <%=e.getE().getDataInicio()%> ate:<br>
             <%=e.getE().getDataFim() %><br>
             <b>link para consultar o evento diretamente</b>
-=======
-            <%=e.getNomeEvento()%><br> A partir do dia:
-            <%=e.getDatainiev()%> ate:<br>
-            <%=e.getDatafimev()%><br>
-             <a href="../ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNomeEvento()%>">Informações Completas</a>
->>>>>>> Stashed changes
         </div>
         <%}%>
     </body>
