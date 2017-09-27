@@ -119,7 +119,8 @@
             <%=e.getE().getNome()%><br> A partir do dia:
             <%=e.getE().getDataInicio()%> ate:<br>
             <%=e.getE().getDataFim() %><br>
-            <b>link para consultar o evento diretamente</b>
+            <a href="../ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getE().getNome()%>">Informações Completas</a> 
+
         </div>
         <%}%>
     </body>
