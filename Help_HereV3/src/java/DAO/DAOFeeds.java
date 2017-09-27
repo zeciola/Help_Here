@@ -15,6 +15,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public class DAOFeeds {
 
     private Connection conexao;

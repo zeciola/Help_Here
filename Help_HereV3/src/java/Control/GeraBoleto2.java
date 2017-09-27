@@ -13,6 +13,8 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,12 +46,12 @@ public class GeraBoleto2 extends HttpServlet {
             throws ServletException, IOException, InterruptedException, DocumentException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-                        Document doc = null;
+            Document doc = null;
             OutputStream os = null;
             try {
                 //cria o documento tamanho A4, margens de 2,54c
-                
-                doc = new Document(PageSize.A4.rotate(), 72, 72, 72, 72);
+
+                doc = new Document(PageSize.A4, 52, 52, 52, 52);
                 //stream de saída
                 os = new FileOutputStream("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/MeuPrimeiroBoleto2.pdf");
                 //associa a stream de saída ao
@@ -59,14 +61,35 @@ public class GeraBoleto2 extends HttpServlet {
 
                 //adiciona o texto ao PDF 
                 Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
-                
-                Paragraph p1 = new Paragraph("Meu primeiro arquivo PDF!", f);
-                p1.setAlignment(Element.ALIGN_CENTER);
-                p1.setSpacingAfter(20);
+
+                Paragraph p1 = new Paragraph("9999.9999.9999.9999.9999", f);
                 doc.add(p1);
 
-                Paragraph p2 = new Paragraph("Estou utilizando a classe Paragraph para criar um bloco de texto na geração do meu primeiro arquivo PDF.");
+                Paragraph p2 = new Paragraph("Banco Escolhido.");
                 doc.add(p2);
+
+                Paragraph p3 = new Paragraph(" ");
+                doc.add(p3);
+                
+                
+                PdfPTable table = new PdfPTable(5);
+                PdfPCell header = new PdfPCell(new Paragraph("Dados"));
+                header.setColspan(5);
+                table.addCell(header);
+                table.addCell("Local Pagamento");
+                table.addCell("Vencimento");
+                table.addCell("Beneficiario");
+                table.addCell("Data Processamento");
+                table.addCell("Valor");
+                table.addCell("redeBancaria");
+                table.addCell("25/09/2017");
+                table.addCell("HelpHere");
+                table.addCell("Hoje");
+                table.addCell("R$ 15.00");
+                doc.add(table);
+
+                doc.add(p1);
+                doc.add(table);
 
             } finally {
                 if (doc != null) {
