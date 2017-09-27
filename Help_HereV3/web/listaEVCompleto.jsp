@@ -4,6 +4,7 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="Model.Usuario"%>
 <%@page import="Model.Pessoa"%>
 <%@page import="Model.Endereco"%>
 <%@page import="Model.Instituicao"%>
@@ -17,7 +18,7 @@
 <html>
      <head><link href="estilo.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Listar Pessoa</title>
+        <title>Listar</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +26,7 @@
         <!-- CSS Style Table-->
         <link href="css/styletable.css" rel="stylesheet">
     </head>
-
+        
     <header>
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -43,13 +44,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        
+                       
                                 <li>
-                                    <a href="Eventos.jsp">Eventos</a>
+                                    <a href="javascript:window.history.go(-1)">Voltar</a>
                                 </li>
-                                <li>
-                                    <a href="CNPJsenhaEvento.jsp">cadastrar Evento</a>
-                                </li>
+                                
 			
 
                     </ul>
@@ -60,6 +59,7 @@
         </nav>
 
     </header>
+                  
     <body>
         <div class="row-fluid">
         

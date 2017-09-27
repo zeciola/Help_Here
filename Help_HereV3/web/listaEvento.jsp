@@ -44,7 +44,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         
                                 <li>
-                                    <a href="EventosPessoa.jsp">Eventos</a>
+                                    <a href="javascript:window.history.go(-1)">Voltar</a>
                                 </li>
                                 
 			
