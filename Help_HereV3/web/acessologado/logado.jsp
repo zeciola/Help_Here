@@ -114,7 +114,8 @@
             }%>
         <%for (Feeds e : Lista) {%>
         <div id="feed">
-            Conheça o Evento
+            <br>
+            <b>Conheça o Evento</b>
             <br><br>
             <%=e.getE().getNome()%><br> A partir do dia:
             <%=e.getE().getDataInicio()%> ate:<br>
