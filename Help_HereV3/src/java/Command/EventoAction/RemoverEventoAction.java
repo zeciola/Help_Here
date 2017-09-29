@@ -30,7 +30,7 @@ public class RemoverEventoAction implements ICommand{
         
         
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
-        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
+        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
         String SEN = usuarioLogado.getSenha();
         String CNP = usuarioLogado.getCnpj();
         String url = request.getParameter("url");
@@ -39,17 +39,30 @@ public class RemoverEventoAction implements ICommand{
             
 
                 String NomeEV = request.getParameter("txtnomeEV");
+ 
                 
+ 
                 eve = idao.ConsultarEVinst(NomeEV,SEN);
+ 
 
+ 
                 if (eve.isEmpty())
+ 
                 {
+ 
                     return "/EventoErrado.jsp"; 
+ 
                        
+ 
                 }else {
+ 
                         daoi.Deletar(NomeEV,SEN);
+ 
                 }
-        return "/sucesso.jsp";
+ 
+        return "/acessologado/Evento.jsp";
+ 
     }
+
     
 }

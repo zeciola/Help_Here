@@ -43,7 +43,7 @@ public class ListarEventoAction implements ICommand{
         
          if (URL!= null){
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
-        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
+         Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
         int ID = usuarioLogado.getIdInstituicao();
         
          i = idao.ListarPorID(ID);
