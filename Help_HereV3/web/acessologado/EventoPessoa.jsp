@@ -1,6 +1,6 @@
 <%-- 
-    Document   : EventosPessoa
-    Created on : 31/08/2017, 19:12:52
+    Document   : EventoPessoa
+    Created on : 27/09/2017, 20:42:48
     Author     : Lucas Puglia
 --%>
 
@@ -10,15 +10,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>  
 <html>
-    <head><link href="estilo.css" rel="stylesheet">
+    <head><link href="${pageContext.request.contextPath}/estilo.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Eventos</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- CSS Style Table-->
-        <link href="css/styletable.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/styletable.css" rel="stylesheet">
     </head>
 
     <header>
@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Help Here</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/index.html">Help Here</a>
                 </div>
                 
         <%
@@ -45,12 +45,12 @@
                     
                    
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="ControleAcesso?acao=CriarEventoPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Criar</a> </li>
-                        <li><a href="ConsultaNomeEvento.jsp">Consultar</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=CriarEventoPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Criar</a> </li>
+                        <li><a href="${pageContext.request.contextPath}/ConsultaNomeEvento.jsp">Consultar</a></li>
                         <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Excluir</a></li>-->
-                        <li><a href="ControleEvento?acao=Listar&URP=ok">Listar</a></li>
-                        <li><a href="ControleEvento?acao=Listar&URLP=ok">Meus Eventos</a></li>
-                        <li><a href="ControleAcesso?acao=Sair">Sair</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar&URP=ok">Listar</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar&URLP=ok">Meus Eventos</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a></li>
 
                     </ul>
             
@@ -73,7 +73,7 @@
                     //Recupera eventos
                     ArrayList<Evento> listaEvento = (ArrayList<Evento>) request.getAttribute("listaEVdataP");
                     if (listaEvento == null) {
-                        request.getRequestDispatcher("/ControleEvento?acao=Listar&U=ok").forward(request, response);
+                        request.getRequestDispatcher("../ControleEvento?acao=Listar&U=ok").forward(request, response);
                     }
                 %>
                 <%
@@ -84,7 +84,7 @@
                     <b>Tipo de Evento:</b> <%=e.getTipoEvento()%><br>
                     <b>Dia de Inicio:</b> <%=e.getDataInicio()%><br>
                     <b>Dia de Encerramento:</b> <%=e.getDataFim()%><br>
-                    <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Abrir</a>
+                    <a href="${pageContext.request.contextPath}/ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Abrir</a>
                    <!-- <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a>
                     <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a>-->
                  </div>  
@@ -93,3 +93,4 @@
         </div>
     </body>
 </html>
+

@@ -83,9 +83,9 @@ public class ListarEventoAction implements ICommand{
         i = idao.ListarPorData();
         //add a lista de evento o objeto request
         request.setAttribute("listaEVdataP", i);
-        RequestDispatcher rd= request.getRequestDispatcher("/EventosPessoa.jsp");
+        RequestDispatcher rd= request.getRequestDispatcher("acessologado/EventoPessoa.jsp");
         rd.forward(request, response); 
-        return "EventosPessoa.jsp";
+        return "acessologado/EventoPessoa.jsp";
         }
         
         else if(UR != null){
@@ -93,9 +93,9 @@ public class ListarEventoAction implements ICommand{
         i = idao.ListarPorData();
         //add a lista de evento o objeto request
         request.setAttribute("listaEVdata", i);
-        RequestDispatcher rd= request.getRequestDispatcher("/Eventos.jsp");
+        RequestDispatcher rd= request.getRequestDispatcher("acessologado/Evento.jsp");
         rd.forward(request, response); 
-        return "Eventos.jsp";
+        return "acessologado/Evento.jsp";
         }
         else if(URP != null){
             

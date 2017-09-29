@@ -23,6 +23,7 @@ public class ControleFeed extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            System.out.println("passei aqui linha 26");
             String acao = request.getParameter("acao");
             String Nomeclasse = "Command.Feed."+acao+"FeedAction";
             Class classeAction = Class.forName(Nomeclasse);

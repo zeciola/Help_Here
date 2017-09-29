@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class CadastrarEventoAction implements ICommand{
 
@@ -127,13 +128,17 @@ public class CadastrarEventoAction implements ICommand{
         //feeds
         ArrayList<Pessoa> ids = daof.Interessados(f);
         
-        for(int i=0; i< ids.size(); i++){
+        /*for(int i=0; i< ids.size(); i++){
             Usuario u = new Usuario();
             u.setPe(ids.get(i));
             f.setU(u);
             daof.adicionarFeed(f);
         }        
-        //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
-        return "sucesso.jsp";
+        
+      */
+   
+     
+     
+     return "/acessologado/Evento.jsp";
     }
 }
