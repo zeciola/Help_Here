@@ -55,8 +55,8 @@ public class DAOFeeds {
         }
     }
 
-    public ArrayList<Pessoa> Interessados(Feeds tipo) {
-        ArrayList<Pessoa> ids = new ArrayList();
+    public ArrayList<Usuario> Interessados(Feeds tipo) {
+        ArrayList<Usuario> ids = new ArrayList();
         try {
             conexao = Conexao.getConexao();
             PreparedStatement pstmt = conexao.prepareStatement(INTERESSADOS);
@@ -64,7 +64,7 @@ public class DAOFeeds {
             ResultSet rs;
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                Pessoa pe = new Pessoa();
+                Usuario pe = new Usuario();
                 pe.setId(rs.getInt("id"));
                 ids.add(pe);
             }

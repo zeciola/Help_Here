@@ -119,15 +119,12 @@ public class CadastrarPEventoAction implements ICommand{
         f.setE(evento);
         
         //Feeds
-       ArrayList<Pessoa> ps = daof.Interessados(f);
-      /*  
-        for(int i=0; i< ps.size(); i++){
-            Usuario u = new Usuario();
-            u.setPe(ps.get(i));
-            f.setU(u);
+       ArrayList<Usuario> ps = daof.Interessados(f);
+        
+       for(int i=0; i< ps.size(); i++){
+            f.setU(ps.get(i));
             daof.adicionarFeed(f);
-        }
-    */
+        }  
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "/acessologado/EventoPessoa.jsp";
     }
