@@ -16,9 +16,7 @@ public class GeraNumero {
     private int n4;
     private int n5;
     
-    public void GeraNumero(String origem){
-        
-        //9999.9999.9999.9999.9999
+    public String GeraNumero(String origem){
         
         String N5 = origem.substring(origem.length()-4, origem.length());
         n5 = Integer.parseInt(N5);
@@ -59,8 +57,7 @@ public class GeraNumero {
                     }
                 }else{
                     n3++;
-                }
-                
+                }                
             }else{
                 n4++;
             }
@@ -68,9 +65,8 @@ public class GeraNumero {
             n5++;
         }
       
+        String retorno = String.format("%04d", n1)+"."+String.format("%04d", n2)+"."+String.format("%04d", n3)+"."+String.format("%04d", n4)+"."+String.format("%04d", n5);
         
-        System.out.println(String.format("%04d", n1)+"."+String.format("%04d", n2)+"."+String.format("%04d", n3)+"."+String.format("%04d", n4)+"."+String.format("%04d", n5));
-        
+        return retorno;
     }
-    
 }
