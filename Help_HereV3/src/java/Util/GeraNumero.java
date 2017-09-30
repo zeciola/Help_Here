@@ -5,6 +5,10 @@
  */
 package Util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  *
  * @author Diego
@@ -64,6 +68,8 @@ public class GeraNumero {
         }else{
             n5++;
         }
+        
+
       
         String retorno = String.format("%04d", n1)+"."+String.format("%04d", n2)+"."+String.format("%04d", n3)+"."+String.format("%04d", n4)+"."+String.format("%04d", n5);
         

@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Control;
 
+import Util.GeraNumero;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -20,6 +16,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -27,10 +26,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Diego
- */
 public class GeraBoleto2 extends HttpServlet {
 
     /**
@@ -45,63 +40,69 @@ public class GeraBoleto2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, InterruptedException, DocumentException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            Document doc = null;
-            OutputStream os = null;
-            try {
-                //cria o documento tamanho A4, margens de 2,54c
+        Document doc = null;
+        OutputStream os = null;
+        try {
+            Double valor = Double.parseDouble(request.getParameter("valor"));
+            final DateFormat df = new SimpleDateFormat("ddMMyyyy");
+            final Calendar cal = Calendar.getInstance();
 
-                doc = new Document(PageSize.A4, 52, 52, 52, 52);
-                //stream de saída
-                os = new FileOutputStream("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/MeuPrimeiroBoleto2.pdf");
-                //associa a stream de saída ao
-                PdfWriter.getInstance(doc, os);
-                //abre o documento
-                doc.open();
+            //cria o documento tamanho A4, margens de 2,54c
+            doc = new Document(PageSize.A4, 52, 52, 52, 52);
+            //stream de saída
+            os = new FileOutputStream("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/MeuPrimeiroBoleto2.pdf");
+            //associa a stream de saída ao
+            PdfWriter.getInstance(doc, os);
+            //abre o documento
+            doc.open();
 
-                //adiciona o texto ao PDF 
-                Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
+            //adiciona o texto ao PDF 
+            Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
 
-                Paragraph p1 = new Paragraph("1111.2222.3333.4444.5555", f);
-                doc.add(p1);
+            //RecuperaUltimo numero 
+            GeraNumero gera = new GeraNumero();
+            String numero = gera.GeraNumero("");
 
-                Paragraph p2 = new Paragraph("Banco Escolhido.");
-                doc.add(p2);
+            Paragraph p1 = new Paragraph(numero + df.format(cal.getTime()), f);
+            doc.add(p1);
 
-                Paragraph p3 = new Paragraph(" ");
-                doc.add(p3);
+            Paragraph p2 = new Paragraph("Banco Escolhido.");
+            doc.add(p2);
 
-                PdfPTable table = new PdfPTable(5);
-                PdfPCell header = new PdfPCell(new Paragraph("Dados"));
-                header.setColspan(5);
-                table.addCell(header);
-                table.addCell("Local Pagamento");
-                table.addCell("Vencimento");
-                table.addCell("Beneficiario");
-                table.addCell("Data Processamento");
-                table.addCell("Valor");
-                table.addCell("redeBancaria");
-                table.addCell("25/09/2017");
-                table.addCell("HelpHere");
-                table.addCell("Hoje");
-                table.addCell("R$ 15.00");
-                doc.add(table);
-                doc.add(p1);
-                doc.add(table);
+            Paragraph p3 = new Paragraph(" ");
+            doc.add(p3);
 
-            } finally {
-                if (doc != null) {
-                    //fechamento do documento
-                    doc.close();
-                }
-                if (os != null) {
-                    //fechamento da stream de saída
-                    os.close();
-                }
+            PdfPTable table = new PdfPTable(5);
+            PdfPCell header = new PdfPCell(new Paragraph("Dados"));
+            header.setColspan(5);
+            table.addCell(header);
+            table.addCell("Local Pagamento");
+            table.addCell("Vencimento");
+            table.addCell("Beneficiario");
+            table.addCell("Data Processamento");
+            table.addCell("Valor");
+            table.addCell("redeBancaria");
+            table.addCell("25/09/2017");
+            table.addCell("HelpHere");
+            table.addCell("Hoje");
+            table.addCell("R$ 15.00");
+            doc.add(table);
+            doc.add(p1);
+            doc.add(table);
+
+        } finally {
+            if (doc != null) {
+                //fechamento do documento
+                doc.close();
             }
-            new Thread().sleep(4000);
-            response.sendRedirect("teste2.jsp");
+            if (os != null) {
+                //fechamento da stream de saída
+                os.close();
+            }
         }
+        new Thread().sleep(4000);
+        response.sendRedirect("teste2.jsp");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
