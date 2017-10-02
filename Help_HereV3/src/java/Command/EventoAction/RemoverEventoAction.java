@@ -10,6 +10,7 @@ import DAO.DAOEvento;
 import DAO.DAOInstituicao;
 import Model.Evento;
 import Model.Instituicao;
+import Model.Usuario;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,11 +30,8 @@ public class RemoverEventoAction implements ICommand{
         ArrayList<Evento> eve = new ArrayList();
         
         
-        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
-        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
-        String SEN = usuarioLogado.getSenha();
-        String CNP = usuarioLogado.getCnpj();
-        String url = request.getParameter("url");
+        
+        String urm = request.getParameter("urm");
         
       
             
@@ -42,25 +40,33 @@ public class RemoverEventoAction implements ICommand{
  
                 
  
-                eve = idao.ConsultarEVinst(NomeEV,SEN);
+                
  
 
  
-                if (eve.isEmpty())
+                if (urm == null)
  
                 {
- 
-                    return "/EventoErrado.jsp"; 
- 
+                        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+                        Usuario usuario =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
+                        String SEN = usuario.getSenha();
+                        daoi.DeletarEvPessoa(NomeEV,SEN);
+                    // if para remover evento pessoa, falta colocar um if na jsp lista evento, metodo na dao criado
+                        return "/acessologado/EventoPessoa.jsp";
                        
  
                 }else {
- 
+                        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+                        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
+                        String SEN = usuarioLogado.getSenha();
+                        String CNP = usuarioLogado.getCnpj();
+                        //eve = idao.ConsultarEVinst(NomeEV,SEN);
                         daoi.Deletar(NomeEV,SEN);
+                        return "/acessologado/Evento.jsp";
  
                 }
  
-        return "/acessologado/Evento.jsp";
+        
  
     }
 

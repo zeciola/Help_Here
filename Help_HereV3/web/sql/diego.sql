@@ -68,6 +68,7 @@ Login varchar(45),
 senha varchar(45),
 status boolean default true
 );
+select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPessoa and e.senha = 'teste'
 
 insert into Usuario (id, IDPessoa, Tipo, Login, senha) values(3 ,3, 'comum', '3', '3');
 
@@ -225,6 +226,8 @@ sexo varchar,
 status boolean default true,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
+
+
 
 insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status)
  values('Nome 1', 'Sobrenome 2', '1', '2', false, '13/12/1999', 'teste@teste.com', 1, '34343434', '9099999', 'f', true);

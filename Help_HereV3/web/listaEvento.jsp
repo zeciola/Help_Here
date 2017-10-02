@@ -80,7 +80,10 @@
                     
                         
             </tr>
-                <% //recupera a lista do request
+                 <%
+                        Instituicao institu = (Instituicao) session.getAttribute("instAutenticado");
+                        if (institu != null) {
+                   //recupera a lista do request
                 for(Evento e: listaEvento){  %>  
                 <tbody style="background-color: #e6e6e6">
                 <tr align="center">
@@ -96,19 +99,47 @@
                    <td>
                        <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Informações Completas</a>
                    </td>
+                   
                    <td>
-                       <a href="ControleEvento?acao=Remover&url=ok3&txtnomeEV=<%=e.getNome()%>">Excluir</a> &nbsp &nbsp
-                       <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Alterar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
+                       <a href="ControleEvento?acao=Remover&urm=ok3&txtnomeEV=<%=e.getNome()%>">Cancelar</a> &nbsp &nbsp
+                       <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
                    </td>
                    
-                       
-                        
-
 
 
 
             </tr>
                 <%}%>
+                <% } else { 
+                for(Evento e: listaEvento){  %>  
+                <tbody style="background-color: #e6e6e6">
+                <tr align="center">
+                    <td><%=e.getDataInicio()%></td> 
+                    <td><%=e.getDataFim()%></td>
+                    <td><%=e.getNome()%></td>
+                   <td><%=e.getTipoEvento()%></td>
+                   <td><%=e.getDescricao()%></td>
+                  
+                      
+                      
+
+                   <td>
+                       <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Informações Completas</a>
+                   </td>
+                   
+                   <td>
+                       <a href="ControleEvento?acao=Remover&txtnomeEV=<%=e.getNome()%>">Cancelar</a> &nbsp &nbsp
+                       <a href="ControleEvento?acao=Atualizar&txtnomeEV=<%=e.getNome()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
+                   </td>
+                   
+
+
+
+            </tr>
+                     
+                     <% }  %>
+              <% }  %>
+                     
                 <br/>
            </table>
                  

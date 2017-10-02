@@ -184,6 +184,21 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
+    public void DeletarEvPessoa(String NomeEV, String SEN) {
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConexao();
+
+            String sqlDelEV = "update Evento set status = false where nome = '" + NomeEV + "' and ID in (select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPessoa and e.senha = '" + SEN + "');";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlDelEV);
+            pstmt.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public ArrayList ConsultarEVinst(String NomeEV, String SEN) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
