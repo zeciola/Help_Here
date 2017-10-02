@@ -27,14 +27,12 @@ public class InserirFeedAction implements ICommand{
         Feeds f = new Feeds();
         f.setE(ev);
         
-       ArrayList<Pessoa> ps = daof.Interessados(f);
+       ArrayList<Usuario> ps = daof.Interessados(f);
         
        //ArrayList<Integer> ids = daof.Interessados(tipo);
         
         for(int i=0; i< ps.size(); i++){
-            Usuario u = new Usuario();
-            u.setPe(ps.get(i));
-            f.setU(u);
+            f.setU(ps.get(i));
             daof.adicionarFeed(f);
         } 
         return "/acessologado/logado.jsp";

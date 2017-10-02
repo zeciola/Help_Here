@@ -123,19 +123,17 @@ public class CadastrarEventoAction implements ICommand{
         evento.setTipoEvento(tipo);
         
         Feeds f = new Feeds();
-        f.setE(ev);
-        
+        f.setE(evento);
+       
         //feeds
-        ArrayList<Pessoa> ids = daof.Interessados(f);
+        ArrayList<Usuario> ids = daof.Interessados(f);
         
-        /*for(int i=0; i< ids.size(); i++){
-            Usuario u = new Usuario();
-            u.setPe(ids.get(i));
-            f.setU(u);
+        for(int i=0; i< ids.size(); i++){
+            f.setU(ids.get(i));
             daof.adicionarFeed(f);
         }        
         
-      */
+      
    
      
      
