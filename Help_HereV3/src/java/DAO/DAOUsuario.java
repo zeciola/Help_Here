@@ -323,6 +323,7 @@ public class DAOUsuario /*implements iDAO*/ {
         }
 
     }
+    
     public Usuario ConsultarId(int id) {
         Pessoa pe = new Pessoa();
         Usuario U = new Usuario();

@@ -40,7 +40,7 @@ public class ControleAcesso extends HttpServlet {
 
                 DAOPessoa pdao = new DAOPessoa();
                 int id = usuarioAutenticado.getPe().getId();
-                Pessoa p = pdao.ConsultarId(id);
+                Pessoa p = pdao.ConsultarId(usuarioAutenticado.getId());
                                 
                 p.setEn(pdao.ConsultarEndPessoa(p));
                 
