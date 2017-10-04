@@ -10,14 +10,15 @@ import java.io.*;
 import java.text.*;
 import java.math.*;
 
-public class PerceptronExemplo2 {
+public class Exemplo2 {
 
     static int MAX_ITER = 100;
     static double LEARNING_RATE = 0.1;
     static int NUM_INSTANCES = 100;
     static int theta = 0;
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
+
         //three variables (features)                      
         double[] x = new double[NUM_INSTANCES];
         double[] y = new double[NUM_INSTANCES];
@@ -123,3 +124,5 @@ public class PerceptronExemplo2 {
     }
 
 }
+
+
