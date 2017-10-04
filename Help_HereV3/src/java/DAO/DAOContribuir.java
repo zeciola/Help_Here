@@ -109,4 +109,47 @@ public class DAOContribuir {
             }
         }
     }
+
+    public String RecuperaUltimoValor() {
+        String retorno = null;
+        Connection conexao = Conexao.getConexao();
+        ResultSet rs;
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement("");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                retorno = rs.getString("numeroboleto");
+            }
+            return retorno;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
+        public void AtualizaUltimoValor(Contribuicao c) {
+
+        Connection conexao = Conexao.getConexao();
+        ResultSet rs;
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement("");
+            rs = pstmt.executeQuery();    
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
 }

@@ -17,6 +17,17 @@ public class Contribuicao {
     private Date datacad;
     private Usuario user;
     private Double valor;
+    private String NumeroBoleto;
+
+    public String getNumeroBoleto() {
+        return NumeroBoleto;
+    }
+
+    public void setNumeroBoleto(String NumeroBoleto) {
+        this.NumeroBoleto = NumeroBoleto;
+    }
+    
+    
 
     public int getId() {
         return id;

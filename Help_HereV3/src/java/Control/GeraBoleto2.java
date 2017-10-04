@@ -1,5 +1,6 @@
 package Control;
 
+import DAO.DAOContribuir;
 import Util.GeraNumero;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -43,7 +44,8 @@ public class GeraBoleto2 extends HttpServlet {
         Document doc = null;
         OutputStream os = null;
         try {
-            Double valor = Double.parseDouble(request.getParameter("valor"));
+            String valorString =request.getParameter("valor");
+            Double valor  = Double.parseDouble(request.getParameter("valor"));
             final DateFormat df = new SimpleDateFormat("ddMMyyyy");
             final Calendar cal = Calendar.getInstance();
 
@@ -59,9 +61,14 @@ public class GeraBoleto2 extends HttpServlet {
             //adiciona o texto ao PDF 
             Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
 
-            //RecuperaUltimo numero 
+            //RecuperaUltimo
+            DAOContribuir daoc = new DAOContribuir();
+            String valorAntes = daoc.RecuperaUltimoValor();
+            //Consegue novo numero
             GeraNumero gera = new GeraNumero();
-            String numero = gera.GeraNumero("");
+            String numero = gera.GeraNumero(valorAntes);
+            
+            
 
             Paragraph p1 = new Paragraph(numero + df.format(cal.getTime()), f);
             doc.add(p1);
@@ -69,7 +76,7 @@ public class GeraBoleto2 extends HttpServlet {
             Paragraph p2 = new Paragraph("Banco Escolhido.");
             doc.add(p2);
 
-            Paragraph p3 = new Paragraph(" ");
+            Paragraph p3 = new Paragraph(numero);
             doc.add(p3);
 
             PdfPTable table = new PdfPTable(5);
@@ -85,7 +92,7 @@ public class GeraBoleto2 extends HttpServlet {
             table.addCell("25/09/2017");
             table.addCell("HelpHere");
             table.addCell("Hoje");
-            table.addCell("R$ 15.00");
+            table.addCell(valorString);
             doc.add(table);
             doc.add(p1);
             doc.add(table);
@@ -102,9 +109,8 @@ public class GeraBoleto2 extends HttpServlet {
         }
         new Thread().sleep(4000);
         response.sendRedirect("teste2.jsp");
-
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
