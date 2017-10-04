@@ -1,6 +1,10 @@
 package Control;
 
 import DAO.DAOContribuir;
+import Model.Contribuicao;
+import Model.Evento;
+import Model.Instituicao;
+import Model.Usuario;
 import Util.GeraNumero;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -26,6 +30,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class GeraBoleto2 extends HttpServlet {
 
@@ -44,8 +49,8 @@ public class GeraBoleto2 extends HttpServlet {
         Document doc = null;
         OutputStream os = null;
         try {
-            String valorString =request.getParameter("valor");
-            Double valor  = Double.parseDouble(request.getParameter("valor"));
+            String valorString = request.getParameter("valor");
+            Double valor = Double.parseDouble(request.getParameter("valor"));
             final DateFormat df = new SimpleDateFormat("ddMMyyyy");
             final Calendar cal = Calendar.getInstance();
 
@@ -61,16 +66,42 @@ public class GeraBoleto2 extends HttpServlet {
             //adiciona o texto ao PDF 
             Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
 
-            //RecuperaUltimo
+            //Recupera Ultimo gerado
             DAOContribuir daoc = new DAOContribuir();
             String valorAntes = daoc.RecuperaUltimoValor();
+
             //Consegue novo numero
             GeraNumero gera = new GeraNumero();
             String numero = gera.GeraNumero(valorAntes);
-            
-            
 
-            Paragraph p1 = new Paragraph(numero + df.format(cal.getTime()), f);
+            Contribuicao c = new Contribuicao();
+            c.setNumeroBoleto(numero);
+
+            c.setValor(valor);
+
+            //atualiza ultimo numero gerado
+            daoc.AtualizaUltimoValor(c);
+
+            HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+            Usuario u =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
+            Evento e =(Evento)sessaoUsuario.getAttribute("evento");
+            
+            
+            //c.setDatacad();
+            c.setUser(u);
+            c.setEv(e);
+            
+            //REALIZAR DOAÇÃO     
+
+            //
+
+            //
+            
+            //daoc.DoarValor(c);
+            
+            //
+            
+            Paragraph p1 = new Paragraph(numero + "." + df.format(cal.getTime()), f);
             doc.add(p1);
 
             Paragraph p2 = new Paragraph("Banco Escolhido.");
@@ -110,7 +141,7 @@ public class GeraBoleto2 extends HttpServlet {
         new Thread().sleep(4000);
         response.sendRedirect("teste2.jsp");
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -69,10 +69,7 @@ public class GeraNumero {
             n5++;
         }
         
-
-      
         String retorno = String.format("%04d", n1)+"."+String.format("%04d", n2)+"."+String.format("%04d", n3)+"."+String.format("%04d", n4)+"."+String.format("%04d", n5);
-        
         return retorno;
     }
 }

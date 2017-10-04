@@ -19,6 +19,8 @@ public class Contribuicao {
     private Double valor;
     private String NumeroBoleto;
 
+    
+    
     public String getNumeroBoleto() {
         return NumeroBoleto;
     }
@@ -27,8 +29,6 @@ public class Contribuicao {
         this.NumeroBoleto = NumeroBoleto;
     }
     
-    
-
     public int getId() {
         return id;
     }
@@ -67,14 +67,5 @@ public class Contribuicao {
 
     public void setValor(Double valor) {
         this.valor = valor;
-    }
-
-    public Date getDataInicio() {
-        return datacad;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.datacad = dataInicio;
-    }
-     
+    } 
 }

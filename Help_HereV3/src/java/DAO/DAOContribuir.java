@@ -84,7 +84,7 @@ public class DAOContribuir {
             while (rs.next()) {
                 Contribuicao v = new Contribuicao();
                 v.setId(rs.getInt("id"));
-                v.setDataInicio(rs.getDate("datavoluntario"));
+                v.setDatacad(rs.getDate("datavoluntario"));
 
                 Evento ev = new Evento();
                 ev.setIdEvento(rs.getInt("idevento"));
@@ -121,7 +121,7 @@ public class DAOContribuir {
                 retorno = rs.getString("numeroboleto");
             }
             return retorno;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -132,17 +132,14 @@ public class DAOContribuir {
             }
         }
     }
-    
-        public void AtualizaUltimoValor(Contribuicao c) {
 
+    public void AtualizaUltimoValor(Contribuicao c) {
         Connection conexao = Conexao.getConexao();
-        ResultSet rs;
-        
         try {
             PreparedStatement pstmt = conexao.prepareStatement("update ultimoboleto set numeroboleto = ? where id = 1");
-            rs = pstmt.executeQuery();    
-        }
-        catch (SQLException e) {
+            pstmt.setString(1, c.getNumeroBoleto());
+            pstmt.execute();
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -152,5 +149,5 @@ public class DAOContribuir {
             }
         }
     }
-    
+
 }

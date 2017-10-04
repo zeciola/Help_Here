@@ -56,7 +56,7 @@
         <h1>Doação</h1>
         <h3>Bem vindo</h3>
         <p>Confirme seus dados para doar no Evento: <%=ev.getNome()%></p>
-        <form class="well form-horizontal" action="../ControleInstituicao" method="post" id="contact_form">
+        <form class="well form-horizontal" action="../GeraBoleto2" method="post" id="contact_form">
             <fieldset>
 
                 <div class="form-group">
