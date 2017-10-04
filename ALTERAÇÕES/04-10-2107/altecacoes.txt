@@ -1,0 +1,7 @@
+select * from ultimoboleto;
+
+alter table ultimoboleto add column numeroboleto varchar(24)
+
+alter table ultimoboleto drop column numero
+
+update ultimoboleto set numeroboleto = '0001.0001.0001.0001.0001' where id = 1;

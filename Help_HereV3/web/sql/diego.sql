@@ -468,4 +468,10 @@ ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
 
-select * from voluntario;
+select * from ultimoboleto;
+
+alter table ultimoboleto add column numeroboleto varchar(24);
+
+alter table ultimoboleto drop column numero;
+
+update ultimoboleto set numeroboleto = '0001.0001.0001.0001.0001' where id = 1;

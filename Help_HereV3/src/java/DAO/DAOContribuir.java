@@ -115,7 +115,7 @@ public class DAOContribuir {
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("");
+            PreparedStatement pstmt = conexao.prepareStatement("select * from ultimoboleto");
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 retorno = rs.getString("numeroboleto");
@@ -137,8 +137,9 @@ public class DAOContribuir {
 
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
+        
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("");
+            PreparedStatement pstmt = conexao.prepareStatement("update ultimoboleto set numeroboleto = ? where id = 1");
             rs = pstmt.executeQuery();    
         }
         catch (SQLException e) {
