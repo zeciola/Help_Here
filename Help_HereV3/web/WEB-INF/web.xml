@@ -46,11 +46,15 @@
     </servlet>
     <servlet>
         <servlet-name>NewServlet</servlet-name>
-        <servlet-class>Control.NewServlet</servlet-class>
+        <servlet-class>Control.GeraCertificado</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GeraBoleto2</servlet-name>
         <servlet-class>Control.GeraBoleto2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GeraCertificado2</servlet-name>
+        <servlet-class>Control.GeraCertificado2</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>
@@ -99,6 +103,10 @@
     <servlet-mapping>
         <servlet-name>GeraBoleto2</servlet-name>
         <url-pattern>/GeraBoleto2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeraCertificado2</servlet-name>
+        <url-pattern>/GeraCertificado2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

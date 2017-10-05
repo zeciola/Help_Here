@@ -1,4 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Control;
+
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -19,12 +25,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Diego
  */
-public class NewServlet extends HttpServlet {
+public class GeraCertificado2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,6 +51,7 @@ public class NewServlet extends HttpServlet {
             throws ServletException, IOException, DocumentException, InterruptedException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
             Document doc = null;
             OutputStream os = null;
             try {
@@ -95,9 +108,9 @@ public class NewServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DocumentException ex) {
-            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GeraCertificado2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GeraCertificado2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -115,9 +128,9 @@ public class NewServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DocumentException ex) {
-            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GeraCertificado2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GeraCertificado2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

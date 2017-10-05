@@ -130,7 +130,7 @@
                 </div>
                 <%}%>
             </div>
-            <a href="NewServlet">Teste certificado</a>
+            <a href="GeraCertificado2">Teste certificado</a>
             <!-- /.row -->
             <hr>
             <!-- Footer -->
