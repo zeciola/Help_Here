@@ -49,22 +49,14 @@ public class GeraBoleto2 extends HttpServlet {
         Document doc = null;
         OutputStream os = null;
         try {
+            HttpSession sessaoUsuario = ((HttpServletRequest) request).getSession();
+            Usuario u = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");
+            Evento e = (Evento) sessaoUsuario.getAttribute("evento");
+
             String valorString = request.getParameter("valor");
             Double valor = Double.parseDouble(request.getParameter("valor"));
             final DateFormat df = new SimpleDateFormat("ddMMyyyy");
             final Calendar cal = Calendar.getInstance();
-
-            //cria o documento tamanho A4, margens de 2,54c
-            doc = new Document(PageSize.A4, 52, 52, 52, 52);
-            //stream de saída
-            os = new FileOutputStream("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/MeuPrimeiroBoleto2.pdf");
-            //associa a stream de saída ao
-            PdfWriter.getInstance(doc, os);
-            //abre o documento
-            doc.open();
-
-            //adiciona o texto ao PDF 
-            Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
 
             //Recupera Ultimo gerado
             DAOContribuir daoc = new DAOContribuir();
@@ -78,28 +70,21 @@ public class GeraBoleto2 extends HttpServlet {
             c.setNumeroBoleto(numero);
 
             c.setValor(valor);
+            
+            //cria o documento tamanho A4, margens de 2,54c
+            doc = new Document(PageSize.A4, 52, 52, 52, 52);
+            //stream de saída
+            os = new FileOutputStream("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/"+numero+".pdf");
+            //associa a stream de saída ao
+            PdfWriter.getInstance(doc, os);
+            //abre o documento
+            doc.open();
+
+            //adiciona o texto ao PDF 
+            Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
 
             //atualiza ultimo numero gerado
             daoc.AtualizaUltimoValor(c);
-
-            HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
-            Usuario u =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
-            Evento e =(Evento)sessaoUsuario.getAttribute("evento");
-            
-            
-            //c.setDatacad();
-            c.setUser(u);
-            c.setEv(e);
-            
-            //REALIZAR DOAÇÃO     
-
-            //
-
-            //
-            
-            //daoc.DoarValor(c);
-            
-            //
             
             Paragraph p1 = new Paragraph(numero + "." + df.format(cal.getTime()), f);
             doc.add(p1);
@@ -127,7 +112,14 @@ public class GeraBoleto2 extends HttpServlet {
             doc.add(table);
             doc.add(p1);
             doc.add(table);
-
+            
+            c.setUser(u);
+            c.setEv(e);
+            c.setNumeroBoleto(numero);
+            
+            //REALIZAR DOAÇÃO     
+            daoc.DoarValor(c);
+            
         } finally {
             if (doc != null) {
                 //fechamento do documento

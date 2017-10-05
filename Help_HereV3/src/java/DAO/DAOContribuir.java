@@ -20,7 +20,7 @@ public class DAOContribuir {
         Connection conexao = Conexao.getConexao();
         try {
             conexao.setAutoCommit(false);
-            PreparedStatement pstmt = conexao.prepareStatement("insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa) values(?, CURRENT_DATE, ?, ?)");
+            PreparedStatement pstmt = conexao.prepareStatement("insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa, boleto) values(?, CURRENT_DATE, ?, ?, ?)");
             pstmt.setDouble(1, c.getValor());
             pstmt.setInt(2, c.getEv().getIdEvento());
             pstmt.setInt(3, c.getUser().getPe().getId());
