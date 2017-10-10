@@ -249,9 +249,7 @@ public class DAOPessoa /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Pessoa> Listar(Pessoa pe) {
-
-        ArrayList<Pessoa> result = new ArrayList();
+    public ArrayList<Pessoa> Listar(ArrayList<Pessoa> result, Pessoa pe) {
 
         try {
             PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);

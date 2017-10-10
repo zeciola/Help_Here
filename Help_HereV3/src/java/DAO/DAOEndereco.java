@@ -191,8 +191,8 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Endereco> Listar(Endereco en) {
-        ArrayList<Endereco> result = new ArrayList();
+    public ArrayList<Endereco> Listar(ArrayList<Endereco> result,Endereco en) {
+
 
         try {
             PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);

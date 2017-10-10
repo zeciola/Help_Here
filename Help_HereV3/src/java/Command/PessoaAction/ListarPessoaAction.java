@@ -31,15 +31,15 @@ public class ListarPessoaAction implements ICommand {
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        en = daoen.Listar(e);
+        en = daoen.Listar(en,e);
 
         request.setAttribute("ListaEn", en);
 
-        pe = daope.Listar(p);
+        pe = daope.Listar(pe,p);
 
         request.setAttribute("ListaPe", pe);
 
-        lo = daou.Listar(U);
+        lo = daou.Listar(lo,U);
 
         request.setAttribute("ListaUs", lo);
 

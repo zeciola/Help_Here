@@ -27,8 +27,6 @@ public class DAOUsuario /*implements iDAO*/ {
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
-
-
     private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha, status) VALUES (?,?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE status=true and Login=? AND senha=?";
     private static final String SELECT_ALL = "select * from Usuario where status=true";
@@ -89,7 +87,7 @@ public class DAOUsuario /*implements iDAO*/ {
         try {
             conexao.setAutoCommit(false);
 
-            String sqlUsuario = "UPDATE Usuario SET login=?, senha=? where login='"+Email+"' and senha='"+Senha+"';";
+            String sqlUsuario = "UPDATE Usuario SET login=?, senha=? where login='" + Email + "' and senha='" + Senha + "';";
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             PreparedStatement pst = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -104,8 +102,8 @@ public class DAOUsuario /*implements iDAO*/ {
 
             rs.next();
             int id = rs.getInt("ID");
-            
-            String sqlEndereco = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE id="+id+";";
+
+            String sqlEndereco = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE id=" + id + ";";
 
             PreparedStatement pstm = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -124,8 +122,8 @@ public class DAOUsuario /*implements iDAO*/ {
             pstm.setString(7, en.getPais());
 
             pstm.executeUpdate();
-            
-            String sqlPessoa = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id="+id+";";
+
+            String sqlPessoa = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id=" + id + ";";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlPessoa, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -138,25 +136,22 @@ public class DAOUsuario /*implements iDAO*/ {
             pstmt.setString(4, pe.getRg());
 
             //pstmt.setBoolean(5, pe.isPenalisado());
-
             pstmt.setString(5, pe.getDatanascimento());
 
             pstmt.setString(6, pe.getEmail());
 
             //Foreign Key
             //pstmt.setInt(8, en.getIdEndereco());
-
             pstmt.setString(7, pe.getTelefone());
 
             pstmt.setString(8, pe.getCelular());
 
             pstmt.setString(9, pe.getSexo());
-            
+
             pstmt.executeUpdate();
-            
+
             conexao.commit();
 
-            
         } // Verifica se a conexao foi fechada
         catch (SQLException e) {
             try {
@@ -184,7 +179,7 @@ public class DAOUsuario /*implements iDAO*/ {
         try {
             conexao.setAutoCommit(false);
 
-            String sqlUsuario = "UPDATE Usuario SET status = false where login='"+Email+"' and senha='"+Senha+"';";
+            String sqlUsuario = "UPDATE Usuario SET status = false where login='" + Email + "' and senha='" + Senha + "';";
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             PreparedStatement pst = conexao.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -196,22 +191,21 @@ public class DAOUsuario /*implements iDAO*/ {
 
             rs.next();
             int id = rs.getInt("ID");
-            
-            String sqlEndereco = "UPDATE Endereco SET status = false WHERE id="+id+";";
+
+            String sqlEndereco = "UPDATE Endereco SET status = false WHERE id=" + id + ";";
 
             PreparedStatement pstm = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstm.executeUpdate();
-            
-            String sqlPessoa = "UPDATE Pessoa SET status = false where id="+id+";";
+
+            String sqlPessoa = "UPDATE Pessoa SET status = false where id=" + id + ";";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlPessoa, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.executeUpdate();
-            
+
             conexao.commit();
 
-            
         } // Verifica se a conexao foi fechada
         catch (SQLException e) {
             try {
@@ -274,8 +268,7 @@ public class DAOUsuario /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Usuario> Listar(Usuario lo) {
-        ArrayList<Usuario> result = new ArrayList();
+    public ArrayList<Usuario> Listar(ArrayList<Usuario> result, Usuario lo) {
 
         try {
             PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
@@ -310,7 +303,7 @@ public class DAOUsuario /*implements iDAO*/ {
         }
 
     }
-    
+
     public Usuario ConsultarId(int id) {
         Pessoa pe = new Pessoa();
         Usuario U = new Usuario();

@@ -13,32 +13,40 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ListartableAdminAction implements ICommand{
+public class ListartableAdminAction implements ICommand {
+
+    private DAOPessoa daop = new DAOPessoa();
+    private DAOInstituicao daoi = new DAOInstituicao();
+    private DAOEndereco daoe = new DAOEndereco();
+    private DAOUsuario daou = new DAOUsuario();
+
+    private ArrayList<Pessoa> p = new ArrayList();
+    private ArrayList<Endereco> e = new ArrayList();
+    private ArrayList<Usuario> u = new ArrayList();
+
+    private Pessoa pe = new Pessoa();
+    private Endereco en = new Endereco();
+    private Usuario lo = new Usuario();
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        DAOPessoa daop = new DAOPessoa();
-        DAOInstituicao daoi = new DAOInstituicao();
-        DAOEndereco daoe = new DAOEndereco();
-        DAOUsuario daou = new DAOUsuario();
-        
-        ArrayList<Pessoa> p = daop.Listar();
+        daop.Listar(p, pe);
         request.setAttribute("pessoa", p);
-        
+
+        //Arrumar tbm!!
         ArrayList<Instituicao> i = daoi.Listar();
         request.setAttribute("instituicao", i);
         String url = request.getParameter("url");
-        
-        ArrayList<Endereco> e = daoe.Listar();
+
+        daoe.Listar(e, en);
         request.setAttribute("endereco", e);
-        
-        ArrayList<Usuario> u = daou.Listar();
+
+        daou.Listar(u, lo);
         request.setAttribute("usuario", u);
-       
-                
-     //return "admin3/production/tables_dynamic.jsp";
-       return "admin2/"+url+".jsp";
+
+        //return "admin3/production/tables_dynamic.jsp";
+        return "admin2/" + url + ".jsp";
     }
-    
+
 }
