@@ -18,8 +18,6 @@ public class DAOEndereco /*implements iDAO*/ {
 
     //Variavel tipo de metodo
     private String classTipo;
-    //Endereço
-    public Endereco en;
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
@@ -29,14 +27,10 @@ public class DAOEndereco /*implements iDAO*/ {
     private static final String SELECT_ALL = "select * from endereco where status=true";
     private static final String SELECT_ID = "select * from endereco where id=?";
 
-    //set model
-    public void setEndereco(Endereco en) {
-        this.en = en;
-    }
 
     //DAO Metodos
     //@Override
-    public void Inserir() {
+    public void Inserir(Endereco en) {
         try {
 
             conexao.setAutoCommit(false);
@@ -95,7 +89,7 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
     //@Override
-    public void Atualizar(String Antemail, String ob) {
+    public void Atualizar(String Antemail, String ob, Endereco en) {
         try {
 
             conexao.setAutoCommit(false);
@@ -158,7 +152,7 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList Consultar(String email) {
+    public ArrayList Consultar(String email, Endereco en) {
         ArrayList<Endereco> result = new ArrayList();
         
         try {
@@ -170,7 +164,6 @@ public class DAOEndereco /*implements iDAO*/ {
             rs = pstmt.executeQuery();
 
                 while (rs.next()) {
-                Endereco en = new Endereco();
                 en.setIdEndereco(rs.getInt("id"));
                 en.setCep(rs.getString("cep"));
                 en.setNomelogradouro(rs.getString("nomelogradouro"));
@@ -198,7 +191,7 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Endereco> Listar() {
+    public ArrayList<Endereco> Listar(Endereco en) {
         ArrayList<Endereco> result = new ArrayList();
 
         try {
@@ -209,7 +202,6 @@ public class DAOEndereco /*implements iDAO*/ {
             rs = pstmt.executeQuery();
 
                 while (rs.next()) {
-                Endereco en = new Endereco();
                 en.setIdEndereco(rs.getInt("id"));
                 en.setCep(rs.getString("cep"));
                 en.setNomelogradouro(rs.getString("nomelogradouro"));

@@ -17,20 +17,20 @@ import javax.servlet.http.HttpSession;
  *
  * @author Diego
  */
-public class InteressePessoaAction implements ICommand{
+public class InteressePessoaAction implements ICommand {
 
     @Override
-    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {     
+    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String[] interesses = request.getParameterValues("interesse");
- 
+
         HttpSession sessao = request.getSession();
         Usuario o = (Usuario) sessao.getAttribute("userid");
-        
-        for(int j = 0; j < interesses.length; j++){
+
+        for (int j = 0; j < interesses.length; j++) {
             DAOPessoa daop = new DAOPessoa();
             daop.InserirInteresse(o.getId(), interesses[j]);
         }
-       return "login.jsp";
+        return "login.jsp";
     }
-    
+
 }

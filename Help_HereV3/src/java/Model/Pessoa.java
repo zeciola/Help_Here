@@ -9,6 +9,7 @@ import java.util.Date;
 public class Pessoa {
 
     private Endereco en;
+    
     private int id;
     private String nome;
     private String sobrenome;

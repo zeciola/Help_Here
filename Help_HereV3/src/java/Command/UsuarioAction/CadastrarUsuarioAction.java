@@ -25,10 +25,9 @@ public class CadastrarUsuarioAction implements ICommand{
         lo.setSenha(request.getParameter("senha"));
         
         //Seta os valores
-        daou.setUsuario(lo);
-        
+
         //Executa o metodo Insert
-        daou.Inserir();
+        daou.Inserir(lo);
         
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";

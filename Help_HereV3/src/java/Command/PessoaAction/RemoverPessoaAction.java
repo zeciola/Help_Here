@@ -14,27 +14,27 @@ import javax.servlet.http.HttpSession;
 
 public class RemoverPessoaAction implements ICommand {
 
+    private Endereco en = new Endereco();
+    private Pessoa pe = new Pessoa();
+    private Usuario lo = new Usuario();
+    
+    //DAOs
+    private DAOUsuario daou = new DAOUsuario();
+
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Endereco en = new Endereco();
-        Pessoa pe = new Pessoa();
-        Usuario lo = new Usuario();
-
-        //Instanciando Objetos
-        DAOUsuario daou = new DAOUsuario();
-
+        
         String Email = request.getParameter("txtEmail");
         String Senha = request.getParameter("txtSenha");;
 
         HttpSession sessoaUsuario = ((HttpServletRequest) request).getSession();
         Usuario usuarioLogado = (Usuario) sessoaUsuario.getAttribute("usuarioAutenticado");
-        
-       String EmailU = usuarioLogado.getNome();
-        
+
+        String EmailU = usuarioLogado.getNome();
+
         if (Email.equals(EmailU)) {
-            
-            daou.setUsuario(lo);
-            daou.Deletar(Email, Senha);
+
+            daou.Deletar(Email, Senha, lo);
 
             //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
             return "/sucesso.jsp";

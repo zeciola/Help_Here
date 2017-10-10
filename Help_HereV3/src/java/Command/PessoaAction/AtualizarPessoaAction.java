@@ -66,11 +66,8 @@ public  class AtualizarPessoaAction implements ICommand{
         
         lo.setPe(pe);
         lo.setEn(en);
-        daou.setUsuario(lo);
-        daou.setPessoa(pe);
-        daou.setEndereco(en);
         
-        daou.Atualizar(Email, Senha);
+        daou.Atualizar(Email, Senha, lo);
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";
     }

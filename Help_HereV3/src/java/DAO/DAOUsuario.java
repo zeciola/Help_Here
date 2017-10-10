@@ -27,19 +27,7 @@ public class DAOUsuario /*implements iDAO*/ {
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
-    //Set Ususario
-    public void setUsuario(Usuario lo) {
-        this.lo = lo;
-    }
 
-    //Set Pessoa
-    public void setPessoa(Pessoa pe) {
-        this.pe = pe;
-    }
-
-    public void setEndereco(Endereco en) {
-        this.en = en;
-    }
 
     private static final String INSERT = "INSERT INTO Usuario (IDPessoa ,Tipo , Login, senha, status) VALUES (?,?,?,?,?)";
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE status=true and Login=? AND senha=?";
@@ -51,14 +39,14 @@ public class DAOUsuario /*implements iDAO*/ {
     }
 
     //@Override
-    public void Inserir() {
+    public void Inserir(Usuario lo) {
         try {
             conexao.setAutoCommit(false);
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 
-            pstmt.setInt(1, pe.getId());
+            pstmt.setInt(1, lo.getPe().getId());
             pstmt.setString(2, lo.getPerfil().toString());
             pstmt.setString(3, lo.getNome());
             pstmt.setString(4, lo.getSenha());
@@ -97,7 +85,7 @@ public class DAOUsuario /*implements iDAO*/ {
     }
 
     //@Override
-    public void Atualizar(String Email, String Senha) {
+    public void Atualizar(String Email, String Senha, Usuario lo) {
         try {
             conexao.setAutoCommit(false);
 
@@ -192,7 +180,7 @@ public class DAOUsuario /*implements iDAO*/ {
     }
 
     //@Override
-    public void Deletar(String Email, String Senha) {
+    public void Deletar(String Email, String Senha, Usuario lo) {
         try {
             conexao.setAutoCommit(false);
 
@@ -247,7 +235,7 @@ public class DAOUsuario /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList Consultar(String email) {
+    public ArrayList Consultar(String email, Usuario u) {
         ArrayList<Usuario> result = new ArrayList();
 
         try {
@@ -286,7 +274,7 @@ public class DAOUsuario /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Usuario> Listar() {
+    public ArrayList<Usuario> Listar(Usuario lo) {
         ArrayList<Usuario> result = new ArrayList();
 
         try {
@@ -297,7 +285,6 @@ public class DAOUsuario /*implements iDAO*/ {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Usuario lo = new Usuario();
                 lo.setId(rs.getInt("ID"));
                 lo.setNome(rs.getString("Tipo"));
 

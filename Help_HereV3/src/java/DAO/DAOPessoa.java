@@ -15,9 +15,6 @@ import java.util.logging.Logger;
 
 public class DAOPessoa /*implements iDAO*/ {
 
-    public Pessoa pe;
-    public Endereco en;
-
     public String emailpes;
 
     //Variable connection
@@ -25,16 +22,6 @@ public class DAOPessoa /*implements iDAO*/ {
 
     // defalt variabel Penalisado = false
     private boolean defalt;
-
-    //SET Pessoa
-    public void setPessoa(Pessoa pe) {
-        this.pe = pe;
-    }
-
-    // SET Endereco
-    public void setEndereco(Endereco en) {
-        this.en = en;
-    }
 
     //SQL
     private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status) "
@@ -52,7 +39,7 @@ public class DAOPessoa /*implements iDAO*/ {
 
     //DAOs
     //@Override
-    public void Inserir() {
+    public void Inserir(Pessoa pe) {
         try {
 
             conexao.setAutoCommit(false);
@@ -75,7 +62,7 @@ public class DAOPessoa /*implements iDAO*/ {
             pstmt.setString(7, pe.getEmail());
 
             //Foreign Key
-            pstmt.setInt(8, en.getIdEndereco());
+            pstmt.setInt(8, pe.getEn().getIdEndereco());
 
             pstmt.setString(9, pe.getTelefone());
 
@@ -148,7 +135,7 @@ public class DAOPessoa /*implements iDAO*/ {
     }
 
     //@Override
-    public void Atualizar(String OBJ, String ob) {
+    public void Atualizar(Pessoa pe) {
         try {
 
             conexao.setAutoCommit(false);
@@ -218,7 +205,7 @@ public class DAOPessoa /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList Consultar(String email) {
+    public ArrayList Consultar(String email, Pessoa pe) {
         ArrayList<Pessoa> result = new ArrayList();
 
         try {
@@ -230,7 +217,6 @@ public class DAOPessoa /*implements iDAO*/ {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Pessoa pe = new Pessoa();
                 pe.setId(rs.getInt("ID"));
                 pe.setNome(rs.getString("Nome"));
                 pe.setSobrenome(rs.getString("Sobrenome"));
@@ -263,7 +249,7 @@ public class DAOPessoa /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Pessoa> Listar() {
+    public ArrayList<Pessoa> Listar(Pessoa pe) {
 
         ArrayList<Pessoa> result = new ArrayList();
 
@@ -275,7 +261,6 @@ public class DAOPessoa /*implements iDAO*/ {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Pessoa pe = new Pessoa();
                 pe.setId(rs.getInt("ID"));
                 pe.setNome(rs.getString("Nome"));
                 pe.setSobrenome(rs.getString("Sobrenome"));
