@@ -475,3 +475,16 @@ alter table ultimoboleto add column numeroboleto varchar(24);
 alter table ultimoboleto drop column numero;
 
 update ultimoboleto set numeroboleto = '0001.0001.0001.0001.0001' where id = 1;
+
+select* from instituicaoevento;
+
+select * from instituicao;
+
+select * from evento;
+
+select * from instituicao i, evento e, instituicaoevento instv where i.id = instv.idinstituicao and instv.idevento = e.id;
+
+select * from Voluntario;
+
+select p.nome PessoaNome, i.nome InstNome, e.tipo, e.nome NomeEvento, v.analisado from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where
+ v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false;

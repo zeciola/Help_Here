@@ -213,7 +213,7 @@
         <h1>Voluntariado</h1>
         <h3>Bem vindo!</h3>
         <p>Confirme seus dados para se voluntariar no Evento: <%=ev.getNome()%><p>
-        <form class="well form-horizontal" action="../ControleInstituicao" method="post" id="contact_form">
+        <form class="well form-horizontal" action="../ControleContribuir" method="post" id="contact_form">
             <fieldset>
 
                 <div class="form-group">

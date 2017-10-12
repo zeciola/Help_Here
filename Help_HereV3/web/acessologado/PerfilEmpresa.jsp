@@ -1,3 +1,4 @@
+<%@page import="Model.Instituicao"%>
 <%@page import="Model.Usuario"%>
 <%@page import="Model.Feeds"%>
 <%@page import="java.util.ArrayList"%>
@@ -86,43 +87,16 @@
         </figure>
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
+            Instituicao ints = (Instituicao) session.getAttribute("instAutenticado");
             if (usuario != null) {
         %>
         <h1>Bem vindo 
-            <%= usuario.getNome()%>! </h1>
-        <h2>Nome<%= usuario.getPe().getNome()%> </h2>
-        <h2><%= usuario.getPe().getSobrenome()%> </h2>
+            <%= ints.getNome() %>! </h1>
+        <h2>Nome: <%= ints.getRazao()%> </h2>
+        <h2><%= ints.getCnpj() %> </h2>
         <%}%>
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/email.jsp">Consultar Pessoa</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/emailSenha.jsp">Deletar Pessoa</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/ControlePessoa?acao=Listar">Listar Pessoa</a>
-            </li>
-        </ul>
-        <h1> Aqui vai o feeds </h1>
-
-        <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
-            if (Lista == null) {
-                request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
-            }%>
-        <%for (Feeds e : Lista) {%>
-        <div id="feed">
-            <br>
-            <b>Conheça o Evento</b>
-            <br><br>
-            <%=e.getE().getNome()%><br> A partir do dia:
-            <%=e.getE().getDataInicio()%> ate:<br>
-            <%=e.getE().getDataFim()%><br>
-            <a href="../ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getE().getNome()%>">Informações Completas</a> 
-        </div>
-        <%}%>
+      <br>
+      
+      <h1>Veja abaixos certificados que você precisa Liberar</h1>
     </body>
 </html>
