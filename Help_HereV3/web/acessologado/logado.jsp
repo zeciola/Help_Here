@@ -50,6 +50,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Instituição
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="${pageContext.request.contextPath}/#">Minha Instituição</a></li>
                                 <li><a href="${pageContext.request.contextPath}/CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
                                 <li><a href="ConsultarInstituicao.jsp">Consultar Instituição</a></li>
                                 <li><a href="${pageContext.request.contextPath}/CNPJsenha.jsp">Alterar Instituição</a></li>

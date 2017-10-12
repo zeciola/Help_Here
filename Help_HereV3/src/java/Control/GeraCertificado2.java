@@ -6,6 +6,7 @@
 package Control;
 
 
+import Util.SendEmail;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -90,6 +91,7 @@ public class GeraCertificado2 extends HttpServlet {
             }
             new Thread().sleep(4000);
             response.sendRedirect("teste.jsp");
+            
         }
     }
 

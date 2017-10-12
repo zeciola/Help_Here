@@ -126,11 +126,12 @@
                     <p><%=e.getDescricao()%></p>
                     <p><%=e.getDataInicio()%></p>
                     <p><%=e.getDataFim()%></p>
-                    <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">link teste</a>
+                    <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
                 </div>
                 <%}%>
             </div>
             <a href="GeraCertificado2">Teste certificado</a>
+            <a href="EmailInicia">Teste Email</a>
             <!-- /.row -->
             <hr>
             <!-- Footer -->

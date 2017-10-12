@@ -5,6 +5,8 @@ import Model.Contribuicao;
 import Model.Evento;
 import Model.Instituicao;
 import Model.Usuario;
+import Util.EmailAnexo;
+import Util.EmailTesteServelet;
 import Util.GeraNumero;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -132,7 +134,7 @@ public class GeraBoleto2 extends HttpServlet {
         }
         new Thread().sleep(4000);
         response.sendRedirect("teste2.jsp");
-    }
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
