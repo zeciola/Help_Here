@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.Pessoa"%>
+<%@page import="Model.Endereco"%>
+<%@page import="Model.Usuario"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -54,19 +57,30 @@
     <script src="js/bootstrap.mim.js"></script>
     <script src="js/cadform.js"></script>
 
+
+    <% //recupera a lista do request
+        Pessoa pe = (Pessoa) session.getAttribute("ListaPe");
+        Usuario lo = (Usuario) session.getAttribute("ListaUs");
+        Endereco en = (Endereco) session.getAttribute("ListaEn");
+        if (pe != null) {
+            if (lo != null) {
+                if (en != null) {
+
+    %>
+
     <div class="container">
 
         <form class="well form-horizontal" action="ControlePessoa" method="post" id="contact_form">
             <fieldset>
 
-                <!-- Text input-->
+                <!-- Text input Nome -->
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Nome</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="nome" placeholder="Primeiro Nome" class="form-control" type="text">
+                            <input name="nome" placeholder="Primeiro Nome" class="form-control" type="text" value="<%= pe.getNome()%>">
                         </div>
                     </div>
                 </div>
@@ -78,22 +92,22 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="sobrenome" placeholder="Sobrenome" class="form-control" type="text">
+                            <input name="sobrenome" placeholder="Sobrenome" class="form-control" type="text" value="<%= pe.getSobrenome()%>">
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label">Data de nascimento</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="datanascimento" placeholder="dd/mm/aa" class="form-control" type="date">
+                            <input name="datanascimento" placeholder="dd/mm/aa" class="form-control" type="date" value="<%= pe.getDatanascimento()%>">
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Sexo -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">Sexo</label>
@@ -101,21 +115,21 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <select name="sexo" class="form-control selectpicker">
-                                <option value="" >Escolha o seu sexo</option>
+                                <option value="<%= pe.getSexo()%>" >Escolha o seu sexo</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Feminino">Feminino</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- RG -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">RG</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="rg" placeholder="RG" class="form-control" type="number">
+                            <input name="rg" placeholder="RG" class="form-control" type="number" value="<%= pe.getRg()%>>
                         </div>
                     </div>
                 </div>
@@ -126,13 +140,13 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="cpf" placeholder="CPF" class="form-control" type="number">
+                            <input name="cpf" placeholder="CPF" class="form-control" type="number" value="<%= pe.getCpf()%>>
                         </div>
                     </div>
                 </div>
 
-                
-                
+
+
 
                 <!-- Email -->
                 <div class="form-group">
@@ -140,60 +154,60 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email">
+                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email" value="<%= pe.getEmail()%>>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Text input-->
+
+                <!-- Text Senha-->
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Senha</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input name="password" placeholder="Senha" class="form-control" type="password">
-                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="password">
+                            <input name="password" placeholder="Senha" class="form-control" type="password" value="<%= lo.getSenha()%>>
+                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="password" value="<%= lo.getSenha()%>>
                         </div>
                     </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Text Celular-->
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Celular</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="number">
+                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="number" value="<%= pe.getCelular()%>>
                         </div>
                     </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Text Telefone -->
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Telefone</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="telefone" placeholder="(DD)95555-5555" class="form-control" type="number">
+                            <input name="telefone" placeholder="(DD)95555-5555" class="form-control" type="number" value="<%= pe.getTelefone()%>>
                         </div>
                     </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Text Endereço-->
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Endereço</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="nomelogradouro" placeholder="Endereço" class="form-control" type="text">
-                            <input name="bairro" placeholder="Bairro" class="form-control" type="text">
-                            <input name="numeroen" placeholder="Número" class="form-control" type="number">
-                            <input name="municipio" placeholder="Cidade" class="form-control" type="text">
-                            <input name="cep" placeholder="CEP" class="form-control" type="number">
+                            <input name="nomelogradouro" placeholder="Endereço" class="form-control" type="text" value="<%= en.getNomelogradouro()%>>
+                            <input name="bairro" placeholder="Bairro" class="form-control" type="text" value="<%= en.getBairro()%>>
+                            <input name="numeroen" placeholder="Número" class="form-control" type="number" value="<%= en.getNumeroen()%>>
+                            <input name="municipio" placeholder="Cidade" class="form-control" type="text" value="<%= en.getMunicipio()%>>
+                            <input name="cep" placeholder="CEP" class="form-control" type="number" value="<%= en.getCep()%>>
                         </div>
                     </div>
                 </div>
@@ -206,7 +220,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="pais" class="form-control selectpicker">
-                                <option value=" " >Escolha o seu pais</option>
+                                <option value="value="<%= en.getPais()%>" ><%= en.getPais()%></option>
                                 <option value="África do Sul">África do Sul</option>
                                 <option value="Albânia">Albânia</option>
                                 <option value="Alemanha">Alemanha</option>
@@ -392,7 +406,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="estado" class="form-control selectpicker">
-                                <option value="" >Escolha o seu estado</option>
+                                <option value=<%= en.getEstado()%> ><%= en.getEstado()%></option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
                                 <option value="AP">Amapá</option>
@@ -424,14 +438,14 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <!-- Success message -->
                 <div class="alert alert-success" role="alert" id="success_message">Sucesso! <i class="glyphicon glyphicon-thumbs-up"></i>Cadastro realizado com sucesso. <i style="font-size: 25px;">&#9786;</i></div>
 
-                 <!-- Error message -->
-                 <div style="background-color: firebrick" class="alert alert-success" role="alert" id="success_message">Erro <i class="glyphicon glyphicon-thumbs-down"></i>Ops! Algum erro foi encontrado <font style="font-size: 20px">&#9785;</font></div>
-                
+                <!-- Error message -->
+                <div style="background-color: firebrick" class="alert alert-success" role="alert" id="success_message">Erro <i class="glyphicon glyphicon-thumbs-down"></i>Ops! Algum erro foi encontrado <font style="font-size: 20px">&#9785;</font></div>
+
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
@@ -443,7 +457,11 @@
             </fieldset>
         </form>
     </div>
-<!-- /.container -->
+    <!-- /.container -->
+
+    <%}
+            }
+        }%>
 </body>
 
 </html>

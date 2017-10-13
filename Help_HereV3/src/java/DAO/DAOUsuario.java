@@ -102,7 +102,12 @@ public class DAOUsuario /*implements iDAO*/ {
 
             rs.next();
             int id = rs.getInt("ID");
+            
+            lo.setId(id);
+            lo.getPe().setId(id);
+            lo.getEn().setIdEndereco(id);
 
+            //Endereco
             String sqlEndereco = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE id=" + id + ";";
 
             PreparedStatement pstm = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -122,7 +127,9 @@ public class DAOUsuario /*implements iDAO*/ {
             pstm.setString(7, en.getPais());
 
             pstm.executeUpdate();
-
+            //Endereco
+            
+            //Pessoa
             String sqlPessoa = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id=" + id + ";";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlPessoa, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -150,6 +157,8 @@ public class DAOUsuario /*implements iDAO*/ {
 
             pstmt.executeUpdate();
 
+            //Pessoa
+            
             conexao.commit();
 
         } // Verifica se a conexao foi fechada

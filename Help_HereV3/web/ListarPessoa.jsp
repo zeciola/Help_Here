@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.*"%>
 <%@page import="java.util.ArrayList" %>
-<%@page import="DAO.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -145,8 +144,8 @@
                     </tr>
                 </thead>
                 <% //recupera a lista do request
-                    ArrayList<Login> listaLogin = (ArrayList<Login>) request.getAttribute("ListaUs");
-                    for (Login lo : listaLogin) {%>
+                    ArrayList<Usuario> listaLogin = (ArrayList<Usuario>) request.getAttribute("ListaUs");
+                    for (Usuario lo : listaLogin) {%>
                 <tbody>
                     <tr align="center">
                         <td><%=lo.getNome()%></td>

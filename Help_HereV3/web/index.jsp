@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.Evento"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
@@ -114,6 +115,7 @@
             </div>
             <!-- /.row -->
             <hr>
+            <%--
             <div class="row">
                 <% ArrayList<Evento> Lista = (ArrayList<Evento>) request.getAttribute("evento");
                     if (Lista == null) {
@@ -130,6 +132,7 @@
                 </div>
                 <%}%>
             </div>
+            --%>
             <a href="GeraCertificado2">Teste certificado</a>
             <!-- /.row -->
             <hr>

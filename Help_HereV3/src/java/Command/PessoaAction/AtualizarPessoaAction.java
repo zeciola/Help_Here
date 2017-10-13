@@ -1,12 +1,7 @@
 package Command.PessoaAction;
 import Command.ICommand;
-import DAO.DAOEndereco;
-import DAO.DAOPessoa;
-import DAO.DAOUsuario;
-import Model.Endereco;
-import Model.Usuario;
-import Model.PerfilDeAcesso;
-import Model.Pessoa;
+import DAO.*;
+import Model.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +11,10 @@ public  class AtualizarPessoaAction implements ICommand{
     private final Endereco en = new Endereco();
     private final Pessoa pe = new Pessoa();
     private final Usuario lo = new Usuario();
+    //DAOs
     private final DAOUsuario daou = new DAOUsuario();
+    private final DAOEndereco daoen = new DAOEndereco();
+    private final DAOPessoa daope = new DAOPessoa();
     
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -32,6 +30,17 @@ public  class AtualizarPessoaAction implements ICommand{
         
         Email = usuarioLogado.getNome();
         Senha = usuarioLogado.getSenha();
+        
+        //Usuario
+        lo.setNome(request.getParameter("email"));
+        lo.setSenha(request.getParameter("senha"));
+        
+        lo.setPe(pe);
+        lo.setEn(en);
+        
+        daou.Atualizar(Email, Senha, lo);
+        
+        
         
         //Endereco de pessoa
         
@@ -60,14 +69,7 @@ public  class AtualizarPessoaAction implements ICommand{
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
         
-        //Usuario
-        lo.setNome(request.getParameter("email"));
-        lo.setSenha(request.getParameter("senha"));
         
-        lo.setPe(pe);
-        lo.setEn(en);
-        
-        daou.Atualizar(Email, Senha, lo);
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";
     }

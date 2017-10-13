@@ -27,7 +27,6 @@ public class DAOEndereco /*implements iDAO*/ {
     private static final String SELECT_ALL = "select * from endereco where status=true";
     private static final String SELECT_ID = "select * from endereco where id=?";
 
-
     //DAO Metodos
     //@Override
     public void Inserir(Endereco en) {
@@ -51,7 +50,6 @@ public class DAOEndereco /*implements iDAO*/ {
             pstmt.setString(6, en.getEstado());
 
             pstmt.setString(7, en.getPais());
-            
 
             pstmt.executeUpdate();
             // Fim da pstmt insert
@@ -89,38 +87,41 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
     //@Override
-    public void Atualizar(String Antemail, String ob, Endereco en) {
+    public void Atualizar(String Antemail, String ob, Endereco en) throws SQLException {
+
         try {
 
+            int id = en.getIdEndereco();
+            int rsid;
+
             conexao.setAutoCommit(false);
-            
-            String sqlUpdate = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE email="+Antemail+";";
-            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            PreparedStatement pstmt = conexao.prepareStatement(sqlUpdate, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            String sqlEndereco = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE id=" + id + ";";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, en.getCep());
-
             pstmt.setString(2, en.getNomelogradouro());
-
             pstmt.setInt(3, en.getNumeroen());
-
             pstmt.setString(4, en.getBairro());
-
             pstmt.setString(5, en.getMunicipio());
-
             pstmt.setString(6, en.getEstado());
-
             pstmt.setString(7, en.getPais());
 
             pstmt.executeUpdate();
-            // Fim da pstmt insert
 
-            //Resultset para id
             ResultSet rs = pstmt.getGeneratedKeys();
 
+            rs.next();
+            rsid = rs.getInt("ID");
+
             if (rs.next()) {
-                en.setIdEndereco(rs.getInt("ID"));
-                conexao.commit();
+                //IF que Verifica a integridade do ID
+                if (id == rsid) {
+                    en.getPe().setId(id);
+                    en.setIdEndereco(rs.getInt("ID"));
+                    conexao.commit();
+                }
             }
 
             //Fim da busca
@@ -146,7 +147,7 @@ public class DAOEndereco /*implements iDAO*/ {
         }
     }
 
-    //@Override
+//@Override
     public void Deletar(String OBJ, String ob) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -154,16 +155,16 @@ public class DAOEndereco /*implements iDAO*/ {
     //@Override
     public ArrayList Consultar(String email, Endereco en) {
         ArrayList<Endereco> result = new ArrayList();
-        
+
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '"+email+"';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;
 
             rs = pstmt.executeQuery();
 
-                while (rs.next()) {
+            while (rs.next()) {
                 en.setIdEndereco(rs.getInt("id"));
                 en.setCep(rs.getString("cep"));
                 en.setNomelogradouro(rs.getString("nomelogradouro"));
@@ -178,7 +179,7 @@ public class DAOEndereco /*implements iDAO*/ {
             }
             //Retorno do ArrayList
             return result;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -191,8 +192,7 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Endereco> Listar(ArrayList<Endereco> result,Endereco en) {
-
+    public ArrayList<Endereco> Listar(ArrayList<Endereco> result, Endereco en) {
 
         try {
             PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
@@ -201,7 +201,7 @@ public class DAOEndereco /*implements iDAO*/ {
 
             rs = pstmt.executeQuery();
 
-                while (rs.next()) {
+            while (rs.next()) {
                 en.setIdEndereco(rs.getInt("id"));
                 en.setCep(rs.getString("cep"));
                 en.setNomelogradouro(rs.getString("nomelogradouro"));
@@ -218,7 +218,7 @@ public class DAOEndereco /*implements iDAO*/ {
 
             //Retorno do ArrayList
             return result;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
