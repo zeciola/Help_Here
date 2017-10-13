@@ -153,7 +153,13 @@ public class ControleAcesso extends HttpServlet {
                     HttpSession sessaoInst = request.getSession();
                     sessaoInst.setAttribute("instAutenticado", InstituicaoAutenticada);
                     //redireciona para a pagina princiapal
-                    response.sendRedirect("acessologado/Evento.jsp");
+                    String var = request.getParameter("var");
+                    if(var == ""){
+                        response.sendRedirect("acessologado/Evento.jsp");    
+                    }else{
+                        response.sendRedirect("acessologado/PerfilEmpresa.jsp");
+                    }
+                    
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");

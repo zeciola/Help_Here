@@ -5,14 +5,13 @@
  */
 package Util;
 
-
-
 /**
  *
  * @author Lucas Puglia
  */
 public class Teste {
-    public static void main (String[] args){
+
+    public static void main(String[] args) {
         /*
         EmailJava email = new EmailJava();
         String Nome = "Lucas";
@@ -20,15 +19,21 @@ public class Teste {
         String subject = "Bem Vindo ao HelpHere "+Nome+"!";
         String msg = "Olá "+Nome+" seu cadastro foi efetuado com sucesso";
         String to = "lucas_puglia@hotmail.com";
-        email.enviarEmail(from, subject, msg, to); */
+        email.enviarEmail(from, subject, msg, to); 
         
         String Nome = "Lucas";
         String Senha = "234";
         EmailJava email = new EmailJava();
         String from = "HelpHereBr@gmail.com";
-        String to = "lucas_puglia@hotmail.com";
+        String to = "diegoselzzo13@hotmail.com";
         String subject = "Bem Vindo ao HelpHere "+Nome+" !";
         String msg = "Olá "+Nome+" seu cadastro foi efetuado com sucesso, seu usuário de login é: "+to+", e sua senha é: "+Senha+" ";
         email.enviarEmail(from, to, subject, msg);
+         */
+        
+        SendEmail e = new SendEmail();
+        
+        e.sendMail("HelpHereBr@gmail.com", "diegoselzzo13@hotmail.com", "teste", "teste");
+        
     }
 }

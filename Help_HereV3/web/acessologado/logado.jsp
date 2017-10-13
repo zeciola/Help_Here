@@ -50,6 +50,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Instituição
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="${pageContext.request.contextPath}/#">Minha Instituição</a></li>
                                 <li><a href="${pageContext.request.contextPath}/CadastroInstituicao.jsp">Cadastrar Instituição</a></li>
                                 <li><a href="ConsultarInstituicao.jsp">Consultar Instituição</a></li>
                                 <li><a href="${pageContext.request.contextPath}/CNPJsenha.jsp">Alterar Instituição</a></li>
@@ -58,7 +59,7 @@
                         </li>
 
                         <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
-                        <li><a href="${pageContext.request.contextPath}/acessologado/perfil.jsp">Meu Perfil</a></li>                    
+                        <li><a href="${pageContext.request.contextPath}/acessologado/LoginEmpresa.jsp">Meu Perfil</a></li>                    
                     </ul>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
