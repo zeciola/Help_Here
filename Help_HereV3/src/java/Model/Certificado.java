@@ -12,6 +12,26 @@ public class Certificado {
     private int horas;
     private Instituicao instituicao;
     private Evento evento;
+    private boolean analisado;
+    private boolean valido;
+
+    public boolean isAnalisado() {
+        return analisado;
+    }
+
+    public void setAnalisado(boolean analisado) {
+        this.analisado = analisado;
+    }
+
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+    
+    
 
     public Pessoa getPessoa() {
         return Pessoa;

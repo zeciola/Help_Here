@@ -468,31 +468,27 @@ ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
 
-select * from ultimoboleto;
-
-alter table ultimoboleto add column numeroboleto varchar(24);
-
-alter table ultimoboleto drop column numero;
 
 update ultimoboleto set numeroboleto = '0001.0001.0001.0001.0001' where id = 1;
 
+
+
 select* from instituicaoevento;
-
 select * from instituicao;
-
 select * from evento;
-
 select * from instituicao i, evento e, instituicaoevento instv where i.id = instv.idinstituicao and instv.idevento = e.id;
 
 select * from Voluntario;
 
 select * from pessoa;
+select * from usuario;
 
 select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.id idevento, e.tipo, e.nome NomeEvento, v.analisado from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = 2;
 
+select p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = 23;
 
-select * from Voluntario v, where v.certificado = true and ;
+update voluntario set certificado = true and analisado = true where idpessoa =2;
 
-select p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv
-where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = false and instv.idevento = e.id and instv.idinstituicao = i.id;
+update voluntario set certificado = true, analisado = true where idpessoa = 2;
 
+update voluntario set certificado = false, analisado = true where idpessoa = 2;

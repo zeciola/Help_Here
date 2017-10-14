@@ -16,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,7 +73,7 @@ public class DAOCertificado {
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.id idevento, e.tipo, e.nome NomeEvento, v.analisado from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = ?");
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = ?");
             pstmt.setInt(1, c.getInstituicao().getIdInstituicao());
             rs = pstmt.executeQuery();
 
@@ -109,4 +111,31 @@ public class DAOCertificado {
         }
     }
 
+    public void AnalisaCertificado(Certificado c) {
+        Connection conexao = Conexao.getConexao();
+        try {
+            conexao.setAutoCommit(false);
+            PreparedStatement pstmt = conexao.prepareStatement("update voluntario set certificado = ?, analisado = ? where idpessoa = ?");
+            pstmt.setBoolean(1, c.isValido());
+            pstmt.setBoolean(2, c.isAnalisado() );
+            pstmt.setInt(3, c.getPessoa().getId());
+            pstmt.execute();
+            conexao.commit();
+
+        } catch (SQLException e) {
+            try {
+                conexao.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
 }
