@@ -18,7 +18,7 @@ public class Conexao {
     //login do banco
     private static String login = "postgres";
     //senha do banco
-    private static String password = "postgres";
+    private static String password = "lucario";
     //driver que será utilizado
     private static String driver = "org.postgresql.Driver";
 
