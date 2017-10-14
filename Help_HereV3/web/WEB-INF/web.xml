@@ -64,6 +64,10 @@
         <servlet-name>teste</servlet-name>
         <servlet-class>Control.teste</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControleCertificado</servlet-name>
+        <servlet-class>Control.ControleCertificado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>
         <url-pattern>/ControleAcesso</url-pattern>
@@ -123,6 +127,10 @@
     <servlet-mapping>
         <servlet-name>teste</servlet-name>
         <url-pattern>/teste</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControleCertificado</servlet-name>
+        <url-pattern>/ControleCertificado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

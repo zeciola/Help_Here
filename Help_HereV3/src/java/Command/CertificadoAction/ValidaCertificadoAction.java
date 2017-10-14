@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Command.ContribuirAction;
+package Command.CertificadoAction;
 
 import Command.ICommand;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Diego
  */
-public class ValidaCertCondicional implements ICommand{
+public class ValidaCertificadoAction implements ICommand{
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {

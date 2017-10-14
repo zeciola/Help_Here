@@ -486,5 +486,13 @@ select * from instituicao i, evento e, instituicaoevento instv where i.id = inst
 
 select * from Voluntario;
 
-select p.nome PessoaNome, i.nome InstNome, e.tipo, e.nome NomeEvento, v.analisado from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where
- v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false;
+select * from pessoa;
+
+select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.id idevento, e.tipo, e.nome NomeEvento, v.analisado from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = 2;
+
+
+select * from Voluntario v, where v.certificado = true and ;
+
+select p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv
+where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = false and instv.idevento = e.id and instv.idinstituicao = i.id;
+
