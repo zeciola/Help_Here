@@ -24,6 +24,9 @@ public class CadastrarPessoaAction implements ICommand {
 
     private boolean defalt = false;
     private boolean status = true;
+    
+    //Email
+    private email email = new email();
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -70,6 +73,9 @@ public class CadastrarPessoaAction implements ICommand {
         lo.setPerfil(PerfilDeAcesso.comum);
         //Email
         lo.setNome(request.getParameter("email"));
+        
+        String EmailTo = request.getParameter("email");
+        
         lo.setSenha(request.getParameter("senha"));
         //status
         lo.setStatus(status);
@@ -77,20 +83,12 @@ public class CadastrarPessoaAction implements ICommand {
         //Seta os valores
         lo.setPe(pe);
         daou.Inserir(lo);
+        
+        String Subject = "Cadastro Realizado com sucesso";
+        
+        String Msg = "Obrigado por se cadastrar no HelpHere";
 
-        //enviar e-mail
-        /*
-        EmailJava email = new EmailJava();
-        String from = "HelpHereBr@gmail.com";
-        String subject = "Bem Vindo ao HelpHere";
-        String msg = "Seu cadastro foi efetuado com sucesso";
-        String to = request.getParameter("email");
-        email.enviarEmail(from, subject, msg, to);
-
-        //adiciona id para cadastro de interesses
-        HttpSession sessaousuario = request.getSession();
-        sessaousuario.setAttribute("userid", lo);
-        */
+        email.sendEmail(EmailTo, Subject, Msg);
         
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/checkbox.html";

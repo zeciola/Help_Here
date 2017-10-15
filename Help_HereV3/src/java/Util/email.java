@@ -14,28 +14,34 @@ import org.apache.commons.mail.SimpleEmail;
  */
 public class email {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-       
+    private static String HostName = "smtp.gmail.com";
+    private static String EmailFrom = "HelpHereBr@gmail.com";
+    private static String Passw = "helphere123";
+    private String EmailTo = "jr.ciola.bricio@gmail.com";
+    private String Subject = "Teste de Email do HelpHere";
+    private String Msg = "Teste de email";
+    
+    
+    public void sendEmail(String EmailTo, String Subject, String Msg) throws EmailException {
+
         SimpleEmail email = new SimpleEmail();
 
-	try {
-	email.setDebug(true);
-	email.setHostName("smtp.gmail.com");
-	email.setAuthentication("HelpHereBr@gmail.com","helphere123");
-	email.setSSL(true);
-	email.addTo("diegoselzzo13@hotmail.com"); //pode ser qualquer um email
-	email.setFrom("HelpHereBr@gmail.com"); //aqui necessita ser o email que voce fara a autenticacao
-	email.setSubject("Teste");
-	email.setMsg("Mensagem Testando");
-	email.send();
+        try {
+            email.setDebug(true);
+            email.setHostName(HostName);
+            email.setAuthentication(EmailFrom, Passw);
+            email.setSSL(true);
+            email.addTo(EmailTo); //pode ser qualquer um email
+            email.setFrom(EmailFrom); //aqui necessita ser o email que voce fara a autenticacao
+            email.setSubject(Subject);
+            email.setMsg(Msg);
+            email.send();
 
-	} catch (EmailException e) {
+        } catch (EmailException e) {
 
-	System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
 
-	} 
-    }    
+        }
+    }
+
 }

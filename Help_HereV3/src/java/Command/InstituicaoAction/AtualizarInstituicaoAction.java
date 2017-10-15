@@ -46,13 +46,7 @@ public class AtualizarInstituicaoAction implements ICommand {
          CNP=usuarioLogado.getCnpj();
                 
           Sen = usuarioLogado.getSenha();
-                
-          
-               
-       
-       
-        
-        
+
         
         //Instituicao
         inst.setNome(request.getParameter("nome"));
