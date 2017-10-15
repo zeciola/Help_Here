@@ -59,7 +59,7 @@
                         </li>
 
                         <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
-                        <li><a href="${pageContext.request.contextPath}/acessologado/LoginEmpresa.jsp">Meu Perfil</a></li>                    
+                        <li><a href="${pageContext.request.contextPath}/acessologado/LoginEmpresa.jsp">Perfil Empresa</a></li>                    
                     </ul>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->

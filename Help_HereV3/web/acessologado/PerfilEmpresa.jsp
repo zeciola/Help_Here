@@ -1,6 +1,6 @@
+<%@page import="Model.Certificado"%>
 <%@page import="Model.Instituicao"%>
 <%@page import="Model.Usuario"%>
-<%@page import="Model.Feeds"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -81,22 +81,38 @@
             </nav>
         </header>    
 
-        <figure class="figure">
-            <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-            <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             Instituicao ints = (Instituicao) session.getAttribute("instAutenticado");
             if (usuario != null) {
         %>
         <h1>Bem vindo 
-            <%= ints.getNome() %>! </h1>
+            <%= ints.getNome()%>! </h1>
         <h2>Nome: <%= ints.getRazao()%> </h2>
-        <h2><%= ints.getCnpj() %> </h2>
+        <h2><%= ints.getCnpj()%> </h2>
         <%}%>
-      <br>
-      
-      <h1>Veja abaixos certificados que você precisa Liberar</h1>
+        <br>
+
+        <h1>Veja abaixos certificados que você precisa Liberar</h1>
+        <form action="../ControleCertificado" method="post">
+            <% ArrayList<Certificado> Lista = (ArrayList<Certificado>) request.getAttribute("itensvalidar");
+                if (Lista == null) {
+                    request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
+          }%>
+            <%for (Certificado e : Lista) {%>
+            <div id="feed">
+                <br>
+
+                <h3>Esta pessoa esteve no seu evento <%=e.getEvento().getNome()%>?</h3>
+                <%=e.getPessoa().getNome()%><br>
+
+                <input type="checkbox" value ="<%=e.getPessoa().getId()%>"> 
+            </div>
+            <input type="submit" name="acao" value="Valida">
+        </form>
+        <%}%>
+
+
+
     </body>
 </html>

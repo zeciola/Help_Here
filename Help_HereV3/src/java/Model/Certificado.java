@@ -8,11 +8,38 @@ import java.util.*;
 
 public class Certificado {
     private String emissor;
-    private String AquemseDestina;
+    private Pessoa Pessoa;
     private int horas;
-    private String nomeDoEvento;
     private Instituicao instituicao;
     private Evento evento;
+    private boolean analisado;
+    private boolean valido;
+
+    public boolean isAnalisado() {
+        return analisado;
+    }
+
+    public void setAnalisado(boolean analisado) {
+        this.analisado = analisado;
+    }
+
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+    
+    
+
+    public Pessoa getPessoa() {
+        return Pessoa;
+    }
+
+    public void setPessoa(Pessoa Pessoa) {
+        this.Pessoa = Pessoa;
+    }
     
     //Gets
 
@@ -20,16 +47,8 @@ public class Certificado {
         return emissor;
     }
 
-    public String getAquemseDestina() {
-        return AquemseDestina;
-    }
-
     public int getHoras() {
         return horas;
-    }
-
-    public String getNomeDoEvento() {
-        return nomeDoEvento;
     }
 
     public Instituicao getInstituicao() {
@@ -46,16 +65,8 @@ public class Certificado {
         this.emissor = emissor;
     }
 
-    public void setAquemseDestina(String AquemseDestina) {
-        this.AquemseDestina = AquemseDestina;
-    }
-
     public void setHoras(int horas) {
         this.horas = horas;
-    }
-
-    public void setNomeDoEvento(String nomeDoEvento) {
-        this.nomeDoEvento = nomeDoEvento;
     }
 
     public void setInstituicao(Instituicao instituicao) {
@@ -65,8 +76,6 @@ public class Certificado {
     public void setEvento(Evento evento) {
         this.evento = evento;
     }
-    
-    
-        
+            
 }
 
