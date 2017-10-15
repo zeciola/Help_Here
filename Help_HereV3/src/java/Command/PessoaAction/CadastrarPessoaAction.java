@@ -84,6 +84,9 @@ public class CadastrarPessoaAction implements ICommand {
         lo.setPe(pe);
         daou.Inserir(lo);
         
+        HttpSession sessaoUsuario = request.getSession();
+        sessaoUsuario.setAttribute("userid", lo);
+        
         String Subject = "Cadastro Realizado com sucesso";
         
         String Msg = "Obrigado por se cadastrar no HelpHere";
