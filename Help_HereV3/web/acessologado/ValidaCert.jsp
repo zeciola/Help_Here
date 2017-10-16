@@ -1,3 +1,4 @@
+<%@page import="Model.Pessoa"%>
 <%@page import="Model.Evento"%>
 <%@page import="Model.Certificado"%>
 <%@page import="Model.Instituicao"%>
@@ -94,19 +95,22 @@
         <%}%>
         <br>
 
-        <h1>Veja abaixos certificados que você precisa Liberar</h1>
+        <h1>Veja</h1>
 
-        <%Certificado Lista = (Certificado) request.getAttribute("itensvalidar");
+        <%ArrayList<Pessoa> Lista = (ArrayList<Pessoa>) request.getAttribute("pessoasPendentes");
             if (Lista == null) {
-                request.getRequestDispatcher("/ControleCertificado?acao=Busca").forward(request, response);
+                request.getRequestDispatcher("/ControleCertificado?acao=BuscarP").forward(request, response);
             }%>
-        <%for (Evento e : Lista.getPendentes()) {%>
+        <form action="" method="post">
+        <%for (Pessoa e : Lista) {%>
         <div id="feed">
             <br>
-            <h3>Valide os vuntarios dos seu eventos <%=e.getNome()%>?</h3>
-            <a href="../ControleCertificado?acao=BuscarP&idEvento=<%=e.getIdEvento()%>" >Validar Certificados</a>    
+            <h3>Cofirma <%=e.getNome()%> no seu evento?</h3>
+            <input type="checkbox" name="idp" id="volun" value="<%=e.getId()%>">
         </div>
         <%}%>
+        <input type="submit" name="acao" value="Validar">
+        </form>
         <br>
     </body>
 </html>

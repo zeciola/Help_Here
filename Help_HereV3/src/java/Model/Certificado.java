@@ -14,6 +14,26 @@ public class Certificado {
     private Evento evento;
     private boolean analisado;
     private boolean valido;
+    private ArrayList<Evento> pendentes;
+    private ArrayList<Pessoa> pessoasPendesntes;
+
+    public ArrayList<Pessoa> getPessoasPendesntes() {
+        return pessoasPendesntes;
+    }
+
+    public void setPessoasPendesntes(ArrayList<Pessoa> pessoasPendesntes) {
+        this.pessoasPendesntes = pessoasPendesntes;
+    }
+    
+    public ArrayList<Evento> getPendentes() {
+        return pendentes;
+    }
+
+    public void setPendentes(ArrayList<Evento> pendentes) {
+        this.pendentes = pendentes;
+    }
+    
+    
 
     public boolean isAnalisado() {
         return analisado;
