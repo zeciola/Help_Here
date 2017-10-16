@@ -97,22 +97,17 @@
         <form action="../ControleCertificado" method="post">
             <% ArrayList<Certificado> Lista = (ArrayList<Certificado>) request.getAttribute("itensvalidar");
                 if (Lista == null) {
-                    request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
-          }%>
+                    request.getRequestDispatcher("/ControleCertificado?acao=Busca").forward(request, response);
+                }%>
             <%for (Certificado e : Lista) {%>
             <div id="feed">
                 <br>
 
-                <h3>Esta pessoa esteve no seu evento <%=e.getEvento().getNome()%>?</h3>
-                <%=e.getPessoa().getNome()%><br>
-
-                <input type="checkbox" value ="<%=e.getPessoa().getId()%>"> 
+                <h3>Valide os vuntarios dos seu eventos <%=e.getEvento().getNome()%>?</h3>
+                
             </div>
             <input type="submit" name="acao" value="Valida">
         </form>
         <%}%>
-
-
-
     </body>
 </html>

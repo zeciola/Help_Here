@@ -6,18 +6,34 @@
 package Command.CertificadoAction;
 
 import Command.ICommand;
+import DAO.DAOCertificado;
+import Model.Certificado;
+import Model.Instituicao;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Diego
  */
-public class BuscaCertificadoAction implements ICommand{
+public class BuscaCertificadoAction implements ICommand {
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DAOCertificado daoc = new DAOCertificado();
+        Certificado c = new Certificado();
+
+        HttpSession sessaoUsuario = request.getSession();
+        Instituicao ints = (Instituicao) sessaoUsuario.getAttribute("instAutenticado");
+
+        c.setInstituicao(ints);
+
+        ArrayList<Certificado> r = daoc.ListarPendentes(c);
+
+        request.setAttribute("itensvalidar", r);
+        return "acessologado/PerfilEmpresa.jsp";
     }
-    
+
 }

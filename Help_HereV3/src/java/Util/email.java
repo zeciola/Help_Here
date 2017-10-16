@@ -6,6 +6,8 @@
 package Util;
 
 import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.EmailAttachment;
+import org.apache.commons.mail.MultiPartEmail;
 import org.apache.commons.mail.SimpleEmail;
 
 /**
@@ -15,11 +17,11 @@ import org.apache.commons.mail.SimpleEmail;
 public class email {
 
     private static String HostName = "smtp.gmail.com";
-    private static String EmailFrom = "HelpHereBr@gmail.com";
+    private static String EmailFrom = "helpherebr@gmail.com";
     private static String Passw = "helphere123";
-    private String EmailTo = "jr.ciola.bricio@gmail.com";
-    private String Subject = "Teste de Email do HelpHere";
-    private String Msg = "Teste de email";
+    //private String EmailTo = "jr.ciola.bricio@gmail.com";
+    //private String Subject = "Teste de Email do HelpHere";
+    //private String Msg = "Teste de email";
     
     
     public void sendEmail(String EmailTo, String Subject, String Msg) throws EmailException {
@@ -29,7 +31,8 @@ public class email {
         try {
             email.setDebug(true);
             email.setHostName(HostName);
-            email.setAuthentication(EmailFrom, Passw);
+            email.setSmtpPort(465);
+            email.setAuthentication("helpherebr@gmail.com", "helphere123");
             email.setSSL(true);
             email.addTo(EmailTo); //pode ser qualquer um email
             email.setFrom(EmailFrom); //aqui necessita ser o email que voce fara a autenticacao

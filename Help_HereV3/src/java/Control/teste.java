@@ -37,7 +37,12 @@ public class teste extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
                 email e = new email();
-                e.sendEmail("diegoselzzo13@hotmail.com", "teste1", "testando a primeira vez");
+                
+                String EmailTo = "jr.ciola.bricio@gmail.com";
+                String Subject = "Teste de email";
+                String Msg = "Email teste do HelpHere!";
+                
+                e.sendEmail(EmailTo, Subject, Msg);
         }
     }
 
