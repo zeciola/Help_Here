@@ -97,10 +97,7 @@
 
         <h1>Veja</h1>
 
-        <%ArrayList<Pessoa> Lista = (ArrayList<Pessoa>) request.getAttribute("pessoasPendentes");
-            if (Lista == null) {
-                request.getRequestDispatcher("/ControleCertificado?acao=BuscarP").forward(request, response);
-            }%>
+        <%ArrayList<Pessoa> Lista = (ArrayList<Pessoa>) request.getAttribute("pessoasPendentes");%>
         <form action="" method="post">
         <%for (Pessoa e : Lista) {%>
         <div id="feed">

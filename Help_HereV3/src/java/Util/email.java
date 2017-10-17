@@ -31,9 +31,9 @@ public class email {
         try {
             email.setDebug(true);
             email.setHostName(HostName);
-            email.setSmtpPort(465);
+            email.setSmtpPort(587);
             email.setAuthentication("helpherebr@gmail.com", "helphere123");
-            email.setSSL(true);
+            email.setStartTLSEnabled(true);
             email.addTo(EmailTo); //pode ser qualquer um email
             email.setFrom(EmailFrom); //aqui necessita ser o email que voce fara a autenticacao
             email.setSubject(Subject);

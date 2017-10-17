@@ -25,7 +25,7 @@ public class SendEmail {
      */
    public SendEmail() { //Para o GMAIL 
         mailSMTPServer = "smtp.gmail.com";
-        mailSMTPServerPort = "587";
+        mailSMTPServerPort = "465";
     }
 
     /*

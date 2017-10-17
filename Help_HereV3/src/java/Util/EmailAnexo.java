@@ -16,10 +16,7 @@ import org.apache.commons.mail.MultiPartEmail;
  */
 public class EmailAnexo {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    public void sendEmailAnexo() {
 
         File f = new File("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/pdf/MeuPrimeiroBoleto2.pdf");
 
@@ -33,13 +30,14 @@ public class EmailAnexo {
             // Create the email message
             MultiPartEmail email = new MultiPartEmail();
             email.setDebug(true);
+            email.setSmtpPort(587);
             email.setHostName("smtp.gmail.com");
             email.setAuthentication("HelpHereBr@gmail.com", "helphere123");
-            email.setSSL(true);
+            email.setStartTLSEnabled(true);
             email.addTo("diegoselzzo13@hotmail.com"); //pode ser qualquer um email
             email.setFrom("HelpHereBr@gmail.com"); //aqui necessita ser o email que voce fara a autenticacao
-            email.setSubject("The file");
-            email.setMsg("The file");
+            email.setSubject("The file teste final");
+            email.setMsg("The file teste final");
 
             // add the attachment
             email.attach(attachment);
@@ -50,4 +48,5 @@ public class EmailAnexo {
             e.printStackTrace();
         }
     }
+
 }
