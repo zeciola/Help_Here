@@ -21,8 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscarPCertificadoAction implements ICommand{
 
     @Override
-    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
+    public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {     
         DAOCertificado daoc = new DAOCertificado();
         
         Evento e = new Evento();

@@ -492,6 +492,9 @@ select e.*
 from Voluntario v, Instituicao i, evento e, instituicaoevento instv 
 where v.idevento = e.id and e.analisado = false and i.id = instv.idinstituicao and instv.idevento = e.id  and e.tipo = 'Voluntariado' and i.id = 2;
 
+select e.*from Voluntario v, Instituicao i, evento e, instituicaoevento instv where v.idevento = e.id and e.analisado = false and i.id = instv.idinstituicao and instv.idevento = e.id  and e.tipo = 'Voluntariado' and i.id = 2;
+
+
 --LISTA PESSOAS DE TAL EVENTO voluntariado
 select p.* 
 from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 

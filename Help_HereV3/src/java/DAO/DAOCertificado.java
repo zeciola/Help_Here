@@ -48,7 +48,7 @@ public class DAOCertificado {
                 //i.setNome(rs.getString("instnome"));
                 //c1.setInstituicao(i);
                 eventos.add(ev);
-                
+
             }
             r.setPendentes(eventos);
             return r;
@@ -57,9 +57,7 @@ public class DAOCertificado {
             throw new RuntimeException(e);
         } finally {
             try {
-                
-                
-                
+
                 conexao.close();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -116,7 +114,7 @@ public class DAOCertificado {
             conexao.setAutoCommit(false);
             PreparedStatement pstmt = conexao.prepareStatement("update voluntario set certificado = ?, analisado = ? where idpessoa = ?");
             pstmt.setBoolean(1, c.isValido());
-            pstmt.setBoolean(2, c.isAnalisado() );
+            pstmt.setBoolean(2, c.isAnalisado());
             pstmt.setInt(3, c.getPessoa().getId());
             pstmt.execute();
             conexao.commit();
@@ -137,10 +135,36 @@ public class DAOCertificado {
             }
         }
     }
-    
-    public ArrayList ListarVoluntariosP (Certificado c){
-        
-        
-        return null;
+
+    public ArrayList ListarVoluntariosP(Certificado c) {
+     
+        ArrayList<Pessoa> pessoasp = new ArrayList();
+        Connection conexao = Conexao.getConexao();
+        ResultSet rs;
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement("select p.* from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where v.idpessoa = p.id and v.idevento = e.id and v.certificado = FALSE and instv.idevento = e.id and instv.idinstituicao = i.id AND e.id = ?");
+            pstmt.setInt(1, c.getEvento().getIdEvento());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Pessoa p = new Pessoa();
+                p.setNome(rs.getString("nome"));
+                p.setSobrenome(rs.getString("sobrenome"));
+                p.setId(rs.getInt("id"));
+                pessoasp.add(p);
+            }
+           
+            return pessoasp;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
