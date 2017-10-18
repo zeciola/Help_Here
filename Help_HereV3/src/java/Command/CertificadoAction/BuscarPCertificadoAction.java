@@ -13,6 +13,7 @@ import Model.Pessoa;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -22,6 +23,10 @@ public class BuscarPCertificadoAction implements ICommand{
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {     
+        
+        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        
+        
         DAOCertificado daoc = new DAOCertificado();
         
         Evento e = new Evento();
@@ -31,8 +36,9 @@ public class BuscarPCertificadoAction implements ICommand{
         c.setEvento(e);
         
         ArrayList<Pessoa> pendente = daoc.ListarVoluntariosP(c);
-       
-        request.setAttribute("pessoasPendentes", pendente);
+        c.setPessoasPendesntes(pendente);
+        
+        sessaoUsuario.setAttribute("pessoasPendentes", c);
         return "acessologado/ValidaCert.jsp";
     }
 }

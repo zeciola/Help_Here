@@ -22,17 +22,20 @@ public class BuscaCertificadoAction implements ICommand {
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        
+        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+        
         DAOCertificado daoc = new DAOCertificado();
         Certificado c = new Certificado();
 
-        HttpSession sessaoUsuario = request.getSession();
+        
         Instituicao ints = (Instituicao) sessaoUsuario.getAttribute("instAutenticado");
 
         c.setInstituicao(ints);
 
         Certificado r = daoc.ListarPendentes(c);
 
-        request.setAttribute("itensvalidar", r);
+        sessaoUsuario.setAttribute("itensvalidar", r);
         return "acessologado/PerfilEmpresa.jsp";
     }
 

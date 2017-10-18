@@ -97,16 +97,16 @@
 
         <h1>Veja</h1>
 
-        <%ArrayList<Pessoa> Lista = (ArrayList<Pessoa>) request.getAttribute("pessoasPendentes");%>
-        <form action="" method="post">
-        <%for (Pessoa e : Lista) {%>
+        <%Certificado Lista = (Certificado) session.getAttribute("pessoasPendentes");%>
+        <form action="ControleCertificado" method="post">
+        <%for (Pessoa e : Lista.getPessoasPendesntes()) {%>
         <div id="feed">
-            <br>
             <h3>Cofirma <%=e.getNome()%> no seu evento?</h3>
-            <input type="checkbox" name="idp" id="volun" value="<%=e.getId()%>">
+            <input type="radio" name="<%=e.getId()%>" value="true">SIM<br>
+            <input type="radio" name="<%=e.getId()%>" value="false">NÃO<br>
         </div>
         <%}%>
-        <input type="submit" name="acao" value="Validar">
+        <input type="submit" name="acao" value="Valida">
         </form>
         <br>
     </body>

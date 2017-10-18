@@ -112,11 +112,10 @@ public class DAOCertificado {
         Connection conexao = Conexao.getConexao();
         try {
             conexao.setAutoCommit(false);
-            PreparedStatement pstmt = conexao.prepareStatement("update voluntario set certificado = ?, analisado = ? where idpessoa = ?");
+            PreparedStatement pstmt = conexao.prepareStatement("update voluntario set certificado = ?, analisado = true where idpessoa = ?");
             pstmt.setBoolean(1, c.isValido());
-            pstmt.setBoolean(2, c.isAnalisado());
-            pstmt.setInt(3, c.getPessoa().getId());
-            pstmt.execute();
+            pstmt.setInt(2, c.getPessoa().getId());
+            pstmt.executeUpdate();
             conexao.commit();
 
         } catch (SQLException e) {

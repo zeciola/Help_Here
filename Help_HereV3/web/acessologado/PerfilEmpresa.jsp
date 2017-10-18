@@ -96,7 +96,7 @@
 
         <h1>Veja abaixos certificados que você precisa Liberar</h1>
 
-        <%Certificado Lista = (Certificado) request.getAttribute("itensvalidar");
+        <%Certificado Lista = (Certificado) session.getAttribute("itensvalidar");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleCertificado?acao=Busca").forward(request, response);
             }%>
