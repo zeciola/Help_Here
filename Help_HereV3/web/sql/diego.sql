@@ -488,9 +488,14 @@ select * from usuario;
 select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.id idevento, e.tipo, e.nome NomeEvento, v.analisado from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = 2;
 
 --LISTA EVENTOS QUE NÃO TIVERAM ANALISE
+
 select e.*
 from Voluntario v, Instituicao i, evento e, instituicaoevento instv 
 where v.idevento = e.id and e.analisado = false and i.id = instv.idinstituicao and instv.idevento = e.id  and e.tipo = 'Voluntariado' and i.id = 2;
+
+--UPDATE DO STATUS ANALISADO DO EVENTO
+
+update evento set analisado = true where id = 26;
 
 select e.*from Voluntario v, Instituicao i, evento e, instituicaoevento instv where v.idevento = e.id and e.analisado = false and i.id = instv.idinstituicao and instv.idevento = e.id  and e.tipo = 'Voluntariado' and i.id = 2;
 
