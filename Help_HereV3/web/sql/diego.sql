@@ -509,13 +509,13 @@ where v.idpessoa = p.id and v.idevento = e.id and v.certificado = FALSE and inst
 
 select p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst 
 from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
-where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = 23;
+where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = 24;
 
 --COMANDOS PARA ATUALIZAR ISTATUS DE CERTIFICADO ACEITE E E NÃO ACEITE E ANALISADO E NÃO ANALISADO
 
 update voluntario set certificado = true and analisado = true where idpessoa =2;
 
-update voluntario set certificado = true, analisado = true where idpessoa = 24;
+update voluntario set certificado = false, analisado = false where idpessoa = 24;
 
 update voluntario set certificado = false, analisado = false where idpessoa = 24;
 
