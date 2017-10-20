@@ -154,7 +154,7 @@ public class ControleAcesso extends HttpServlet {
                     sessaoInst.setAttribute("instAutenticado", InstituicaoAutenticada);
                     //redireciona para a pagina princiapal
                     String var = request.getParameter("var");
-                    if(var == ""){
+                    if(var == null){
                         response.sendRedirect("acessologado/Evento.jsp");    
                     }else{
                         response.sendRedirect("acessologado/PerfilEmpresa.jsp");
