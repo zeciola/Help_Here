@@ -26,7 +26,6 @@ public class BuscarPCertificadoAction implements ICommand{
         
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
         
-        
         DAOCertificado daoc = new DAOCertificado();
         
         Evento e = new Evento();

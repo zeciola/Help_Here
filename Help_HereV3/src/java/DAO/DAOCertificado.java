@@ -166,4 +166,30 @@ public class DAOCertificado {
             }
         }
     }
+    
+    public void UpAnalisadoev(Certificado c){
+        Connection conexao = Conexao.getConexao();
+        try {
+            conexao.setAutoCommit(false);
+            PreparedStatement pstmt = conexao.prepareStatement("update evento set analisado = true where id = ?");
+            pstmt.setInt(1, c.getEvento().getIdEvento());
+            pstmt.executeUpdate();
+            conexao.commit();
+
+        } catch (SQLException e) {
+            try {
+                conexao.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
 }

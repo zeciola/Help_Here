@@ -30,7 +30,6 @@ public class ValidaCertificadoAction implements ICommand {
 
         DAOCertificado cdao = new DAOCertificado();
         
-        
         for(int i=0; i<c.getPessoasPendesntes().size(); i++){
             //o forma radio tem como id o id de pessoa)
             String v = ""+c.getPessoasPendesntes().get(i).getId();
@@ -44,7 +43,9 @@ public class ValidaCertificadoAction implements ICommand {
 
             cdao.AnalisaCertificado(c1);    
         }
-
+        //após terminar for mudar stats no evento como analisado
+        cdao.UpAnalisadoev(c);
+        
         sessaoUsuario.removeAttribute("itensvalidar");
         sessaoUsuario.removeAttribute("pessoasPendentes");
         

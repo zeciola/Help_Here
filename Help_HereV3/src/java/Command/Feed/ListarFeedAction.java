@@ -28,6 +28,7 @@ public class ListarFeedAction implements ICommand{
             Feeds f = new Feeds();
             Evento e = new Evento();
             e.setNome("Não tem");
+            f.setE(e);
             lista.add(f);
         }
         request.setAttribute("feed", lista);

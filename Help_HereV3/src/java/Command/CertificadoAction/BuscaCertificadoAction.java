@@ -27,7 +27,6 @@ public class BuscaCertificadoAction implements ICommand {
         
         DAOCertificado daoc = new DAOCertificado();
         Certificado c = new Certificado();
-
         
         Instituicao ints = (Instituicao) sessaoUsuario.getAttribute("instAutenticado");
 
