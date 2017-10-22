@@ -148,6 +148,7 @@ email varchar(50),
 idEnderecoInstituicao int,
 senha varchar(50),
 status boolean default true,
+contador int,
 constraint fk_Endereco Foreign Key(IdEnderecoInstituicao)
 references EnderecoInstituicao (ID) on delete cascade
 );
@@ -164,6 +165,7 @@ select * from EnderecoInstituicao
 delete from EnderecoInstituicao where ID = 20
 
 alter table EnderecoInstituicao add column status boolean
+alter table Instituicao add column contador int
 
 update usuario set login = 'admin' where ID = 37
 
@@ -396,8 +398,10 @@ FOREIGN KEY(idEvento) REFERENCES Evento (ID),
 FOREIGN KEY(idEndereco) REFERENCES Endereco (ID)
 );
 
+
 /*
 select * from Endereco
+select * from instituicao
 insert into EnderecoEvento (idEvento, idEndereco) values (1,8
 
 insert into EnderecoEvento (idEvento, idEndereco) values (1,7)
@@ -406,8 +410,10 @@ insert into EnderecoEvento (idEvento, idEndereco) values (2,7)
 
 select * from enderecoevento eve, evento ev, endereco e where e.id = eve.idendereco and ev.id = eve.idevento; 
 
--- todos enderecos do evento 1
-select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve.idevento = 1;
+-- instituicao do evento tal
+select idinstituicao from instituicaoevento eve, instituicao e where e.id = eve.idinstituicao and eve.idevento = 23;
+
+update Instituicao set contador = 16 where id in (select idinstituicao from instituicaoevento eve, instituicao e where e.id = eve.idinstituicao and eve.idevento = 23)
 
 -- mostra todos eventos que ocorreram no endereco 7
 

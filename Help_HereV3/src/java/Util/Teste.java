@@ -5,6 +5,9 @@
  */
 package Util;
 
+import DAO.DAOEvento;
+import Model.Evento;
+
 /**
  *
  * @author Lucas Puglia
@@ -29,11 +32,22 @@ public class Teste {
         String subject = "Bem Vindo ao HelpHere "+Nome+" !";
         String msg = "Olá "+Nome+" seu cadastro foi efetuado com sucesso, seu usuário de login é: "+to+", e sua senha é: "+Senha+" ";
         email.enviarEmail(from, to, subject, msg);
-         */
+         
         
         SendEmail e = new SendEmail();
         
         e.sendMail("HelpHereBr@gmail.com", "diegoselzzo13@hotmail.com", "teste", "teste");
+        */
+        
+        Evento e = new Evento();
+        DAOEvento dao = new DAOEvento();
+        e.setIdEvento(23);
+        dao.AtualizarContador(e);
+        
+        
+        
+        
+        
         
     }
 }

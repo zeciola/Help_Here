@@ -4,6 +4,7 @@ import Command.ICommand;
 import DAO.DAOEndereco;
 import DAO.DAOEvento;
 import DAO.DAOFeeds;
+import DAO.DAOInstituicao;
 import Model.Endereco;
 import Model.Evento;
 import Model.Feeds;
@@ -28,16 +29,23 @@ public class CadastrarEventoAction implements ICommand {
     private DAOEvento daoevento = new DAOEvento();
     private DAOFeeds daof = new DAOFeeds();
     private DAOEvento Ed = new DAOEvento();
+    private DAOInstituicao daoin = new DAOInstituicao();
 
     private Evento ev = new Evento();
     private Endereco e = new Endereco();
     //private Evento evento = new Evento();
     private Instituicao in = new Instituicao();
     private Feeds f = new Feeds();
+    int contador;
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+        
+        /*String UR = request.getParameter("UR");
+        if (UR != null){
+            response.sendRedirect("ContadorEvento.jsp");
+        }
+        */
         // endereco do evento
         String[] cepend = request.getParameterValues("cep");
         String[] nomeend = request.getParameterValues("nomeendereco");
@@ -55,7 +63,8 @@ public class CadastrarEventoAction implements ICommand {
         String[] cnpjinst = request.getParameterValues("cnpj");
         String[] modalidadeinst = request.getParameterValues("modalidade");
         String[] emailinst = request.getParameterValues("email");
-
+        String[] contadorinst = request.getParameterValues("contadorEv");
+        
         for (int i = 0; i < cepend.length; i++) {
 
             e.setCep(cepend[i]);
@@ -73,15 +82,17 @@ public class CadastrarEventoAction implements ICommand {
         }
 
         for (int i = 0; i < idinst.length; i++) {
-
+            
             in.setIdInstituicao(Integer.parseInt(idinst[i]));
-            in.setNome(nomeinst[i]);
+            in.setContadorEv(Integer.parseInt(contadorinst[i]));
+            /*in.setNome(nomeinst[i]);
             in.setRazao(razaosocial[i]);
             in.setTipo(tipoinst[i]);
             in.setCnpj(cnpjinst[i]);
             in.setModalidade(modalidadeinst[i]);
-            in.setEmail(emailinst[i]);
-
+            in.setEmail(emailinst[i]);*/
+            in.setContadorEv(in.getContadorEv()+1);
+            daoin.AtualizarContador(in);
             inst.add(in);
         }
 

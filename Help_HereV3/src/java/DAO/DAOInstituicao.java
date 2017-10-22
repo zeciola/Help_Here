@@ -56,7 +56,7 @@ public class DAOInstituicao /*implements iDAO*/ {
     
     //SQL
     
-    private static final String INSERT = "INSERT INTO Instituicao(ID, Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao, senha, status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, true)";
+    private static final String INSERT = "INSERT INTO Instituicao(ID, Nome, razaoSocial, tipo, CNPJ, modalidade, email, idEnderecoInstituicao, senha, status, contador) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, true, ?)";
     
     
     
@@ -121,6 +121,8 @@ public class DAOInstituicao /*implements iDAO*/ {
             pst.setInt(8, id);
             
             pst.setString(9, in.getSenha());
+            
+            pst.setInt(10, in.getContadorEv());
             
 
             pst.execute();
@@ -194,8 +196,50 @@ public class DAOInstituicao /*implements iDAO*/ {
     
     }
 
+   public void AtualizarContador(Instituicao obj) {
+   Connection conexao = null;
+        
+        try{
+        conexao = Conexao.getConexao();
+        
+        conexao.setAutoCommit(false);
+            
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            
+           
+            
+            
+           
+            String sqlInstituicao = "UPDATE Instituicao SET  contador="+obj.getContadorEv()+"  WHERE ID="+obj.getIdInstituicao()+" ";
+            
+            PreparedStatement  pst = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS);
+            
+            pst.executeUpdate();
+           
+            conexao.commit();
+            
+            
+             }catch(SQLException e){
+            try{
+                conexao.rollback();
+            }   catch (SQLException ex){
+                Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+            }
+            Logger.getLogger(DAOInstituicao.class.getName());
+                log(Level.SEVERE, "Erro ao Alterar: "+ e.getMessage());
+        }finally{
+            if(conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+                }
+            }
+        }
+    }
+    
        
-   
+        
     //@Override
     public void Atualizar(String CNP, String Sen) {
         
@@ -391,6 +435,7 @@ public class DAOInstituicao /*implements iDAO*/ {
                 loginAutenticado.setModalidade(rsLogin.getString("modalidade"));
                 loginAutenticado.setEmail(rsLogin.getString("email"));
                 loginAutenticado.setModalidade(rsLogin.getString("modalidade"));
+                loginAutenticado.setContadorEv(rsLogin.getInt("contador"));
                 
                 en.setCep(rsLogin.getString("cep"));
                 en.setNomelogradouro(rsLogin.getString("NomeLogradouro"));

@@ -15,9 +15,20 @@ public class Instituicao {
     private String Email;
     private Endereco endereco;
     private String senha;
+    private int contadorEv;
 
     
     //Gets
+
+    public int getContadorEv() {
+        return contadorEv;
+    }
+
+    public void setContadorEv(int contadorEv) {
+        this.contadorEv = contadorEv;
+    }
+    
+    
 
     public String getSenha() {
         return senha;
