@@ -317,7 +317,7 @@ public class DAOUsuario /*implements iDAO*/ {
         Pessoa pe = new Pessoa();
         Usuario U = new Usuario();
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado from usuario u, pessoa p where u.id=? and p.id = u.idpessoa");
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from usuario u, pessoa p where u.id=? and p.id = u.idpessoa");
             pstmt.setInt(1, id);
             ResultSet rs;
 
@@ -336,6 +336,7 @@ public class DAOUsuario /*implements iDAO*/ {
                 pe.setCelular(rs.getString("celular"));
                 pe.setSexo(rs.getString("sexo"));
                 pe.setStatus(rs.getBoolean("status"));
+                pe.setContador(rs.getInt("contador"));
                 U.setPe(pe);
             }
             //Retorno do ArrayList
@@ -373,8 +374,11 @@ public class DAOUsuario /*implements iDAO*/ {
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
                 loginAutenticado.setStatus(rsLogin.getBoolean("status"));
+                
                 Pessoa p = new Pessoa();
                 p.setId(rsLogin.getInt("idpessoa"));
+                     
+
                 loginAutenticado.setPe(p);
             }
 

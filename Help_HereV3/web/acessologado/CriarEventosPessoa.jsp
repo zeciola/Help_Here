@@ -67,6 +67,9 @@
 
                 <% //recupera a lista do request
                     Usuario p = (Usuario) request.getAttribute("pessoa");
+                    if (p.getPe().getContador() >= 15){ 
+                      response.sendRedirect("../ContadorEvento.jsp"); 
+                    } 
                     if (p.getPe() != null) {%>
 
                 <!-- nome-->
@@ -470,6 +473,16 @@
                         </div>
                     </div>
                 </div> 
+                        
+               <div class="form-group"> 
+                    <label class="col-md-4 control-label">Eventos em andamento</label> 
+                    <div class="col-md-4 inputGroupContainer"> 
+                        <div class="input-group"> 
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
+                            <input name="contadorEv"  class="form-control" type="text" value="<%= p.getPe().getContador()%>"> 
+                        </div> 
+                    </div> 
+                </div> 
 
 
 
@@ -483,6 +496,8 @@
 
                     </div>
                 </div>
+                
+                
 
                 <% }%>
 

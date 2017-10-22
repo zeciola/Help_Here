@@ -41,8 +41,8 @@ public class Teste {
         
         Evento e = new Evento();
         DAOEvento dao = new DAOEvento();
-        e.setIdEvento(23);
-        dao.AtualizarContador(e);
+        e.setIdEvento(13);
+        dao.AtualizarContadorP(e);
         
         
         

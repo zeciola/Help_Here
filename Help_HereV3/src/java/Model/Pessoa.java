@@ -23,6 +23,17 @@ public class Pessoa {
     private String celular;
     private String sexo;
     private boolean status;
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
+    
 
     //Gets
     public Endereco getEn() {

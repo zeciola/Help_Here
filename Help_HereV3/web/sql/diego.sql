@@ -226,10 +226,21 @@ Telefone varchar(19),
 celular VARCHAR(20),
 sexo varchar,
 status boolean default true,
+contador int,
 FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
 
+--contador
+alter table Pessoa add column contador int
+-- id da pessoa que criou o evento tal
+select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento = 13;
+--mudar o contador
+update instituicao set contador = 10 where id in (select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento = 13;)
+update Pessoa set contador = 15 where id = 2 
 
+
+select * from pessoa
+ 
 
 insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status)
  values('Nome 1', 'Sobrenome 2', '1', '2', false, '13/12/1999', 'teste@teste.com', 1, '34343434', '9099999', 'f', true);

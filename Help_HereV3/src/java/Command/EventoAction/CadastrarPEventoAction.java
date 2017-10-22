@@ -4,6 +4,7 @@ import Command.ICommand;
 import DAO.DAOEndereco;
 import DAO.DAOEvento;
 import DAO.DAOFeeds;
+import DAO.DAOPessoa;
 import Model.Endereco;
 import Model.Evento;
 import Model.Feeds;
@@ -28,6 +29,7 @@ public class CadastrarPEventoAction implements ICommand {
     private DAOEvento daoevento = new DAOEvento();
     private DAOFeeds daof = new DAOFeeds();
     private DAOEndereco daoe = new DAOEndereco();
+    private DAOPessoa daop = new DAOPessoa();
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -40,12 +42,14 @@ public class CadastrarPEventoAction implements ICommand {
         String[] estado = request.getParameterValues("estado");
         String[] pais = request.getParameterValues("pais");
 
-        //instiruicao
+        
         String[] idPessoa = request.getParameterValues("idpessoa");
         String[] nomepessoa = request.getParameterValues("pessoa");
         String[] sobrenome = request.getParameterValues("sobren");
         String[] emailpessoa = request.getParameterValues("email");
         String[] CPF = request.getParameterValues("cpf");
+        String[] contadorP = request.getParameterValues("contadorEv"); 
+
 
         for (int i = 0; i < cepend.length; i++) {
 
@@ -70,6 +74,9 @@ public class CadastrarPEventoAction implements ICommand {
             pes.setSobrenome(sobrenome[i]);
             pes.setEmail(emailpessoa[i]);
             pes.setCpf(CPF[i]);
+            pes.setContador(Integer.parseInt(contadorP[i])); 
+            pes.setContador(pes.getContador()+1); 
+            daop.AtualizarContadorP(pes);
 
             pe.add(pes);
         }

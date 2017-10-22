@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static jdk.nashorn.internal.objects.NativeMath.log;
 
 public class DAOPessoa /*implements iDAO*/ {
 
@@ -24,8 +25,8 @@ public class DAOPessoa /*implements iDAO*/ {
     private boolean defalt;
 
     //SQL
-    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status) "
-            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status, contador) "
+            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String INSERT_INTERESSE = "insert into Interesses (IDUsuario, Interesse)values(? , ?)";
 
@@ -72,6 +73,8 @@ public class DAOPessoa /*implements iDAO*/ {
 
             //status
             pstmt.setBoolean(12, pe.isStatus());
+            
+            pstmt.setInt(13, pe.getContador());
 
             pstmt.executeUpdate();
 
@@ -248,6 +251,45 @@ public class DAOPessoa /*implements iDAO*/ {
 
     }
 
+     public void AtualizarContadorP(Pessoa obj) { 
+   Connection conexao = null; 
+         
+        try{ 
+        conexao = Conexao.getConexao(); 
+         
+        conexao.setAutoCommit(false); 
+             
+            
+            String sqlInstituicao = "UPDATE Pessoa SET  contador="+obj.getContador()+" WHERE ID="+obj.getId()+" "; 
+             
+            PreparedStatement  pst = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS); 
+             
+            pst.executeUpdate(); 
+            
+            conexao.commit(); 
+            
+            
+             
+             }catch(SQLException e){ 
+            try{ 
+                conexao.rollback(); 
+            }   catch (SQLException ex){ 
+                Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex); 
+            } 
+            Logger.getLogger(DAOInstituicao.class.getName()); 
+                log(Level.SEVERE, "Erro ao Alterar: "+ e.getMessage()); 
+        }finally{ 
+            if(conexao != null) { 
+                try { 
+                    conexao.close(); 
+                } catch (SQLException ex){ 
+                    Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex); 
+                } 
+            } 
+        } 
+    } 
+    
+    
     //@Override
     public ArrayList<Pessoa> Listar(ArrayList<Pessoa> result, Pessoa pe) {
 
@@ -293,7 +335,7 @@ public class DAOPessoa /*implements iDAO*/ {
     public Pessoa ConsultarId(int id) {
         Pessoa pe = new Pessoa();
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado from usuario u, pessoa p where u.id=? and p.id = u.idpessoa");
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from usuario u, pessoa p where u.id=? and p.id = u.idpessoa");
             pstmt.setInt(1, id);
             ResultSet rs;
 
@@ -312,6 +354,7 @@ public class DAOPessoa /*implements iDAO*/ {
                 pe.setCelular(rs.getString("celular"));
                 pe.setSexo(rs.getString("sexo"));
                 pe.setStatus(rs.getBoolean("status"));
+                pe.setContador(rs.getInt("contador")); 
             }
             //Retorno do ArrayList
             return pe;

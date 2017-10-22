@@ -825,5 +825,27 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
+    
+    
+    public void AtualizarContadorP(Evento e) {
+        try {
+            String sqlAtualiza = "update Pessoa set contador = contador-1 where id in (select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento =  "+e.getIdEvento()+" )";
+                   
+           PreparedStatement pstmt = conexao.prepareStatement(sqlAtualiza, PreparedStatement.RETURN_GENERATED_KEYS);
+            pstmt.executeQuery();
+            
+            
+            conexao.commit();
+            
+        } catch (SQLException f) {
+            throw new RuntimeException(f);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException f) {
+                throw new RuntimeException(f);
+            }
+        }
+    }
 
 }

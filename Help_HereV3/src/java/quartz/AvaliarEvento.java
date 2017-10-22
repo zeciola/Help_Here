@@ -19,6 +19,7 @@ public class AvaliarEvento implements Job {
             if (e.getDataFim().before(datahoje)) {
                 edao.Desativar(e);
                 edao.AtualizarContador(e);
+                edao.AtualizarContadorP(e);
                 System.out.println("Atualizado um registro.");
             }
         }

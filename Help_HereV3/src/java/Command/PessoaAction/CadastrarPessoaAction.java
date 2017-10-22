@@ -65,6 +65,7 @@ public class CadastrarPessoaAction implements ICommand {
         pe.setSexo(request.getParameter("sexo"));
         //status
         pe.setStatus(status);
+        pe.setContador(0);
 
         en.setPe(pe);
         daop.Inserir(pe);

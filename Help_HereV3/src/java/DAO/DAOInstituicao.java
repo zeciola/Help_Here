@@ -374,6 +374,7 @@ public class DAOInstituicao /*implements iDAO*/ {
                  in.setCnpj(rs.getString("CNPJ"));
                  in.setModalidade(rs.getString("modalidade"));
                  in.setEmail(rs.getString("email"));
+                 in.setContadorEv(Integer.parseInt(rs.getString("contador")));
                  en.setIdEndereco(rs.getInt("ID"));
                  en.setCep(rs.getString("cep"));
                  en.setNomelogradouro(rs.getString("NomeLogradouro"));

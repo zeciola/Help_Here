@@ -225,7 +225,7 @@ public class ControleAcesso extends HttpServlet {
                 }
             }
             
-            else if (acao.equals("CriarEventoPessoa")) {
+            else if (acao.equals("CriarEvPessoa")) {
                 Usuario login = new Usuario();
                 login.setNome(request.getParameter("txtLogin"));
                 login.setSenha(request.getParameter("txtSenha"));

@@ -30,6 +30,7 @@ public class CadastrarEventoAction implements ICommand {
     private DAOFeeds daof = new DAOFeeds();
     private DAOEvento Ed = new DAOEvento();
     private DAOInstituicao daoin = new DAOInstituicao();
+    
 
     private Evento ev = new Evento();
     private Endereco e = new Endereco();
