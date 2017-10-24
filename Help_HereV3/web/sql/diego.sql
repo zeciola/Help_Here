@@ -524,10 +524,6 @@ where v.idpessoa = p.id and v.idevento = e.id and v.certificado = FALSE and inst
 
 --lista certificados prontos
 
-select p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst 
-from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
-where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = 24;
-
 --COMANDOS PARA ATUALIZAR ISTATUS DE CERTIFICADO ACEITE E E NÃO ACEITE E ANALISADO E NÃO ANALISADO
 
 update voluntario set certificado = true and analisado = true where idpessoa =2;
@@ -541,3 +537,13 @@ alter table voluntario drop column numboleto
 select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.id idevento, e.tipo, e.nome NomeEvento, v.analisado
  from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where
  v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = 2
+
+
+
+select * from Voluntario;
+
+
+
+select u.id iduser, p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst 
+from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
+where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = 23;

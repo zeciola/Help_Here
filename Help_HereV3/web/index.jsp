@@ -9,34 +9,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="HelpHere" content="">
-
         <title>Help Here</title>
-
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
         <!-- Custom CSS -->
         <link href="css/index.css" rel="stylesheet">
-
         <!-- JQuery -->
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
         <!-- Custom JavaScript -->
-
-
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     </head>
-
     <body>
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -62,14 +50,12 @@
                         <li>
                             <a href="login.jsp">Login</a>
                         </li>
-
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
         </nav>
-
         <!-- Image Background Page Header -->
         <!-- Note: The background image is set within the business-casual.css file. -->
         <header class="business-header">
@@ -83,12 +69,9 @@
                 </div>
             </div>
         </header>
-
         <!-- Page Content -->
         <div class="container">
-
             <hr>
-
             <div class="row">
                 <div class="col-sm-8">
                     <h2>What We Do</h2>
@@ -115,11 +98,10 @@
             </div>
             <!-- /.row -->
             <hr>
-            
             <div class="row">
-                <% ArrayList<Evento> Lista = (ArrayList<Evento>) request.getAttribute("evento");
+                <% ArrayList<Evento> Lista = (ArrayList<Evento>) session.getAttribute("evento");
                     if (Lista == null) {
-                        request.getRequestDispatcher("/ControleEvento?acao=Listar1").forward(request, response);
+                        request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=1").forward(request, response);
                         }%>
                 <%for (Evento e : Lista) {%>
                 <div class="col-sm-4">
@@ -132,7 +114,6 @@
                 </div>
                 <%}%>
             </div>
-            
             <a href="GeraCertificado2">Teste certificado</a>
             <a href="teste">Teste Email</a>
             <!-- /.row -->
@@ -146,16 +127,11 @@
                 </div>
                 <!-- /.row -->
             </footer>
-
         </div>
         <!-- /.container -->
-
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
-
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
-
     </body>
-
 </html>

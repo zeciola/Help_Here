@@ -31,7 +31,7 @@ public class ListarFeedAction implements ICommand{
             f.setE(e);
             lista.add(f);
         }
-        request.setAttribute("feed", lista);
+        sessaoUsuario.setAttribute("feed", lista);
         
         return "/acessologado/logado.jsp";
         

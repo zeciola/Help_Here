@@ -1,3 +1,4 @@
+<%@page import="Model.Evento"%>
 <%@page import="Model.Usuario"%>
 <%@page import="Model.Feeds"%>
 <%@page import="java.util.ArrayList"%>
@@ -107,9 +108,27 @@
                 <a href="${pageContext.request.contextPath}/ControlePessoa?acao=Listar">Listar Pessoa</a>
             </li>
         </ul>
+        <h1>Eventos</h1>
+        <div class="row">
+            <% ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
+                if (ListaEv == null) {
+                    request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
+                    }%>
+            <%for (Evento e : ListaEv) {%>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
+                <h2><%=e.getNome()%></h2>
+                <p><%=e.getDescricao()%></p>
+                <p><%=e.getDataInicio()%></p>
+                <p><%=e.getDataFim()%></p>
+                <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
+            </div>
+            <%}%>
+        </div>
+
         <h1> Aqui vai o feeds </h1>
 
-        <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) request.getAttribute("feed");
+        <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) session.getAttribute("feed");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
             }%>

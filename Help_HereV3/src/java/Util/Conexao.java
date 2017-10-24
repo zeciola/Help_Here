@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Conexao {
-
     //Nome do banco
     private static String banco = "Helphere";
     //URL de conexão
@@ -18,7 +17,7 @@ public class Conexao {
     //login do banco
     private static String login = "postgres";
     //senha do banco
-    private static String password = "lucas";
+    private static String password = "lucario";
     //driver que será utilizado
     private static String driver = "org.postgresql.Driver";
 
@@ -34,7 +33,6 @@ public class Conexao {
             //cria um objeto de conexao com um banco especificado no caminho...
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Helphere", "postgres", "postgres");
             */
-             
              System.out.println("Conexão OK");
         } catch (ClassNotFoundException erro1) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar carregar o driver: " + erro1);
