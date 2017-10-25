@@ -29,7 +29,7 @@ public class VolunCondicional implements ICommand{
             return "acessologado/logado.jsp";
             
         }else{
-            return "errovolun.jsp";
+            return "acessologado/ErroLogado.jsp";
         }
         
     }

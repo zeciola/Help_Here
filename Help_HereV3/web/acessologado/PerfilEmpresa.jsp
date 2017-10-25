@@ -33,7 +33,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Help Here</a>
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}/acessologado/logado.jsp">Help Here</a>
                     </div>
 
                     <ul class="nav navbar-nav navbar-left">
