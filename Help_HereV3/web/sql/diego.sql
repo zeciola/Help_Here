@@ -157,6 +157,8 @@ select * from usuario;
 
 select * from instituicao;
 delete from instituicao where id = 2
+
+
 /*
 select * from Instituicao
 delete from Instituicao where ID = 20
@@ -231,16 +233,15 @@ FOREIGN KEY(IDEndereco) REFERENCES Endereco (ID)
 );
 
 --contador
-alter table Pessoa add column contador int
+alter table Pessoa drop column contador 
+alter table Pessoa add column contador int default(0)
 -- id da pessoa que criou o evento tal
 select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento = 13;
 --mudar o contador
 update instituicao set contador = 10 where id in (select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento = 13;)
 update Pessoa set contador = 15 where id = 2 
 
-
 select * from pessoa
- 
 
 insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status)
  values('Nome 1', 'Sobrenome 2', '1', '2', false, '13/12/1999', 'teste@teste.com', 1, '34343434', '9099999', 'f', true);
@@ -547,3 +548,6 @@ select * from Voluntario;
 select u.id iduser, p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst 
 from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
 where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = 23;
+
+
+
