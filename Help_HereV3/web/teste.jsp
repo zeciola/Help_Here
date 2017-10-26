@@ -12,7 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
+        <%String nome = (String) session.getAttribute("nomepdf");%>
         <h1>Hello World! teste pdf</h1>
-        <iframe src="pdf/pdf6.pdf" width="600" height="780" style="border: none;"></iframe>
+        <iframe src="pdf/<%=nome%>" width="600" height="780" style="border: none;"></iframe>
     </body>
 </html>

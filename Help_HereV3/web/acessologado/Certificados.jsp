@@ -95,7 +95,7 @@
                 <h2><%=e.getEvento().getNome()%></h2>
                 <p> <%=e.getEmissor()%></p>
                 <p>Instituição:<%=e.getInstituicao().getNome()%></p>
-                <a href="/GeraCertificado">Download certificado</a>
+                <a href="../ControleCertificado?acao=Gera">Download certificado</a>
             </div>
             <%}%>
     </body>
