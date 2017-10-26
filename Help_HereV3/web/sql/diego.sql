@@ -539,10 +539,7 @@ select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.i
  v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = 2
 
 
-
 select * from Voluntario;
-
-
 
 select u.id iduser, p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst 
 from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 

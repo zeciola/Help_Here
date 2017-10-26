@@ -6,7 +6,6 @@ import Model.Evento;
 import Model.Instituicao;
 import Model.Usuario;
 import Util.EmailAnexo;
-import Util.EmailTesteServelet;
 import Util.GeraNumero;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

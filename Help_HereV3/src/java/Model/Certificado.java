@@ -16,7 +16,16 @@ public class Certificado {
     private boolean valido;
     private ArrayList<Evento> pendentes;
     private ArrayList<Pessoa> pessoasPendesntes;
+    private Usuario usuario;
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     public ArrayList<Pessoa> getPessoasPendesntes() {
         return pessoasPendesntes;
     }
@@ -33,8 +42,6 @@ public class Certificado {
         this.pendentes = pendentes;
     }
     
-    
-
     public boolean isAnalisado() {
         return analisado;
     }
@@ -51,8 +58,6 @@ public class Certificado {
         this.valido = valido;
     }
     
-    
-
     public Pessoa getPessoa() {
         return Pessoa;
     }
@@ -95,7 +100,6 @@ public class Certificado {
 
     public void setEvento(Evento evento) {
         this.evento = evento;
-    }
-            
+    }        
 }
 

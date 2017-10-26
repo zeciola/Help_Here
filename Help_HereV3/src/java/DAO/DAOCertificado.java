@@ -136,7 +136,7 @@ public class DAOCertificado {
     }
 
     public ArrayList ListarVoluntariosP(Certificado c) {
-     
+
         ArrayList<Pessoa> pessoasp = new ArrayList();
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
@@ -152,7 +152,7 @@ public class DAOCertificado {
                 p.setId(rs.getInt("id"));
                 pessoasp.add(p);
             }
-           
+
             return pessoasp;
 
         } catch (SQLException e) {
@@ -166,8 +166,8 @@ public class DAOCertificado {
             }
         }
     }
-    
-    public void UpAnalisadoev(Certificado c){
+
+    public void UpAnalisadoev(Certificado c) {
         Connection conexao = Conexao.getConexao();
         try {
             conexao.setAutoCommit(false);
@@ -189,6 +189,49 @@ public class DAOCertificado {
                 } catch (SQLException ex) {
                     Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+        }
+    }
+
+    public ArrayList ListaCertificadosLiberadosPorUser(Certificado c) {
+        ArrayList<Certificado> retorno = new ArrayList();
+        Connection conexao = Conexao.getConexao();
+        ResultSet rs;
+        try {
+            PreparedStatement pstmt = conexao.prepareStatement("select u.id iduser, p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = ?");
+            pstmt.setInt(1, c.getUsuario().getId());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Certificado c1 = new Certificado();
+                c1.setEmissor("HelpHere");
+                
+                Instituicao i = new Instituicao();
+                i.setIdInstituicao(rs.getInt("idinst"));
+                i.setNome(rs.getString("nomeinst"));
+                c1.setInstituicao(i);
+                
+                Evento e = new Evento();
+                e.setNome(rs.getString("nomeevento"));
+                e.setIdEvento(rs.getInt("idevento"));
+                c1.setEvento(e);
+                
+                Pessoa p = new Pessoa();
+                p.setId(rs.getInt("idpessoa"));
+                p.setNome(rs.getString("nomepessoa"));
+                c1.setPessoa(p);
+                retorno.add(c1);
+            }
+
+            return retorno;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
     }

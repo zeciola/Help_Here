@@ -47,12 +47,10 @@ public class ControleAcesso extends HttpServlet {
                 usuarioAutenticado.setPe(p);
 
                 if (usuarioAutenticado != null) {
-
                     //cria uma sessao para o usuario
                     HttpSession sessaoUsuario = request.getSession();
                     sessaoUsuario.setAttribute("usuarioAutenticado", usuarioAutenticado);
                     //redireciona para a pagina princiapal
-
                     if (usuarioAutenticado != null && usuarioAutenticado.getPerfil().equals(PerfilDeAcesso.administrador)) {
                         response.sendRedirect("admin2/index.html");
                     } else {
