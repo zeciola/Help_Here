@@ -38,15 +38,29 @@ public class AtualizarInstituicaoAction implements ICommand {
         //DAOs
         
         DAOInstituicao daoi = new DAOInstituicao();
+        DAOEndereco daoe = new DAOEndereco();
         
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
         Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("InstAutenticado");
         
             
-         CNP=usuarioLogado.getCnpj();
+        // CNP=usuarioLogado.getCnpj();
                 
-          Sen = usuarioLogado.getSenha();
+       //   Sen = usuarioLogado.getSenha();
 
+       
+       //Endereco da Instituicao
+        en.setIdEndereco(usuarioLogado.getIdInstituicao());
+        en.setCep(request.getParameter("cep"));
+        en.setNomelogradouro(request.getParameter("endereco"));
+        en.setNumeroen(Integer.parseInt(request.getParameter("numero")));
+        en.setBairro(request.getParameter("bairro"));
+        en.setMunicipio(request.getParameter("cidade"));
+        en.setEstado(request.getParameter("estado"));
+        en.setPais(request.getParameter("pais"));
+        
+        
+        daoe.AtualizarEnInst(en);
         
         //Instituicao
         inst.setNome(request.getParameter("nome"));
@@ -57,22 +71,9 @@ public class AtualizarInstituicaoAction implements ICommand {
         inst.setEmail(request.getParameter("email"));
         inst.setSenha(request.getParameter("senha"));
         
-        
-        //Endereco da Instituicao
-        
-        en.setCep(request.getParameter("cep"));
-        en.setNomelogradouro(request.getParameter("endereco"));
-        en.setNumeroen(Integer.parseInt(request.getParameter("numero")));
-        en.setBairro(request.getParameter("bairro"));
-        en.setMunicipio(request.getParameter("cidade"));
-        en.setEstado(request.getParameter("estado"));
-        en.setPais(request.getParameter("pais"));
-        
-        
-        
         inst.setEndereco(en);
-        daoi.setInstituicao(inst);
-        daoi.Atualizar(CNP,Sen);
+        
+        daoi.Atualizar(inst); 
         
         
         

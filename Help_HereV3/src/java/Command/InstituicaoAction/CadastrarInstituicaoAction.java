@@ -35,21 +35,13 @@ public class CadastrarInstituicaoAction implements ICommand {
         //DAOs
         
         DAOInstituicao daoi = new DAOInstituicao();
+        DAOEndereco daoe = new DAOEndereco();
         
         
         
         
         
         
-        //Instituicao
-        inst.setNome(request.getParameter("nome"));
-        inst.setRazao(request.getParameter("razao"));
-        inst.setTipo(request.getParameter("tipo"));
-        inst.setCnpj(request.getParameter("cnpj"));
-        inst.setModalidade(request.getParameter("modalidade"));
-        inst.setEmail(request.getParameter("email"));
-        inst.setSenha(request.getParameter("senha"));
-        inst.setContadorEv(0);
         
         
         //Endereco da Instituicao
@@ -62,11 +54,23 @@ public class CadastrarInstituicaoAction implements ICommand {
         en.setEstado(request.getParameter("estado"));
         en.setPais(request.getParameter("pais"));
         
+        daoe.InserirEndInst(en);
+        
+        //Instituicao
+        inst.setNome(request.getParameter("nome"));
+        inst.setRazao(request.getParameter("razao"));
+        inst.setTipo(request.getParameter("tipo"));
+        inst.setCnpj(request.getParameter("cnpj"));
+        inst.setModalidade(request.getParameter("modalidade"));
+        inst.setEmail(request.getParameter("email"));
+        inst.setSenha(request.getParameter("senha"));
+        inst.setContadorEv(0);
+        
         
         
         inst.setEndereco(en);
-        daoi.setInstituicao(inst);
-        daoi.Inserir();
+        
+        daoi.Inserir(inst); 
         
         
         

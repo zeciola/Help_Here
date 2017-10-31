@@ -19,40 +19,6 @@ import static jdk.nashorn.internal.objects.NativeMath.log;
 public class DAOInstituicao /*implements iDAO*/ {
     
     
-    private Connection conexao;
-    public Instituicao in;
-    public Endereco en;
-    
-    private String CNP;
-    private String Sen;
-
-    public String getCNP() {
-        return CNP;
-    }
-
-    public String getSen() {
-        return Sen;
-    }
-
-    
-    
-    public void setCNP(String CNP) {
-        this.CNP = CNP;
-    }
-
-    public void setSen(String Sen) {
-        this.Sen = Sen;
-    }
-    
-    
-    public void setEndereco (Endereco en){
-        this.en = en;
-    }
-    
-    //Set Instituicao
-    public void setInstituicao (Instituicao in){
-        this.in = in;
-    }
     
     //SQL
     
@@ -67,7 +33,7 @@ public class DAOInstituicao /*implements iDAO*/ {
     private static final String LISTAR = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and inst.status = true";
     
     //@Override
-    public void Inserir() {
+    public void Inserir(Instituicao in) {
         Connection conexao = null;
         
         try{
@@ -75,30 +41,8 @@ public class DAOInstituicao /*implements iDAO*/ {
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             conexao.setAutoCommit(false);
             
-           String sqlEndereco = "insert into EnderecoInstituicao (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais, status) values(?,?,?,?,?,?,?,true)";
-                   
-           PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
-           
-            pstmt.setString(1, in.getEndereco().getCep());
-            
-            pstmt.setString(2, in.getEndereco().getNomelogradouro());
-            
-            pstmt.setInt(3, in.getEndereco().getNumeroen());
-            
-            pstmt.setString(4, in.getEndereco().getBairro());
-            
-            pstmt.setString(5, in.getEndereco().getMunicipio());
-            
-            pstmt.setString(6, in.getEndereco().getEstado());
-            
-            pstmt.setString(7, in.getEndereco().getPais());
-            
-            pstmt.execute();
-           
-            
-            ResultSet rs = pstmt.getGeneratedKeys();
-            rs.next();
-            int id = rs.getInt("ID");
+            int id = 0;
+            id = in.getEndereco().getIdEndereco();
             
             
             
@@ -153,7 +97,7 @@ public class DAOInstituicao /*implements iDAO*/ {
     
     //@Override
     public ArrayList<Instituicao> Listar() {
-
+        Connection conexao = null;
         ArrayList<Instituicao> resul = new ArrayList();
         try{
             conexao = Conexao.getConexao();
@@ -241,7 +185,7 @@ public class DAOInstituicao /*implements iDAO*/ {
        
         
     //@Override
-    public void Atualizar(String CNP, String Sen) {
+    public void Atualizar(Instituicao in) {
         
         Connection conexao = null;
         
@@ -256,7 +200,7 @@ public class DAOInstituicao /*implements iDAO*/ {
             
             
            
-            String sqlInstituicao = "UPDATE Instituicao SET  nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=?, senha=?  WHERE CNPJ='"+CNP+"' and senha='"+Sen+"';";
+            String sqlInstituicao = "UPDATE Instituicao SET  nome=?, razaoSocial=?, tipo=?, CNPJ=?, modalidade=?, email=?, senha=?  WHERE ID="+in.getEndereco().getIdEndereco()+" ";
             
             PreparedStatement  pst = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -279,32 +223,6 @@ public class DAOInstituicao /*implements iDAO*/ {
 
             pst.executeUpdate();
             
-            ResultSet rs = pst.getGeneratedKeys();
-            rs.next();
-            int id = rs.getInt("ID");
-            
-            
-            String sqlEndereco = "UPDATE EnderecoInstituicao  SET cep=?, NomeLogradouro=?, Numero=?, Bairro=?, Municipio=?, UF=?, pais=? WHERE ID="+id+";";
-                   
-            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco);
-      
-            
-            pstmt.setString(1, in.getEndereco().getCep());
-            
-            pstmt.setString(2, in.getEndereco().getNomelogradouro());
-            
-            pstmt.setInt(3, in.getEndereco().getNumeroen());
-            
-            pstmt.setString(4, in.getEndereco().getBairro());
-            
-            pstmt.setString(5, in.getEndereco().getMunicipio());
-            
-            pstmt.setString(6, in.getEndereco().getEstado());
-            
-            pstmt.setString(7, in.getEndereco().getPais());
-            
-            pstmt.executeUpdate();
-           
             conexao.commit();
            
             
@@ -331,7 +249,7 @@ public class DAOInstituicao /*implements iDAO*/ {
         
 
     public void Deletar(String CNP, String SEN) {
-        
+        Connection conexao = null;
         try{
             conexao = Conexao.getConexao();
             
@@ -356,6 +274,7 @@ public class DAOInstituicao /*implements iDAO*/ {
    
     //@Override
     public ArrayList Consultar(String CNP) {
+        Connection conexao = null;
         ArrayList<Instituicao> resul = new ArrayList();
         ArrayList<Endereco> re = new ArrayList();
         try{
@@ -464,6 +383,7 @@ public class DAOInstituicao /*implements iDAO*/ {
     }     
     
     public ArrayList<Instituicao> Listar2() {
+        Connection conexao = null;
         ArrayList<Instituicao> resul = new ArrayList();
         try{
             conexao = Conexao.getConexao();

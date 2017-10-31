@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static jdk.nashorn.internal.objects.NativeMath.log;
 
 public class DAOEndereco /*implements iDAO*/ {
 
@@ -85,6 +86,66 @@ public class DAOEndereco /*implements iDAO*/ {
             }
         }
     }
+    
+    public void InserirEndInst(Endereco in) {
+        Connection conexao = null;
+        
+        try{
+           conexao = Conexao.getConexao();
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            conexao.setAutoCommit(false);
+            
+           String sqlEndereco = "insert into EnderecoInstituicao (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais, status) values(?,?,?,?,?,?,?,true)";
+                   
+           PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
+           
+            pstmt.setString(1, in.getCep());
+            
+            pstmt.setString(2, in.getNomelogradouro());
+            
+            pstmt.setInt(3, in.getNumeroen());
+            
+            pstmt.setString(4, in.getBairro());
+            
+            pstmt.setString(5, in.getMunicipio());
+            
+            pstmt.setString(6, in.getEstado());
+            
+            pstmt.setString(7, in.getPais());
+            
+            pstmt.execute();
+            
+            
+           ResultSet rs = pstmt.getGeneratedKeys();
+
+            //rs.next();
+            if (rs.next()) {
+                in.setIdEndereco(rs.getInt("ID"));
+                conexao.commit();
+            }
+           
+            
+            
+        }catch(SQLException e){
+            try{
+                conexao.rollback();
+            }   catch (SQLException ex){
+                Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+            }
+            Logger.getLogger(DAOInstituicao.class.getName());
+                log(Level.SEVERE, "Erro ao Cadastrar: "+ e.getMessage());
+        }finally{
+            if(conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex);
+                }
+            }
+        }
+    }
+    
+    
 
     //@Override
     public void Atualizar(String Antemail, String ob, Endereco en) throws SQLException {
@@ -125,6 +186,60 @@ public class DAOEndereco /*implements iDAO*/ {
             }
 
             //Fim da busca
+        } // Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    public void AtualizarEnInst(Endereco in) {
+        
+        int id =0; 
+        id = in.getIdEndereco();
+        
+        try {
+            String sqlEndereco = "UPDATE EnderecoInstituicao  SET cep=?, NomeLogradouro=?, Numero=?, Bairro=?, Municipio=?, UF=?, pais=?, Status=? WHERE ID="+id+";"; 
+                    
+            PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco); 
+      
+            
+            pstmt.setString(1, in.getCep());
+            
+            pstmt.setString(2, in.getNomelogradouro());
+            
+            pstmt.setInt(3, in.getNumeroen());
+            
+            pstmt.setString(4, in.getBairro());
+            
+            pstmt.setString(5, in.getMunicipio());
+            
+            pstmt.setString(6, in.getEstado());
+            
+            pstmt.setString(7, in.getPais());
+            
+            pstmt.setBoolean(8, in.isStatus());
+            
+            
+            
+            pstmt.executeUpdate();
+           
+            conexao.commit();
+                  //Fim da busca
         } // Verifica se a conexao foi fechada
         catch (SQLException e) {
             try {
