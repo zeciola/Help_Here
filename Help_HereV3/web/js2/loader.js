@@ -1,5 +1,12 @@
+var porcent = document.querySelector('#porcentagem');
+console.log(porcent);
+var conteudotxt = porcent.textContent;
+console.log(conteudotxt);
+var n = Number(conteudotxt);
+console.log(n);
+
 $('.loader2').ClassyLoader({
-    percentage: 75,
+    percentage: n,
     speed: 8,
     diameter: 70,
     showText: true,

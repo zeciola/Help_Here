@@ -83,7 +83,9 @@
         <div id="volun" class="paraExibicao">
             Contador voluntarios 
         </div>
-
+        <span id="porcentagem" class="paraExibicao">48</span>
+        
+        
         <canvas class="loader2"></canvas>
 
         <button type="button" onclick="Mudarestado('minhaDiv')">Click Para Ajudar</button>

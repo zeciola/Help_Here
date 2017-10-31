@@ -113,9 +113,7 @@
                     <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
                 </div>
                 <%}%>
-            </div>
-            <a href="GeraCertificado2">Teste certificado</a>
-            <a href="teste">Teste Email</a>
+            </div>         
             <!-- /.row -->
             <hr>
             <!-- Footer -->
