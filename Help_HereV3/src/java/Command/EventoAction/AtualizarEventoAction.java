@@ -32,7 +32,9 @@ public class AtualizarEventoAction implements ICommand{
     ArrayList<Evento> eve = new ArrayList();
         ArrayList<Endereco> end = new ArrayList();
         ArrayList<Instituicao> inst = new ArrayList();
+        Endereco en = new Endereco();
         DAOEvento idao = new DAOEvento();
+        Evento even = new Evento();
         
         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
         Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
@@ -45,8 +47,8 @@ public class AtualizarEventoAction implements ICommand{
             
 
                 String NomeEV = request.getParameter("txtnomeEV");
-                
-                eve = idao.ConsultarEVinst(NomeEV,SEN);
+                even.setNome(NomeEV);
+                eve = idao.ConsultarEVinst(even,usuarioLogado);
 
                 if (eve.isEmpty())
                 {
@@ -58,10 +60,10 @@ public class AtualizarEventoAction implements ICommand{
                     {
                       for(int j = 0; j < eve.size(); j++){
 
+                            even.setIdEvento(eve.get(j).getIdEvento()); 
+                            end = idao.EventoEndereco(even); 
 
-                            end = idao.EventoEndereco(eve.get(j).getIdEvento());
-
-                            inst = idao.InstituicaoEvento(eve.get(j).getIdEvento());
+                            inst = idao.InstituicaoEvento(even); 
 
                         }   
 
@@ -137,11 +139,11 @@ public class AtualizarEventoAction implements ICommand{
                     ev.setTipoEvento(request.getParameter("tipoEven"));
                     ev.setDescricao(request.getParameter("descricao"));
 
-                    daoevento.setEvento(ev);
-                    daoevento.AtualizarEvento(ev.getIdEvento());
+                    
+                    daoevento.AtualizarEvento(ev); 
                     
                     for (int i=0; i < cepend.length; i++){
-                            Endereco e = new Endereco();
+                            Endereco e = new Endereco(); 
                                 
                                 e.setIdEndereco(Integer.parseInt(idEnd[i]));
                                 e.setCep(cepend[i]);
@@ -152,8 +154,8 @@ public class AtualizarEventoAction implements ICommand{
                                 e.setEstado(estado[i]);
                                 e.setPais(pais[i]);
                                 DAOEvento daoe = new DAOEvento();
-                                daoe.setEndereco(e);
-                                daoe.AtualizarEndEV(e.getIdEndereco());  //verificar se deu certo
+                                
+                                daoe.AtualizarEndEV(e);   //verificar se deu certo
 
                              end.add(e);
 

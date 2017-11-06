@@ -22,12 +22,13 @@ public class Consultar1EventoAction implements ICommand{
         Integer id = null;    
         
         id = (Integer.parseInt(request.getParameter("ID")));
-        eve = idao.Consultar1(id);        
+        eve.setIdEvento(id);
+        eve = idao.Consultar1(eve);         
                 
-        end = idao.EventoEndereco(eve.getIdEvento());
+        end = idao.EventoEndereco(eve);
         eve.setEnds(end);
         
-        inst = idao.InstituicaoEvento(eve.getIdEvento());
+        inst = idao.InstituicaoEvento(eve);
         
         //despachar tudo 
         request.setAttribute("evento", eve);

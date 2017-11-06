@@ -17,23 +17,22 @@ import static jdk.nashorn.internal.objects.NativeMath.log;
 
 public class DAOEndereco /*implements iDAO*/ {
 
-    //Variavel tipo de metodo
-    private String classTipo;
-    //Variable connection
-    private final Connection conexao = Conexao.getConexao();
+    
 
     //SQL inputs
     private static final String INSERT = "insert into Endereco (cep, NomeLogradouro, Numero, Bairro, Municipio, UF, pais) values(?,?,?,?,?,?,?)";
     //private static final String UPDATE = "UPDATE Endereco SET cep=2222, nomelogradouro='TesteUp', numero=456, bairro='TesteUpBairro', municipio='Mogi das Cruzes', uf='SP', pais='Brasil' WHERE id=;";
     private static final String SELECT_ALL = "select * from endereco where status=true";
     private static final String SELECT_ID = "select * from endereco where id=?";
+    private static final Connection conexao = Conexao.getConexao();
 
     //DAO Metodos
     //@Override
     public void Inserir(Endereco en) {
+        Connection conexao = Conexao.getConexao();
         try {
-
-            conexao.setAutoCommit(false);
+            
+            
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -62,11 +61,12 @@ public class DAOEndereco /*implements iDAO*/ {
             if (rs.next()) {
                 en.setIdEndereco(rs.getInt("ID"));
                 conexao.commit();
-            }
+            } 
 
             //Fim da busca
         } // Verifica se a conexao foi fechada
         catch (SQLException e) {
+            
             try {
                 conexao.rollback();
 

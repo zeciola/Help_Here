@@ -26,6 +26,7 @@ public class ConsultarEventoAction implements ICommand{
         ArrayList<Instituicao> inst = new ArrayList();
         ArrayList<Pessoa> pe = new ArrayList();
         DAOEvento idao = new DAOEvento();
+        Evento ev = new Evento();
         String N = null;
         
         
@@ -38,17 +39,19 @@ public class ConsultarEventoAction implements ICommand{
             }else {
                 return "erro.jsp";
             }
-        eve = idao.Consultar(N);
+        ev.setNome(N);
+        eve = idao.Consultar(ev); 
          
         
         for(int j = 0; j < eve.size(); j++){
             
+            ev.setIdEvento(eve.get(j).getIdEvento());
+            end = idao.EventoEndereco(ev); 
             
-            end = idao.EventoEndereco(eve.get(j).getIdEvento());
             
-            inst = idao.InstituicaoEvento(eve.get(j).getIdEvento());
+            inst = idao.InstituicaoEvento(ev);
             
-            pe = idao.PessoaEvento(eve.get(j).getIdEvento());
+            pe = idao.PessoaEvento(ev); 
             
         }   
             

@@ -248,17 +248,17 @@ public class DAOInstituicao /*implements iDAO*/ {
     
         
 
-    public void Deletar(String CNP, String SEN) {
+    public void Deletar(Instituicao inst) {
         Connection conexao = null;
         try{
             conexao = Conexao.getConexao();
             
-            String sqlDel = "update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '"+CNP+"' and senha = '"+SEN+"');";
+            String sqlDel = "update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '"+inst.getCnpj()+"' and senha = '"+inst.getSenha()+"');";
             
             PreparedStatement pstmt = conexao.prepareStatement(sqlDel);
             pstmt.execute();
             
-            String sqlDelInst = "update Instituicao set status = false WHERE CNPJ = '"+CNP+"' and senha = '"+SEN+"';";
+            String sqlDelInst = "update Instituicao set status = false WHERE CNPJ = '"+inst.getCnpj()+"' and senha = '"+inst.getSenha()+"';";
             
             pstmt = conexao.prepareStatement(sqlDelInst);
             pstmt.execute();
@@ -273,13 +273,13 @@ public class DAOInstituicao /*implements iDAO*/ {
     }
    
     //@Override
-    public ArrayList Consultar(String CNP) {
+    public ArrayList Consultar(Instituicao inst) {
         Connection conexao = null;
         ArrayList<Instituicao> resul = new ArrayList();
         ArrayList<Endereco> re = new ArrayList();
         try{
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ ='"+CNP+"' and inst.status = true;";
+            String sqlConsulta = "select * from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ ='"+inst.getCnpj()+"' and inst.status = true;";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs=pstmt.executeQuery();
@@ -318,18 +318,7 @@ public class DAOInstituicao /*implements iDAO*/ {
             }
         }
     }
-    /**
-     *
-     * @param inst
-     * @return
-     */
-
-    /**
-     *
-     * @param instituicao
-     * @param inst
-     * @return
-     */
+    
     public Instituicao autenticaInstituicao(Instituicao instituicao) {
         Instituicao loginAutenticado = null;
 

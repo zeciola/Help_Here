@@ -5,6 +5,7 @@ import Model.Evento;
 import Model.Instituicao;
 import Model.Mensagem;
 import Model.Pessoa;
+import Model.Usuario;
 import Util.Conexao;
 import java.sql.Array;
 import java.sql.Connection;
@@ -19,27 +20,7 @@ import static jdk.nashorn.internal.objects.NativeMath.log;
 
 public class DAOEvento /*implements iDAO*/ {
 
-    private Evento ev;
-    private Mensagem ms;
-    private Endereco en;
-
-    public void setEndereco(Endereco en) {
-        this.en = en;
-    }
-
-    public void setEvento(Evento ev) {
-        this.ev = ev;
-    }
-
-    public Mensagem getMs() {
-        return ms;
-    }
-
-    public void setMs(Mensagem ms) {
-        this.ms = ms;
-    }
-
-    private final Connection conexao = Conexao.getConexao();
+    private static final Connection conexao = Conexao.getConexao();
 
     private static final String INSERT = "insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values(?,?,?,?,?)";
 
@@ -55,7 +36,7 @@ public class DAOEvento /*implements iDAO*/ {
 
     //DAO Metodos
     //@Override
-    public void Inserir() {
+    public void Inserir(Evento ev) {
         try {
 
             conexao.setAutoCommit(false);
@@ -111,10 +92,10 @@ public class DAOEvento /*implements iDAO*/ {
 
 
 
-    public void AtualizarEvento(int idvento) {
+    public void AtualizarEvento(Evento ev) {
         try {
 
-            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id =  '" + idvento + "'";
+            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id =  '"+ev.getIdEvento()+"'";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlAltera, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -163,18 +144,15 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-    //@Override
-    public void Atualizar(String OBJ, String ob) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     //@Override
-    public void Deletar(String NomeEV, String SEN) {
+    public void Deletar(Evento ev, Instituicao inst) {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
 
-            String sqlDelEV = "update Evento set status = false where nome = '" + NomeEV + "' and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + SEN + "');";
+            String sqlDelEV = "update Evento set status = false where nome = '" + ev.getNome() + "' and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + inst.getSenha() + "');";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlDelEV);
             pstmt.execute();
@@ -184,12 +162,12 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-    public void DeletarEvPessoa(String NomeEV, String SEN) {
+    public void DeletarEvPessoa(Evento ev, Usuario user) {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
 
-            String sqlDelEV = "update Evento set status = false where nome = '" + NomeEV + "' and ID in (select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPessoa and e.senha = '" + SEN + "');";
+            String sqlDelEV = "update Evento set status = false where nome = '" + ev.getNome() + "' and ID in (select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPessoa and e.senha = '" + user.getSenha() + "');";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlDelEV);
             pstmt.execute();
@@ -199,12 +177,12 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
     
-    public ArrayList ConsultarEVinst(String NomeEV, String SEN) {
+    public ArrayList ConsultarEVinst(Evento ev, Instituicao inst) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Evento where nome = '" + NomeEV + "' and status = true and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + SEN + "');";
+            String sqlConsulta = "select * from Evento where nome = '" + ev.getNome() + "' and status = true and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + inst.getSenha() + "');";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -236,12 +214,12 @@ public class DAOEvento /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList Consultar(String N) {
+    public ArrayList Consultar(Evento ev) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Evento where nome ilike '%" + N + "%' and status = true";
+            String sqlConsulta = "select * from Evento where nome ilike '%" + ev.getNome() + "%' and status = true";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -268,7 +246,7 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-    public ArrayList ConsultarId(int id) {
+   /* public ArrayList ConsultarId(int id) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
         try {
@@ -299,14 +277,15 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
+    Parei aqui  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    */
     
-    
-    public Evento Consultar1(Integer id) {
+    public Evento Consultar1(Evento ev) {
         Evento in = new Evento();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Evento where id ="+id;
+            String sqlConsulta = "select * from Evento where id ="+ev.getIdEvento();
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -366,12 +345,12 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
     
-    public ArrayList ListarPorID(int ID) {
+    public ArrayList ListarPorID(Instituicao inst) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlListar = "select * from InstituicaoEvento ie, Evento eve where eve.id = ie.idevento and ie.idInstituicao ="+ID+" and status = true";
+            String sqlListar = "select * from InstituicaoEvento ie, Evento eve where eve.id = ie.idevento and ie.idInstituicao ="+inst.getIdInstituicao()+" and status = true";
             PreparedStatement pstmt = conexao.prepareStatement(sqlListar);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -401,12 +380,12 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-    public ArrayList ListarEvPessoaPorID(int ID) {
+    public ArrayList ListarEvPessoaPorID(Usuario user) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlListar = "select * from PessoaEvento pe, Evento eve where eve.id = pe.idevento and pe.idPessoa ="+ID+" and status = true";
+            String sqlListar = "select * from PessoaEvento pe, Evento eve where eve.id = pe.idevento and pe.idPessoa ="+user.getId()+" and status = true";
             PreparedStatement pstmt = conexao.prepareStatement(sqlListar);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -508,13 +487,14 @@ public class DAOEvento /*implements iDAO*/ {
 
     }
 
-    public void InserirAuxInstituicaoEvento(int idinstituicao, int idvento) {
+    public void InserirAuxInstituicaoEvento(Instituicao inst, Evento ev) {
+        Connection conexao = null;
         try {
 
-            conexao.setAutoCommit(false);
+            conexao = Conexao.getConexao();
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            String sqlInstituicao = "insert into InstituicaoEvento (idInstituicao, IdEvento) values(" + idinstituicao + "," + idvento + ")";
+            String sqlInstituicao = "insert into InstituicaoEvento (idInstituicao, IdEvento) values(" + inst.getIdInstituicao() + "," + ev.getIdEvento() + ")";
             PreparedStatement pstmt = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.execute();
@@ -542,13 +522,13 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-    public void InserirAuxPessoaEvento(int idPes, int idvento) {
+    public void InserirAuxPessoaEvento(Pessoa p, Evento ev) {
         try {
 
             conexao.setAutoCommit(false);
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            String sqlInstituicao = "insert into PessoaEvento (idPessoa, IdEvento) values(" + idPes + "," + idvento + ")";
+            String sqlInstituicao = "insert into PessoaEvento (idPessoa, IdEvento) values(" + p.getId() + "," + ev.getIdEvento() + ")";
             PreparedStatement pstmt = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.execute();
@@ -576,18 +556,18 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
     
-    public ArrayList AtualizarEndEV(int IdEnd) {
+    public ArrayList AtualizarEndEV(Endereco en) {
         ArrayList<Endereco> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from endereco where id = " + IdEnd + "";
+            String sqlConsulta = "select * from endereco where id = " + en.getIdEndereco() + "";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
             while (rs.next()) {
 
-                String sqlAltera = "update Endereco set cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? where id =" + IdEnd + "";
+                String sqlAltera = "update Endereco set cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? where id =" + en.getIdEndereco() + "";
 
                 PreparedStatement pstm = conexao.prepareStatement(sqlAltera);
 
@@ -624,12 +604,12 @@ public class DAOEvento /*implements iDAO*/ {
 
     }
 
-    public ArrayList EventoEndereco(int IdEv) {
+    public ArrayList EventoEndereco(Evento ev) {
         ArrayList<Endereco> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve.idevento = " + IdEv + "";
+            String sqlConsulta = "select * from enderecoevento eve, endereco e where e.id = eve.idendereco and eve.idevento = " + ev.getIdEvento() + "";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -663,12 +643,12 @@ public class DAOEvento /*implements iDAO*/ {
 
     }
 
-    public ArrayList InstituicaoEvento(int IdEv) {
+    public ArrayList InstituicaoEvento(Evento ev) {
         ArrayList<Instituicao> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and eve.idEvento = " + IdEv + "";
+            String sqlConsulta = "select * from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and eve.idEvento = " + ev.getIdEvento() + "";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -701,12 +681,12 @@ public class DAOEvento /*implements iDAO*/ {
 
     }
 
-    public ArrayList PessoaEvento(int IdEv) {
+    public ArrayList PessoaEvento(Evento ev) {
         ArrayList<Pessoa> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from PessoaEvento eve, Pessoa e where e.id = eve.idPessoa and eve.idEvento = " + IdEv + "";
+            String sqlConsulta = "select * from PessoaEvento eve, Pessoa e where e.id = eve.idPessoa and eve.idEvento = " + ev.getIdEvento() + "";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -739,13 +719,14 @@ public class DAOEvento /*implements iDAO*/ {
     }
 
     
-    public void InserirAuxEnderecoEvento(int idendereco, int idevento) {
+    public void InserirAuxEnderecoEvento(Endereco en, Evento ev) {
+        Connection conexao = Conexao.getConexao();
         try {
 
             conexao.setAutoCommit(false);
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            String sqlEndereco = "insert into EnderecoEvento (idEndereco, idEvento) values(" + idendereco + "," + idevento + ")";
+            String sqlEndereco = "insert into EnderecoEvento (idEndereco, idEvento) values(" + en.getIdEndereco() + "," + ev.getIdEvento() + ")";
             PreparedStatement pstmt = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.execute();

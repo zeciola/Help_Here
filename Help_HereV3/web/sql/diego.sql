@@ -235,11 +235,11 @@ alter table Pessoa add column contador int
 -- id da pessoa que criou o evento tal
 select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento = 13;
 --mudar o contador
-update instituicao set contador = 10 where id in (select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento = 13;)
-update Pessoa set contador = 15 where id = 2 
+update instituicao set contador = 1 where id in (select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento = 13;)
+update Instituicao set contador = 1 where id = 3 
 
 
-select * from pessoa
+select * from Instituicao
  
 
 insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status)

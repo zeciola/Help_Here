@@ -24,19 +24,16 @@ public class RemoverInstituicaoAction implements ICommand {
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
         DAOInstituicao daoi = new DAOInstituicao();
-        String CNP = null;
-        String Sen = null;
+        
         
          HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
         Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("InstAutenticado");
         
             
-         CNP=usuarioLogado.getCnpj();
-                
-         Sen = usuarioLogado.getSenha();
+         
             
         
-         daoi.Deletar(CNP,Sen);
+         daoi.Deletar(usuarioLogado);
          
         return "/sucesso.jsp";
     }

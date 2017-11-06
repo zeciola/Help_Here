@@ -67,7 +67,8 @@ public class CadastrarEventoAction implements ICommand {
         String[] contadorinst = request.getParameterValues("contadorEv");
         
         for (int i = 0; i < cepend.length; i++) {
-
+            
+            Endereco e = new Endereco();
             e.setCep(cepend[i]);
             e.setNomelogradouro(nomeend[i]);
             e.setNumeroen(Integer.parseInt(numeroend[i]));
@@ -114,20 +115,29 @@ public class CadastrarEventoAction implements ICommand {
         ev.setTipoEvento(request.getParameter("tipoEven"));
         ev.setDescricao(request.getParameter("descricao"));
 
-        daoevento.setEvento(ev);
-        daoevento.Inserir();
+        
+        daoevento.Inserir(ev); 
 
         for (int j = 0; j < inst.size(); j++) {
             int idInst = inst.get(j).getIdInstituicao();
-
-            Ed.InserirAuxInstituicaoEvento(idInst, ev.getIdEvento());
+            in.setIdInstituicao(idInst);
+            Ed.InserirAuxInstituicaoEvento(in, ev); 
         }
+        
+        
+        /*for(int j = 0; j < end.size(); j++){
+            int idEnd =end.get(j).getIdEndereco();
+            
+            DAOEvento Ed = new DAOEvento();
+            Ed.InserirAuxEnderecoEvento(idEnd, ev.getIdEvento()); 
+        }*/
 
         for (int j = 0; j < end.size(); j++) {
-            int idEnd = end.get(j).getIdEndereco();
-
+            int idEnd =end.get(j).getIdEndereco();
+            
             DAOEvento Ed = new DAOEvento();
-            Ed.InserirAuxEnderecoEvento(idEnd, ev.getIdEvento());
+            e.setIdEndereco(idEnd);
+            Ed.InserirAuxEnderecoEvento(e, ev);  
         }
         String tipo = request.getParameter("tipoEven");
         int idev = ev.getIdEvento();

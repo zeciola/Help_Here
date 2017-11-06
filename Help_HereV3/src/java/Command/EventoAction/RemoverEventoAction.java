@@ -28,7 +28,8 @@ public class RemoverEventoAction implements ICommand{
         
         DAOEvento idao = new DAOEvento();
         ArrayList<Evento> eve = new ArrayList();
-        
+        Evento ev = new Evento();
+        Instituicao inst = new Instituicao();
         
         
         String urm = request.getParameter("urm");
@@ -37,7 +38,7 @@ public class RemoverEventoAction implements ICommand{
             
 
                 String NomeEV = request.getParameter("txtnomeEV");
- 
+                ev.setNome(NomeEV);
                 
  
                 
@@ -50,7 +51,7 @@ public class RemoverEventoAction implements ICommand{
                         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
                         Usuario usuario =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
                         String SEN = usuario.getSenha();
-                        daoi.DeletarEvPessoa(NomeEV,SEN);
+                        daoi.DeletarEvPessoa(ev,usuario);
                     // if para remover evento pessoa, falta colocar um if na jsp lista evento, metodo na dao criado
                         return "/acessologado/EventoPessoa.jsp";
                        
@@ -59,9 +60,9 @@ public class RemoverEventoAction implements ICommand{
                         HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
                         Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
                         String SEN = usuarioLogado.getSenha();
-                        String CNP = usuarioLogado.getCnpj();
+                        
                         //eve = idao.ConsultarEVinst(NomeEV,SEN);
-                        daoi.Deletar(NomeEV,SEN);
+                        daoi.Deletar(ev,usuarioLogado); 
                         return "/acessologado/Evento.jsp";
  
                 }

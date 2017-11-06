@@ -25,6 +25,7 @@ public class CadastrarPEventoAction implements ICommand {
 
     private Evento ev = new Evento();
     private Endereco e = new Endereco();
+    private Pessoa p =new Pessoa();
     
     private DAOEvento daoevento = new DAOEvento();
     private DAOFeeds daof = new DAOFeeds();
@@ -52,7 +53,7 @@ public class CadastrarPEventoAction implements ICommand {
 
 
         for (int i = 0; i < cepend.length; i++) {
-
+            Endereco e = new Endereco();
             e.setCep(cepend[i]);
             e.setNomelogradouro(nomeend[i]);
             e.setNumeroen(Integer.parseInt(numeroend[i]));
@@ -98,21 +99,31 @@ public class CadastrarPEventoAction implements ICommand {
         ev.setTipoEvento(request.getParameter("tipoEven"));
         ev.setDescricao(request.getParameter("descricao"));
 
-        daoevento.setEvento(ev);
-        daoevento.Inserir();
+        
+        daoevento.Inserir(ev); 
 
         for (int j = 0; j < pe.size(); j++) {
             int idPes = pe.get(j).getId();
-
+            p.setId(idPes);
             DAOEvento Ed = new DAOEvento();
-            Ed.InserirAuxPessoaEvento(idPes, ev.getIdEvento());
+            Ed.InserirAuxPessoaEvento(p, ev);  
         }
+        
         for (int j = 0; j < end.size(); j++) {
             int idEnd = end.get(j).getIdEndereco();
-
+            e.setIdEndereco(idEnd);
             DAOEvento Ed = new DAOEvento();
-            Ed.InserirAuxEnderecoEvento(idEnd, ev.getIdEvento());
+            Ed.InserirAuxEnderecoEvento(e, ev);
         }
+        /*
+        for(int j = 0; j < end.size(); j++){
+            int idEnd =end.get(j).getIdEndereco();
+            
+            DAOEvento Ed = new DAOEvento();
+            Ed.InserirAuxEnderecoEvento(idEnd, ev.getIdEvento()); 
+        }
+        */
+        
         String tipo = request.getParameter("tipoEven");
         int idev = ev.getIdEvento();
         Evento evento = new Evento();

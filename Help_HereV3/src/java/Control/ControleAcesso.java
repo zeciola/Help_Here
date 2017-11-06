@@ -59,17 +59,18 @@ public class ControleAcesso extends HttpServlet {
                             response.sendRedirect("acessologado/logado.jsp");
                         } else {
                             Evento eve = new Evento();
+                            Evento ev = new Evento();
                             ArrayList<Endereco> end = new ArrayList();
                             ArrayList<Instituicao> inst = new ArrayList();
                             DAOEvento idao = new DAOEvento();
 
                             Integer idev = Integer.parseInt(request.getParameter("txtid"));
-
+                            ev.setIdEvento(idev);
                             //CONSULTAR EVENTO
-                            eve = idao.Consultar1(idev);
-                            end = idao.EventoEndereco(eve.getIdEvento());
+                            eve = idao.Consultar1(ev);
+                            end = idao.EventoEndereco(ev);
                             eve.setEnds(end);
-                            inst = idao.InstituicaoEvento(eve.getIdEvento());
+                            inst = idao.InstituicaoEvento(ev);
                             
                             sessaoUsuario.setAttribute("evento", eve);
                             sessaoUsuario.setAttribute("resp", inst);

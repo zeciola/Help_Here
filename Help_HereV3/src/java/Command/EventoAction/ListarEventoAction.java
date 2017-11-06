@@ -46,7 +46,7 @@ public class ListarEventoAction implements ICommand{
          Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
         int ID = usuarioLogado.getIdInstituicao();
         
-         i = idao.ListarPorID(ID);
+         i = idao.ListarPorID(usuarioLogado);  
           p.setId(ID);
           pe.add(p);
           request.setAttribute("confirma", pe);
@@ -65,7 +65,7 @@ public class ListarEventoAction implements ICommand{
             HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
             Usuario usuarioLogado =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
             int ID = usuarioLogado.getId();
-             i = idao.ListarEvPessoaPorID(ID);
+             i = idao.ListarEvPessoaPorID(usuarioLogado); 
              p.setId(ID);
              pe.add(p);
              request.setAttribute("confirma", pe);

@@ -29,6 +29,7 @@ public class ConsultarInstituicaoAction implements ICommand {
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ArrayList<Instituicao> institu = new ArrayList();
         DAOInstituicao idao = new DAOInstituicao();
+        Instituicao inst = new Instituicao();
         String CNP = null;
         
             String acao = request.getParameter("acao");
@@ -39,8 +40,8 @@ public class ConsultarInstituicaoAction implements ICommand {
             }else {
                 return "erro.jsp";
             }
-        
-        institu = idao.Consultar(CNP);
+        inst.setCnpj(CNP);
+        institu = idao.Consultar(inst);
          request.setAttribute("lista", institu);
         //envia o request para o jsp
         RequestDispatcher rd= request.getRequestDispatcher("/acessologado/listaInstituicao.jsp");
