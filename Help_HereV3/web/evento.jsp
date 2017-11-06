@@ -83,7 +83,7 @@
         <div id="volun" class="paraExibicao">
             Contador voluntarios 
         </div>
-        <span id="porcentagem" class="paraExibicao">48</span>
+        <span id="porcentagem" class="paraExibicao">56</span>
         
         
         <canvas class="loader2"></canvas>

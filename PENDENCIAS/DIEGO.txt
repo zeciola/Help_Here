@@ -2,12 +2,15 @@
 
 * FAZER LOADER REPRESENTAR STATUS DO EVENTO.
 * PREENCHER DADOS DO BOLETO.
+* FORMATAR CERTIFICADO
 * NOTIFICAÇÃO POR E-MAIL CERTIFICADO PRONTO.
 * BAIXA BANCARIA(SIMULAÇÃO).
 * DOCUMENTAR RESOLVIDOS
+*condução: notificar pessoas para que o evento esta chegando.
+*condução: penalidade de não ir não evento 
+	-como voltar ao normal.
+	-volta no 30 dias ou envio de atestado.
 
-Pessoa fisica
-pessoa logada -> eventos -> visualiza todos os eventos que criou e interagiu
 
 *eventos que participou -> ele visualiza suas doações e participações como voluntario
 	podendo baixar certificados se estiver disponivel
@@ -23,7 +26,7 @@ Pessoa juridica
 ******RESOLVIDAS******
 
 * VOLUNTARIO BAIXAR CERTIFICADO(PERFIL MEUS CERTIFICADOS).
-* BOLETO GERAR cNUMERO E SALVAR NO BANCO PARA A BAIXA.
+* BOLETO GERAR NUMERO E SALVAR NO BANCO PARA A BAIXA.
 * FAZER DONO DO EVENTO VALIDAR VOLUNTARIOS.
 * E CARREGAR DADOS NA PAGINA AJUDAR COM CONDIÇÃO CASO SEJA VOLUNTARIO U DOAR
 * FALAR COM LUCAS MUDAR JSPS PARA ACESSO LOGADO(ESTA DANDO MERDA NA SESSÃO)

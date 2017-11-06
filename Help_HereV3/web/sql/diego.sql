@@ -485,22 +485,15 @@ ALTER TABLE Responsavel ADD FOREIGN KEY(idEvento) REFERENCES Evento (ID);
 ALTER TABLE ValoresDoados ADD FOREIGN KEY(idCampanha) REFERENCES CampanhaDinheiro (ID);
 ALTER TABLE ItemDoado ADD FOREIGN KEY(idCampanhaItem) REFERENCES CampanhaItens (ID);
 
-
 update ultimoboleto set numeroboleto = '0001.0001.0001.0001.0001' where id = 1;
 
+alter table evento add column metavalor numeric default(0);
 
+alter table evento add column metavoluntario integer default(0);
 
-select* from instituicaoevento;
-select * from instituicao;
-select * from evento;
 select * from instituicao i, evento e, instituicaoevento instv where i.id = instv.idinstituicao and instv.idevento = e.id;
 
-select * from Voluntario;
-
 alter table evento add column analisado boolean default false
-
-select * from pessoa;
-select * from usuario;
 
 select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.id idevento, e.tipo, e.nome NomeEvento, v.analisado from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = 2;
 
@@ -538,9 +531,32 @@ select p.id idpessoa, p.nome PessoaNome, p.cpf, i.id instid, i.nome InstNome,e.i
  from Voluntario v, Instituicao i, Pessoa p, evento e, instituicaoevento instv where
  v.idevento = e.id and v.idpessoa = p.id and i.id = instv.idinstituicao and instv.idevento = e.id and e.tipo = 'Voluntariado' and v.analisado = false and i.id = 2
 
-
-select * from Voluntario;
-
 select u.id iduser, p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, i.nome nomeinst, i.id idinst 
 from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
 where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = 23;
+
+
+---SOMAR VALORES PARA STATUS DO LOADER
+--SOMA VALORES JA ARRECADADOS E CONFIRMADOS
+select SUM(valor) from valoresdoados where idcampanha = 17 AND statusbaixa = true;
+
+--VALOR META EVENTO
+select metavalor from evento where id = 26;
+
+
+---CONTAR VOLUNTARIOS PARA STATUS DO LOADER
+--CONTA VOLUNTARIOS QUE SE CADASTRATRAM
+select COUNT(*) from voluntario where idevento = 26;
+
+--META VOLUNTARIO EVENTO
+select metavoluntario from evento where id = 26;
+
+
+
+--BAIXA BANCARIA
+
+SELECT * FROM VALORESDOADOS;
+
+update valoresdoados set boleto = '11121212121212121' where idpessoa = 2 and idcampanha = 2;
+
+upsat

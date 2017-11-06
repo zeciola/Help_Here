@@ -1,0 +1,3 @@
+alter table evento add column metavalor numeric default(0);
+
+alter table evento add column metavoluntario integer default(0);
