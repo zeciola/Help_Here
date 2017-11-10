@@ -11,6 +11,8 @@ import DAO.DAOEvento;
 import Model.Endereco;
 import Model.Evento;
 import Model.Instituicao;
+import Model.Pessoa;
+import Model.Usuario;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,21 +37,23 @@ public class AtualizarEventoAction implements ICommand{
         Endereco en = new Endereco();
         DAOEvento idao = new DAOEvento();
         Evento even = new Evento();
+        ArrayList<Pessoa> pe = new ArrayList();
         
-        HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
-        Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("usuarioAutenticado");
-        String SEN = usuarioLogado.getSenha();
-        String CNP = usuarioLogado.getCnpj();
+        
+        
         String url = request.getParameter("url");
+        String u = request.getParameter("u");
         
         
         if (url!= null){
-            
-
+                HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+                Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
+                String senha = usuarioLogado.getSenha();
                 String NomeEV = request.getParameter("txtnomeEV");
                 even.setNome(NomeEV);
+                usuarioLogado.setSenha(senha);
                 eve = idao.ConsultarEVinst(even,usuarioLogado);
-
+                
                 if (eve.isEmpty())
                 {
                     return "/EventoErrado.jsp"; 
@@ -64,20 +68,62 @@ public class AtualizarEventoAction implements ICommand{
                             end = idao.EventoEndereco(even); 
 
                             inst = idao.InstituicaoEvento(even); 
-
+                            
                         }   
 
                         //despachar tudo 
                          request.setAttribute("listaEV", eve);
                          request.setAttribute("listaEnd", end);
                          request.setAttribute("listaInst", inst);
+                         
 
                         RequestDispatcher rd= request.getRequestDispatcher("/AlterarEvento.jsp");
                         rd.forward(request, response);  
 
                              
                     }
-    }else
+                
+        }   
+        else if (u!= null)  {
+                HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
+                Usuario user =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
+                String sen = user.getSenha();
+                String NomeEV = request.getParameter("txtnomeEV");
+                even.setNome(NomeEV);
+                user.setSenha(sen);
+                eve = idao.ConsultarEVPessoa(even,user);  
+                
+                          
+
+                if (eve.isEmpty())
+                {
+                    return "/EventoErrado.jsp"; 
+
+
+                       
+                }else
+                    {
+                      for(int j = 0; j < eve.size(); j++){
+
+                            even.setIdEvento(eve.get(j).getIdEvento()); 
+                            end = idao.EventoEndereco(even); 
+
+                            
+                            pe = idao.PessoaEvento(even);
+                        }   
+
+                        //despachar tudo 
+                         request.setAttribute("listaEV", eve);
+                         request.setAttribute("listaEnd", end);
+                         
+                         request.setAttribute("listaPe", pe);
+
+                        RequestDispatcher rd= request.getRequestDispatcher("/AlterarEvento.jsp");
+                        rd.forward(request, response);  
+
+                             
+                    }
+        }else if ((url == null) && (u == null ))
         {
                 Evento ev = new Evento();
                 DAOEvento daoevento = new DAOEvento();
@@ -102,8 +148,8 @@ public class AtualizarEventoAction implements ICommand{
                 String[] emailinst = request.getParameterValues("email");
 
 
-                    
-                    for (int i=0; i < idinst.length; i++){
+                    if (idinst != null){
+                    for (int i=0; i < idinst.length; i++){  //Ta dando erro aqui <<<<<<<<<<<<
                             Instituicao in = new Instituicao();
 
                             in.setIdInstituicao(Integer.parseInt(idinst[i]));
@@ -160,8 +206,56 @@ public class AtualizarEventoAction implements ICommand{
                              end.add(e);
 
                          }
+                    return "/acessologado/Evento.jsp"; 
+                    
+                    }else {
+                                ev.setIdEvento(Integer.parseInt(request.getParameter("idEve")));
+                    
+                            Date datahoje = new Date(System.currentTimeMillis());
+
+                            String data1 = request.getParameter("inicio");
+                                 DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+                                 java.sql.Date data = new java.sql.Date(fmt.parse(data1).getTime());
+                            ev.setDataInicio(data);
+                            
+                            
+                            String data2 = request.getParameter("fim");
+
+                                 DateFormat fmt2 = new SimpleDateFormat("yyyy-MM-dd");
+                                 java.sql.Date dataf = new java.sql.Date(fmt2.parse(data2).getTime());
+                            ev.setDataFim(dataf);
 
 
+                    ev.setNome(request.getParameter("nome"));
+                    ev.setTipoEvento(request.getParameter("tipoEven"));
+                    ev.setDescricao(request.getParameter("descricao"));
+
+                    
+                    daoevento.AtualizarEvento(ev); 
+                    
+                    for (int i=0; i < cepend.length; i++){
+                            Endereco e = new Endereco(); 
+                                
+                                e.setIdEndereco(Integer.parseInt(idEnd[i]));
+                                e.setCep(cepend[i]);
+                                e.setNomelogradouro(nomeend[i]);
+                                e.setNumeroen(Integer.parseInt(numeroend[i]));
+                                e.setBairro(bairro[i]);
+                                e.setMunicipio(cidade[i]);
+                                e.setEstado(estado[i]);
+                                e.setPais(pais[i]);
+                                DAOEvento daoe = new DAOEvento();
+                                
+                                daoe.AtualizarEndEV(e);   //verificar se deu certo
+
+                             end.add(e);
+
+                         }
+                                return "/acessologado/EventoPessoa.jsp";
+                                                                 
+                                 }
+
+                    
                    
                     
     }

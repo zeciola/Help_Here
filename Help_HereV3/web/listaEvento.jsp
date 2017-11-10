@@ -129,7 +129,7 @@
                    
                    <td>
                        <a href="ControleEvento?acao=Remover&txtnomeEV=<%=e.getNome()%>">Cancelar</a> &nbsp &nbsp
-                       <a href="ControleEvento?acao=Atualizar&txtnomeEV=<%=e.getNome()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
+                       <a href="ControleEvento?acao=Atualizar&u=ok&txtnomeEV=<%=e.getNome()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
                    </td>
                    
 

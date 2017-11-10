@@ -239,6 +239,8 @@ update instituicao set contador = 1 where id in (select idpessoa from pessoaeven
 update Instituicao set contador = 1 where id = 3 
 
 
+select * from Evento where nome = 'teste contador pessoa' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '123')
+select * from Pessoa											select * from PessoaEvento eve, Pessoa e where e.id = eve.idPessoa and eve.idEvento = 12
 select * from Instituicao
  
 
