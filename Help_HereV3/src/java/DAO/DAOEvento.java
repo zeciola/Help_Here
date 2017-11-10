@@ -560,9 +560,10 @@ public class DAOEvento /*implements iDAO*/ {
     }
 
     public void InserirAuxPessoaEvento(Pessoa p, Evento ev) {
+        Connection conexao = null;
         try {
 
-            conexao.setAutoCommit(false);
+            conexao = Conexao.getConexao();
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             String sqlInstituicao = "insert into PessoaEvento (idPessoa, IdEvento) values(" + p.getId() + "," + ev.getIdEvento() + ")";
