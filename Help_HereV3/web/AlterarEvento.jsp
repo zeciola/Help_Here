@@ -185,7 +185,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="idEnd" placeholder="ID" class="form-control" type="text" value="<%= en.getIdEndereco()%>">
+                            <input name="idEnd" placeholder="Campo nulo" class="form-control" type="text" value="<%= en.getIdEndereco()%>">
                             <input name="cep" placeholder="CEP" class="form-control" type="text" value="<%= en.getCep()%>">
                             <input name="endereco" placeholder="Endereço" class="form-control" type="text" value="<%= en.getNomelogradouro()%>">
                             <input name="numero" placeholder="Número" class="form-control" type="int" value="<%= en.getNumeroen()%>">
@@ -422,15 +422,16 @@ function removerCampos(id){
                     </div>
                 </div>
              </div>
+           </div> 
                
-              <%}%> 
+            <div id="destino">
+            </div>
               
 	<input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
 	<input type="button" value="Remover Endereços" onclick="removerCampos(this);">
-             <div id="destino">
-             </div>
+             
                  
-        
+        <%}%> 
                 <br /> <br />
                 <br /> <br />
                 
