@@ -7,10 +7,9 @@
 * BAIXA BANCARIA(SIMULAÇÃO).
 * DOCUMENTAR RESOLVIDOS
 *condução: notificar pessoas para que o evento esta chegando.
-*condução: penalidade de não ir ao evento 
+*condução: penalidade de não ir não evento 
 	-como voltar ao normal.
-		-volta depois de 30 dias
-		-envio de atestado.
+	-volta no 30 dias ou envio de atestado.
 
 
 *eventos que participou -> ele visualiza suas doações e participações como voluntario

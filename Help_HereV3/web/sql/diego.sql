@@ -553,42 +553,12 @@ select COUNT(*) from voluntario where idevento = 26;
 --META VOLUNTARIO EVENTO
 select metavoluntario from evento where id = 26;
 
+
+
 --BAIXA BANCARIA
 
 SELECT * FROM VALORESDOADOS;
 
 update valoresdoados set boleto = '11121212121212121' where idpessoa = 2 and idcampanha = 2;
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------CONDUÇÃO 1 DE AVISAR VOLUNTÁRIOS--------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------
---Lista eventos voluntar com inicio 5 dias ou menos 
-select id from evento where tipo = 'Voluntariado' and CURRENT_DATE+5 <= datainicio and status = true;
---v2
-select id from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true;
-
---Lista E-mails voluntarios do evento
-select p.email 
-from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
-where v.idpessoa = p.id and v.idevento = e.id and instv.idevento = e.id and instv.idinstituicao = i.id AND e.id = 28;
-----------------------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------CONDUÇÃO 2 REMOVER PENALIDADE DE PESSOA--------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-select * from usuario;
-
-select * from pessoa where id = 24;
-
-alter table pessoa add column datapenalisado date
-
---Atualiza status e dia de atualização do status
-update pessoa set penalisado = true, datapenalisado = '08/10/2017' where id = (select p.id from usuario u, pessoa p where p.id = u.idpessoa and u.id = 23);
-
---Lista penalisados prontos para sair do status
-select id from pessoa where penalisado = true and datapenalisado+30 >= current_date;
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------
+upsat
