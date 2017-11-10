@@ -427,11 +427,12 @@ function removerCampos(id){
             <div id="destino">
             </div>
               
-	<input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
-	<input type="button" value="Remover Endereços" onclick="removerCampos(this);">
-             
+	
                  
         <%}%> 
+        <input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
+	<input type="button" value="Remover Endereços" onclick="removerCampos(this);">
+             
                 <br /> <br />
                 <br /> <br />
                 
