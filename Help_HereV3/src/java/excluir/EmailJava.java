@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Util;
+package excluir;
 
 /*
 import org.apache.commons.mail.EmailException;
