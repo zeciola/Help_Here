@@ -19,8 +19,9 @@ public class AvisoEvento implements Job{
         
         for(Evento e1 : evs){
             n.setE(e1);
-            n.setUsersNotificados(n);
+            n.setUsersNotificados(daon.ListarContatos(n));
         }
+        
     }
 
     

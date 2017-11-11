@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Notificacao {
     private Evento e;
-    private ArrayList<Pessoa> usersNotificados;
+    private ArrayList<Pessoa> pessoasNotificar;
     
     public Evento getE() {
         return e;
@@ -16,10 +16,10 @@ public class Notificacao {
     }
     
     public ArrayList<Pessoa> getUsersNotificados() {
-        return usersNotificados;
+        return pessoasNotificar;
     }
     
     public void setUsersNotificados(ArrayList<Pessoa> usersNotificados) {
-        this.usersNotificados = usersNotificados;
+        this.pessoasNotificar = usersNotificados;
     }
 }

@@ -7,6 +7,7 @@ package DAO;
 
 import Model.Evento;
 import Model.Notificacao;
+import Model.Pessoa;
 import java.util.ArrayList;
 
 public class DAONotificacao {
@@ -18,8 +19,10 @@ public class DAONotificacao {
         return e;
     }
     
-    public void ListarContatos(Notificacao n2){
+    public ArrayList ListarContatos(Notificacao n2){
+        ArrayList<Pessoa> p = new ArrayList();
         String sql2 = "select p.email from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where v.idpessoa = p.id and v.idevento = e.id and instv.idevento = e.id and instv.idinstituicao = i.id AND e.id = ?";
+        return p;
     }
     
 }
