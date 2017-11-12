@@ -43,10 +43,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         
                                 <li>
-                                    <a href="Eventos.jsp">Eventos</a>
+                                    <a href="javascript:window.history.go(-2)">Eventos</a>
                                 </li>
+                                
                                 <li>
-                                    <a href="CNPJsenhaEvento.jsp">cadastrar Evento</a>
+                                    <a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a>
                                 </li>
 			
 
