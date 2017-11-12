@@ -48,9 +48,9 @@ public class ConsultarPessoaAction implements ICommand {
             //add a lista de evento o objeto request
             request.setAttribute("pessoa", U);
             //envia o request para o jsp
-            RequestDispatcher rd = request.getRequestDispatcher("/CriarEventoPessoa.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/acessologado/CriarEventosPessoa.jsp");
             rd.forward(request, response);
-            return "CriarEventoPessoa.jsp";
+            return "acessologado/CriarEventosPessoa.jsp";
 
         } else if (acao.equals("Consultar")) {
             email = (request.getParameter("txtemail"));

@@ -395,4 +395,47 @@ public class DAOUsuario /*implements iDAO*/ {
         }
         return loginAutenticado;
     }
+    
+    
+    public Usuario autenticaID(Usuario login) {
+        Usuario loginAutenticado = null;
+
+        Connection conexao = null;
+        PreparedStatement pstmt = null;
+        ResultSet rsLogin = null;
+        try {
+            conexao = Conexao.getConexao();
+            String sqlConsulta = "select * from Usuario where id ="+login.getId();
+            pstmt = conexao.prepareStatement(sqlConsulta);
+            
+            rsLogin = pstmt.executeQuery();
+
+            if (rsLogin.next()) {
+                loginAutenticado = new Usuario();
+                loginAutenticado.setId(rsLogin.getInt("id"));
+                loginAutenticado.setNome(rsLogin.getString("login"));
+                loginAutenticado.setSenha(rsLogin.getString("senha"));
+                loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
+                loginAutenticado.setStatus(rsLogin.getBoolean("status"));
+                
+                Pessoa p = new Pessoa();
+                p.setId(rsLogin.getInt("idpessoa"));
+                     
+
+                loginAutenticado.setPe(p);
+            }
+
+        } catch (SQLException sqlErro) {
+            throw new RuntimeException(sqlErro);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
+        return loginAutenticado;
+    }
 }

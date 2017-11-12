@@ -45,7 +45,7 @@
                     
                    
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=CriarEvPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Criar</a> </li>
+                        <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=CriarEvPessoa&txtID=<%=usuario.getId()%>">Criar</a> </li>
                         <li><a href="${pageContext.request.contextPath}/ConsultaNomeEvento.jsp">Consultar</a></li>
                         <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Excluir</a></li>-->
                         <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar&URP=ok">Listar</a></li>

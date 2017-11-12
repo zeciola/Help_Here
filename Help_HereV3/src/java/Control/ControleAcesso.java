@@ -226,17 +226,18 @@ public class ControleAcesso extends HttpServlet {
             
             else if (acao.equals("CriarEvPessoa")) {
                 Usuario login = new Usuario();
-                login.setNome(request.getParameter("txtLogin"));
-                login.setSenha(request.getParameter("txtSenha"));
+                login.setId(Integer.parseInt(request.getParameter("txtID")));
+                
 
                 DAOUsuario daousuario = new DAOUsuario();
-                Usuario usuarioAutenticado = daousuario.autenticaUsuario(login);
+                Usuario usuarioAutenticado = daousuario.autenticaID(login);
 
                 if (usuarioAutenticado != null) {
                     HttpSession sessaoUsuario = request.getSession();
                     sessaoUsuario.setAttribute("usuarioAutenticado", usuarioAutenticado);
                     //redireciona para a pagina princiapal
                     request.getRequestDispatcher("/ControlePessoa?acao=Consultar&URL=ok").forward(request, response);
+                   //response.sendRedirect("/ControlePessoa?acao=Consultar&URL=ok");
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("/cnpjInvalido.jsp");
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
