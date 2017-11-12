@@ -80,63 +80,53 @@
                 <!-- /.container -->
             </nav>
         </header>    
-
+<!-- 
         <figure class="figure">
             <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
             <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>
+        </figure>    -->
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
         %>
-        <h1>Bem vindo 
-            <%= usuario.getNome()%>! </h1>
-        <h2>Nome<%= usuario.getPe().getNome()%> </h2>
-        <h2><%= usuario.getPe().getSobrenome()%> </h2>
+        <h6 ALIGN="right"> 
+            Conta: <%= usuario.getNome()%>
+        </h6>
+        
+        <h1>Bem vindo, <%= usuario.getPe().getNome()%> !</h1>
+        
         <%}%>
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/email.jsp">Consultar Pessoa</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/AlterarPessoa.jsp">Alterar Pessoa Esse!</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/emailSenha.jsp">Deletar Pessoa</a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/ControlePessoa?acao=Listar">Listar Pessoa</a>
-            </li>
-        </ul>
-        <h1>Eventos</h1>
-        <div class="row">
-            <% ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
+        <br> <br> 
+        <h3 ALIGN="center">Feeds de eventos do seu interesse:</h3> 
+        <br> 
+       <!-- <div class="row">
+            <% /*ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
                 if (ListaEv == null) {
                     request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
-                    }%>
-            <%for (Evento e : ListaEv) {%>
+                    } */%>
+            <%/*for (Evento e : ListaEv) {*/%>
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
-                <h2><%=e.getNome()%></h2>
-                <p><%=e.getDescricao()%></p>
-                <p><%=e.getDataInicio()%></p>
-                <p><%=e.getDataFim()%></p>
-                <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
+                <img class="img-circle img-responsive img-center" src="img/<%/*=e.getImg()*/%>" alt="">
+                <h2><%/*=e.getNome()*/%></h2>
+                <p><%/*=e.getDescricao()*/%></p>
+                <p><%/*=e.getDataInicio()*?%></p>
+                <p><%/*=e.getDataFim()*/%></p>
+                <a href="ControleEvento?acao=Consultar1&ID=<%/*=e.getIdEvento()*/%>">Ajude</a>
             </div>
-            <%}%>
+            <%/*}*/%>
         </div>
-
-        <h1> Aqui vai o feeds </h1>
+    -->
+       <!-- <h1> Aqui vai o feeds </h1>-->
 
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) session.getAttribute("feed");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
             }%>
         <%for (Feeds e : Lista) {%>
-        <div id="feed">
-            <br>
+        <div id="feed" class="col-sm-4">
+            <br> <br> <br>
             <b>Conheça o Evento</b>
-            <br><br>
+            <br>
             <%=e.getE().getNome()%><br> A partir do dia:
             <%=e.getE().getDataInicio()%> ate:<br>
             <%=e.getE().getDataFim()%><br>
