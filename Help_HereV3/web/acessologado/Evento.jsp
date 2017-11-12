@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/index.html">Help Here</a>
+                     <a class="navbar-brand" href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Help Here</a>
                 </div>
                 
         <%
