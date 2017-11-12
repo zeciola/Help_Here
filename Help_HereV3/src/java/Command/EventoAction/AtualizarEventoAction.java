@@ -17,6 +17,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,12 +66,25 @@ public class AtualizarEventoAction implements ICommand{
                       for(int j = 0; j < eve.size(); j++){
 
                             even.setIdEvento(eve.get(j).getIdEvento()); 
+                            even.setDataInicio(eve.get(j).getDataInicio());
                             end = idao.EventoEndereco(even); 
 
                             inst = idao.InstituicaoEvento(even); 
                             
-                        }   
-
+                        } 
+                      
+                        Date datahoje = new Date(System.currentTimeMillis());
+                       
+                       
+                        
+                        
+                        /* Regra de negócio proibir edição de eventos que já iniciaram*/
+                        
+                        if (datahoje.after(even.getDataInicio()) ){
+                            return "/AlterareExcluirNegado.jsp"; 
+                        }else{
+                            
+                        
                         //despachar tudo 
                          request.setAttribute("listaEV", eve);
                          request.setAttribute("listaEnd", end);
@@ -79,7 +93,7 @@ public class AtualizarEventoAction implements ICommand{
 
                         RequestDispatcher rd= request.getRequestDispatcher("/AlterarEvento.jsp");
                         rd.forward(request, response);  
-
+                        }
                              
                     }
                 
@@ -166,7 +180,7 @@ public class AtualizarEventoAction implements ICommand{
                     
                     ev.setIdEvento(Integer.parseInt(request.getParameter("idEve")));
                     
-                    Date datahoje = new Date(System.currentTimeMillis());
+                    
 
                             String data1 = request.getParameter("inicio");
                                  DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
