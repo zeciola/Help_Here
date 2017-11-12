@@ -66,7 +66,7 @@
         
         <br></br>
         
-        <h1>Eventos</h1><br></br>
+        <h1 ALIGN="center">Eventos</h1><br></br>
 
                 <div class="row">
                 <%

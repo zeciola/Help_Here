@@ -1,0 +1,3 @@
+alter table Instituicao add column contador int
+
+alter table Pessoa add column contador int
