@@ -6,7 +6,7 @@
 package Control;
 
 import Util.EmailAnexo;
-import Util.SendEmail;
+import excluir.SendEmail;
 import Util.email;
 import java.io.IOException;
 import java.io.PrintWriter;
