@@ -50,6 +50,7 @@
                         <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Excluir</a></li>-->
                         <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar">Listar</a></li>
                         <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar&URL=ok">Meus Eventos</a></li>
+                        <li><a href="javascript:window.history.go(-3)">Feeds</a></li>
                         <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a></li>
 
                     </ul>
