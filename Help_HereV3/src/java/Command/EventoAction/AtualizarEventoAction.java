@@ -120,11 +120,23 @@ public class AtualizarEventoAction implements ICommand{
                       for(int j = 0; j < eve.size(); j++){
 
                             even.setIdEvento(eve.get(j).getIdEvento()); 
+                            even.setDataInicio(eve.get(j).getDataInicio());
                             end = idao.EventoEndereco(even); 
 
                             
                             pe = idao.PessoaEvento(even);
                         }   
+                      
+                       Date datahoje = new Date(System.currentTimeMillis());
+                       
+                       
+                        
+                        
+                        /* Regra de negócio proibir edição de eventos que já iniciaram*/
+                        
+                        if (datahoje.after(even.getDataInicio()) ){
+                            return "/AlterareExcluirNegado.jsp"; 
+                        }else{
 
                         //despachar tudo 
                          request.setAttribute("listaEV", eve);
@@ -137,6 +149,7 @@ public class AtualizarEventoAction implements ICommand{
 
                              
                     }
+               }
         }else if ((url == null) && (u == null ))
         {
                 Evento ev = new Evento();

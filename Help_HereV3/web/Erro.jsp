@@ -28,7 +28,7 @@
                 
                 <br ><br >
                 <input style="background-color: white;color: #00c795;" type="button" onclick="location.href='index.jsp';" value="Página Inicial" />
-                
+                                                                                    
                 
             </div>
             <ul class="bg-bubbles">
