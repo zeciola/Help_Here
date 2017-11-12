@@ -19,9 +19,15 @@
         <div class="wrapper">
             <div class="container">
                 <h1>O Evento esta em andamento</h1> <br /> <br />
-                <h3> Alterações e cancelamentos são permitidos somente a eventos não inicializados
+                <h3> Alterações e cancelamentos são permitidos somente a eventos não inicializados</h3> <br ><br >
                 
+                <form class="form" method="post" action="ControleEvento">
+                    
+                <input style="background-color: white;color: #00c795;" type="button" onclick="location.href='javascript:window.history.go(-1)';" value="Voltar" />
+                                                                                                                
             </div>
+            
+            
             <ul class="bg-bubbles">
                 <li></li>
                 <li></li>
