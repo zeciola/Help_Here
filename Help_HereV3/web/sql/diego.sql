@@ -72,6 +72,9 @@ select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPe
 
 insert into Usuario (id, IDPessoa, Tipo, Login, senha) values(3 ,3, 'comum', '3', '3');
 
+
+
+
 create table Interesses(
 ID serial PRIMARY KEY,
 IDUsuario integer references Usuario(id),
@@ -87,7 +90,11 @@ select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interess
 
 select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'voluntariado';
 
-select * from interesses
+select * from usuario where id = 3
+
+select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true limit 9
+
+select * from interesses where idusuario = 43
 
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
@@ -372,7 +379,7 @@ select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from 
  where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true;
 
 
-select * from Evento;
+select * from Evento where status = true order by datainicio desc limit 10
 
 update evento set status = true;
 
