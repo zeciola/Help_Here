@@ -98,6 +98,8 @@
             </div>
             <!-- /.row -->
             <hr>
+            <br>
+            <h1 ALIGN="center">Confira os Eventos mais recentes</h1>
             <div class="row">
                 <% ArrayList<Evento> Lista = (ArrayList<Evento>) session.getAttribute("evento");
                     if (Lista == null) {
