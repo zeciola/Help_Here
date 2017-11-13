@@ -26,9 +26,12 @@ public class Listar1EventoAction implements ICommand {
 
             return "index.jsp";
         } else {
-            i = idao.Listar();
-            //add a lista de evento o objeto request
-            sessaoUsuario.setAttribute("evento", i);
+            
+        i = idao.ListarMaisRecente();  
+          
+        //add a lista de evento o objeto request
+        sessaoUsuario.setAttribute("evento", i);
+        
             //envia o request para o jsp
             String var = request.getParameter("url");
             if (var.equals("1")) {

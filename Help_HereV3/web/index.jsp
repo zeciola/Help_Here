@@ -104,7 +104,9 @@
                         request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=1").forward(request, response);
                         }%>
                 <%for (Evento e : Lista) {%>
+                
                 <div class="col-sm-4">
+                    <br> <br> <br>
                     <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
                     <h2><%=e.getNome()%></h2>
                     <p><%=e.getDescricao()%></p>
@@ -112,7 +114,9 @@
                     <p><%=e.getDataFim()%></p>
                     <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
                 </div>
+                
                 <%}%>
+                
             </div>         
             <!-- /.row -->
             <hr>

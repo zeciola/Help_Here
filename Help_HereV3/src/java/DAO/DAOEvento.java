@@ -25,6 +25,8 @@ public class DAOEvento /*implements iDAO*/ {
     private static final String INSERT = "insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values(?,?,?,?,?)";
 
     private static final String LISTAR = "select * from Evento where status = true";
+    
+    private static final String LISTAR_RECENTE = "select * from Evento where status = true order by datainicio desc limit 9";
 
     private static final String LISTAR2 = "select * from Evento";
 
@@ -381,6 +383,45 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
+    
+    
+    public ArrayList ListarMaisRecente() {
+        ArrayList<Evento> resul = new ArrayList();
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConexao();
+            PreparedStatement pstmt = conexao.prepareStatement(LISTAR_RECENTE);
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Evento in = new Evento();
+
+                in.setIdEvento(rs.getInt("ID"));
+                in.setDataInicio(rs.getDate("dataInicio"));
+                in.setDataFim(rs.getDate("dataFim"));
+                in.setNome(rs.getString("nome"));
+                in.setTipoEvento(rs.getString("tipo"));
+                in.setDescricao(rs.getString("descricao"));
+
+                resul.add(in);
+
+            }
+            return resul;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
+    
+    
+    
     
     public ArrayList ListarPorID(Instituicao inst) {
         ArrayList<Evento> resul = new ArrayList();
