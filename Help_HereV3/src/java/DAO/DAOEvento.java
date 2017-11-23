@@ -97,7 +97,7 @@ public class DAOEvento /*implements iDAO*/ {
     public void AtualizarEvento(Evento ev) {
         try {
 
-            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id =  '"+ev.getIdEvento()+"'";
+            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id ="+ev.getIdEvento()+"";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlAltera, PreparedStatement.RETURN_GENERATED_KEYS);
 
