@@ -59,7 +59,7 @@
 
     <div class="container">
 
-        <form class="well form-horizontal" action="../ControleEvento" method="post" id="contact_form">
+        <form class="well form-horizontal" action="./ControleEvento" method="post" id="contact_form">
             <fieldset>
                 <!-- Form Name -->
 
@@ -68,8 +68,8 @@
                 <% //recupera a lista do request
                     Usuario p = (Usuario) request.getAttribute("pessoa");
                     if (p.getPe().getContador() >= 15){ 
-                      response.sendRedirect("../ContadorEvento.jsp"); 
-                    } 
+                      response.sendRedirect("./ContadorEvento.jsp"); 
+                    } else
                     if (p.getPe() != null) {%>
 
                 <!-- nome-->

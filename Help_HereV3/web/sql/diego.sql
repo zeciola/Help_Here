@@ -117,6 +117,8 @@ select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from 
 
 SELECT * FROM Usuario WHERE status=true and Login='3' AND senha='3'
 
+update evento set status = false where id = 15;
+
 SELECT CURRENT_DATE;
 SELECT CURRENT_TIME;
 
@@ -125,7 +127,7 @@ select e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento
 
 select * from evento;
 
-update evento set tipo = 'Voluntariado' where id = 4;
+update evento set tipo = 'Voluntariado' where id = 83;
 
 create table Feeds (
 ID serial PRIMARY KEY,
@@ -175,6 +177,8 @@ alter table EnderecoInstituicao add column status boolean
 alter table Instituicao add column contador int
 
 update usuario set login = 'admin' where ID = 37
+
+update instituicao set contador = 15 where ID = 3
 
 update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
 
