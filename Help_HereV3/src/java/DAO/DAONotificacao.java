@@ -27,7 +27,7 @@ public class DAONotificacao {
 
             while (rs.next()) {
                 Evento ev = new Evento();
-                ev.setIdEvento(rs.getInt("idevento"));
+                ev.setIdEvento(rs.getInt("id"));
                 e.add(ev);
             }
             return e;
