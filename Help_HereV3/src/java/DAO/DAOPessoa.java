@@ -73,7 +73,7 @@ public class DAOPessoa /*implements iDAO*/ {
 
             //status
             pstmt.setBoolean(12, pe.isStatus());
-            
+
             pstmt.setInt(13, pe.getContador());
 
             pstmt.executeUpdate();
@@ -141,10 +141,13 @@ public class DAOPessoa /*implements iDAO*/ {
     public void Atualizar(Pessoa pe) {
         try {
 
+            int id = pe.getId();
+            int rsid;
+
             conexao.setAutoCommit(false);
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            String sqlConsultar = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id=" + pe.getId() + ";";
+            String sqlConsultar = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id=" + id + ";";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsultar, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -174,9 +177,14 @@ public class DAOPessoa /*implements iDAO*/ {
             //Fim do pstmt inserir
             ResultSet rs = pstmt.getGeneratedKeys();
 
+            rsid = rs.getInt("ID");
+
             if (rs.next()) {
-                pe.setId(rs.getInt("ID"));
-                conexao.commit();
+                if (id == rsid) {
+                    pe.getEn().setIdEndereco(id);
+                    pe.setId(rs.getInt("ID"));
+                    conexao.commit();
+                }
             }
 
             //conexao.commit();
@@ -251,45 +259,41 @@ public class DAOPessoa /*implements iDAO*/ {
 
     }
 
-     public void AtualizarContadorP(Pessoa obj) { 
-   Connection conexao = null; 
-         
-        try{ 
-        conexao = Conexao.getConexao(); 
-         
-        conexao.setAutoCommit(false); 
-             
-            
-            String sqlInstituicao = "UPDATE Pessoa SET  contador="+obj.getContador()+" WHERE ID="+obj.getId()+" "; 
-             
-            PreparedStatement  pst = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS); 
-             
-            pst.executeUpdate(); 
-            
-            conexao.commit(); 
-            
-            
-             
-             }catch(SQLException e){ 
-            try{ 
-                conexao.rollback(); 
-            }   catch (SQLException ex){ 
-                Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex); 
-            } 
-            Logger.getLogger(DAOInstituicao.class.getName()); 
-                log(Level.SEVERE, "Erro ao Alterar: "+ e.getMessage()); 
-        }finally{ 
-            if(conexao != null) { 
-                try { 
-                    conexao.close(); 
-                } catch (SQLException ex){ 
-                    Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE,null,ex); 
-                } 
-            } 
-        } 
-    } 
-    
-    
+    public void AtualizarContadorP(Pessoa obj) {
+        Connection conexao = null;
+
+        try {
+            conexao = Conexao.getConexao();
+
+            conexao.setAutoCommit(false);
+
+            String sqlInstituicao = "UPDATE Pessoa SET  contador=" + obj.getContador() + " WHERE ID=" + obj.getId() + " ";
+
+            PreparedStatement pst = conexao.prepareStatement(sqlInstituicao, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pst.executeUpdate();
+
+            conexao.commit();
+
+        } catch (SQLException e) {
+            try {
+                conexao.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(DAOInstituicao.class.getName());
+            log(Level.SEVERE, "Erro ao Alterar: " + e.getMessage());
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOInstituicao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
     //@Override
     public ArrayList<Pessoa> Listar(ArrayList<Pessoa> result, Pessoa pe) {
 
@@ -354,7 +358,7 @@ public class DAOPessoa /*implements iDAO*/ {
                 pe.setCelular(rs.getString("celular"));
                 pe.setSexo(rs.getString("sexo"));
                 pe.setStatus(rs.getBoolean("status"));
-                pe.setContador(rs.getInt("contador")); 
+                pe.setContador(rs.getInt("contador"));
             }
             //Retorno do ArrayList
             return pe;

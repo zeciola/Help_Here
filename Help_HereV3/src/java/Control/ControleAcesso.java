@@ -84,7 +84,10 @@ public class ControleAcesso extends HttpServlet {
                     rd.forward(request, response);
                 }
 
-            } else //se o usuario existe no banco de dados
+            } 
+            
+            
+            else //se o usuario existe no banco de dados
             if (acao.equals("Altera")) {
                 Instituicao inst = new Instituicao();
                 inst.setCnpj(request.getParameter("txtcnpj"));
