@@ -101,23 +101,26 @@
         <br> <br> 
         <h3 ALIGN="center">Feeds de eventos do seu interesse:</h3> 
         <br> 
-       <!-- <div class="row">
-            <% /*ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
-                if (ListaEv == null) {
-                    request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
-                    } */%>
-            <%/*for (Evento e : ListaEv) {*/%>
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="img/<%/*=e.getImg()*/%>" alt="">
-                <h2><%/*=e.getNome()*/%></h2>
-                <p><%/*=e.getDescricao()*/%></p>
-                <p><%/*=e.getDataInicio()*?%></p>
-                <p><%/*=e.getDataFim()*/%></p>
-                <a href="ControleEvento?acao=Consultar1&ID=<%/*=e.getIdEvento()*/%>">Ajude</a>
-            </div>
-            <%/*}*/%>
-        </div>
-    -->
+                
+                <% ArrayList<Evento> Lista2 = (ArrayList<Evento>) session.getAttribute("evento1");
+                    if (Lista2 == null) {
+                        request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
+                        }%>
+                <%for (Evento e : Lista2) {%>
+                
+                <div class="col-sm-4">
+                    <br> <br> <br>
+                    <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
+                    <h2><%=e.getNome()%></h2>
+                    <p><%=e.getDescricao()%></p>
+                    <p><%=e.getDataInicio()%></p>
+                    <p><%=e.getDataFim()%></p>
+                    <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
+                </div>
+                
+                <%}%>
+                
+            
        <!-- <h1> Aqui vai o feeds </h1>-->
 
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) session.getAttribute("feed");

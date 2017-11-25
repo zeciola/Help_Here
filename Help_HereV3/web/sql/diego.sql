@@ -551,7 +551,7 @@ where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certif
 
 ---SOMAR VALORES PARA STATUS DO LOADER
 --SOMA VALORES JA ARRECADADOS E CONFIRMADOS
-select SUM(valor) from valoresdoados where idcampanha = 17 AND statusbaixa = true;
+select SUM(valor) from valoresdoados where idcampanha = 26 AND statusbaixa = true;
 
 --VALOR META EVENTO
 select metavalor from evento where id = 26;
@@ -559,10 +559,10 @@ select metavalor from evento where id = 26;
 
 ---CONTAR VOLUNTARIOS PARA STATUS DO LOADER
 --CONTA VOLUNTARIOS QUE SE CADASTRATRAM
-select COUNT(*) from voluntario where idevento = 26;
+select COUNT(*) from voluntario where idevento = 33;
 
 --META VOLUNTARIO EVENTO
-select metavoluntario from evento where id = 26;
+select metavoluntario from evento where id = 33;
 
 
 
@@ -580,13 +580,13 @@ update valoresdoados set boleto = '11121212121212121' where idpessoa = 2 and idc
 ------------------------------------------------------CONDUÇÃO 1 DE AVISAR VOLUNTÁRIOS--------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 --Lista eventos voluntar com inicio 5 dias ou menos 
-select id from evento where tipo = 'Voluntariado' and CURRENT_DATE+5 <= datainicio and status = true;
+select id, nome from evento where tipo = 'Voluntariado' and CURRENT_DATE+5 <= datainicio and status = true;
 
 --v2
-select id from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true;
+select id, nome from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true;
 
 --Lista E-mails voluntarios do evento
-select p.email 
+select p.email, p.nome 
 from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
 where v.idpessoa = p.id and v.idevento = e.id and instv.idevento = e.id and instv.idinstituicao = i.id AND e.id = 28;
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -602,6 +602,10 @@ alter table pessoa add column datapenalisado date
 --Atualiza status e dia de atualização do status
 update pessoa set penalisado = true, datapenalisado = '08/10/2017' where id = (select p.id from usuario u, pessoa p where p.id = u.idpessoa and u.id = 23);
 
+--Atualiza status e dia de atualização do status
+update pessoa set penalisado = true, datapenalisado = '08/10/2017' where id = (select p.id from usuario u, pessoa p where p.id = u.idpessoa and u.id = 23);
+
+
 --Lista penalisados prontos para sair do status
 select id from pessoa where penalisado = true and datapenalisado+30 >= current_date;
 
@@ -611,3 +615,9 @@ select id from pessoa where penalisado = true and datapenalisado+30 >= current_d
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+select id from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true
+
+
+select * from evento where id = 33;
+
+update evento set metavoluntario = 30 where id = 33;

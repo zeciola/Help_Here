@@ -22,12 +22,13 @@ public class DAONotificacao {
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select id from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true");
+            PreparedStatement pstmt = conexao.prepareStatement("select id, nome from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true");
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 Evento ev = new Evento();
                 ev.setIdEvento(rs.getInt("id"));
+                ev.setNome(rs.getString("nome"));
                 e.add(ev);
             }
             return e;
@@ -48,7 +49,7 @@ public class DAONotificacao {
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select p.email from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where v.idpessoa = p.id and v.idevento = e.id and instv.idevento = e.id and instv.idinstituicao = i.id AND e.id = ?");
+            PreparedStatement pstmt = conexao.prepareStatement("select p.email, p.nome from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where v.idpessoa = p.id and v.idevento = e.id and instv.idevento = e.id and instv.idinstituicao = i.id AND e.id = ?");
             pstmt.setInt(1, n2.getE().getIdEvento());
             rs = pstmt.executeQuery();
 
