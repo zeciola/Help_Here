@@ -607,8 +607,13 @@ update pessoa set penalisado = true, datapenalisado = '08/10/2017' where id = (s
 
 
 --Lista penalisados prontos para sair do status
-select id from pessoa where penalisado = true and datapenalisado+30 >= current_date;
+select id from pessoa where penalisado = true and datapenalisado+30 <= current_date;
 
+select * from pessoa
+
+update pessoa set datapenalisado = '26/10/2017' where id = 24;
+
+update pessoa set penalisado = false where id = 24;
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -621,3 +626,4 @@ select id from evento where tipo = 'Voluntariado' and datainicio between current
 select * from evento where id = 33;
 
 update evento set metavoluntario = 30 where id = 33;
+

@@ -102,20 +102,17 @@
         <h3 ALIGN="center">Feeds de eventos do seu interesse:</h3> 
         <br> 
                 
-                <% ArrayList<Evento> Lista2 = (ArrayList<Evento>) session.getAttribute("evento1");
-                    if (Lista2 == null) {
-                        request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
-                        }%>
-                <%for (Evento e : Lista2) {%>
+                <%ArrayList<Evento> Lista2 = (ArrayList<Evento>) session.getAttribute("evento");
+                    for (Evento e2 : Lista2) {%>
                 
                 <div class="col-sm-4">
                     <br> <br> <br>
-                    <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
-                    <h2><%=e.getNome()%></h2>
-                    <p><%=e.getDescricao()%></p>
-                    <p><%=e.getDataInicio()%></p>
-                    <p><%=e.getDataFim()%></p>
-                    <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
+                    <img class="img-circle img-responsive img-center" src="img/<%=e2.getImg()%>" alt="">
+                    <h2><%=e2.getNome()%></h2>
+                    <p><%=e2.getDescricao()%></p>
+                    <p><%=e2.getDataInicio()%></p>
+                    <p><%=e2.getDataFim()%></p>
+                    <a href="ControleEvento?acao=Consultar1&ID=<%=e2.getIdEvento()%>">Ajude</a>
                 </div>
                 
                 <%}%>
