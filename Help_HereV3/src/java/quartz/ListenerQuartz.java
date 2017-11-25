@@ -40,7 +40,21 @@ public class ListenerQuartz implements ServletContextListener {
                     .withSchedule(CronScheduleBuilder.cronSchedule("0/50 * * * * ?"))
                     .build();
             
+            
+            JobDetail job2 = JobBuilder.newJob(AvisoEvento.class)
+                    .withIdentity("AvisoJob", "grupo01")
+                    .build();
+            
+            Trigger trigger2 = TriggerBuilder.newTrigger()
+                    .withIdentity("validadorTRIGGER", "grupo01")
+                    //.withSchedule(CronScheduleBuilder.cronSchedule("0/20 * * * * ?"))
+                    .withSchedule(CronScheduleBuilder.cronSchedule("1 * * * * ?"))
+                    .build();
+            
+            
+            
             scheduler.scheduleJob(job, trigger);
+            scheduler.scheduleJob(job2, trigger2);
             
         } catch (SchedulerException e) {
             // TODO Auto-generated catch block

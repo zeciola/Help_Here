@@ -21,93 +21,77 @@ public class Evento {
     private String img;
     private ArrayList<String> galeria;
 
-    public ArrayList<Endereco> getEnds() {
-        return ends;
+        
+    //Sets
+    public void setIdEvento(int idEvento) {
+        this.idEvento = idEvento;
     }
-
-    public void setEnds(ArrayList<Endereco> ends) {
-        this.ends = ends;
-    }
-
-    public Endereco getEnd() {
-        return end;
-    }
-
     public void setEnd(Endereco end) {
         this.end = end;
     }
-    
-    public ArrayList<String> getGaleria() {
-        return galeria;
+    public void setEnds(ArrayList<Endereco> ends) {
+        this.ends = ends;
     }
-
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public void setTipoEvento(String tipoEvento) {
+        this.tipoEvento = tipoEvento;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    public void setImg(String img) {
+        this.img = img;
+    }
     public void setGaleria(ArrayList<String> galeria) {
         this.galeria = galeria;
     }
     
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-       
+    
+    //Gets
     public int getIdEvento() {
         return idEvento;
     }
-
-    public void setIdEvento(int idEvento) {
-        this.idEvento = idEvento;
+    public Endereco getEnd() {
+        return end;
     }
-    
-    public boolean getStatus() {
-        return status;
+    public ArrayList<Endereco> getEnds() {
+        return ends;
     }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-  
-    public String getTipoEvento() {
-        return tipoEvento;
-    }
-
-    public void setTipoEvento(String tipoEvento) {
-        this.tipoEvento = tipoEvento;
-    }
-
-    //Gets
     public Date getDataInicio() {
         return dataInicio;
     }
-
     public Date getDataFim() {
         return dataFim;
     }
-
     public String getNome() {
         return nome;
     }
-
+    public String getTipoEvento() {
+        return tipoEvento;
+    }
     public String getDescricao() {
         return descricao;
     }
-
-    //Sets
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
+    public boolean getStatus() {
+        return status;
+    }
+    public String getImg() {
+        return img;
+    }
+    public ArrayList<String> getGaleria() {
+        return galeria;
     }
 
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+ 
 }

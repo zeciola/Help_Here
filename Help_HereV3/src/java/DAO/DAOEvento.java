@@ -25,6 +25,8 @@ public class DAOEvento /*implements iDAO*/ {
     private static final String INSERT = "insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values(?,?,?,?,?)";
 
     private static final String LISTAR = "select * from Evento where status = true";
+    
+    private static final String LISTAR_RECENTE = "select * from Evento where status = true order by datainicio desc limit 9";
 
     private static final String LISTAR2 = "select * from Evento";
 
@@ -95,7 +97,7 @@ public class DAOEvento /*implements iDAO*/ {
     public void AtualizarEvento(Evento ev) {
         try {
 
-            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id =  '"+ev.getIdEvento()+"'";
+            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id ="+ev.getIdEvento()+"";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlAltera, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -212,6 +214,43 @@ public class DAOEvento /*implements iDAO*/ {
         }
 
     }
+    
+    public ArrayList ConsultarEVPessoa(Evento ev, Usuario user) {
+        ArrayList<Evento> resul = new ArrayList();
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConexao();
+            String sqlConsulta = "select * from Evento where nome = '" + ev.getNome() + "' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '" + user.getSenha() + "');";
+            PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Evento in = new Evento();
+
+                in.setIdEvento(rs.getInt("ID"));
+                in.setDataInicio(rs.getDate("dataInicio"));
+                in.setDataFim(rs.getDate("dataFim"));
+                in.setNome(rs.getString("nome"));
+                in.setTipoEvento(rs.getString("tipo"));
+                in.setDescricao(rs.getString("descricao"));
+
+                resul.add(in);
+
+            }
+            return resul;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
 
     //@Override
     public ArrayList Consultar(Evento ev) {
@@ -344,6 +383,45 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
+    
+    
+    public ArrayList ListarMaisRecente() {
+        ArrayList<Evento> resul = new ArrayList();
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConexao();
+            PreparedStatement pstmt = conexao.prepareStatement(LISTAR_RECENTE);
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Evento in = new Evento();
+
+                in.setIdEvento(rs.getInt("ID"));
+                in.setDataInicio(rs.getDate("dataInicio"));
+                in.setDataFim(rs.getDate("dataFim"));
+                in.setNome(rs.getString("nome"));
+                in.setTipoEvento(rs.getString("tipo"));
+                in.setDescricao(rs.getString("descricao"));
+
+                resul.add(in);
+
+            }
+            return resul;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
+    
+    
+    
     
     public ArrayList ListarPorID(Instituicao inst) {
         ArrayList<Evento> resul = new ArrayList();
@@ -523,9 +601,10 @@ public class DAOEvento /*implements iDAO*/ {
     }
 
     public void InserirAuxPessoaEvento(Pessoa p, Evento ev) {
+        Connection conexao = null;
         try {
 
-            conexao.setAutoCommit(false);
+            conexao = Conexao.getConexao();
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
             String sqlInstituicao = "insert into PessoaEvento (idPessoa, IdEvento) values(" + p.getId() + "," + ev.getIdEvento() + ")";

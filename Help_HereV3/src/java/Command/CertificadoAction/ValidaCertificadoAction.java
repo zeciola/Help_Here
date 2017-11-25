@@ -7,7 +7,9 @@ package Command.CertificadoAction;
 
 import Command.ICommand;
 import DAO.DAOCertificado;
+import DAO.DAOPenalisado;
 import Model.Certificado;
+import Model.Penalidade;
 import Model.Pessoa;
 import Model.Usuario;
 import java.util.ArrayList;
@@ -40,8 +42,16 @@ public class ValidaCertificadoAction implements ICommand {
             c1.setValido(t);
             c1.setAnalisado(true);
             c1.setPessoa(c.getPessoasPendesntes().get(i));
-
-            cdao.AnalisaCertificado(c1);    
+            
+            cdao.AnalisaCertificado(c1);
+            //se voluntario faltou realiza penalidade ao mesmo
+            if(t == false){
+                Penalidade pn = new Penalidade();
+                pn.setP(c1.getPessoa());
+                
+                DAOPenalisado daopn = new DAOPenalisado();
+                daopn.Penalisar(pn);
+            }    
         }
         //após terminar for mudar stats no evento como analisado
         cdao.UpAnalisadoev(c);
@@ -51,5 +61,4 @@ public class ValidaCertificadoAction implements ICommand {
         
         return "acessologado/PerfilEmpresa.jsp";
     }
-
 }

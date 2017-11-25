@@ -62,6 +62,7 @@
                         <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
                         <li><a href="${pageContext.request.contextPath}/acessologado/LoginEmpresa.jsp">Perfil Empresa</a></li>
                         <li><a href="${pageContext.request.contextPath}/acessologado/Certificados.jsp">Meus Certificados</a></li>
+                        <li><a href="javascript:window.history.go(-1)">Feeds</a></li>
                     </ul>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->

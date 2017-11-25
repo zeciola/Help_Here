@@ -4,6 +4,8 @@
     Author     : Lucas Puglia
 --%>
 
+<%@page import="Model.Usuario"%>
+<%@page import="Model.Pessoa"%>
 <%@page import="Model.Endereco"%>
 <%@page import="Model.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -183,7 +185,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="idEnd" placeholder="ID" class="form-control" type="text" value="<%= en.getIdEndereco()%>">
+                            <input name="idEnd" placeholder="Campo nulo" class="form-control" type="text" value="<%= en.getIdEndereco()%>">
                             <input name="cep" placeholder="CEP" class="form-control" type="text" value="<%= en.getCep()%>">
                             <input name="endereco" placeholder="Endereço" class="form-control" type="text" value="<%= en.getNomelogradouro()%>">
                             <input name="numero" placeholder="Número" class="form-control" type="int" value="<%= en.getNumeroen()%>">
@@ -420,25 +422,29 @@ function removerCampos(id){
                     </div>
                 </div>
              </div>
+           </div> 
                
-              <%}%> 
+            <div id="destino">
+            </div>
               
-	<input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
-	<input type="button" value="Remover Endereços" onclick="removerCampos(this);">
-             <div id="destino">
-             </div>
+	
                  
-        
+        <%}%> 
+        <input type="button" value="Adicionar mais Endereços" onclick="duplicarCampos();">
+	<input type="button" value="Remover Endereços" onclick="removerCampos(this);">
+             
                 <br /> <br />
                 <br /> <br />
-                <legend class="titulo"><b>Instituição</b></legend>
+                
                 
                 
                 
                 <% //recupera a lista do request
-                Instituicao e = (Instituicao) session.getAttribute("usuarioAutenticado");
+                Instituicao e = (Instituicao) session.getAttribute("instAutenticado");
+                
+                
                 if(e != null){  %>
-               
+               <legend class="titulo"><b>Instituição</b></legend>
                 
                 <!-- Modalidade -->
                 <div class="form-group">                   
@@ -514,9 +520,68 @@ function removerCampos(id){
                     </div>
                 </div>
                 
+                <% } else {
+                  //recupera a lista do request
+                ArrayList<Pessoa> listasPessoa = (ArrayList<Pessoa>)request.getAttribute("listaPe");
+                //Usuario pes =(Usuario)session.getAttribute ("usuarioAutenticado");   
+                for(Pessoa pes: listasPessoa){
+                %>
+                <legend class="titulo"><b>Responsável</b></legend>
                 
+                <div class="form-group">                   
+                    <label class="col-md-4 control-label">ID</label> 
+                    <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="idp" placeholder="Id" class="form-control" type="text" value="<%= pes.getId()%>">
+                            </div>
+                    </div>   
+                </div>
                 
+                <div class="form-group">                   
+                    <label class="col-md-4 control-label">Nome Responsavel</label>                    
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="pess" placeholder="pessoa" class="form-control" type="text" value="<%= pes.getNome()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Sobrenome</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="sobre" placeholder="sobrenome" class="form-control" type="text" value="<%= pes.getSobrenome()%>">
+                        </div>
+                    </div>
+                </div>
                 
+                <div class="form-group">
+                    <label class="col-md-4 control-label">E-mail</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="mail" placeholder="e-mail" class="form-control" type="text" value="<%= pes.getEmail()%>">
+                        </div>
+                    </div>
+                </div>
+                        
+                <!-- CNPJ -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">CPF</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="cp" placeholder="CPF" class="form-control" type="number" value="<%= pes.getCpf()%>">
+                        </div>
+                    </div>
+                </div>
+                        
+            <% }%>   
+                
+                <% }%>
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
@@ -527,7 +592,7 @@ function removerCampos(id){
                     </div>
                 </div>
                 
-                <% }%>
+                
 
             </fieldset>
             

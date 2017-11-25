@@ -6,7 +6,7 @@
 package Control;
 
 
-import Util.SendEmail;
+import excluir.SendEmail;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;

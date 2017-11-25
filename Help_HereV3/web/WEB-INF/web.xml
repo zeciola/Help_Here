@@ -62,7 +62,7 @@
     </servlet>
     <servlet>
         <servlet-name>teste</servlet-name>
-        <servlet-class>Control.teste</servlet-class>
+        <servlet-class>excluir.teste</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ControleCertificado</servlet-name>

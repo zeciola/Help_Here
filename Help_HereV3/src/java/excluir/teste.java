@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package excluir;
 
 import Util.EmailAnexo;
-import Util.SendEmail;
+import excluir.SendEmail;
 import Util.email;
 import java.io.IOException;
 import java.io.PrintWriter;
