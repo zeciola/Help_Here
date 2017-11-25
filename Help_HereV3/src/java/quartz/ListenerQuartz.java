@@ -48,7 +48,7 @@ public class ListenerQuartz implements ServletContextListener {
             Trigger trigger2 = TriggerBuilder.newTrigger()
                     .withIdentity("validadorTRIGGER", "grupo01")
                     //.withSchedule(CronScheduleBuilder.cronSchedule("0/20 * * * * ?"))
-                    .withSchedule(CronScheduleBuilder.cronSchedule("0/20 * * * * ?"))
+                    .withSchedule(CronScheduleBuilder.cronSchedule("1 * * * * ?"))
                     .build();
             
             

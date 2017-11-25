@@ -31,7 +31,7 @@ public class AvisoEvento implements Job{
             for(Pessoa pe : n.getUsersNotificados()){
                 email mail = new email();
                 try {
-                    mail.sendEmail(pe.getEmail(), "testando envio automatico de e-mail", "Msg");
+                    mail.sendEmail(pe.getEmail(), "Seu Evento Esta proximo", "Atenção "+pe.getNome()+"o Evento "+e1.getNome()+"esta chegando");
                 } catch (EmailException ex) {
                     Logger.getLogger(AvisoEvento.class.getName()).log(Level.SEVERE, null, ex);
                 }

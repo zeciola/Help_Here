@@ -6,7 +6,7 @@
 * NOTIFICAÇÃO POR E-MAIL CERTIFICADO PRONTO.
 * BAIXA BANCARIA(SIMULAÇÃO).
 * DOCUMENTAR RESOLVIDOS
-*condução: notificar pessoas para que o evento esta chegando.
+
 *condução: penalidade de não ir não evento 
 	-como voltar ao normal.
 	-volta no 30 dias ou envio de atestado.
@@ -24,6 +24,8 @@ Pessoa juridica
 ******A FAZER******
 
 ******RESOLVIDAS******
+*condução: notificar pessoas para que o evento esta chegando.
+
 
 * VOLUNTARIO BAIXAR CERTIFICADO(PERFIL MEUS CERTIFICADOS).
 * BOLETO GERAR NUMERO E SALVAR NO BANCO PARA A BAIXA.
