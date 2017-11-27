@@ -1,14 +1,10 @@
 ************************************************A FAZER**********************************************
-
-* FAZER LOADER REPRESENTAR STATUS DO EVENTO.
 * PREENCHER DADOS DO BOLETO.
 * FORMATAR CERTIFICADO
 * NOTIFICAÇÃO POR E-MAIL CERTIFICADO PRONTO.
 * BAIXA BANCARIA(SIMULAÇÃO).
+
 * DOCUMENTAR RESOLVIDOS
-
-
-
 ************************************************A FAZER**********************************************
 
 ************************************************RESOLVIDAS*******************************************
@@ -16,7 +12,7 @@
 
 *condução: penalidade de não ir não evento 
 	-volta no 30 dias ou envio de atestado.
-
+* FAZER LOADER REPRESENTAR STATUS DO EVENTO.
 * VOLUNTARIO BAIXAR CERTIFICADO(PERFIL MEUS CERTIFICADOS).
 * BOLETO GERAR NUMERO E SALVAR NO BANCO PARA A BAIXA.
 * FAZER DONO DO EVENTO VALIDAR VOLUNTARIOS.
