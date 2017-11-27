@@ -1,4 +1,4 @@
-******A FAZER******
+************************************************A FAZER**********************************************
 
 * FAZER LOADER REPRESENTAR STATUS DO EVENTO.
 * PREENCHER DADOS DO BOLETO.
@@ -7,25 +7,15 @@
 * BAIXA BANCARIA(SIMULAÇÃO).
 * DOCUMENTAR RESOLVIDOS
 
-*condução: penalidade de não ir não evento 
-	-como voltar ao normal.
-	-volta no 30 dias ou envio de atestado.
 
 
-*eventos que participou -> ele visualiza suas doações e participações como voluntario
-	podendo baixar certificados se estiver disponivel
-*E visualiza evento em que ele ajudou com doações
+************************************************A FAZER**********************************************
 
-Pessoa juridica
-*eventos criados -> ele  visualiza informações de como esta o andamento de seus eventos
-*eventos de voluntariado ->abrindo o evento aparece os voluntarios aguardando check e a lista de candidatos
-
-
-******A FAZER******
-
-******RESOLVIDAS******
+************************************************RESOLVIDAS*******************************************
 *condução: notificar pessoas para que o evento esta chegando.
 
+*condução: penalidade de não ir não evento 
+	-volta no 30 dias ou envio de atestado.
 
 * VOLUNTARIO BAIXAR CERTIFICADO(PERFIL MEUS CERTIFICADOS).
 * BOLETO GERAR NUMERO E SALVAR NO BANCO PARA A BAIXA.
@@ -38,4 +28,4 @@ Pessoa juridica
 * PESSOA LOGADA VOLUNTARIAR
 * EMITIR CERTIFICADO(GERAR)
 
-******RESOLVIDAS******
+************************************************RESOLVIDAS*******************************************

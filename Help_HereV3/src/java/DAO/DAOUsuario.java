@@ -436,6 +436,4 @@ public class DAOUsuario /*implements iDAO*/ {
         }
         return loginAutenticado;
     }
-
-
 }
