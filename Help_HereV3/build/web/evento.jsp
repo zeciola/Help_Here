@@ -83,7 +83,23 @@
         <div id="volun" class="paraExibicao">
             Contador voluntarios 
         </div>
-        <span id="porcentagem" class="paraExibicao">56</span>
+        <% 
+                int metavolun;
+                double metavalor;
+                double porcent;
+                double valorA =Lista.getValorAlcancado();
+                
+                if (Lista.getTipoEvento().equals("Doacao")) {
+                    metavalor = Lista.getMetaValor();
+                    porcent = (valorA * 100)/metavalor;
+                } else{
+                    metavolun = Lista.getMetaVoluntario();
+                    porcent = (valorA * 100)/metavolun;
+                }
+            
+            %>
+        
+        <span id="porcentagem" class="paraExibicao"><%=porcent%></span>
         
         
         <canvas class="loader2"></canvas>
