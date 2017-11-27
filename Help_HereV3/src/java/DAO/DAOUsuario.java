@@ -437,17 +437,5 @@ public class DAOUsuario /*implements iDAO*/ {
         return loginAutenticado;
     }
 
-    public Usuario VerificaEmail() {
-        
-        
-        try {
-            
-            String sqlConsult = "";
-            
-            
-        } catch () {
-            
-        }
 
-    }
 }
