@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/index.html">Help Here</a>
+                     <a class="navbar-brand" href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Help Here</a>
                 </div>
                 
         <%
@@ -45,11 +45,12 @@
                     
                    
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=CriarEvPessoa&txtLogin=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Criar</a> </li>
+                        <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=CriarEvPessoa&txtID=<%=usuario.getId()%>">Criar</a> </li>
                         <li><a href="${pageContext.request.contextPath}/ConsultaNomeEvento.jsp">Consultar</a></li>
                         <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=usuario.getNome()%>&txtSenha=<%=usuario.getSenha()%>">Excluir</a></li>-->
                         <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar&URP=ok">Listar</a></li>
                         <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar&URLP=ok">Meus Eventos</a></li>
+                        <li><a href="javascript:window.history.go(-2)">Feeds</a></li>
                         <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a></li>
 
                     </ul>
@@ -66,7 +67,7 @@
         
         <br></br>
         
-        <h1>Eventos</h1><br></br>
+        <h1 ALIGN="center">Eventos</h1><br></br>
 
                 <div class="row">
                 <%

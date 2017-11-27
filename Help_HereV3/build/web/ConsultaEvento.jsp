@@ -36,17 +36,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Help Here</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Help Here</a>
+                    
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         
                                 <li>
-                                    <a href="Eventos.jsp">Eventos</a>
+                                    <a href="javascript:window.history.go(-2)">Eventos</a>
                                 </li>
+                                
                                 <li>
-                                    <a href="CNPJsenhaEvento.jsp">cadastrar Evento</a>
+                                    <a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a>
                                 </li>
 			
 

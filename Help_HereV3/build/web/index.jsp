@@ -72,17 +72,17 @@
         <!-- Page Content -->
         <div class="container">
             <hr>
-            <div class="row">
+            <div class="business-lucas">
                 <div class="col-sm-8">
-                    <h2>What We Do</h2>
+                    <!--<h2>What We </h2>
                     <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
                     <p>
                         <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
-                    </p>
+                    </p>-->
                 </div>
                 <div class="col-sm-4">
-                    <h2>Contact Us</h2>
+                    <!--<h2>Contact Us</h2>
                     <address>
                         <strong>Start Bootstrap</strong>
                         <br>3481 Melrose Place
@@ -93,18 +93,22 @@
                         <abbr title="Phone">P:</abbr>(123) 456-7890
                         <br>
                         <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
-                    </address>
+                    </address>-->
                 </div>
             </div>
             <!-- /.row -->
             <hr>
+            <br>
+            <h1 ALIGN="center">Confira os Eventos mais recentes</h1>
             <div class="row">
                 <% ArrayList<Evento> Lista = (ArrayList<Evento>) session.getAttribute("evento");
                     if (Lista == null) {
                         request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=1").forward(request, response);
                         }%>
                 <%for (Evento e : Lista) {%>
+                
                 <div class="col-sm-4">
+                    <br> <br> <br>
                     <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
                     <h2><%=e.getNome()%></h2>
                     <p><%=e.getDescricao()%></p>
@@ -112,7 +116,9 @@
                     <p><%=e.getDataFim()%></p>
                     <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
                 </div>
+                
                 <%}%>
+                
             </div>         
             <!-- /.row -->
             <hr>

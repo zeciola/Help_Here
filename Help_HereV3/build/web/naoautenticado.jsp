@@ -4,15 +4,47 @@
     Author     : Diego
 --%>
 
+<%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="UTF-8">
+        <title>tipo de acesso</title>
+        <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
-        <h1>Faça login para ter acesso</h1>
-        <a href="login.jsp">Login</a>
+        
+        
+        <div class="wrapper">
+            <div class="container">
+                <h1>Faça login para ter acesso</h1> <br /> <br />
+                <form class="form" method="post" action="ControleEvento">
+        
+        
+                
+                <input style="background-color: white;color: #00c795;" type="button" onclick="location.href='login.jsp';" value="Login" />
+                
+                <br ><br >
+                <input style="background-color: white;color: #00c795;" type="button" onclick="location.href='index.jsp';" value="Página Inicial" />
+                
+                
+            </div>
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+            <script src="js/login.js"></script>
+        </div>
+        
     </body>
 </html>

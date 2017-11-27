@@ -72,6 +72,9 @@ select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPe
 
 insert into Usuario (id, IDPessoa, Tipo, Login, senha) values(3 ,3, 'comum', '3', '3');
 
+
+
+
 create table Interesses(
 ID serial PRIMARY KEY,
 IDUsuario integer references Usuario(id),
@@ -87,7 +90,11 @@ select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interess
 
 select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'voluntariado';
 
-select * from interesses
+select * from usuario where id = 3
+
+select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true limit 9
+
+select * from interesses where idusuario = 43
 
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
@@ -110,6 +117,8 @@ select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from 
 
 SELECT * FROM Usuario WHERE status=true and Login='3' AND senha='3'
 
+update evento set status = false where id = 15;
+
 SELECT CURRENT_DATE;
 SELECT CURRENT_TIME;
 
@@ -118,7 +127,7 @@ select e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento
 
 select * from evento;
 
-update evento set tipo = 'Voluntariado' where id = 4;
+update evento set tipo = 'Voluntariado' where id = 83;
 
 create table Feeds (
 ID serial PRIMARY KEY,
@@ -168,6 +177,8 @@ alter table EnderecoInstituicao add column status boolean
 alter table Instituicao add column contador int
 
 update usuario set login = 'admin' where ID = 37
+
+update instituicao set contador = 15 where ID = 3
 
 update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
 
@@ -239,6 +250,8 @@ update instituicao set contador = 1 where id in (select idpessoa from pessoaeven
 update Instituicao set contador = 1 where id = 3 
 
 
+select * from Evento where nome = 'teste contador pessoa' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '123')
+select * from Pessoa											select * from PessoaEvento eve, Pessoa e where e.id = eve.idPessoa and eve.idEvento = 12
 select * from Instituicao
  
 
@@ -370,7 +383,7 @@ select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from 
  where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true;
 
 
-select * from Evento;
+select * from Evento where status = true order by datainicio desc limit 10
 
 update evento set status = true;
 
@@ -538,7 +551,7 @@ where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certif
 
 ---SOMAR VALORES PARA STATUS DO LOADER
 --SOMA VALORES JA ARRECADADOS E CONFIRMADOS
-select SUM(valor) from valoresdoados where idcampanha = 17 AND statusbaixa = true;
+select SUM(valor) from valoresdoados where idcampanha = 26 AND statusbaixa = true;
 
 --VALOR META EVENTO
 select metavalor from evento where id = 26;
@@ -546,10 +559,12 @@ select metavalor from evento where id = 26;
 
 ---CONTAR VOLUNTARIOS PARA STATUS DO LOADER
 --CONTA VOLUNTARIOS QUE SE CADASTRATRAM
-select COUNT(*) from voluntario where idevento = 26;
+select COUNT(*) from voluntario where idevento = 33;
 
 --META VOLUNTARIO EVENTO
-select metavoluntario from evento where id = 26;
+select metavoluntario from evento where id = 33;
+
+
 
 --BAIXA BANCARIA
 
@@ -557,16 +572,21 @@ SELECT * FROM VALORESDOADOS;
 
 update valoresdoados set boleto = '11121212121212121' where idpessoa = 2 and idcampanha = 2;
 
+
+
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------CONDUÇÃO 1 DE AVISAR VOLUNTÁRIOS--------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 --Lista eventos voluntar com inicio 5 dias ou menos 
-select id from evento where tipo = 'Voluntariado' and CURRENT_DATE+5 <= datainicio and status = true;
+select id, nome from evento where tipo = 'Voluntariado' and CURRENT_DATE+5 <= datainicio and status = true;
+
 --v2
-select id from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true;
+select id, nome from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true;
 
 --Lista E-mails voluntarios do evento
-select p.email 
+select p.email, p.nome 
 from voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv 
 where v.idpessoa = p.id and v.idevento = e.id and instv.idevento = e.id and instv.idinstituicao = i.id AND e.id = 28;
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -582,11 +602,28 @@ alter table pessoa add column datapenalisado date
 --Atualiza status e dia de atualização do status
 update pessoa set penalisado = true, datapenalisado = '08/10/2017' where id = (select p.id from usuario u, pessoa p where p.id = u.idpessoa and u.id = 23);
 
+--Atualiza status e dia de atualização do status
+update pessoa set penalisado = true, datapenalisado = '08/10/2017' where id = (select p.id from usuario u, pessoa p where p.id = u.idpessoa and u.id = 23);
+
+
 --Lista penalisados prontos para sair do status
-select id from pessoa where penalisado = true and datapenalisado+30 >= current_date;
+select id from pessoa where penalisado = true and datapenalisado+30 <= current_date;
+
+select * from pessoa
+
+update pessoa set datapenalisado = '26/10/2017' where id = 24;
+
+update pessoa set penalisado = false where id = 24;
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------
+select id from evento where tipo = 'Voluntariado' and datainicio between current_date and current_date+5 and status = true
+
+
+select * from evento where id = 33;
+
+update evento set metavoluntario = 30 where id = 33;
+

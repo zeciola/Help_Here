@@ -61,7 +61,8 @@
                         </li>
 
                         <li><a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a></li>
-                        <li><a href="${pageContext.request.contextPath}/acessologado/LoginEmpresa.jsp">Meu Perfil</a></li>                    
+                        <li><a href="${pageContext.request.contextPath}/acessologado/LoginEmpresa.jsp">Meu Perfil</a></li> 
+                        <li><a href="javascript:window.history.go(-3)">Feeds</a></li>
                     </ul>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->

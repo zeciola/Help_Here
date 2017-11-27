@@ -20,6 +20,9 @@
             <div class="container">
                 <h1>O limite de Eventos para o seu Usuário foi atingido</h1> <br /> <br />
                 
+                <form class="form" method="post" action="ControleEvento">
+                    
+                <input style="background-color: white;color: #00c795;" type="button" onclick="location.href='javascript:window.history.go(-1)';" value="Voltar" />
                 
             </div>
             <ul class="bg-bubbles">

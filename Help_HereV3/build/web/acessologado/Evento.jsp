@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/index.html">Help Here</a>
+                     <a class="navbar-brand" href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Help Here</a>
                 </div>
                 
         <%
@@ -50,6 +50,7 @@
                         <!--<li><a href="ControleAcesso?acao=ExcluirEV&txtcnpj=<%=instituicao.getCnpj()%>&txtSenha=<%=instituicao.getSenha()%>">Excluir</a></li>-->
                         <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar">Listar</a></li>
                         <li><a href="${pageContext.request.contextPath}/ControleEvento?acao=Listar&URL=ok">Meus Eventos</a></li>
+                        <li><a href="javascript:window.history.go(-3)">Feeds</a></li>
                         <li><a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a></li>
 
                     </ul>
@@ -66,7 +67,7 @@
         
         <br></br>
         
-        <h1>Eventos</h1><br></br>
+        <h1 ALIGN="center">Eventos</h1><br></br>
 
                 <div class="row">
                 <%
