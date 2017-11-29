@@ -1,10 +1,13 @@
 ************************************************A FAZER**********************************************
-* PREENCHER DADOS DO BOLETO.
+
+
 * FORMATAR CERTIFICADO
 * NOTIFICAÇÃO POR E-MAIL CERTIFICADO PRONTO.
 * BAIXA BANCARIA(SIMULAÇÃO).
+* PREENCHER DADOS DO BOLETO.
 
 * DOCUMENTAR RESOLVIDOS
+
 ************************************************A FAZER**********************************************
 
 ************************************************RESOLVIDAS*******************************************
