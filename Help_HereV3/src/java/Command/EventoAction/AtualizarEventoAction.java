@@ -256,8 +256,6 @@ public class AtualizarEventoAction implements ICommand{
                     ev.setNome(request.getParameter("nome"));
                     ev.setTipoEvento(request.getParameter("tipoEven"));
                     ev.setDescricao(request.getParameter("descricao"));
-
-                    
                     daoevento.AtualizarEvento(ev); 
                     
                     for (int i=0; i < cepend.length; i++){

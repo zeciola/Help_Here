@@ -92,8 +92,9 @@ public class DAOEvento /*implements iDAO*/ {
     }
 
     public void AtualizarEvento(Evento ev) {
+        Connection conexao = null;
         try {
-
+            conexao = Conexao.getConexao();
             String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id =" + ev.getIdEvento() + "";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlAltera, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -131,15 +132,6 @@ public class DAOEvento /*implements iDAO*/ {
             }
             Logger.getLogger(Endereco.class.getName()).
                     log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
-        } finally {
-            //4
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
     }
 

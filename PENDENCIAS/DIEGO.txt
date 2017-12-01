@@ -1,4 +1,5 @@
 ************************************************A FAZER**********************************************
+<<<<<<< HEAD
 
 
 * FORMATAR CERTIFICADO
@@ -8,6 +9,14 @@
 
 * DOCUMENTAR RESOLVIDOS
 
+=======
+* PREENCHER DADOS DO BOLETO.
+* FORMATAR CERTIFICADO
+* NOTIFICAÇÃO POR E-MAIL CERTIFICADO PRONTO.
+* BAIXA BANCARIA(SIMULAÇÃO).
+
+* DOCUMENTAR RESOLVIDOS
+>>>>>>> master
 ************************************************A FAZER**********************************************
 
 ************************************************RESOLVIDAS*******************************************

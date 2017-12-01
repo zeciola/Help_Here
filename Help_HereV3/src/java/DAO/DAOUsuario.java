@@ -107,6 +107,56 @@ public class DAOUsuario /*implements iDAO*/ {
             lo.getPe().setId(id);
             lo.getEn().setIdEndereco(id);
 
+            //Endereco
+            String sqlEndereco = "UPDATE Endereco SET cep=?, nomelogradouro=?, numero=?, bairro=?, municipio=?, uf=?, pais=? WHERE id=" + id + ";";
+
+            PreparedStatement pstm = conexao.prepareStatement(sqlEndereco, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstm.setString(1, en.getCep());
+
+            pstm.setString(2, en.getNomelogradouro());
+
+            pstm.setInt(3, en.getNumeroen());
+
+            pstm.setString(4, en.getBairro());
+
+            pstm.setString(5, en.getMunicipio());
+
+            pstm.setString(6, en.getEstado());
+
+            pstm.setString(7, en.getPais());
+
+            pstm.executeUpdate();
+            //Endereco
+
+            //Pessoa
+            String sqlPessoa = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id=" + id + ";";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlPessoa, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, pe.getNome());
+
+            pstmt.setString(2, pe.getSobrenome());
+
+            pstmt.setString(3, pe.getCpf());
+
+            pstmt.setString(4, pe.getRg());
+
+            //pstmt.setBoolean(5, pe.isPenalisado());
+            pstmt.setString(5, pe.getDatanascimento());
+
+            pstmt.setString(6, pe.getEmail());
+
+            //Foreign Key
+            //pstmt.setInt(8, en.getIdEndereco());
+            pstmt.setString(7, pe.getTelefone());
+
+            pstmt.setString(8, pe.getCelular());
+
+            pstmt.setString(9, pe.getSexo());
+
+            pstmt.executeUpdate();
+
             //Pessoa
             conexao.commit();
 

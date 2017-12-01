@@ -22,6 +22,54 @@ public class Endereco {
     private boolean status;
 
 
+
+    
+    
+    
+    //Sets
+
+    public void setPe(Pessoa pe) {
+        this.pe = pe;
+    }
+    
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
+    public void setNomelogradouro(String nomelogradouro) {
+        this.nomelogradouro = nomelogradouro;
+    }
+
+    public void setNumeroen(int numeroen) {
+        this.numeroen = numeroen;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+ 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
+    
     //Gets
 
     public Pessoa getPe() {
@@ -35,7 +83,6 @@ public class Endereco {
     public String getNomelogradouro() {
         return nomelogradouro;
     }
-
     public int getNumeroen() {
         return numeroen;
     }
@@ -62,49 +109,6 @@ public class Endereco {
 
     public boolean isStatus() {
         return status;
-    }
-    
-    
-    //Sets
-
-    public void setPe(Pessoa pe) {
-        this.pe = pe;
-    }
-    
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
-    }
-
-    public void setNomelogradouro(String nomelogradouro) {
-        this.nomelogradouro = nomelogradouro;
-    }
-
-    public void setNumeroen(int numeroen) {
-        this.numeroen = numeroen;
-    }
-
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
     
     

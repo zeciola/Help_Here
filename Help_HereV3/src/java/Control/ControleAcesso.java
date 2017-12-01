@@ -86,17 +86,6 @@ public class ControleAcesso extends HttpServlet {
 
             } 
             
-            else if(acao.equals("Alterar")){
-                Usuario us = new Usuario();
-                
-                
-                
-                
-                
-            }
-            
-            
-            
             
             else //se o usuario existe no banco de dados
             if (acao.equals("Altera")) {
