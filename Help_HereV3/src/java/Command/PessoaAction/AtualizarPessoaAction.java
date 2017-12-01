@@ -52,7 +52,11 @@ public  class AtualizarPessoaAction implements ICommand{
         en.setCep(request.getParameter("cep"));
         en.setPais(request.getParameter("pais"));
         
-
+        pe.setEn(en);
+        
+        daoen.Atualizar(Email, Senha, en);
+        
+        
         pe.setNome(request.getParameter("nome"));
         pe.setSobrenome(request.getParameter("sobrenome"));
         pe.setCpf(request.getParameter("cpf"));
@@ -69,6 +73,9 @@ public  class AtualizarPessoaAction implements ICommand{
         pe.setCelular(request.getParameter("celular"));
         pe.setSexo(request.getParameter("sexo"));
         
+        en.setPe(pe);
+        
+        daope.Atualizar(pe);
         
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";

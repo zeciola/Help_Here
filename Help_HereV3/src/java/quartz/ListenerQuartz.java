@@ -32,15 +32,38 @@ public class ListenerQuartz implements ServletContextListener {
             scheduler.start();
             
             JobDetail job = JobBuilder.newJob(AvaliarEvento.class)
-                    .withIdentity("validadorJOB", "grupo02")
+                    .withIdentity("validadorJOB", "grupo01")
                     .build();
             
             Trigger trigger = TriggerBuilder.newTrigger()
-                    .withIdentity("validadorTRIGGER", "grupo02")
+                    .withIdentity("validadorTRIGGER", "grupo01")
                     .withSchedule(CronScheduleBuilder.cronSchedule("0/50 * * * * ?"))
                     .build();
             
+            
+            JobDetail job2 = JobBuilder.newJob(AvisoEvento.class)
+                    .withIdentity("AvisoJob", "grupo02")
+                    .build();
+            
+            Trigger trigger2 = TriggerBuilder.newTrigger()
+                    .withIdentity("validadorTRIGGER", "grupo02")
+                    //.withSchedule(CronScheduleBuilder.cronSchedule("0/20 * * * * ?"))
+                    .withSchedule(CronScheduleBuilder.cronSchedule("1 * * * * ?"))
+                    .build();
+            
+            JobDetail job3 = JobBuilder.newJob(RemovePenalidade.class)
+                    .withIdentity("AvisoJob", "grupo03")
+                    .build();
+            
+            Trigger trigger3 = TriggerBuilder.newTrigger()
+                    .withIdentity("validadorTRIGGER", "grupo03")
+                    //.withSchedule(CronScheduleBuilder.cronSchedule("0/20 * * * * ?"))
+                    .withSchedule(CronScheduleBuilder.cronSchedule("1 * * * * ?"))
+                    .build();
+            
             scheduler.scheduleJob(job, trigger);
+            scheduler.scheduleJob(job2, trigger2);
+            scheduler.scheduleJob(job3, trigger3);
             
         } catch (SchedulerException e) {
             // TODO Auto-generated catch block

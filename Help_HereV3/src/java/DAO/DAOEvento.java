@@ -25,7 +25,7 @@ public class DAOEvento /*implements iDAO*/ {
     private static final String INSERT = "insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values(?,?,?,?,?)";
 
     private static final String LISTAR = "select * from Evento where status = true";
-    
+
     private static final String LISTAR_RECENTE = "select * from Evento where status = true order by datainicio desc limit 9";
 
     private static final String LISTAR2 = "select * from Evento";
@@ -91,13 +91,11 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-
-
-
     public void AtualizarEvento(Evento ev) {
+        Connection conexao = null;
         try {
-
-            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id ="+ev.getIdEvento()+"";
+            conexao = Conexao.getConexao();
+            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id =" + ev.getIdEvento() + "";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlAltera, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -134,19 +132,8 @@ public class DAOEvento /*implements iDAO*/ {
             }
             Logger.getLogger(Endereco.class.getName()).
                     log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
-        } finally {
-            //4
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
     }
-
-    
 
     //@Override
     public void Deletar(Evento ev, Instituicao inst) {
@@ -178,7 +165,7 @@ public class DAOEvento /*implements iDAO*/ {
             throw new RuntimeException(e);
         }
     }
-    
+
     public ArrayList ConsultarEVinst(Evento ev, Instituicao inst) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
@@ -214,7 +201,7 @@ public class DAOEvento /*implements iDAO*/ {
         }
 
     }
-    
+
     public ArrayList ConsultarEVPessoa(Evento ev, Usuario user) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
@@ -251,7 +238,6 @@ public class DAOEvento /*implements iDAO*/ {
 
     }
 
-
     //@Override
     public ArrayList Consultar(Evento ev) {
         ArrayList<Evento> resul = new ArrayList();
@@ -285,7 +271,7 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-   /* public ArrayList ConsultarId(int id) {
+    /* public ArrayList ConsultarId(int id) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
         try {
@@ -317,14 +303,13 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
     Parei aqui  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    */
-    
+     */
     public Evento Consultar1(Evento ev) {
         Evento in = new Evento();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Evento where id ="+ev.getIdEvento();
+            String sqlConsulta = "select * from Evento where id =" + ev.getIdEvento();
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -335,9 +320,11 @@ public class DAOEvento /*implements iDAO*/ {
                 in.setNome(rs.getString("nome"));
                 in.setTipoEvento(rs.getString("tipo"));
                 in.setDescricao(rs.getString("descricao"));
+                in.setMetaValor(rs.getDouble("metavalor"));
+                in.setMetaVoluntario(rs.getInt("metavoluntario"));
             }
             return in;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -347,8 +334,8 @@ public class DAOEvento /*implements iDAO*/ {
                 throw new RuntimeException(e);
             }
         }
-    }    
-    
+    }
+
     //@Override
     public ArrayList Listar() {
         ArrayList<Evento> resul = new ArrayList();
@@ -383,8 +370,7 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
-    
-    
+
     public ArrayList ListarMaisRecente() {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
@@ -418,17 +404,13 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
-    
-    
-    
-    
-    
+
     public ArrayList ListarPorID(Instituicao inst) {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlListar = "select * from InstituicaoEvento ie, Evento eve where eve.id = ie.idevento and ie.idInstituicao ="+inst.getIdInstituicao()+" and status = true";
+            String sqlListar = "select * from InstituicaoEvento ie, Evento eve where eve.id = ie.idevento and ie.idInstituicao =" + inst.getIdInstituicao() + " and status = true";
             PreparedStatement pstmt = conexao.prepareStatement(sqlListar);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -463,7 +445,7 @@ public class DAOEvento /*implements iDAO*/ {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlListar = "select * from PessoaEvento pe, Evento eve where eve.id = pe.idevento and pe.idPessoa ="+user.getId()+" and status = true";
+            String sqlListar = "select * from PessoaEvento pe, Evento eve where eve.id = pe.idevento and pe.idPessoa =" + user.getId() + " and status = true";
             PreparedStatement pstmt = conexao.prepareStatement(sqlListar);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -493,8 +475,6 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-    
-    
     public ArrayList Listar2() {
         ArrayList<Evento> resul = new ArrayList();
         Connection conexao = null;
@@ -634,7 +614,7 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
-    
+
     public ArrayList AtualizarEndEV(Endereco en) {
         ArrayList<Endereco> resul = new ArrayList();
         Connection conexao = null;
@@ -778,7 +758,6 @@ public class DAOEvento /*implements iDAO*/ {
                 in.setSobrenome(rs.getString("Sobrenome"));
                 in.setEmail(rs.getString("email"));
                 in.setCpf(rs.getString("CPF"));
-                
 
                 resul.add(in);
 
@@ -797,7 +776,6 @@ public class DAOEvento /*implements iDAO*/ {
 
     }
 
-    
     public void InserirAuxEnderecoEvento(Endereco en, Evento ev) {
         Connection conexao = Conexao.getConexao();
         try {
@@ -864,39 +842,16 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
-    
+
     public void AtualizarContador(Evento e) {
         try {
-            String sqlAtualiza = "update Instituicao set contador = contador-1 where id in (select idinstituicao from instituicaoevento eve, instituicao e where e.id = eve.idinstituicao and eve.idevento = "+e.getIdEvento()+" )";
-                   
-           PreparedStatement pstmt = conexao.prepareStatement(sqlAtualiza, PreparedStatement.RETURN_GENERATED_KEYS);
+            String sqlAtualiza = "update Instituicao set contador = contador-1 where id in (select idinstituicao from instituicaoevento eve, instituicao e where e.id = eve.idinstituicao and eve.idevento = " + e.getIdEvento() + " )";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlAtualiza, PreparedStatement.RETURN_GENERATED_KEYS);
             pstmt.executeQuery();
-            
-            
+
             conexao.commit();
-            
-        } catch (SQLException f) {
-            throw new RuntimeException(f);
-        } finally {
-            try {
-                conexao.close();
-            } catch (SQLException f) {
-                throw new RuntimeException(f);
-            }
-        }
-    }
-    
-    
-    public void AtualizarContadorP(Evento e) {
-        try {
-            String sqlAtualiza = "update Pessoa set contador = contador-1 where id in (select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento =  "+e.getIdEvento()+" )";
-                   
-           PreparedStatement pstmt = conexao.prepareStatement(sqlAtualiza, PreparedStatement.RETURN_GENERATED_KEYS);
-            pstmt.executeQuery();
-            
-            
-            conexao.commit();
-            
+
         } catch (SQLException f) {
             throw new RuntimeException(f);
         } finally {
@@ -908,4 +863,55 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
+    public void AtualizarContadorP(Evento e) {
+        try {
+            String sqlAtualiza = "update Pessoa set contador = contador-1 where id in (select idpessoa from pessoaevento eve, pessoa e where e.id = eve.idpessoa and eve.idevento =  " + e.getIdEvento() + " )";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlAtualiza, PreparedStatement.RETURN_GENERATED_KEYS);
+            pstmt.executeQuery();
+
+            conexao.commit();
+
+        } catch (SQLException f) {
+            throw new RuntimeException(f);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException f) {
+                throw new RuntimeException(f);
+            }
+        }
+    }
+
+    public double consultameta(Evento eve) {
+        double resul = 0;
+        String sqlConsulta;
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConexao();
+            if (eve.getTipoEvento().equals("Doacao")) {
+                sqlConsulta = "select SUM(valor) valor from valoresdoados where idcampanha =? AND statusbaixa = true";
+            } else {
+                sqlConsulta = "select COUNT(v.id) valor from voluntario v where idevento=?";
+            }
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
+            pstmt.setInt(1, eve.getIdEvento());
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                resul = rs.getDouble("valor");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    return resul;
+    }
 }

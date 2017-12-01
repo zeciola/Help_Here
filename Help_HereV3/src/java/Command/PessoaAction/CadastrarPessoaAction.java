@@ -31,6 +31,10 @@ public class CadastrarPessoaAction implements ICommand {
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+        
+        
+        
+        
         //Endereco de pessoa
         en.setNomelogradouro(request.getParameter("nomelogradouro"));
         en.setNumeroen(Integer.parseInt(request.getParameter("numeroen")));
@@ -93,6 +97,8 @@ public class CadastrarPessoaAction implements ICommand {
         String Msg = "Obrigado por se cadastrar no HelpHere";
 
         email.sendEmail(EmailTo, Subject, Msg);
+        
+        
         
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/checkbox.html";

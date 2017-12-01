@@ -22,47 +22,8 @@ public class Endereco {
     private boolean status;
 
 
-    //Gets
 
-    public Pessoa getPe() {
-        return pe;
-    }
     
-    public int getIdEndereco() {
-        return idEndereco;
-    }
-
-    public String getNomelogradouro() {
-        return nomelogradouro;
-    }
-
-    public int getNumeroen() {
-        return numeroen;
-    }
-
-    public String getMunicipio() {
-        return municipio;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
     
     
     //Sets
@@ -105,6 +66,49 @@ public class Endereco {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+    
+    
+    
+    //Gets
+
+    public Pessoa getPe() {
+        return pe;
+    }
+    
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public String getNomelogradouro() {
+        return nomelogradouro;
+    }
+    public int getNumeroen() {
+        return numeroen;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public boolean isStatus() {
+        return status;
     }
     
     

@@ -102,7 +102,7 @@ public class DAOUsuario /*implements iDAO*/ {
 
             rs.next();
             int id = rs.getInt("ID");
-            
+
             lo.setId(id);
             lo.getPe().setId(id);
             lo.getEn().setIdEndereco(id);
@@ -128,7 +128,7 @@ public class DAOUsuario /*implements iDAO*/ {
 
             pstm.executeUpdate();
             //Endereco
-            
+
             //Pessoa
             String sqlPessoa = "UPDATE Pessoa SET nome=?, sobrenome=?, cpf=?, rg=?, datanascimento=?, email=?, telefone=?, celular=?, sexo=? where id=" + id + ";";
 
@@ -158,7 +158,6 @@ public class DAOUsuario /*implements iDAO*/ {
             pstmt.executeUpdate();
 
             //Pessoa
-            
             conexao.commit();
 
         } // Verifica se a conexao foi fechada
@@ -374,10 +373,9 @@ public class DAOUsuario /*implements iDAO*/ {
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
                 loginAutenticado.setStatus(rsLogin.getBoolean("status"));
-                
+
                 Pessoa p = new Pessoa();
                 p.setId(rsLogin.getInt("idpessoa"));
-                     
 
                 loginAutenticado.setPe(p);
             }

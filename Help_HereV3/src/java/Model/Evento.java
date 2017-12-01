@@ -20,7 +20,37 @@ public class Evento {
     private boolean status;
     private String img;
     private ArrayList<String> galeria;
+    private double metaValor;
+    private int metaVoluntario;
+    private double valorAlcancado; 
 
+    public double getMetaValor() {
+        return metaValor;
+    }
+
+    public void setMetaValor(double metaValor) {
+        this.metaValor = metaValor;
+    }
+
+    public int getMetaVoluntario() {
+        return metaVoluntario;
+    }
+
+    public void setMetaVoluntario(int metaVoluntario) {
+        this.metaVoluntario = metaVoluntario;
+    }
+
+
+
+    public double getValorAlcancado() {
+        return valorAlcancado;
+    }
+
+    public void setValorAlcancado(double valorAlcancado) {
+        this.valorAlcancado = valorAlcancado;
+    }
+    
+    
         
     //Sets
     public void setIdEvento(int idEvento) {

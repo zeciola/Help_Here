@@ -24,7 +24,10 @@ public class Consultar1EventoAction implements ICommand{
         id = (Integer.parseInt(request.getParameter("ID")));
         eve.setIdEvento(id);
         eve = idao.Consultar1(eve);         
-                
+        
+        //recupera meta
+        eve.setValorAlcancado(idao.consultameta(eve));
+        
         end = idao.EventoEndereco(eve);
         eve.setEnds(end);
         
