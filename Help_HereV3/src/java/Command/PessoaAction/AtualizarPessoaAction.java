@@ -20,16 +20,18 @@ public  class AtualizarPessoaAction implements ICommand{
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //Instanciando Objetos
         
-        String Email = null;
-        String Senha = null;
+        
         
         //Resgatar sessão
         
         HttpSession sessoaUsuario =((HttpServletRequest)request).getSession();
         Usuario usuarioLogado = (Usuario)sessoaUsuario.getAttribute("usuarioAutenticado");
         
-        Email = usuarioLogado.getNome();
-        Senha = usuarioLogado.getSenha();
+        String Email = usuarioLogado.getNome();
+        String Senha = usuarioLogado.getSenha();
+        
+        
+        
         
         //Usuario
         lo.setNome(request.getParameter("email"));

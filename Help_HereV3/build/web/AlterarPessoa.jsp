@@ -4,6 +4,7 @@
     Author     : jrciola
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.Pessoa"%>
 <%@page import="Model.Endereco"%>
@@ -12,7 +13,7 @@
 <html lang="pt-br">
 
     <head>
-        <title>Cadastro - Help Here</title>
+        <title>Alterar - Help Here</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,13 +59,17 @@
     <script src="js/cadform.js"></script>
 
 
-    <% //recupera a lista do request
-        Pessoa pe = (Pessoa) session.getAttribute("ListaPe");
-        Usuario lo = (Usuario) session.getAttribute("ListaUs");
-        Endereco en = (Endereco) session.getAttribute("ListaEn");
-        if (pe != null) {
-            if (lo != null) {
-                if (en != null) {
+    <%
+
+        ArrayList<Pessoa> listaPessoa = (ArrayList<Pessoa>) request.getAttribute("ListarPE");
+        ArrayList<Endereco> listaEndereco = (ArrayList<Endereco>) request.getAttribute("ListarEN");
+        ArrayList<Usuario> listaUsuario = (ArrayList<Usuario>) request.getAttribute("ListarUS");
+        for (Pessoa pe : listaPessoa) {
+
+            for (Endereco en : listaEndereco) {
+
+                for (Usuario us : listaUsuario) {
+
 
     %>
 
@@ -129,7 +134,8 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="rg" placeholder="RG" class="form-control" type="number" value="<%= pe.getRg()%>>
+                            <input name="rg" placeholder="RG" class="form-control" type="number" value="<%= pe.getRg()%>">
+
                         </div>
                     </div>
                 </div>
@@ -140,11 +146,10 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="cpf" placeholder="CPF" class="form-control" type="number" value="<%= pe.getCpf()%>>
+                            <input name="cpf" placeholder="CPF" class="form-control" type="number" value="<%= pe.getCpf()%>">
                         </div>
                     </div>
                 </div>
-
 
 
 
@@ -154,7 +159,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email" value="<%= pe.getEmail()%>>
+                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email" value="<%= us.getNome()%>">
                         </div>
                     </div>
                 </div>
@@ -166,11 +171,13 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input name="password" placeholder="Senha" class="form-control" type="password" value="<%= lo.getSenha()%>>
-                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="password" value="<%= lo.getSenha()%>>
+                            <input name="password" placeholder="Senha" class="form-control" type="password" value="<%= us.getSenha()%>">
+                            <input name="senha" placeholder="Confirmar Senha" class="form-control" type="password" value="<%= us.getSenha()%>">
                         </div>
                     </div>
                 </div>
+
+
 
                 <!-- Text Celular-->
 
@@ -179,7 +186,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="number" value="<%= pe.getCelular()%>>
+                            <input name="celular" placeholder="(DD)95555-5555" class="form-control" type="number" value="<%= pe.getCelular()%>">
                         </div>
                     </div>
                 </div>
@@ -191,10 +198,13 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="telefone" placeholder="(DD)95555-5555" class="form-control" type="number" value="<%= pe.getTelefone()%>>
+                            <input name="telefone" placeholder="(DD)95555-5555" class="form-control" type="number" value="<%= pe.getTelefone()%>">
                         </div>
                     </div>
                 </div>
+
+
+
 
                 <!-- Text Endereço-->
 
@@ -203,11 +213,11 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input name="nomelogradouro" placeholder="Endereço" class="form-control" type="text" value="<%= en.getNomelogradouro()%>>
-                            <input name="bairro" placeholder="Bairro" class="form-control" type="text" value="<%= en.getBairro()%>>
-                            <input name="numeroen" placeholder="Número" class="form-control" type="number" value="<%= en.getNumeroen()%>>
-                            <input name="municipio" placeholder="Cidade" class="form-control" type="text" value="<%= en.getMunicipio()%>>
-                            <input name="cep" placeholder="CEP" class="form-control" type="number" value="<%= en.getCep()%>>
+                            <input name="nomelogradouro" placeholder="Endereço" class="form-control" type="text" value="<%= en.getNomelogradouro()%>">
+                            <input name="bairro" placeholder="Bairro" class="form-control" type="text" value="<%= en.getBairro()%>">
+                            <input name="numeroen" placeholder="Número" class="form-control" type="number" value="<%= en.getNumeroen()%>">
+                            <input name="municipio" placeholder="Cidade" class="form-control" type="text" value="<%= en.getMunicipio()%>">
+                            <input name="cep" placeholder="CEP" class="form-control" type="number" value="<%= en.getCep()%>">
                         </div>
                     </div>
                 </div>
@@ -220,7 +230,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="pais" class="form-control selectpicker">
-                                <option value="value="<%= en.getPais()%>" ><%= en.getPais()%></option>
+                                <option value="<%= en.getPais()%>" ><%= en.getPais()%></option>
                                 <option value="África do Sul">África do Sul</option>
                                 <option value="Albânia">Albânia</option>
                                 <option value="Alemanha">Alemanha</option>
@@ -406,7 +416,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="estado" class="form-control selectpicker">
-                                <option value=<%= en.getEstado()%> ><%= en.getEstado()%></option>
+                                <option value="<%= en.getEstado()%>" ><%= en.getEstado()%></option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
                                 <option value="AP">Amapá</option>
@@ -459,9 +469,14 @@
     </div>
     <!-- /.container -->
 
-    <%}
+    <%
+
+                }
             }
-        }%>
+        }   
+
+
+    %>
 </body>
 
 </html>

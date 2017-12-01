@@ -52,30 +52,57 @@ public class ConsultarPessoaAction implements ICommand {
             rd.forward(request, response);
             return "acessologado/CriarEventosPessoa.jsp";
 
+        } else if (acao.equals("Alterar")) {
+
+            //Resgatar sessão
+            HttpSession sessoaUsuario = ((HttpServletRequest) request).getSession();
+            Usuario usuarioLogado = (Usuario) sessoaUsuario.getAttribute("usuarioAutenticado");
+
+            String Email = usuarioLogado.getNome();
+            
+            en = daoen.Consultar(Email, e);
+            
+            request.setAttribute("ListarEN", lo);
+            
+            pe = daope.Consultar(Email, p);
+            
+            request.setAttribute("ListarPE", lo);
+            
+            lo = daou.Consultar(Email, U);
+            
+            request.setAttribute("ListarUS", lo);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/AlterarPessoa.jsp");
+            rd.forward(request, response);
+            return "/AlterarPessoa.jsp";
+            
+
         } else if (acao.equals("Consultar")) {
             email = (request.getParameter("txtemail"));
+
+            en = daoen.Consultar(email, e);
+            //en = daoen.Listar();
+
+            request.setAttribute("ListaEn", en);
+
+            pe = daope.Consultar(email, p);
+            //pe = daope.Listar();
+
+            request.setAttribute("ListaPe", pe);
+
+            lo = daou.Consultar(email, U);
+            //lo = daou.Listar();
+
+            request.setAttribute("ListaUs", lo);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/ListarPessoa.jsp");
+            rd.forward(request, response);
+            return "/ListarPessoa.jsp";
+
         } else {
             return "erro.jsp";
         }
 
-        en = daoen.Consultar(email, e);
-        //en = daoen.Listar();
-
-        request.setAttribute("ListaEn", en);
-
-        pe = daope.Consultar(email, p);
-        //pe = daope.Listar();
-
-        request.setAttribute("ListaPe", pe);
-
-        lo = daou.Consultar(email, U);
-        //lo = daou.Listar();
-
-        request.setAttribute("ListaUs", lo);
-
-        RequestDispatcher rd = request.getRequestDispatcher("/ListarPessoa.jsp");
-        rd.forward(request, response);
-        return "ListarPessoa.jsp";
     }
 
 }

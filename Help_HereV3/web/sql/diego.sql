@@ -1,4 +1,4 @@
-﻿CREATE TABLE Item(
+CREATE TABLE Item(
 ID serial PRIMARY KEY,
 Item varchar(50),
 peso numeric,
@@ -64,7 +64,7 @@ CREATE TABLE Usuario (
 ID serial PRIMARY KEY,
 IDPessoa serial,
 Tipo varchar(15),
-Login varchar(45),
+Login varchar(45) unique,
 senha varchar(45),
 status boolean default true
 );
@@ -227,11 +227,11 @@ CREATE TABLE Pessoa (
 ID serial PRIMARY KEY,
 Nome varchar(50),
 Sobrenome varchar(50),
-CPF varchar(15),
-RG varchar,
+CPF varchar(15) unique,
+RG varchar unique,
 Penalisado boolean,
 Datanascimento varchar,
-email varchar(45),
+email varchar(45) unique,
 IDEndereco serial,
 Telefone varchar(19),
 celular VARCHAR(20),

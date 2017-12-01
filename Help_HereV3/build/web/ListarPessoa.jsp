@@ -110,7 +110,7 @@
                 </thead>
                 <% //recupera a lista do request
                     ArrayList<Pessoa> listaPessoa = (ArrayList<Pessoa>) request.getAttribute("ListaPe");
-                    for (Pessoa pe : listaPessoa) {%>  
+                    for (Pessoa pe : listaPessoa) {  %>  
                 <tbody>
                     <tr align="center">
                         <td><%=pe.getNome()%></td>
