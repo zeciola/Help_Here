@@ -207,7 +207,7 @@ public class DAOEvento /*implements iDAO*/ {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Evento where nome = '" + ev.getNome() + "' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '" + user.getSenha() + "');";
+            String sqlConsulta = "select * from Evento where nome = '"+ev.getNome()+"' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '"+user.getSenha()+"');";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -237,7 +237,6 @@ public class DAOEvento /*implements iDAO*/ {
         }
 
     }
-
     //@Override
     public ArrayList Consultar(Evento ev) {
         ArrayList<Evento> resul = new ArrayList();
