@@ -31,7 +31,7 @@ public class ListarProntoCertificadoAction implements ICommand{
         DAOCertificado daoc = new DAOCertificado();
         ArrayList<Certificado> certs = daoc.ListaCertificadosLiberadosPorUser(c);
         
-        sessaoUsuario.setAttribute("certificados", certs);        
+        sessaoUsuario.setAttribute("certificadosok", certs);        
         return "acessologado/Certificados.jsp";
     }
     
