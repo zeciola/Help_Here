@@ -92,9 +92,15 @@
                 if (Lista.getTipoEvento().equals("Doacao")) {
                     metavalor = Lista.getMetaValor();
                     porcent = (valorA * 100)/metavalor;
+                    if(porcent > 100){
+                        porcent = 0;
+                    }
                 } else{
                     metavolun = Lista.getMetaVoluntario();
                     porcent = (valorA * 100)/metavolun;
+                    if(porcent > 100){
+                        porcent = 0;
+                    }
                 }
             
             %>
