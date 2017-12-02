@@ -62,7 +62,7 @@ public class ListenerQuartz implements ServletContextListener {
                     .build();
             
             scheduler.scheduleJob(job, trigger);
-            //scheduler.scheduleJob(job2, trigger2);
+            scheduler.scheduleJob(job2, trigger2);
             scheduler.scheduleJob(job3, trigger3);
             
         } catch (SchedulerException e) {

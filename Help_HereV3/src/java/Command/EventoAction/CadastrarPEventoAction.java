@@ -98,9 +98,10 @@ public class CadastrarPEventoAction implements ICommand {
         ev.setNome(request.getParameter("nome"));
         ev.setTipoEvento(request.getParameter("tipoEven"));
         ev.setDescricao(request.getParameter("descricao"));
+        ev.setMetaValor(Double.parseDouble(request.getParameter("valordoar")));
 
         
-        daoevento.Inserir(ev); 
+        daoevento.InserirDoacao(ev); 
 
         for (int j = 0; j < pe.size(); j++) {
             int idPes = pe.get(j).getId();

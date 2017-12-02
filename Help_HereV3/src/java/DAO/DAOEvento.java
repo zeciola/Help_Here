@@ -22,8 +22,10 @@ public class DAOEvento /*implements iDAO*/ {
 
     private static final Connection conexao = Conexao.getConexao();
 
-    private static final String INSERT = "insert into Evento (dataInicio, dataFim, nome, tipo, descricao) values(?,?,?,?,?)";
+    private static final String INSERT_doa = "insert into Evento (dataInicio, dataFim, nome, tipo, descricao, metavalor) values(?,?,?,?,?,?)";
 
+    private static final String INSERT_volun = "insert into Evento (dataInicio, dataFim, nome, tipo, descricao, metavoluntario) values(?,?,?,?,?,?)";
+    
     private static final String LISTAR = "select * from Evento where status = true";
 
     private static final String LISTAR_RECENTE = "select * from Evento where status = true order by datainicio desc limit 9";
@@ -38,13 +40,14 @@ public class DAOEvento /*implements iDAO*/ {
 
     //DAO Metodos
     //@Override
-    public void Inserir(Evento ev) {
+    public void InserirDoacao(Evento ev) {
+        Connection conexao = null;
         try {
 
-            conexao.setAutoCommit(false);
+            conexao = Conexao.getConexao();
 
             //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
-            PreparedStatement pstmt = conexao.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstmt = conexao.prepareStatement(INSERT_doa, PreparedStatement.RETURN_GENERATED_KEYS);
 
             pstmt.setDate(1, (Date) ev.getDataInicio());
 
@@ -55,6 +58,65 @@ public class DAOEvento /*implements iDAO*/ {
             pstmt.setString(4, ev.getTipoEvento());
 
             pstmt.setString(5, ev.getDescricao());
+            
+            pstmt.setDouble(6, ev.getMetaValor());
+            
+            
+            pstmt.executeUpdate();
+            // Fim da pstmt insert
+
+            //Resultset para id
+            ResultSet rs = pstmt.getGeneratedKeys();
+
+            //rs.next();
+            if (rs.next()) {
+                ev.setIdEvento(rs.getInt("ID"));
+                conexao.commit();
+            }
+
+            //Fim da busca
+        } // Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            /*try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        } finally {
+            //4
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    public void InserirVoluntario(Evento ev) {
+        Connection conexao = null;
+        try {
+
+            conexao = Conexao.getConexao();
+
+            //PreparedStatement INSERT - RETURN_GENERATED_KEYS por que recebe a id do banco
+            PreparedStatement pstmt = conexao.prepareStatement(INSERT_volun, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstmt.setDate(1, (Date) ev.getDataInicio());
+
+            pstmt.setDate(2, (Date) ev.getDataFim());
+
+            pstmt.setString(3, ev.getNome());
+
+            pstmt.setString(4, ev.getTipoEvento());
+
+            pstmt.setString(5, ev.getDescricao());
+                        
+            pstmt.setInt(6, ev.getMetaVoluntario());
 
             pstmt.executeUpdate();
             // Fim da pstmt insert
@@ -71,12 +133,12 @@ public class DAOEvento /*implements iDAO*/ {
             //Fim da busca
         } // Verifica se a conexao foi fechada
         catch (SQLException e) {
-            try {
+            /*try {
                 conexao.rollback();
 
             } catch (SQLException ex) {
                 Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             Logger.getLogger(Endereco.class.getName()).
                     log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
         } finally {

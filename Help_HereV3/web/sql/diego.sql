@@ -90,12 +90,20 @@ select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interess
 
 select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'voluntariado';
 
-select * from usuario where id = 3
+select * from usuario where id = 38
 
 select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true limit 9
 
 select * from interesses where idusuario = 43
 
+update evento set nome = 'empresa solidária' where id = 90
+
+select * from Evento where nome = 'testando' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = 'lucasgabriel');
+
+delete from instituicao where status = true
+delete from evento where status = false
+delete from enderecoinstituicao where status = false
+select * from pessoa
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
 
@@ -178,7 +186,7 @@ alter table Instituicao add column contador int
 
 update usuario set login = 'admin' where ID = 37
 
-update instituicao set contador = 15 where ID = 3
+update usuario set senha = 'lucasgabriel' where ID = 38
 
 update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
 

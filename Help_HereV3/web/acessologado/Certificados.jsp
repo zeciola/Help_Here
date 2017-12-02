@@ -82,12 +82,12 @@
                 <!-- /.container -->
             </nav>
         </header>    
-        <%String nome = (String) session.getAttribute("nomepdf");%>
+
         <%Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");%>
 
         <h1>Seus certificados disponiveis</h1>
         <div class="row">
-            <% ArrayList<Certificado> Lista = (ArrayList<Certificado>) session.getAttribute("certificadosok");
+            <% ArrayList<Certificado> Lista = (ArrayList<Certificado>) session.getAttribute("certificados");
                 if (Lista == null) {
                     request.getRequestDispatcher("/ControleCertificado?acao=ListarPronto").forward(request, response);
                 }%>
@@ -95,16 +95,9 @@
             <div class="col-sm-4">
                 <h2><%=e.getEvento().getNome()%></h2>
                 <p> <%=e.getEmissor()%></p>
-                <p> <%=e.getEvento().getDataInicio() %></p>
-                <p> <%=e.getEvento().getDataFim() %></p>
                 <p>Instituição:<%=e.getInstituicao().getNome()%></p>
-                <a href="../ControleCertificado?acao=Gera&nomeev=<%=e.getEvento().getNome()%>&inicio=<%=e.getEvento().getDataInicio() %>&fim=<%=e.getEvento().getDataFim() %>">Download certificado</a>
+                <a href="../ControleCertificado?acao=Gera">Download certificado</a>
             </div>
             <%}%>
-            
-            <%if( nome != null){ %>
-                <iframe src="pdf/<%=nome%>" width="600" height="780" style="border: none;"></iframe>
-            <%}%>
-        </div>
     </body>
 </html>

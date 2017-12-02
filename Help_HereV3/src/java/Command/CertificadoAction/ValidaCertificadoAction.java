@@ -12,7 +12,6 @@ import Model.Certificado;
 import Model.Penalidade;
 import Model.Pessoa;
 import Model.Usuario;
-import Util.email;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,10 +52,6 @@ public class ValidaCertificadoAction implements ICommand {
                 DAOPenalisado daopn = new DAOPenalisado();
                 daopn.Penalisar(pn);
             }    
-            if(t == true){
-                email em = new email();
-                em.sendEmail(c.getPessoasPendesntes().get(i).getEmail(), "Certificado Liberado", "boas noticias o seu certificado no evento "+c.getEvento().getNome()+" foi liberado ");
-            }
         }
         //após terminar for mudar stats no evento como analisado
         cdao.UpAnalisadoev(c);

@@ -64,7 +64,7 @@
 
         <figure class="figure">
             <h2>Evento <%= Lista.getNome()%></h2>    
-            <figcaption class="figure-caption"><img src="img/eventoimg.png"></figcaption>
+            <figcaption class="figure-caption"><img src="img/defaut.jpg"></figcaption>
         </figure>
 
         <p>Descrição do evento</p>
@@ -92,15 +92,9 @@
                 if (Lista.getTipoEvento().equals("Doacao")) {
                     metavalor = Lista.getMetaValor();
                     porcent = (valorA * 100)/metavalor;
-                    if(porcent > 100){
-                        porcent = 0;
-                    }
                 } else{
                     metavolun = Lista.getMetaVoluntario();
                     porcent = (valorA * 100)/metavolun;
-                    if(porcent > 100){
-                        porcent = 0;
-                    }
                 }
             
             %>
