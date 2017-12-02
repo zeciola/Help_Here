@@ -581,8 +581,10 @@ SELECT * FROM VALORESDOADOS;
 update valoresdoados set boleto = '11121212121212121' where idpessoa = 2 and idcampanha = 2;
 
 
+update valoresdoados set databaixa = current_date, statusbaixa = true, boleto = '123123123' where id = 1; 
 
 
+update valoresdoados set databaixa = current_date, statusbaixa = true where boleto = '123123123'; 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------CONDUÇÃO 1 DE AVISAR VOLUNTÁRIOS--------------------------------------------------------------------
