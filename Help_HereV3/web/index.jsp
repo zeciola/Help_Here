@@ -104,9 +104,9 @@
                 <% ArrayList<Evento> Lista = (ArrayList<Evento>) session.getAttribute("evento");
                     if (Lista == null) {
                         request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=1").forward(request, response);
-                        }%>
+                    }%>
                 <%for (Evento e : Lista) {%>
-                
+
                 <div class="col-sm-4">
                     <br> <br> <br>
                     <img class="img-circle img-responsive img-center" src="img/<%=e.getImg()%>" alt="">
@@ -115,10 +115,29 @@
                     <p><%=e.getDataInicio()%></p>
                     <p><%=e.getDataFim()%></p>
                     <a href="ControleEvento?acao=Consultar1&ID=<%=e.getIdEvento()%>">Ajude</a>
+
+                    <%
+                        int metavolun;
+                        double metavalor;
+                        double porcent;
+                        double valorA = e.getValorAlcancado();
+
+                        if (e.getTipoEvento().equals("Doacao")) {
+                            metavalor = e.getMetaValor();
+                            porcent = (valorA * 100) / metavalor;
+                        } else {
+                            metavolun = e.getMetaVoluntario();
+                            porcent = (valorA * 100) / metavolun;
+                        }
+                    %>
+                    <span ><%=porcent%></span>
+                    <canvas class="loader2"></canvas>
+
+
                 </div>
-                
+
                 <%}%>
-                
+
             </div>         
             <!-- /.row -->
             <hr>
@@ -137,5 +156,8 @@
         <script src="js/jquery.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
+        <script src="js2/jquery.classyloader.min.js"></script>
+        <script src="js2/loader.js"></script>
+        <script src="js2/contribuicao.js"></script>
     </body>
 </html>
