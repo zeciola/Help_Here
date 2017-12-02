@@ -80,11 +80,11 @@
                 <!-- /.container -->
             </nav>
         </header>    
-<!-- 
-        <figure class="figure">
-            <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-            <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>    -->
+        <!-- 
+                <figure class="figure">
+                    <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                    <figcaption class="figure-caption">A caption for the above image.</figcaption>
+                </figure>    -->
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
@@ -92,37 +92,51 @@
         <h6 ALIGN="right"> 
             Conta: <%= usuario.getNome()%>
         </h6>
-        
+
         <h1>Bem vindo, <%= usuario.getPe().getNome()%> !</h1>
-        
+
+        <%}%>
+        <%if(usuario.getPe().isPenalisado() == true){%>
+            <h2>Verificamos uma pendencia de cadastro devido a não presença de um voluntariado</h2>
+            <p>Caso essa falta seja justificada use o formulario a baixo para inviar uma imagem com o documento da justificativa</p>
+            <form action="" method="post">
+                <p>So serão aceitos os formatos jpg e png </p>
+                <input type="file">
+                <br>
+                <input type="submit" value="upload">
+            </form>
         <%}%>
         <br> <br> 
-        <h3 ALIGN="center">Feeds de eventos do seu interesse:</h3> 
-        <br> 
-       <!-- <div class="row">
-            <% /*ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
-                if (ListaEv == null) {
-                    request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
-                    } */%>
-            <%/*for (Evento e : ListaEv) {*/%>
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="img/<%/*=e.getImg()*/%>" alt="">
-                <h2><%/*=e.getNome()*/%></h2>
-                <p><%/*=e.getDescricao()*/%></p>
-                <p><%/*=e.getDataInicio()*?%></p>
-                <p><%/*=e.getDataFim()*/%></p>
-                <a href="ControleEvento?acao=Consultar1&ID=<%/*=e.getIdEvento()*/%>">Ajude</a>
-            </div>
-            <%/*}*/%>
-        </div>
-    -->
-       <!-- <h1> Aqui vai o feeds </h1>-->
 
+        <br> 
+        <!-- <div class="row">
+        <% /*ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
+            if (ListaEv == null) {
+                request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
+                } */%>
+        <%/*for (Evento e : ListaEv) {*/%>
+        <div class="col-sm-4">
+            <img class="img-circle img-responsive img-center" src="img/<%/*=e.getImg()*/%>" alt="">
+            <h2><%/*=e.getNome()*/%></h2>
+            <p><%/*=e.getDescricao()*/%></p>
+            <p><%/*=e.getDataInicio()*?%></p>
+            <p><%/*=e.getDataFim()*/%></p>
+            <a href="ControleEvento?acao=Consultar1&ID=<%/*=e.getIdEvento()*/%>">Ajude</a>
+        </div>
+        <%/*}*/%>
+    </div>
+        -->
+        <!-- <h1> Aqui vai o feeds </h1>-->
+        <h3 ALIGN="center">Feeds de eventos do seu interesse:</h3>
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) session.getAttribute("feed");
             if (Lista == null) {
                 request.getRequestDispatcher("/ControleFeed?acao=Listar&iduser=" + usuario.getId()).forward(request, response);
             }%>
         <%for (Feeds e : Lista) {%>
+        <% if (e.getE().getNome() == "Não tem") {%>
+        <h2>Desculpe não temos eventos do seu interesse no momento</h2>
+
+        <%} else {%>
         <div id="feed" class="col-sm-4">
             <br> <br> <br>
             <b>Conheça o Evento</b>
@@ -130,7 +144,8 @@
             <%=e.getE().getNome()%><br> A partir do dia:
             <%=e.getE().getDataInicio()%> ate:<br>
             <%=e.getE().getDataFim()%><br>
-            <a href="../ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getE().getNome()%>">Informações Completas</a> 
+            <!--<a href="../ControleEvento?acao=Consultar&url=1&txtnome=<%//=e.getE().getNome()%>">Informações Completas</a> -->
+            <%}%>
         </div>
         <%}%>
     </body>

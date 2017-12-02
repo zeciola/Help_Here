@@ -1,7 +1,0 @@
-/*
- * Medidor de senha
- * 
- */
-
-
-
