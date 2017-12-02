@@ -16,6 +16,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,7 +38,9 @@ public class GeraCertificadoAction implements ICommand {
         
         HttpSession sessaoUsuario = ((HttpServletRequest) request).getSession();
         Usuario user = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");
-
+        String nomeev = request.getParameter("nome");
+        String ini = request.getParameter("inicio");
+        String fim = request.getParameter("fim");
         String nome = df.format(cal.getTime())+user.getPe().getSobrenome()+user.getId()+".pdf";
         
         Document doc = null;
@@ -53,7 +56,7 @@ public class GeraCertificadoAction implements ICommand {
             //abre o documento
             doc.open();
 
-            Image img = Image.getInstance("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/defaut.jpg");
+            Image img = Image.getInstance("C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/img/imglogo.jpg");
             img.setAlignment(Element.ALIGN_CENTER);
             doc.add(img);
 
@@ -64,16 +67,15 @@ public class GeraCertificadoAction implements ICommand {
             p1.setSpacingAfter(20);
             doc.add(p1);
 
-            Paragraph p2 = new Paragraph("Certificao para os devidos fins que "+user.getPe().getNome()+" "+user.getPe().getSobrenome()+
-                    " esteve presente no evento "+" como voluntario");
+            Paragraph p2 = new Paragraph("Certificamos para os devidos fins que "+user.getPe().getNome()+" "+user.getPe().getSobrenome()+
+                    " esteve presente no evento "+nomeev+" como voluntario tendo seu inicio em "+ini+" ate "+fim);
             doc.add(p2);
 
             Paragraph p3 = new Paragraph(" ");
             doc.add(p3);
             doc.add(p3);
             doc.add(p3);
-            doc.add(p3);
-            
+                        
             Paragraph p4 = new Paragraph("_____________________");
             p4.setAlignment(Element.ALIGN_CENTER);
             doc.add(p4);
@@ -98,6 +100,6 @@ public class GeraCertificadoAction implements ICommand {
         }
         new Thread().sleep(4000);
         sessaoUsuario.setAttribute("nomepdf", nome);
-        return "teste.jsp";
+        return "acessologado/Certificados.jsp";
     }
 }
