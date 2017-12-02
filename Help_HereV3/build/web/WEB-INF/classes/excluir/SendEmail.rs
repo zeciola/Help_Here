@@ -1,0 +1,2 @@
+excluir.SendEmail
+excluir.SimpleAuth
