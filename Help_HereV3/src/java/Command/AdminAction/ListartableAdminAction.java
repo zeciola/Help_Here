@@ -42,7 +42,7 @@ public class ListartableAdminAction implements ICommand {
         daoe.Listar();
         request.setAttribute("endereco", e);
 
-        daou.Listar(u, lo);
+        daou.Listar();
         request.setAttribute("usuario", u);
 
         //return "admin3/production/tables_dynamic.jsp";
