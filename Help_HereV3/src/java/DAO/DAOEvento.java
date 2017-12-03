@@ -3,7 +3,6 @@ package DAO;
 import Model.Endereco;
 import Model.Evento;
 import Model.Instituicao;
-import Model.Mensagem;
 import Model.Pessoa;
 import Model.Usuario;
 import Util.Conexao;
