@@ -313,7 +313,7 @@ public class DAOPessoa /*implements iDAO*/ {
     public Pessoa ConsultarId(Usuario u) {
         Pessoa pe = new Pessoa();
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from usuario u, pessoa p where u.id="+u.getId()+" and p.id = u.idpessoa");
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from usuario u, pessoa p where u.id= ? and p.id = u.idpessoa");
             pstmt.setInt(1, u.getId());
             ResultSet rs;
 

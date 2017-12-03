@@ -31,7 +31,7 @@ public class ListartableAdminAction implements ICommand {
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        daop.Listar();
+        p = daop.Listar();
         request.setAttribute("pessoa", p);
 
         //Arrumar tbm!!
@@ -39,14 +39,13 @@ public class ListartableAdminAction implements ICommand {
         request.setAttribute("instituicao", i);
         String url = request.getParameter("url");
 
-        daoe.Listar();
+        e = daoe.Listar();
         request.setAttribute("endereco", e);
 
-        daou.Listar(u, lo);
+        u = daou.Listar();
         request.setAttribute("usuario", u);
 
         //return "admin3/production/tables_dynamic.jsp";
         return "admin2/" + url + ".jsp";
     }
-
 }
