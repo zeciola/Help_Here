@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/acessologado/ajudemais.jsp</file>
-            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/teste.jsp</file>
-            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/acessologado/boleto.jsp</file>
-            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/src/java/Command/ContribuirAction/Doar2Condicional.java</file>
-            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/src/java/DAO/DAOContribuir.java</file>
+            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/src/java/Control/ControleUsuario.java</file>
+            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/src/java/Control/ControleAcesso.java</file>
+            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/src/java/Command/PessoaAction/ConsultarPessoaAction.java</file>
+            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/web/acessologado/EventoPessoa.jsp</file>
+            <file>file:/C:/Users/Diego/Documents/kraken/Help_Here/Help_HereV3/src/java/DAO/DAOUsuario.java</file>
         </group>
     </open-files>
 </project-private>
