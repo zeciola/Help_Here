@@ -26,12 +26,12 @@ public class ListartableAdminAction implements ICommand {
 
     private Pessoa pe = new Pessoa();
     private Endereco en = new Endereco();
-    private Usuario lo = new Usuario();
+    private Usuario lo = new Usuario(); 
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        daop.Listar(p, pe);
+        daop.Listar();
         request.setAttribute("pessoa", p);
 
         //Arrumar tbm!!
@@ -39,7 +39,7 @@ public class ListartableAdminAction implements ICommand {
         request.setAttribute("instituicao", i);
         String url = request.getParameter("url");
 
-        daoe.Listar(e, en);
+        daoe.Listar();
         request.setAttribute("endereco", e);
 
         daou.Listar(u, lo);

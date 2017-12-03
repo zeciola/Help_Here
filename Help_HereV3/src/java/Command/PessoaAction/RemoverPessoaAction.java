@@ -33,8 +33,10 @@ public class RemoverPessoaAction implements ICommand {
         String EmailU = usuarioLogado.getNome();
 
         if (Email.equals(EmailU)) {
-
-            daou.Deletar(Email, Senha, lo);
+            pe.setEmail(Email);
+            lo.setPe(pe);
+            lo.setSenha(Senha);
+            daou.Deletar(lo);
 
             //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
             return "/sucesso.jsp";

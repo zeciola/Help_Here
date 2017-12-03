@@ -24,33 +24,7 @@ public class Evento {
     private int metaVoluntario;
     private double valorAlcancado; 
 
-    public double getMetaValor() {
-        return metaValor;
-    }
-
-    public void setMetaValor(double metaValor) {
-        this.metaValor = metaValor;
-    }
-
-    public int getMetaVoluntario() {
-        return metaVoluntario;
-    }
-
-    public void setMetaVoluntario(int metaVoluntario) {
-        this.metaVoluntario = metaVoluntario;
-    }
-
-
-
-    public double getValorAlcancado() {
-        return valorAlcancado;
-    }
-
-    public void setValorAlcancado(double valorAlcancado) {
-        this.valorAlcancado = valorAlcancado;
-    }
-    
-    
+ 
         
     //Sets
     public void setIdEvento(int idEvento) {
@@ -85,6 +59,15 @@ public class Evento {
     }
     public void setGaleria(ArrayList<String> galeria) {
         this.galeria = galeria;
+    }
+    public void setMetaValor(double metaValor) {
+        this.metaValor = metaValor;
+    }
+    public void setMetaVoluntario(int metaVoluntario) {
+        this.metaVoluntario = metaVoluntario;
+    }
+    public void setValorAlcancado(double valorAlcancado) {
+        this.valorAlcancado = valorAlcancado;
     }
     
     
@@ -122,6 +105,14 @@ public class Evento {
     public ArrayList<String> getGaleria() {
         return galeria;
     }
-
+    public double getMetaValor() {
+        return metaValor;
+    }
+    public int getMetaVoluntario() {
+        return metaVoluntario;
+    }
+    public double getValorAlcancado() {
+        return valorAlcancado;
+    }
  
 }

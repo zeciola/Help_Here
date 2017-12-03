@@ -57,10 +57,6 @@
         <servlet-class>Control.GeraCertificado2</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EmailInicia</servlet-name>
-        <servlet-class>Control.EmailInicia</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>teste</servlet-name>
         <servlet-class>excluir.teste</servlet-class>
     </servlet>
@@ -119,10 +115,6 @@
     <servlet-mapping>
         <servlet-name>GeraCertificado2</servlet-name>
         <url-pattern>/GeraCertificado2</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EmailInicia</servlet-name>
-        <url-pattern>/EmailInicia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>teste</servlet-name>

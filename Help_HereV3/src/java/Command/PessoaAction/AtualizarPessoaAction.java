@@ -34,16 +34,14 @@ public  class AtualizarPessoaAction implements ICommand{
         //Usuario
         lo.setNome(request.getParameter("email"));
         lo.setSenha(request.getParameter("senha"));
-        
+        pe.setEmail(Email);
         lo.setPe(pe);
         lo.setEn(en);
+        lo.setSenha(Senha);
         
-        daou.Atualizar(Email, Senha, lo);
-        
-        
+        daou.Atualizar(lo);
         
         //Endereco de pessoa
-        
         en.setNomelogradouro(request.getParameter("nomelogradouro"));
         en.setNumeroen(Integer.parseInt(request.getParameter("numeroen")));
         en.setMunicipio(request.getParameter("municipio"));
@@ -54,8 +52,7 @@ public  class AtualizarPessoaAction implements ICommand{
         
         pe.setEn(en);
         
-        daoen.Atualizar(Email, Senha, en);
-        
+        daoen.Atualizar(en);
         
         pe.setNome(request.getParameter("nome"));
         pe.setSobrenome(request.getParameter("sobrenome"));
@@ -64,8 +61,7 @@ public  class AtualizarPessoaAction implements ICommand{
 
         //pe.setDatanascimento(ConvertData.converteStringParaDate(request.getParameter("datanascimento")));
         pe.setDatanascimento(request.getParameter("datanascimento"));
-        
-        
+       
         pe.setEmail(request.getParameter("email"));
         //Id Endereço foreign key
         
@@ -80,5 +76,4 @@ public  class AtualizarPessoaAction implements ICommand{
         //Redirecionar para pagina de !!!perfil!!! de usuário com o listar dos valores colocados acima
         return "/sucesso.jsp";
     }
-    
 }

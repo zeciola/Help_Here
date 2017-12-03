@@ -9,7 +9,6 @@ import java.util.Date;
 public class Pessoa {
 
     private Endereco en;
-    
     private int id;
     private String nome;
     private String sobrenome;
@@ -25,68 +24,6 @@ public class Pessoa {
     private boolean status;
     private int contador;
 
-    public int getContador() {
-        return contador;
-    }
-
-    public void setContador(int contador) {
-        this.contador = contador;
-    }
-    
-    
-
-    //Gets
-    public Endereco getEn() {
-        return en;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public boolean isPenalisado() {
-        return penalisado;
-    }
-
-    public String getDatanascimento() {
-        return datanascimento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
 
     //Sets
     
@@ -140,5 +77,64 @@ public class Pessoa {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
+    //Gets
+    public Endereco getEn() {
+        return en;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public boolean isPenalisado() {
+        return penalisado;
+    }
+
+    public String getDatanascimento() {
+        return datanascimento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+    public int getContador() {
+        return contador;
     }
 }

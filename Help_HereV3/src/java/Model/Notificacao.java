@@ -7,19 +7,22 @@ public class Notificacao {
     private Evento e;
     private ArrayList<Pessoa> pessoasNotificar;
     
-    public Evento getE() {
-        return e;
-    }
     
+    //Sets
     public void setE(Evento e) {
         this.e = e;
     }
-    
-    public ArrayList<Pessoa> getUsersNotificados() {
-        return pessoasNotificar;
-    }
-    
     public void setUsersNotificados(ArrayList<Pessoa> usersNotificados) {
         this.pessoasNotificar = usersNotificados;
     }
+    
+    
+    //Gets
+    public Evento getE() {
+        return e;
+    }
+    public ArrayList<Pessoa> getUsersNotificados() {
+        return pessoasNotificar;
+    }
+   
 }

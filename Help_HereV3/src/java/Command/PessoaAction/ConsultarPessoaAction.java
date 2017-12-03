@@ -35,16 +35,16 @@ public class ConsultarPessoaAction implements ICommand {
         String URL = request.getParameter("URL");
         //Variaveis
         String email = null;
-
+     
         //Acao
         String acao = request.getParameter("acao");
 
         if (URL != null) {
             HttpSession sessaoUsuario = ((HttpServletRequest) request).getSession();
             Usuario usuarioLogado = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");
-            int ID = usuarioLogado.getPe().getId();
+                       
             //parei aqui 
-            U = idao.ConsultarId(ID);
+            U = idao.ConsultarId(usuarioLogado); 
             //add a lista de evento o objeto request
             request.setAttribute("pessoa", U);
             //envia o request para o jsp
@@ -57,18 +57,22 @@ public class ConsultarPessoaAction implements ICommand {
         } else {
             return "erro.jsp";
         }
-
-        en = daoen.Consultar(email, e);
+        p.setEmail(email);
+        e.setPe(p);
+        en = daoen.Consultar(e); 
         //en = daoen.Listar();
 
         request.setAttribute("ListaEn", en);
-
-        pe = daope.Consultar(email, p);
+        p.setEmail(email);
+        
+        pe = daope.Consultar(p);
         //pe = daope.Listar();
 
         request.setAttribute("ListaPe", pe);
-
-        lo = daou.Consultar(email, U);
+        
+        U.setPe(p);
+        
+        lo = daou.Consultar(U);
         //lo = daou.Listar();
 
         request.setAttribute("ListaUs", lo);
