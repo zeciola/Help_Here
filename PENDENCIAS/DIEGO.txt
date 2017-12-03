@@ -1,10 +1,10 @@
 ************************************************A FAZER**********************************************
 * PREENCHER DADOS DO BOLETO.
-* FORMATAR CERTIFICADO
-* NOTIFICA플O POR E-MAIL CERTIFICADO PRONTO.
 * BAIXA BANCARIA(SIMULA플O).
 
 * DOCUMENTAR RESOLVIDOS
+
+* SLIDE MONTAR APRESENTA플O
 ************************************************A FAZER**********************************************
 
 ************************************************RESOLVIDAS*******************************************
@@ -23,5 +23,6 @@
 * PESSOA LOGADA DOAR
 * PESSOA LOGADA VOLUNTARIAR
 * EMITIR CERTIFICADO(GERAR)
-
+* FORMATAR CERTIFICADO
+* NOTIFICA플O POR E-MAIL CERTIFICADO PRONTO.
 ************************************************RESOLVIDAS*******************************************

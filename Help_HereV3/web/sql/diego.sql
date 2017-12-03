@@ -293,6 +293,11 @@ CREATE TABLE ValoresDoados (
 	alter table ValoresDoados add column numeroboleto numeric
 );
 
+
+insert into ValoresDoados (Valor, dataDoado, idCampanha, IDPessoa, boleto, statusbaixa)values(100.00, current_date, 2, 2, '11111', false);
+
+select * from valoresdoados
+
 alter table ValoresDoados add column boleto varchar(53);
 
 alter table ValoresDoados add column databaixa date;
@@ -576,13 +581,21 @@ select metavoluntario from evento where id = 33;
 
 --BAIXA BANCARIA
 
+select * from evento;
+
+select * from evento where tipo = 'Doacao';
+
+update evento set datafim ='07/12/2017', status = true where id = 21;
+
 SELECT * FROM VALORESDOADOS;
 
 update valoresdoados set boleto = '11121212121212121' where idpessoa = 2 and idcampanha = 2;
 
 
+update valoresdoados set databaixa = current_date, statusbaixa = true, boleto = '123123123' where id = 1; 
 
 
+update valoresdoados set databaixa = current_date, statusbaixa = true where boleto = '123123123'; 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------CONDUÇÃO 1 DE AVISAR VOLUNTÁRIOS--------------------------------------------------------------------
