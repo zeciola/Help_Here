@@ -50,7 +50,7 @@ public class ControleUsuario extends HttpServlet {
     
     DAOUsuario daousuario = new DAOUsuario();
     
-    daousuario.cadastraNovoUsuario(login);
+    daousuario.Inserir(login);
     
     request.setAttribute("msg", "cadastrado com sucesso");
     

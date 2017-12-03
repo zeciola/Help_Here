@@ -42,9 +42,9 @@ public class ConsultarPessoaAction implements ICommand {
         if (URL != null) {
             HttpSession sessaoUsuario = ((HttpServletRequest) request).getSession();
             Usuario usuarioLogado = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");
-            int ID = usuarioLogado.getPe().getId();
+            //int ID = usuarioLogado.getPe().getId();
             //parei aqui 
-            U = idao.ConsultarId(ID);
+            U = idao.ConsultarId(usuarioLogado.getId());
             //add a lista de evento o objeto request
             request.setAttribute("pessoa", U);
             //envia o request para o jsp

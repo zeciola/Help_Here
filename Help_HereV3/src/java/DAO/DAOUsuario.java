@@ -31,11 +31,6 @@ public class DAOUsuario /*implements iDAO*/ {
     private static final String AUTENTICAR_USUARIO = "SELECT * FROM Usuario WHERE status=true and Login=? AND senha=?";
     private static final String SELECT_ALL = "select * from Usuario where status=true";
 
-    public void cadastraNovoUsuario(Usuario login) throws SQLException {
-        Connection conexao = null;
-
-    }
-
     //@Override
     public void Inserir(Usuario lo) {
         try {
