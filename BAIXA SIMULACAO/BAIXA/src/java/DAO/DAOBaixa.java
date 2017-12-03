@@ -6,18 +6,50 @@
 package DAO;
 
 import MODELO.Baixa;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.Conexao;
 
 /**
  *
  * @author Diego
  */
 public class DAOBaixa {
-    public void RealizarPagamento(Baixa b){
+
+    public void RealizarPagamento(Baixa b) {
         
+        Connection conexao = Conexao.getConexao();
+        try {
+            conexao.setAutoCommit(false);
+            PreparedStatement pstmt = conexao.prepareStatement("update valoresdoados set databaixa=current_date, statusbaixa=true where boleto=?");
+        
+            pstmt.execute();
+            conexao.commit();
+
+        } catch (SQLException e) {
+            try {
+                conexao.rollback();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
     }
-    public double ValorAPagar(Baixa b){
-        double valor=0;
-        
+
+
+    public double BuscaValorAPagar(Baixa b) {
+        double valor = 0;
+
         return valor;
     }
 }

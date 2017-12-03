@@ -1,9 +1,5 @@
-package Util;
+package util;
 
-import Control.*;
-import Model.*;
-import DAO.*;
-import Util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
