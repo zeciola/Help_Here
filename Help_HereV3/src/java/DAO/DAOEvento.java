@@ -28,7 +28,7 @@ public class DAOEvento /*implements iDAO*/ {
     
     private static final String LISTAR = "select * from Evento where status = true";
 
-    private static final String LISTAR_RECENTE = "select * from Evento where status = true order by datainicio desc limit 9";
+    private static final String LISTAR_RECENTE = "select * from Evento where status = true and CURRENT_DATE >= datainicio and CURRENT_DATE <= datafim order by datainicio desc limit 9";
 
     private static final String LISTAR2 = "select * from Evento";
 
@@ -153,11 +153,11 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
-    public void AtualizarEvento(Evento ev) {
+    public void AtualizarEvDoa(Evento ev) {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao) = (?,?,?,?,?) where id =" + ev.getIdEvento() + "";
+            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao, metavalor) = (?,?,?,?,?,?) where id =" + ev.getIdEvento() + "";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlAltera, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -170,6 +170,8 @@ public class DAOEvento /*implements iDAO*/ {
             pstmt.setString(4, ev.getTipoEvento());
 
             pstmt.setString(5, ev.getDescricao());
+            
+            pstmt.setDouble(6, ev.getMetaValor());
 
             pstmt.executeUpdate();
             // Fim da pstmt insert
@@ -197,13 +199,60 @@ public class DAOEvento /*implements iDAO*/ {
         }
     }
 
+    public void AtualizarEvVolunt(Evento ev) {
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConexao();
+            String sqlAltera = "update Evento set (datainicio, datafim, nome, tipo, descricao, metavoluntario) = (?,?,?,?,?,?) where id =" + ev.getIdEvento() + "";
+
+            PreparedStatement pstmt = conexao.prepareStatement(sqlAltera, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pstmt.setDate(1, (Date) ev.getDataInicio());
+
+            pstmt.setDate(2, (Date) ev.getDataFim());
+
+            pstmt.setString(3, ev.getNome());
+
+            pstmt.setString(4, ev.getTipoEvento());
+
+            pstmt.setString(5, ev.getDescricao());
+            
+            pstmt.setInt(6, ev.getMetaVoluntario());
+
+            pstmt.executeUpdate();
+            // Fim da pstmt insert
+
+            //Resultset para id
+            ResultSet rs = pstmt.getGeneratedKeys();
+
+            //rs.next();
+            if (rs.next()) {
+                ev.setIdEvento(rs.getInt("ID"));
+                conexao.commit();
+            }
+
+            //Fim da busca
+        } // Verifica se a conexao foi fechada
+        catch (SQLException e) {
+            try {
+                conexao.rollback();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOEndereco.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Logger.getLogger(Endereco.class.getName()).
+                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
+        }
+    }
+
+    
     //@Override
     public void Deletar(Evento ev, Instituicao inst) {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
 
-            String sqlDelEV = "update Evento set status = false where nome = '" + ev.getNome() + "' and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + inst.getSenha() + "');";
+            String sqlDelEV = "update Evento set status = false where id = " + ev.getIdEvento()+ " and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + inst.getSenha() + "');";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlDelEV);
             pstmt.execute();
@@ -218,7 +267,7 @@ public class DAOEvento /*implements iDAO*/ {
         try {
             conexao = Conexao.getConexao();
 
-            String sqlDelEV = "update Evento set status = false where nome = '" + ev.getNome() + "' and ID in (select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPessoa and e.senha = '" + user.getSenha() + "');";
+            String sqlDelEV = "update Evento set status = false where id = " + ev.getIdEvento()+ " and ID in (select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPessoa and e.senha = '" + user.getSenha() + "');";
 
             PreparedStatement pstmt = conexao.prepareStatement(sqlDelEV);
             pstmt.execute();
@@ -233,7 +282,7 @@ public class DAOEvento /*implements iDAO*/ {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Evento where nome = '" + ev.getNome() + "' and status = true and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + inst.getSenha() + "');";
+            String sqlConsulta = "select * from Evento where id = '" + ev.getIdEvento()+ "' and status = true and ID in (select eve.idEvento from InstituicaoEvento eve, Instituicao e where e.id = eve.idInstituicao and e.senha = '" + inst.getSenha() + "');";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -269,7 +318,7 @@ public class DAOEvento /*implements iDAO*/ {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Evento where nome = '"+ev.getNome()+"' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '"+user.getSenha()+"');";
+            String sqlConsulta = "select * from Evento where id = '"+ev.getIdEvento()+"' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '"+user.getSenha()+"');";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
             rs = pstmt.executeQuery();
@@ -305,6 +354,38 @@ public class DAOEvento /*implements iDAO*/ {
         Connection conexao = null;
         try {
             conexao = Conexao.getConexao();
+            String sqlConsulta = "select * from Evento where id ="+ev.getIdEvento()+" and status = true";
+            PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
+            ResultSet rs;
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Evento in = new Evento();
+                in.setIdEvento(rs.getInt("ID"));
+                in.setDataInicio(rs.getDate("dataInicio"));
+                in.setDataFim(rs.getDate("dataFim"));
+                in.setNome(rs.getString("nome"));
+                in.setTipoEvento(rs.getString("tipo"));
+                in.setDescricao(rs.getString("descricao"));
+                resul.add(in);
+            }
+            return resul;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
+    public ArrayList ConsultarPorNome(Evento ev) {
+        ArrayList<Evento> resul = new ArrayList();
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConexao();
             String sqlConsulta = "select * from Evento where nome ilike '%" + ev.getNome() + "%' and status = true";
             PreparedStatement pstmt = conexao.prepareStatement(sqlConsulta);
             ResultSet rs;
@@ -331,6 +412,7 @@ public class DAOEvento /*implements iDAO*/ {
             }
         }
     }
+
 
     /* public ArrayList ConsultarId(int id) {
         ArrayList<Evento> resul = new ArrayList();
@@ -478,7 +560,7 @@ public class DAOEvento /*implements iDAO*/ {
             while (rs.next()) {
                 Evento in = new Evento();
 
-                in.setIdEvento(rs.getInt("ID"));
+                in.setIdEvento(rs.getInt("idevento"));
                 in.setDataInicio(rs.getDate("dataInicio"));
                 in.setDataFim(rs.getDate("dataFim"));
                 in.setNome(rs.getString("nome"));
@@ -513,7 +595,7 @@ public class DAOEvento /*implements iDAO*/ {
             while (rs.next()) {
                 Evento in = new Evento();
 
-                in.setIdEvento(rs.getInt("ID"));
+                in.setIdEvento(rs.getInt("idevento"));
                 in.setDataInicio(rs.getDate("dataInicio"));
                 in.setDataFim(rs.getDate("dataFim"));
                 in.setNome(rs.getString("nome"));

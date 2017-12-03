@@ -73,7 +73,7 @@ select eve.idEvento from PessoaEvento eve, Usuario e where e.IDPessoa = eve.idPe
 insert into Usuario (id, IDPessoa, Tipo, Login, senha) values(3 ,3, 'comum', '3', '3');
 
 
-
+TRUNCATE divulgacao, emailinstituicao, endereco,enderecoevento, enderecoinstituicao, evento, feeds, galeriaev, instituicao, instituicaoevento, instituicaopessoa, interesses, mensagem, pessoa, pessoaevento, responsavel, telcelinstituicao, ultimoboleto, usuario, valoresdoados, voluntario
 
 create table Interesses(
 ID serial PRIMARY KEY,
@@ -96,9 +96,9 @@ select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from 
 
 select * from interesses where idusuario = 43
 
-update evento set nome = 'empresa solidária' where id = 90
+update evento set id = 16 where id = 93
 
-select * from Evento where nome = 'testando' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = 'lucasgabriel');
+select * from Evento where id = 16 and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = '123');
 
 delete from instituicao where status = true
 delete from evento where status = false

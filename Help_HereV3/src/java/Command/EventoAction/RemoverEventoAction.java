@@ -37,14 +37,14 @@ public class RemoverEventoAction implements ICommand{
         ArrayList<Endereco> end = new ArrayList();
         ArrayList<Instituicao> inst = new ArrayList();
         ArrayList<Pessoa> pe = new ArrayList();
-        
+        String N = null;
         String urm = request.getParameter("urm");
         
       
             
 
-                String NomeEV = request.getParameter("txtnomeEV");
-                ev.setNome(NomeEV);
+                N=(request.getParameter("txtIDEV"));
+                ev.setIdEvento(Integer.parseInt(N));
                 
  
                 

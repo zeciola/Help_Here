@@ -28,18 +28,21 @@ public class ConsultarEventoAction implements ICommand{
         DAOEvento idao = new DAOEvento();
         Evento ev = new Evento();
         String N = null;
+        String Nome;
+        N=(request.getParameter("txtIDEV"));  
+        Nome = (request.getParameter("txtnome"));
         
-        
-        
-        String acao = request.getParameter("acao");
+       /* String acao = request.getParameter("acao");
             if (acao.equals("Consultar")) {
                 
-                N=(request.getParameter("txtnome"));
+                
  
             }else {
                 return "erro.jsp";
-            }
-        ev.setNome(N);
+            }*/
+            
+        if (Nome == null ){
+        ev.setIdEvento(Integer.parseInt(N));
         eve = idao.Consultar(ev); 
          
         
@@ -77,11 +80,17 @@ public class ConsultarEventoAction implements ICommand{
          request.setAttribute("listaInst", inst);
          request.setAttribute("listaPessoa", pe);
           RequestDispatcher rd= request.getRequestDispatcher("/listaEVCompleto.jsp");
-        rd.forward(request, response);  
+        rd.forward(request, response); 
+        return "listaEVCompleto.jsp";
         }else{
+            
+        }
+        }else {
+            ev.setNome(Nome);
+            eve = idao.ConsultarPorNome(ev);
             request.setAttribute("listaEV", eve);
             RequestDispatcher rd= request.getRequestDispatcher("/ConsultaEvento.jsp");
-        rd.forward(request, response);
+            rd.forward(request, response);
         }
         
         return "ConsultaEvento.jsp";

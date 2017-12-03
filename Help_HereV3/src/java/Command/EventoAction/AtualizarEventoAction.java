@@ -50,8 +50,8 @@ public class AtualizarEventoAction implements ICommand{
                 HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
                 Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
                 String senha = usuarioLogado.getSenha();
-                String NomeEV = request.getParameter("txtnomeEV");
-                even.setNome(NomeEV);
+                int IdEV = (Integer.parseInt(request.getParameter("txtIDEV")));
+                even.setIdEvento(IdEV);
                 usuarioLogado.setSenha(senha);
                 eve = idao.ConsultarEVinst(even,usuarioLogado);
                 
@@ -102,8 +102,8 @@ public class AtualizarEventoAction implements ICommand{
                 HttpSession sessaoUsuario =((HttpServletRequest)request).getSession();
                 Usuario user =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
                 String sen = user.getSenha();
-                String NomeEV = request.getParameter("txtnomeEV");
-                even.setNome(NomeEV);
+                int IdEV = (Integer.parseInt(request.getParameter("txtIDEV")));
+                even.setIdEvento(IdEV);
                 user.setSenha(sen);
                 eve = idao.ConsultarEVPessoa(even,user);  
                 
@@ -211,9 +211,20 @@ public class AtualizarEventoAction implements ICommand{
                     ev.setNome(request.getParameter("nome"));
                     ev.setTipoEvento(request.getParameter("tipoEven"));
                     ev.setDescricao(request.getParameter("descricao"));
-
                     
-                    daoevento.AtualizarEvento(ev); 
+                    String valor = null;
+        
+                    valor = (request.getParameter("valordoar"));
+
+                    if (valor.isEmpty()){
+                        ev.setMetaVoluntario(Integer.parseInt(request.getParameter("volunquant")));
+                        daoevento.AtualizarEvVolunt(ev);
+                    }else{
+                        ev.setMetaValor(Double.parseDouble(request.getParameter("valordoar")));
+                        daoevento.AtualizarEvDoa(ev);
+                    }
+                    
+                     
                     
                     for (int i=0; i < cepend.length; i++){
                             Endereco e = new Endereco(); 
@@ -256,7 +267,8 @@ public class AtualizarEventoAction implements ICommand{
                     ev.setNome(request.getParameter("nome"));
                     ev.setTipoEvento(request.getParameter("tipoEven"));
                     ev.setDescricao(request.getParameter("descricao"));
-                    daoevento.AtualizarEvento(ev); 
+                    ev.setMetaValor(Double.parseDouble(request.getParameter("valordoar")));
+                    daoevento.AtualizarEvDoa(ev); 
                     
                     for (int i=0; i < cepend.length; i++){
                             Endereco e = new Endereco(); 

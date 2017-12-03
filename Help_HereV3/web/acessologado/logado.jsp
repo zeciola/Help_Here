@@ -128,9 +128,10 @@
             <b>Conheça o Evento</b>
             <br>
             <%=e.getE().getNome()%><br> A partir do dia:
-            <%=e.getE().getDataInicio()%> ate:<br>
+            <%=e.getE().getDataInicio()%> até:<br>
             <%=e.getE().getDataFim()%><br>
-            <a href="../ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getE().getNome()%>">Informações Completas</a> 
+            ID: <%=e.getE().getIdEvento()%><br>
+            <a href="../ControleEvento?acao=Consultar&url=1&txtIDEV=<%=e.getE().getIdEvento()%>">Informações Completas</a> 
         </div>
         <%}%>
     </body>
