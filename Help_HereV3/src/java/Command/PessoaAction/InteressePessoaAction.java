@@ -7,6 +7,7 @@ package Command.PessoaAction;
 
 import Command.ICommand;
 import DAO.DAOPessoa;
+import DAO.DAOUsuario;
 import Model.Usuario;
 import Model.Pessoa;
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +28,8 @@ public class InteressePessoaAction implements ICommand {
         Usuario o = (Usuario) sessao.getAttribute("userid");
 
         for (int j = 0; j < interesses.length; j++) {
-            DAOPessoa daop = new DAOPessoa();
-            daop.InserirInteresse(o.getId(), interesses[j]);
+            DAOUsuario daou = new DAOUsuario();
+            daou.InserirInteresse(o, interesses[j]);
         }
         return "login.jsp";
     }

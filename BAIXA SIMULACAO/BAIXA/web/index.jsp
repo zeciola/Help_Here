@@ -13,13 +13,17 @@
     </head>
     <body>
         <%
-            Double valor = (Double) session.getAttribute("valor");
+            Double valor = (Double) session.getAttribute("valorcontac");
             
             if(valor == 0 || valor == null){
                 valor = 1000.00;
             }
         %>
         
-        SALDO EM CONTA:
+        SALDO EM CONTA:<%=valor%>
+        <form action="ControleBaixa" method="post">
+            <input type="text" name="numeroboleto">
+            <input type="submit" value="Consultar">
+        </form>
     </body>
 </html>

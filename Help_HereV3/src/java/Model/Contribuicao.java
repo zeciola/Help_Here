@@ -21,51 +21,45 @@ public class Contribuicao {
 
     
     
-    public String getNumeroBoleto() {
-        return NumeroBoleto;
+    //Sets
+    public void setId(int id) {
+        this.id = id;
     }
-
+    public void setEv(Evento ev) {
+        this.ev = ev;
+    }
+    public void setDatacad(Date datacad) {
+        this.datacad = datacad;
+    }
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+    public void setValor(Double valor) {
+        this.valor = valor;
+    } 
     public void setNumeroBoleto(String NumeroBoleto) {
         this.NumeroBoleto = NumeroBoleto;
     }
     
+    
+    //Gets
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getDatacad() {
-        return datacad;
-    }
-
-    public void setDatacad(Date datacad) {
-        this.datacad = datacad;
-    }
-
     public Evento getEv() {
         return ev;
     }
-
-    public void setEv(Evento ev) {
-        this.ev = ev;
+    public Date getDatacad() {
+        return datacad;
     }
-
     public Usuario getUser() {
         return user;
     }
-
-    public void setUser(Usuario user) {
-        this.user = user;
-    }
-
     public Double getValor() {
         return valor;
     }
+    public String getNumeroBoleto() {
+        return NumeroBoleto;
+    }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
-    } 
 }
