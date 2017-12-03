@@ -83,7 +83,7 @@ public class GeraCertificadoAction implements ICommand {
             Paragraph p5 = new Paragraph("Diretor Operacional");
             p5.setAlignment(Element.ALIGN_CENTER);
             doc.add(p5);
-            Paragraph p6 = new Paragraph("Antonio Claudio Silva");
+            Paragraph p6 = new Paragraph("Lucas Gabriel de Souza Puglia");
             p6.setAlignment(Element.ALIGN_CENTER);
             doc.add(p6);
             
