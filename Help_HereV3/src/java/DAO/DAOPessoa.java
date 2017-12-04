@@ -16,13 +16,13 @@ import static jdk.nashorn.internal.objects.NativeMath.log;
 
 public class DAOPessoa /*implements iDAO*/ {
 
-    public String emailpes;
+    
 
     //Variable connection
     private final Connection conexao = Conexao.getConexao();
 
     // defalt variabel Penalisado = false
-    private boolean defalt;
+    
 
     //SQL
     private static final String INSERT = "insert into Pessoa (Nome, Sobrenome, CPF, RG, Penalisado, Datanascimento, email, IDEndereco, Telefone, celular, sexo, status, contador) "
@@ -109,34 +109,7 @@ public class DAOPessoa /*implements iDAO*/ {
         }
     }
 
-    public void InserirInteresse(int id, String interesse) {
-        try {
-            conexao.setAutoCommit(false);
-            PreparedStatement pstmt = conexao.prepareStatement(INSERT_INTERESSE);
-            pstmt.setInt(1, id);
-            pstmt.setString(2, interesse);
-            pstmt.execute();
-            conexao.commit();
-
-        } catch (SQLException e) {
-            try {
-                conexao.rollback();
-            } catch (SQLException ex) {
-                Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Logger.getLogger(Pessoa.class.getName()).
-                    log(Level.SEVERE, "Erro ao cadastrar: " + e.getMessage());
-        } finally {
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DAOPessoa.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
-
+   
     //@Override
     public void Atualizar(Pessoa pe) {
         try {
@@ -211,16 +184,16 @@ public class DAOPessoa /*implements iDAO*/ {
     }
 
     //@Override
-    public void Deletar(String OBJ, String ob) {
+    public void Deletar(Pessoa pe) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     //@Override
-    public ArrayList Consultar(String email, Pessoa pe) {
+    public ArrayList Consultar(Pessoa pe) {
         ArrayList<Pessoa> result = new ArrayList();
 
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" + pe.getEmail() + "';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;
@@ -295,8 +268,9 @@ public class DAOPessoa /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Pessoa> Listar(ArrayList<Pessoa> result, Pessoa pe) {
-
+    public ArrayList<Pessoa> Listar() {
+        ArrayList<Pessoa> result = new ArrayList();
+        Pessoa pe = new Pessoa();
         try {
             PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
 
@@ -318,11 +292,11 @@ public class DAOPessoa /*implements iDAO*/ {
                 pe.setSexo(rs.getString("sexo"));
                 pe.setStatus(rs.getBoolean("status"));
 
-                result.add(pe);
+                result.add(pe); 
 
             }
             //Retorno do ArrayList
-            return result;
+            return result; 
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -336,11 +310,11 @@ public class DAOPessoa /*implements iDAO*/ {
 
     }
 
-    public Pessoa ConsultarId(int id) {
+    public Pessoa ConsultarId(Usuario u) {
         Pessoa pe = new Pessoa();
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from usuario u, pessoa p where u.id=? and p.id = u.idpessoa");
-            pstmt.setInt(1, id);
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from usuario u, pessoa p where u.id= ? and p.id = u.idpessoa");
+            pstmt.setInt(1, u.getId());
             ResultSet rs;
 
             rs = pstmt.executeQuery();

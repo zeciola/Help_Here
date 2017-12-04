@@ -90,12 +90,20 @@ select u.id from usuario u, Interesses i where i.idusuario = u.id and i.interess
 
 select * from usuario u, Interesses i where i.idusuario = u.id and i.interesse = 'voluntariado';
 
-select * from usuario where id = 3
+select * from usuario where id = 38
 
 select e.id, e.nome, e.datainicio, e.datafim, e.descricao, u.login, u.tipo from evento e, feeds f, usuario u where e.id = f.idevento and u.id = f.idusuario and f.idusuario = 3 and CURRENT_DATE >= e.datainicio and CURRENT_DATE <= e.datafim and e.status = true limit 9
 
 select * from interesses where idusuario = 43
 
+update evento set nome = 'empresa solidária' where id = 90
+
+select * from Evento where nome = 'testando' and status = true and ID in (select eve.idEvento from PessoaEvento eve, Usuario e, Pessoa p where p.id = eve.idPessoa and e.senha = 'lucasgabriel');
+
+delete from instituicao where status = true
+delete from evento where status = false
+delete from enderecoinstituicao where status = false
+select * from pessoa
 --inserir no feeds
 insert into feeds (IDUsuario, IDEvento)values(3, 1); 
 
@@ -178,7 +186,7 @@ alter table Instituicao add column contador int
 
 update usuario set login = 'admin' where ID = 37
 
-update instituicao set contador = 15 where ID = 3
+update usuario set senha = 'lucasgabriel' where ID = 38
 
 update EnderecoInstituicao set status = false where ID in (select Ende.ID from Instituicao inst, EnderecoInstituicao Ende where inst.ID = Ende.ID and CNPJ = '5' and senha = '123')
 
@@ -284,6 +292,11 @@ CREATE TABLE ValoresDoados (
 	statusbaixa boolean default(false),
 	alter table ValoresDoados add column numeroboleto numeric
 );
+
+
+insert into ValoresDoados (Valor, dataDoado, idCampanha, IDPessoa, boleto, statusbaixa)values(100.00, current_date, 2, 2, '11111', false);
+
+select * from valoresdoados
 
 alter table ValoresDoados add column boleto varchar(53);
 
@@ -568,13 +581,21 @@ select metavoluntario from evento where id = 33;
 
 --BAIXA BANCARIA
 
+select * from evento;
+
+select * from evento where tipo = 'Doacao';
+
+update evento set datafim ='07/12/2017', status = true where id = 21;
+
 SELECT * FROM VALORESDOADOS;
 
 update valoresdoados set boleto = '11121212121212121' where idpessoa = 2 and idcampanha = 2;
 
 
+update valoresdoados set databaixa = current_date, statusbaixa = true, boleto = '123123123' where id = 1; 
 
 
+update valoresdoados set databaixa = current_date, statusbaixa = true where boleto = '123123123'; 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------CONDUÇÃO 1 DE AVISAR VOLUNTÁRIOS--------------------------------------------------------------------
@@ -627,3 +648,5 @@ select * from evento where id = 33;
 
 update evento set metavoluntario = 30 where id = 33;
 
+select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from 
+usuario u, pessoa p where u.id= 23 and p.id = u.idpessoa

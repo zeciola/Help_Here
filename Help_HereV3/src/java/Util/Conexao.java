@@ -28,10 +28,10 @@ public class Conexao {
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, login, password);
              /*
-            //driver que será utilizado
-            Class.forName("org.postgresql.Driver");
-            //cria um objeto de conexao com um banco especificado no caminho...
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Helphere", "postgres", "postgres");
+                //driver que será utilizado
+                Class.forName("org.postgresql.Driver");
+                //cria um objeto de conexao com um banco especificado no caminho...
+                conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Helphere", "postgres", "postgres");
             */
              System.out.println("Conexão OK");
         } catch (ClassNotFoundException erro1) {

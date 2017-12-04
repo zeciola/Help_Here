@@ -4,7 +4,6 @@ import Model.Contribuicao;
 import Model.Evento;
 import Model.Pessoa;
 import Model.Usuario;
-
 import Util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,10 +19,11 @@ public class DAOContribuir {
         Connection conexao = Conexao.getConexao();
         try {
             conexao.setAutoCommit(false);
-            PreparedStatement pstmt = conexao.prepareStatement("insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa, boleto) values(?, CURRENT_DATE, ?, ?, ?)");
+            PreparedStatement pstmt = conexao.prepareStatement("insert into valoresdoados (Valor, dataDoado, idCampanha, IDPessoa, boleto, statusbaixa) values(?, CURRENT_DATE, ?, ?, ?, false)");
             pstmt.setDouble(1, c.getValor());
             pstmt.setInt(2, c.getEv().getIdEvento());
             pstmt.setInt(3, c.getUser().getPe().getId());
+            pstmt.setString(4, c.getNumeroBoleto());
             pstmt.execute();
             conexao.commit();
 

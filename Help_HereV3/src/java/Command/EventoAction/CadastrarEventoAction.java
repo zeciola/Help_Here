@@ -114,9 +114,20 @@ public class CadastrarEventoAction implements ICommand {
         ev.setNome(request.getParameter("nome"));
         ev.setTipoEvento(request.getParameter("tipoEven"));
         ev.setDescricao(request.getParameter("descricao"));
-
         
-        daoevento.Inserir(ev); 
+        String valor = null;
+        
+        valor = (request.getParameter("valordoar"));
+        
+        if (valor.isEmpty()){
+            ev.setMetaVoluntario(Integer.parseInt(request.getParameter("volunquant")));
+            daoevento.InserirVoluntario(ev);
+        }else{
+            ev.setMetaValor(Double.parseDouble(request.getParameter("valordoar")));
+            daoevento.InserirDoacao(ev);
+        }
+        
+         
 
         for (int j = 0; j < inst.size(); j++) {
             int idInst = inst.get(j).getIdInstituicao();

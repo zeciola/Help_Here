@@ -34,9 +34,11 @@
                             <a href="index.html">Home</a>
                         </li>
                         <li>
-                            <a href="../logado.jsp">Perfil</a>
+                            <a href="javascript:window.history.go(-2)">Voltar</a>
                         </li>
-
+                            <li>
+                                <a href="${pageContext.request.contextPath}/tipoAcesso.jsp">Eventos</a>
+                            </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -47,7 +49,7 @@
 
 
         <body>
-            <h1>Funcionou!</h1>
+            <h1>Solicitação efetuada com sucesso</h1>
 
             
 

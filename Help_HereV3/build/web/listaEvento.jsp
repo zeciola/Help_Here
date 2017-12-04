@@ -70,6 +70,7 @@
         <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >
             <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
             <tr align="center">
+                    <td>ID</td>
                     <td>Data Inicio</td>
                     <td>Data Fim</td> 
                     <td>Nome</td>
@@ -87,6 +88,7 @@
                 for(Evento e: listaEvento){  %>  
                 <tbody style="background-color: #e6e6e6">
                 <tr align="center">
+                    <td><%=e.getIdEvento()%></td>
                     <td><%=e.getDataInicio()%></td>
                     <td><%=e.getDataFim()%></td>
                     <td><%=e.getNome()%></td>
@@ -97,12 +99,12 @@
                       
 
                    <td>
-                       <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Informações Completas</a>
+                       <a href="ControleEvento?acao=Consultar&url=1&txtIDEV=<%=e.getIdEvento()%>">Informações Completas</a>
                    </td>
                    
                    <td>
-                       <a href="ControleEvento?acao=Remover&urm=ok3&txtnomeEV=<%=e.getNome()%>">Cancelar</a> &nbsp &nbsp
-                       <a href="ControleEvento?acao=Atualizar&url=ok2&txtnomeEV=<%=e.getNome()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
+                       <a href="ControleEvento?acao=Remover&urm=ok3&txtIDEV=<%=e.getIdEvento()%>">Cancelar</a> &nbsp &nbsp
+                       <a href="ControleEvento?acao=Atualizar&url=ok2&txtIDEV=<%=e.getIdEvento()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
                    </td>
                    
 
@@ -114,6 +116,7 @@
                 for(Evento e: listaEvento){  %>  
                 <tbody style="background-color: #e6e6e6">
                 <tr align="center">
+                    <td><%=e.getIdEvento()%></td>
                     <td><%=e.getDataInicio()%></td> 
                     <td><%=e.getDataFim()%></td>
                     <td><%=e.getNome()%></td>
@@ -124,12 +127,12 @@
                       
 
                    <td>
-                       <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Informações Completas</a>
+                       <a href="ControleEvento?acao=Consultar&url=1&txtIDEV=<%=e.getIdEvento()%>">Informações Completas</a>
                    </td>
                    
                    <td>
-                       <a href="ControleEvento?acao=Remover&txtnomeEV=<%=e.getNome()%>">Cancelar</a> &nbsp &nbsp
-                       <a href="ControleEvento?acao=Atualizar&u=ok&txtnomeEV=<%=e.getNome()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
+                       <a href="ControleEvento?acao=Remover&txtIDEV=<%=e.getIdEvento()%>">Cancelar</a> &nbsp &nbsp
+                       <a href="ControleEvento?acao=Atualizar&u=ok&txtIDEV=<%=e.getIdEvento()%>">Editar</a> <!--Falta ver onde vai chamar o cnpjsenhaevento-->
                    </td>
                    
 
@@ -149,6 +152,7 @@
         <table class="table table-bordered table-hover table-condensed table-responsive" border="1" width="20%"  cellpadding="2" >
             <thead style="background-color: rgba(0, 199, 149, 0.73);" class="thead-inverse">
             <tr align="center">
+                    <td>ID</td>
                     <td>Data Inicio</td>
                     <td>Data Fim</td> 
                     <td>Nome</td>
@@ -160,6 +164,7 @@
                <% for(Evento e: listaEvento){  %>  
                 <tbody style="background-color: #e6e6e6">
                 <tr align="center">
+                    <td><%=e.getIdEvento()%></td>
                     <td><%=e.getDataInicio()%></td>
                     <td><%=e.getDataFim()%></td>
                     <td><%=e.getNome()%></td>
@@ -170,7 +175,7 @@
                       
                        
                        <td>
-                        <a href="ControleEvento?acao=Consultar&url=1&txtnome=<%=e.getNome()%>">Informações Completas</a>
+                        <a href="ControleEvento?acao=Consultar&url=1&txtIDEV=<%=e.getIdEvento()%>">Informações Completas</a>
                        </td>
                    
                 </tr>

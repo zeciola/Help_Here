@@ -12,24 +12,24 @@ import java.sql.Date;
  * @author Diego
  */
 public class Penalidade {
-    private Pessoa p = new Pessoa();
+    private Pessoa p ;
     private Date dataPenalidade;
 
-    public Pessoa getP() {
-        return p;
-    }
-
+    
+    //Sets
     public void setP(Pessoa p) {
         this.p = p;
     }
-
-    public Date getDataPenalidade() {
-        return dataPenalidade;
-    }
-
     public void setDataPenalidade(Date dataPenalidade) {
         this.dataPenalidade = dataPenalidade;
     }
     
-    
+    //Gets
+    public Pessoa getP() {
+        return p;
+    }
+    public Date getDataPenalidade() {
+        return dataPenalidade;
+    }
+
 }

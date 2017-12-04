@@ -41,7 +41,7 @@ public class ControleAcesso extends HttpServlet {
                 DAOPessoa pdao = new DAOPessoa();
                 int id = usuarioAutenticado.getPe().getId();
                 Pessoa p = pdao.ConsultarId(usuarioAutenticado.getId());
-
+                                
                 p.setEn(pdao.ConsultarEndPessoa(p));
 
                 usuarioAutenticado.setPe(p);
@@ -224,7 +224,9 @@ public class ControleAcesso extends HttpServlet {
                     request.setAttribute("msg", "Login ou Senha Incorreto!");
                     rd.forward(request, response);
                 }
-            } else if (acao.equals("CriarEvPessoa")) {
+            }
+            
+            else if (acao.equals("CriarEvPessoa")) {
                 Usuario login = new Usuario();
                 login.setId(Integer.parseInt(request.getParameter("txtID")));
 
@@ -255,7 +257,6 @@ public class ControleAcesso extends HttpServlet {
             rd.forward(request, response);
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -56,7 +56,7 @@
         <h1>Doação</h1>
         <h3>Bem vindo</h3>
         <p>Confirme seus dados para doar no Evento: <%=ev.getNome()%></p>
-        <form class="well form-horizontal" action="../GeraBoleto2" method="post" id="contact_form">
+        <form class="well form-horizontal" action="../ControleContribuir" method="post" id="contact_form">
             <fieldset>
 
                 <div class="form-group">
@@ -198,7 +198,7 @@
                     <div class="col-md-4">
 
 
-                        <button type="submit" name="acao" value="Doar">Ajudar<span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name="acao" value="Doar2">Ajudar<span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
 

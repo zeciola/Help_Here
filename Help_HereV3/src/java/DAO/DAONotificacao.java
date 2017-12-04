@@ -56,6 +56,7 @@ public class DAONotificacao {
             while (rs.next()) {
                 Pessoa pe = new Pessoa();
                 pe.setEmail(rs.getString("email"));
+                pe.setNome(rs.getString("nome"));
                 p.add(pe);
 
             }

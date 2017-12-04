@@ -13,33 +13,31 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-public class AvisoEvento implements Job{
-    
-    DAONotificacao daon = new DAONotificacao();
-    ArrayList<Notificacao> ns = new ArrayList();
-   
+public class AvisoEvento implements Job {
+
     @Override
     public void execute(JobExecutionContext jec) throws JobExecutionException {
         //Lista evento 
+        DAONotificacao daon = new DAONotificacao();
+        ArrayList<Notificacao> ns = new ArrayList();
         ArrayList<Evento> evs = daon.ListarParaNotificar();
-        
-        for(Evento e1 : evs){
+
+        for (Evento e1 : evs) {
             //Lista pessoa
             Notificacao n = new Notificacao();
             n.setE(e1);
             n.setUsersNotificados(daon.ListarContatos(n));
-            for(Pessoa pe : n.getUsersNotificados()){
+            for (Pessoa pe : n.getUsersNotificados()) {
                 email mail = new email();
                 try {
-                    mail.sendEmail(pe.getEmail(), "Seu Evento Esta proximo", "Atenção "+pe.getNome()+"o Evento "+e1.getNome()+"esta chegando");
+                    mail.sendEmail(pe.getEmail(), "Seu Evento Esta proximo", "Atenção " + pe.getNome() + "o Evento " + e1.getNome() + "esta chegando");
                 } catch (EmailException ex) {
                     Logger.getLogger(AvisoEvento.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
         }
-        
+
     }
 
-    
 }

@@ -75,16 +75,19 @@
 
                 <% //recupera a lista do request
                 ArrayList<Evento> listaEvento = (ArrayList<Evento>)request.getAttribute("listaEV");
+                Instituicao i = (Instituicao) session.getAttribute("instAutenticado");
+                
+                if(i != null){  
                 for(Evento e: listaEvento){  %> 
 
                 <!-- nome-->
                 
                 <div class="form-group">                   
-                    <label class="col-md-4 control-label">ID</label> 
+                    <label class="col-md-4 control-label"></label> 
                     <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input name="idEve" placeholder="Id" class="form-control" type="text" value="<%= e.getIdEvento()%>">
+                                <input name="idEve" style="display:none;" placeholder="Id" class="form-control" type="text" value="<%= e.getIdEvento()%>">
                             </div>
                     </div>   
                 </div>
@@ -122,6 +125,9 @@
                     </div>
                 </div>
       
+                        
+                
+                        
                 <!-- Modalidade -->
                  <div class="form-group">
                     <label class="col-md-4 control-label">Tipo de Evento</label>
@@ -129,10 +135,117 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                             <select name="tipoEven" class="form-control selectpicker">
-                                <option value="<%= e.getTipoEvento()%> " ><%= e.getTipoEvento()%></option>
-                                <option value="Doacao">Doação</option>
-                                <option value="Voluntariado">Voluntariado</option>
+                                <option value=" " >Escolha o tipo </option>
+                                <option onClick="Mostra1();" value="Voluntariado">Voluntariado</option>
+                                <option onClick="Mostra2();" value="Doacao">Doação</option>
                             </select>
+                        </div>
+                    </div>
+                </div>
+               
+                
+                <!-- CNPJ -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Descrição</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="descricao" placeholder="Descrição" class="form-control" type="text"  value="<%= e.getDescricao()%>">
+                        </div>
+                    </div>
+                </div>
+                        
+                
+                <div class="form-group paraExibicao" id="campvolunparti">
+                    <label class="col-md-4 control-label">Quant voluntarios</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="volunquant" placeholder="quantidade de voluntarios" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group paraExibicao" id="campvaldoar">
+                    <label class="col-md-4 control-label">Valor</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="valordoar" placeholder="valor a ser arrecadado" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+            
+                        
+            <% } 
+                }else {
+                   
+                for(Evento e: listaEvento){
+                %>
+                
+                    <div class="form-group">                   
+                    <label class="col-md-4 control-label"></label> 
+                    <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="idEve" style="display:none;" placeholder="Id" class="form-control" type="text" value="<%= e.getIdEvento()%>">
+                            </div>
+                    </div>   
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Data Inicio</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="inicio" placeholder="dd/mm/aaaa" class="form-control" type="text"  value="<%= e.getDataInicio()%>">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- razaosocial-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Data Fim</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="fim" placeholder="dd/mm/aaaa" class="form-control" type="text"  value="<%= e.getDataFim()%>">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tipo-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Nome</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nome" placeholder="nome do evento" class="form-control" type="text"  value="<%= e.getNome()%>">
+                        </div>
+                    </div>
+                </div>
+      
+                        
+                
+                        
+                <!-- Modalidade -->
+                 <div class="form-group">
+                    <label class="col-md-4 control-label">Tipo de Evento</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                             <input name="tipoEven" placeholder="Doação" class="form-control" type="text" value="Doacao">
+                        </div>
+                    </div>
+                </div>
+                
+               <div class="form-group">
+                    <label class="col-md-4 control-label">Valor</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="valordoar" placeholder="valor a ser arrecadado" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
@@ -147,7 +260,14 @@
                         </div>
                     </div>
                 </div>
-            <%}%>
+                        
+                
+            
+                <% }
+                        }%>
+                
+                
+                
                 <br /> <br />
                 
                 <script>
@@ -440,10 +560,10 @@ function removerCampos(id){
                 
                 
                 <% //recupera a lista do request
-                Instituicao e = (Instituicao) session.getAttribute("instAutenticado");
                 
                 
-                if(e != null){  %>
+                
+                if(i != null){  %>
                <legend class="titulo"><b>Instituição</b></legend>
                 
                 <!-- Modalidade -->
@@ -452,7 +572,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input name="idInst" placeholder="Id" class="form-control" type="text" value="<%= e.getIdInstituicao()%>">
+                                <input name="idInst" placeholder="Id" class="form-control" type="text" value="<%= i.getIdInstituicao()%>">
                             </div>
                     </div>   
                 </div>
@@ -462,7 +582,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="inst" placeholder="Instituição" class="form-control" type="text" value="<%= e.getNome()%>">
+                            <input name="inst" placeholder="Instituição" class="form-control" type="text" value="<%= i.getNome()%>">
                         </div>
                     </div>
                 </div>
@@ -472,7 +592,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="razao" placeholder="RazaoSocial" class="form-control" type="text" value="<%= e.getRazao()%>">
+                            <input name="razao" placeholder="RazaoSocial" class="form-control" type="text" value="<%= i.getRazao()%>">
                         </div>
                     </div>
                 </div>
@@ -482,7 +602,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="tipo" placeholder="Tipo" class="form-control" type="text" value="<%= e.getTipo()%>">
+                            <input name="tipo" placeholder="Tipo" class="form-control" type="text" value="<%= i.getTipo()%>">
                         </div>
                     </div>
                 </div>
@@ -493,7 +613,7 @@ function removerCampos(id){
                     <div class="col-md-4 selectContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="cnpj" placeholder="CNPJ" class="form-control" type="number" value="<%= e.getCnpj()%>">
+                            <input name="cnpj" placeholder="CNPJ" class="form-control" type="number" value="<%= i.getCnpj()%>">
                         </div>
                     </div>
                 </div>
@@ -504,7 +624,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="modalidade" placeholder="Modalidade" class="form-control" type="text" value="<%= e.getModalidade()%>">
+                            <input name="modalidade" placeholder="Modalidade" class="form-control" type="text" value="<%= i.getModalidade()%>">
                         </div>
                     </div>
                 </div>
@@ -515,7 +635,7 @@ function removerCampos(id){
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email" value="<%= e.getEmail()%>">
+                            <input name="email" placeholder="exemplo@exemplo.com" class="form-control" type="email" value="<%= i.getEmail()%>">
                         </div>
                     </div>
                 </div>

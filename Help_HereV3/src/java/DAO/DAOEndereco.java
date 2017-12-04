@@ -145,10 +145,8 @@ public class DAOEndereco /*implements iDAO*/ {
         }
     }
     
-    
-
     //@Override
-    public void Atualizar(String Antemail, String ob, Endereco en) throws SQLException {
+    public void Atualizar(Endereco en) throws SQLException {
 
         try {
 
@@ -263,17 +261,17 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
 //@Override
-    public void Deletar(String OBJ, String ob) {
+    public void Deletar(Endereco en) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
     //@Override
-    public ArrayList Consultar(String email, Endereco en) {
+    public ArrayList Consultar(Endereco en) {
         ArrayList<Endereco> result = new ArrayList();
 
         try {
-            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" + email + "';";
+            String slqConsulta = "select * from Pessoa pes, Endereco ende, Usuario usu where pes.status=true and ende.status=true and usu.status=true and pes.ID = ende.ID and pes.ID = usu.ID and email = '" +en.getPe().getEmail()+ "';";
             PreparedStatement pstmt = conexao.prepareStatement(slqConsulta);
 
             ResultSet rs;
@@ -308,8 +306,9 @@ public class DAOEndereco /*implements iDAO*/ {
     }
 
     //@Override
-    public ArrayList<Endereco> Listar(ArrayList<Endereco> result, Endereco en) {
-
+    public ArrayList<Endereco> Listar() {
+        ArrayList<Endereco> result = new ArrayList();
+        Endereco en = new Endereco();
         try {
             PreparedStatement pstmt = conexao.prepareStatement(SELECT_ALL);
 
