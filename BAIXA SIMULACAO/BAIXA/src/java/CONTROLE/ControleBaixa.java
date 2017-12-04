@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,33 +37,23 @@ public class ControleBaixa extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
 
             Baixa b = new Baixa();
-            b.setValor1(Double.parseDouble(request.getParameter("valor1")));
-            b.setValor2(Double.parseDouble(request.getParameter("valor2")));
-            b.setSenha(request.getParameter("senha"));
-            b.setUsuario(request.getParameter("valor1"));
+            String acao = request.getParameter("acao");
 
-            if (b.getValor1() == b.getValor2()) {
-                DAOBaixa daob = new DAOBaixa();
-                daob.RealizarPagamento(b);
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ControleBaixa</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Pagamento Realizado com Sucesso</h1>");
-                out.println("</body>");
-                out.println("</html>");
+
+
+            if (acao == "Proximo") {
+                b.setNumeroBoleto(request.getParameter("numeroboleto"));
+
+                
+                HttpSession sessaoUsuario = request.getSession();
+                    sessaoUsuario.setAttribute("baixa", b);
+                response.sendRedirect("pagaboleto.jsp");
             } else {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Valor Incorreto</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Valor a ser pago diverge do valor correto</h1>");
-                out.println("</body>");
-                out.println("</html>");
+                b.setValor1(Double.parseDouble(request.getParameter("valor1")));
+                b.setValor2(Double.parseDouble(request.getParameter("valor2")));
+                b.setSenha(request.getParameter("senha"));
+
+                response.sendRedirect("pagamentoOK.jsp");
             }
 
         }

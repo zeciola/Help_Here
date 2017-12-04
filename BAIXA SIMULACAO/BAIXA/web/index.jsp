@@ -12,18 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            Double valor = (Double) session.getAttribute("valorcontac");
-            
-            if(valor == 0 || valor == null){
-                valor = 1000.00;
-            }
-        %>
-        
-        SALDO EM CONTA:<%=valor%>
+        <h1>Informe o seu boleto para pagar</h1>
         <form action="ControleBaixa" method="post">
             <input type="text" name="numeroboleto">
-            <input type="submit" value="Consultar">
+            <input type="submit" name="acao" value="Proximo">
         </form>
     </body>
 </html>
