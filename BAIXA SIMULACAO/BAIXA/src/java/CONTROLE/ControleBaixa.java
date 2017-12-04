@@ -43,11 +43,12 @@ public class ControleBaixa extends HttpServlet {
 
             if (acao == "Proximo") {
                 Baixa consultado = new Baixa();
+                double valor;
                 b.setNumeroBoleto(request.getParameter("numeroboleto"));
                 
                 DAOBaixa daob = new DAOBaixa();
                 
-                consultado = daob.BuscaValorAPagar(b);
+                valor = daob.BuscaValorAPagar(b);
                 
                 HttpSession sessaoUsuario = request.getSession();
                     sessaoUsuario.setAttribute("baixa", b);
