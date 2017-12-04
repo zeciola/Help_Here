@@ -38,16 +38,19 @@ public class ConsultarEmailPessoaAction implements ICommand {
         Usuario usuarioLogado = (Usuario) sessoaUsuario.getAttribute("usuarioAutenticado");
 
         String Email = usuarioLogado.getNome();
+        
+        p.setEmail(Email);
+        U.setNome(Email);
 
-        en = daoen.Consultar(Email, e);
+        en = daoen.Consultar(e);
 
         request.setAttribute("ListarEN", en);
 
-        pe = daope.Consultar(Email, p);
+        pe = daope.Consultar(p);
 
         request.setAttribute("ListarPE", pe);
 
-        lo = daou.Consultar(Email, U);
+        lo = daou.Consultar(U);
 
         request.setAttribute("ListarUS", lo);
 
