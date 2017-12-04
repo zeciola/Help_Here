@@ -48,7 +48,7 @@
 
                                     <form class="form" method="post" action="${pageContext.request.contextPath}/ControlePessoa">
                                         
-                                        <input type="submit" name="acao" value="ConsultarEmail"/>
+                                        <input type="submit" name="acao" value="ConsultarEmail">Alterar Pessoa<input/>
       
                                     </form>
 

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/src/java/DAO/DAOEvento.java</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/web/AlterarPessoa.jsp</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/src/java/Command/PessoaAction/CadastrarPessoaAction.java</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/web/ListarPessoa.jsp</file>
@@ -17,10 +18,12 @@
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/src/java/Command/PessoaAction/ListarPessoaAction.java</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/src/java/Command/InstituicaoAction/AtualizarInstituicaoAction.java</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/src/java/Command/PessoaAction/ConsultarPessoaAction.java</file>
+            <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/web/evento.jsp</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/web/email.jsp</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/web/login.jsp</file>
             <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/web/acessologado/logado.jsp</file>
-            <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/web/PessoaConfirma.jsp</file>
+            <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/src/java/DAO/DAOUsuario.java</file>
+            <file>file:/home/jrciola/Documentos/Github/Help_Here/Help_HereV3/src/java/Command/EventoAction/AtualizarEventoAction.java</file>
         </group>
     </open-files>
 </project-private>
