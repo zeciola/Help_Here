@@ -33,31 +33,37 @@ public class ControleBaixa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            Double Saldo = 1000.00;
-            Baixa b = new Baixa();
-            String acao = request.getParameter("acao");
-            HttpSession sessao = request.getSession();
-            
-            if (acao.equals("Proximo")) {
-                DAOBaixa daob = new DAOBaixa();                
-               
-                b.setNumeroBoleto(request.getParameter("numeroboleto"));
-                b.setValor1(daob.BuscaValorAPagar(b));
-                
-                HttpSession sessaoUsuario = request.getSession();
-                    sessaoUsuario.setAttribute("baixa", b);
-                    sessaoUsuario.setAttribute("v", Saldo);
-                response.sendRedirect("pagaboleto.jsp");
-            } else {
-                
-                b.setValor1(Double.parseDouble(request.getParameter("valor1")));
-                if(b.getValor1()>Saldo)
-                
-                b.setSenha(request.getParameter("senha"));
+        /* TODO output your page here. You may use following sample code. */
+        Double Saldo = 1000.00;
+        Baixa b = new Baixa();
+        String acao = request.getParameter("acao");
+        HttpSession sessao = request.getSession();
+        DAOBaixa daob = new DAOBaixa();
 
-                response.sendRedirect("pagamentoOK.jsp");
+        if (acao.equals("Proximo")) {
+
+            b.setNumeroBoleto(request.getParameter("numeroboleto"));
+            b.setValor1(daob.BuscaValorAPagar(b));
+
+            sessao.setAttribute("baixa", b);
+            sessao.setAttribute("v", Saldo);
+
+            response.sendRedirect("pagaboleto.jsp");
+
+        } else {
+            if (acao.equals("Pagar")) {
+                 HttpSession sessaoUsuario = request.getSession();
+                Baixa b2 = (Baixa) sessaoUsuario.getAttribute("baixa");
+                double s = (double) sessaoUsuario.getAttribute("v");
+
+                if (b.getValor1() > s) {
+                    response.sendRedirect("Erro.jsp");
+                } else {
+                    b2.setUsuario(request.getParameter("cpf"));
+                    b2.setSenha(request.getParameter("senha"));
+                    daob.RealizarPagamento(b2);
+                    response.sendRedirect("pagamentoOk.jsp");
+                }
             }
 
         }

@@ -17,7 +17,7 @@ public class Conexao {
     //driver que será utilizado
     private static String driver = "org.postgresql.Driver";
 
-    public static Connection getConexao() {
+     public static Connection getConexao() {
         Connection conexao = null;
         try {            
             //driver

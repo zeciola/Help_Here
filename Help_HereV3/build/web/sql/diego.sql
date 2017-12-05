@@ -650,3 +650,10 @@ update evento set metavoluntario = 30 where id = 33;
 
 select p.id, p.nome, p.sobrenome, p.cpf, p.rg, p.datanascimento, p.email, p.telefone, p.celular, p.sexo, p.status, p.penalisado, p.contador from 
 usuario u, pessoa p where u.id= 23 and p.id = u.idpessoa
+
+
+select * from valoresdoados
+
+SELECT * FROM USUARIO;
+
+update voluntario set certificado = false, analisado = false;

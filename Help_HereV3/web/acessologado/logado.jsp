@@ -80,11 +80,11 @@
                 <!-- /.container -->
             </nav>
         </header>    
-<!-- 
-        <figure class="figure">
-            <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-            <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>    -->
+        <!-- 
+                <figure class="figure">
+                    <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                    <figcaption class="figure-caption">A caption for the above image.</figcaption>
+                </figure>    -->
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
@@ -92,31 +92,42 @@
         <h6 ALIGN="right"> 
             Conta: <%= usuario.getNome()%>
         </h6>
-        
+
         <h1>Bem vindo, <%= usuario.getPe().getNome()%> !</h1>
-        
+
         <%}%>
+
+        <%if (usuario.getPe().isPenalisado() == true) {%>
+            <h1><font color="red">Ha pendencias de cadastro</font></h1>
+            <p>Caso você tenha faltado em um voluntariado ao qual
+                você se candidatou envie um e-mail um scan da justificativa 
+                para helphere@gmail.com ou use o formulário abaixo</p>
+            <form method="post" action="">
+                </form>
+            
+        <%}%>
+
         <br> <br> 
         <h3 ALIGN="center">Feeds de eventos do seu interesse:</h3> 
         <br> 
-       <!-- <div class="row">
-            <% /*ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
-                if (ListaEv == null) {
-                    request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
-                    } */%>
-            <%/*for (Evento e : ListaEv) {*/%>
-            <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="img/<%/*=e.getImg()*/%>" alt="">
-                <h2><%/*=e.getNome()*/%></h2>
-                <p><%/*=e.getDescricao()*/%></p>
-                <p><%/*=e.getDataInicio()*?%></p>
-                <p><%/*=e.getDataFim()*/%></p>
-                <a href="ControleEvento?acao=Consultar1&ID=<%/*=e.getIdEvento()*/%>">Ajude</a>
-            </div>
-            <%/*}*/%>
+        <!-- <div class="row">
+        <% /*ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
+            if (ListaEv == null) {
+                request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
+                } */%>
+        <%/*for (Evento e : ListaEv) {*/%>
+        <div class="col-sm-4">
+            <img class="img-circle img-responsive img-center" src="img/<%/*=e.getImg()*/%>" alt="">
+            <h2><%/*=e.getNome()*/%></h2>
+            <p><%/*=e.getDescricao()*/%></p>
+            <p><%/*=e.getDataInicio()*?%></p>
+            <p><%/*=e.getDataFim()*/%></p>
+            <a href="ControleEvento?acao=Consultar1&ID=<%/*=e.getIdEvento()*/%>">Ajude</a>
         </div>
-    -->
-       <!-- <h1> Aqui vai o feeds </h1>-->
+        <%/*}*/%>
+    </div>
+        -->
+        <!-- <h1> Aqui vai o feeds </h1>-->
 
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) session.getAttribute("feed");
             if (Lista == null) {

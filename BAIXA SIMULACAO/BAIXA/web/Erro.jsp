@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pagamentoOk
-    Created on : 04/12/2017, 08:29:07
+    Document   : Erro
+    Created on : 05/12/2017, 15:10:14
     Author     : Diego
 --%>
 
@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Pagamento realizado</h1>
+        <h2>Dados Incorretos!</h2>
+        <a href="index.jsp">click para voltar</a>
     </body>
 </html>
