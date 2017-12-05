@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
 
 public class Conexao {
     //Nome do banco
-    private static String banco = "helphere";
+    private static String banco = "Helphere";
     //URL de conexão
     private static String url = "jdbc:postgresql://localhost:5432/" + banco;
     //login do banco
     private static String login = "postgres";
     //senha do banco
-    private static String password = "postgres";
+    private static String password = "lucario";
     //driver que será utilizado
     private static String driver = "org.postgresql.Driver";
 

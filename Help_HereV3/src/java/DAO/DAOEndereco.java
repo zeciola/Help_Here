@@ -265,7 +265,6 @@ public class DAOEndereco /*implements iDAO*/ {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
     //@Override
     public ArrayList Consultar(Endereco en) {
         ArrayList<Endereco> result = new ArrayList();

@@ -375,7 +375,6 @@ public class DAOUsuario /*implements iDAO*/ {
         return loginAutenticado;
     }
     
-    
     public Usuario autenticaID(Usuario login) {
         Usuario loginAutenticado = null;
 
@@ -384,9 +383,9 @@ public class DAOUsuario /*implements iDAO*/ {
         ResultSet rsLogin = null;
         try {
             conexao = Conexao.getConexao();
-            String sqlConsulta = "select * from Usuario where id =" + login.getId();
+            String sqlConsulta = "select * from Usuario where id ="+login.getId();
             pstmt = conexao.prepareStatement(sqlConsulta);
-
+            
             rsLogin = pstmt.executeQuery();
 
             if (rsLogin.next()) {
@@ -396,9 +395,10 @@ public class DAOUsuario /*implements iDAO*/ {
                 loginAutenticado.setSenha(rsLogin.getString("senha"));
                 loginAutenticado.setPerfil(PerfilDeAcesso.valueOf(rsLogin.getString("tipo")));
                 loginAutenticado.setStatus(rsLogin.getBoolean("status"));
-
+                
                 Pessoa p = new Pessoa();
                 p.setId(rsLogin.getInt("idpessoa"));
+                     
 
                 loginAutenticado.setPe(p);
             }

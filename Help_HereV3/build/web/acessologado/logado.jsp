@@ -36,23 +36,13 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-left">
-
                         <!-- Dropdown submenu -->
-
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pessoa
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="${pageContext.request.contextPath}/email.jsp">Consultar Pessoa</a></li>
-                                <li><a href="${pageContext.request.contextPath}/AlterarPessoa.jsp">Alterar Pessoa</a>
-
-                                    <form class="form" method="post" action="${pageContext.request.contextPath}/ControlePessoa">
-                                        
-                                        <input type="submit" name="acao" value="ConsultarEmail">Alterar Pessoa<input/>
-      
-                                    </form>
-
-                                </li>
+                                <li><a href="${pageContext.request.contextPath}/AlterarPessoa.jsp">Alterar Pessoa</a></li>
                                 <li><a href="${pageContext.request.contextPath}/emailSenha.jsp">Deletar Pessoa</a></li>
                             </ul>
                         </li>
@@ -90,11 +80,11 @@
                 <!-- /.container -->
             </nav>
         </header>    
-        <!-- 
-                <figure class="figure">
-                    <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                    <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                </figure>    -->
+<!-- 
+        <figure class="figure">
+            <img src="holder.js/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+            <figcaption class="figure-caption">A caption for the above image.</figcaption>
+        </figure>    -->
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             if (usuario != null) {
@@ -102,31 +92,31 @@
         <h6 ALIGN="right"> 
             Conta: <%= usuario.getNome()%>
         </h6>
-
+        
         <h1>Bem vindo, <%= usuario.getPe().getNome()%> !</h1>
-
+        
         <%}%>
         <br> <br> 
         <h3 ALIGN="center">Feeds de eventos do seu interesse:</h3> 
         <br> 
-
-        <%ArrayList<Evento> Lista2 = (ArrayList<Evento>) session.getAttribute("evento");
-            for (Evento e2 : Lista2) {%>
-
-        <div class="col-sm-4">
-            <br> <br> <br>
-            <img class="img-circle img-responsive img-center" src="img/<%=e2.getImg()%>" alt="">
-            <h2><%=e2.getNome()%></h2>
-            <p><%=e2.getDescricao()%></p>
-            <p><%=e2.getDataInicio()%></p>
-            <p><%=e2.getDataFim()%></p>
-            <a href="ControleEvento?acao=Consultar1&ID=<%=e2.getIdEvento()%>">Ajude</a>
+       <!-- <div class="row">
+            <% /*ArrayList<Evento> ListaEv = (ArrayList<Evento>) session.getAttribute("evento");
+                if (ListaEv == null) {
+                    request.getRequestDispatcher("/ControleEvento?acao=Listar1&url=2").forward(request, response);
+                    } */%>
+            <%/*for (Evento e : ListaEv) {*/%>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="img/<%/*=e.getImg()*/%>" alt="">
+                <h2><%/*=e.getNome()*/%></h2>
+                <p><%/*=e.getDescricao()*/%></p>
+                <p><%/*=e.getDataInicio()*?%></p>
+                <p><%/*=e.getDataFim()*/%></p>
+                <a href="ControleEvento?acao=Consultar1&ID=<%/*=e.getIdEvento()*/%>">Ajude</a>
+            </div>
+            <%/*}*/%>
         </div>
-
-        <%}%>
-
-
-        <!-- <h1> Aqui vai o feeds </h1>-->
+    -->
+       <!-- <h1> Aqui vai o feeds </h1>-->
 
         <% ArrayList<Feeds> Lista = (ArrayList<Feeds>) session.getAttribute("feed");
             if (Lista == null) {
