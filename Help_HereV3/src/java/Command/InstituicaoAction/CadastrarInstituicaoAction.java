@@ -12,6 +12,7 @@ import DAO.DAOUsuario;
 import Model.Endereco;
 import Model.Usuario;
 import Model.Instituicao;
+import Util.email;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,31 +22,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CadastrarInstituicaoAction implements ICommand {
 
-
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
-     
-        
+
         //Instanciando Objetos
         Endereco en = new Endereco();
         Instituicao inst = new Instituicao();
-        
-        
+
         //DAOs
-        
         DAOInstituicao daoi = new DAOInstituicao();
         DAOEndereco daoe = new DAOEndereco();
-        
-        
-        
-        
-        
-        
-        
-        
+
         //Endereco da Instituicao
-        
         en.setCep(request.getParameter("cep"));
         en.setNomelogradouro(request.getParameter("endereco"));
         en.setNumeroen(Integer.parseInt(request.getParameter("numero")));
@@ -53,7 +41,6 @@ public class CadastrarInstituicaoAction implements ICommand {
         en.setMunicipio(request.getParameter("cidade"));
         en.setEstado(request.getParameter("estado"));
         en.setPais(request.getParameter("pais"));
-        
         daoe.InserirEndInst(en);
         
         //Instituicao
@@ -65,16 +52,14 @@ public class CadastrarInstituicaoAction implements ICommand {
         inst.setEmail(request.getParameter("email"));
         inst.setSenha(request.getParameter("senha"));
         inst.setContadorEv(0);
-        
-        
-        
         inst.setEndereco(en);
-        
         daoi.Inserir(inst); 
         
-        
-        
-        
+        String EmailTo = request.getParameter("email");
+        String Subject = "Cadastro de empresa Realizado com sucesso";
+        String Msg = "Obrigado por se cadastrar no HelpHere";
+        email e = new email();
+        e.sendEmail(EmailTo, Subject, Msg);
         
         //Redirecionar para pagina de perfil de usuário com o listar dos valores colocados acima
         return "sucesso.jsp";

@@ -37,13 +37,13 @@ public class DAOCertificado {
 
             while (rs.next()) {
                 //Certificado c1 = new Certificado();
-
                 Evento ev = new Evento();
                 ev.setIdEvento(rs.getInt("id"));
                 ev.setNome(rs.getString("nome"));
-                ev.setNome(rs.getString("nomeevento"));
+                ev.setNome(rs.getString("nome"));
                 ev.setDataInicio(rs.getDate("dataInicio"));
                 ev.setDataFim(rs.getDate("dataFim"));
+                ev.setDescricao(rs.getString("descricao"));
                 //c1.setEvento(ev);
 
                 //Instituicao i = new Instituicao();
@@ -51,7 +51,6 @@ public class DAOCertificado {
                 //i.setNome(rs.getString("instnome"));
                 //c1.setInstituicao(i);
                 eventos.add(ev);
-
             }
             r.setPendentes(eventos);
             return r;
@@ -60,7 +59,6 @@ public class DAOCertificado {
             throw new RuntimeException(e);
         } finally {
             try {
-
                 conexao.close();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -73,7 +71,7 @@ public class DAOCertificado {
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, e.datainicio, e.datafim, i.nome nomeinst, i.id idinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = ?");
+            PreparedStatement pstmt = conexao.prepareStatement("select p.id idpessoa, p.email, p.nome nomepessoa, e.id idevento, e.nome nomeevento, e.datainicio, e.datafim, i.nome nomeinst, i.id idinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = ?");
             pstmt.setInt(1, c.getInstituicao().getIdInstituicao());
             rs = pstmt.executeQuery();
 
@@ -96,6 +94,7 @@ public class DAOCertificado {
                 p.setId(rs.getInt("idpessoa"));
                 p.setNome(rs.getString("pessoanome"));
                 p.setCpf(rs.getString("cpf"));
+                p.setEmail(rs.getString("email"));
                 c1.setPessoa(p);
 
                 r.add(c1);
@@ -117,9 +116,10 @@ public class DAOCertificado {
         Connection conexao = Conexao.getConexao();
         try {
             conexao.setAutoCommit(false);
-            PreparedStatement pstmt = conexao.prepareStatement("update voluntario set certificado = ?, analisado = true where idpessoa = ?");
+            PreparedStatement pstmt = conexao.prepareStatement("update voluntario set certificado = ?, analisado = true where idpessoa = ? and idevento = ?");
             pstmt.setBoolean(1, c.isValido());
             pstmt.setInt(2, c.getPessoa().getId());
+            pstmt.setInt(3, c.getEvento().getIdEvento());            
             pstmt.executeUpdate();
             conexao.commit();
 
@@ -155,9 +155,9 @@ public class DAOCertificado {
                 p.setNome(rs.getString("nome"));
                 p.setSobrenome(rs.getString("sobrenome"));
                 p.setId(rs.getInt("id"));
+                p.setEmail(rs.getString("email"));
                 pessoasp.add(p);
             }
-
             return pessoasp;
 
         } catch (SQLException e) {
@@ -203,7 +203,7 @@ public class DAOCertificado {
         Connection conexao = Conexao.getConexao();
         ResultSet rs;
         try {
-            PreparedStatement pstmt = conexao.prepareStatement("select u.id iduser, p.id idpessoa, p.nome nomepessoa, e.id idevento, e.nome nomeevento, e.datafim, e.datainicio, i.nome nomeinst, i.id idinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = ?");
+            PreparedStatement pstmt = conexao.prepareStatement("select u.id iduser, p.id idpessoa, p.nome nomepessoa, p.email, e.id idevento, e.nome nomeevento, e.datafim, e.datainicio, i.nome nomeinst, i.id idinst from Usuario u, voluntario v, pessoa p, evento e, instituicao i, instituicaoevento instv where p.id = u.idpessoa and v.idpessoa = p.id and v.idevento = e.id and v.certificado = true and instv.idevento = e.id and instv.idinstituicao = i.id and u.id = ?");
             pstmt.setInt(1, c.getUsuario().getId());
             rs = pstmt.executeQuery();
 
@@ -226,6 +226,7 @@ public class DAOCertificado {
                 Pessoa p = new Pessoa();
                 p.setId(rs.getInt("idpessoa"));
                 p.setNome(rs.getString("nomepessoa"));
+                p.setEmail(rs.getString("email"));
                 c1.setPessoa(p);
                 retorno.add(c1);
             }

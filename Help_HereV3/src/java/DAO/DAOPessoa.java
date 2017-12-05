@@ -307,7 +307,6 @@ public class DAOPessoa /*implements iDAO*/ {
                 throw new RuntimeException(e);
             }
         }
-
     }
 
     public Pessoa ConsultarId(Usuario u) {

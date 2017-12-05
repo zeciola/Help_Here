@@ -33,7 +33,7 @@ public class BuscaCertificadoAction implements ICommand {
         c.setInstituicao(ints);
 
         Certificado r = daoc.ListarPendentes(c);
-
+        
         sessaoUsuario.setAttribute("itensvalidar", r);
         return "acessologado/PerfilEmpresa.jsp";
     }

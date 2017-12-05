@@ -69,7 +69,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="index.jsp">Home</a>
+                                <a href="/acessologado/logado.jsp"">Home</a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/ControleAcesso?acao=Sair">Sair</a>

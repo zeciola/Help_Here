@@ -40,6 +40,7 @@ public class ValidaCertificadoAction implements ICommand {
             Boolean t = Boolean.parseBoolean(request.getParameter(v));
             
             Certificado c1 = new Certificado();
+            c1.setEvento(c.getEvento());
             c1.setValido(t);
             c1.setAnalisado(true);
             c1.setPessoa(c.getPessoasPendesntes().get(i));
