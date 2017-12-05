@@ -36,8 +36,8 @@ public class AtualizarEventoAction implements ICommand{
         ArrayList<Endereco> end = new ArrayList();
         ArrayList<Instituicao> inst = new ArrayList();
         Endereco en = new Endereco();
-        DAOEvento idao = new DAOEvento();
-        Evento even = new Evento();
+        DAOEvento daoev = new DAOEvento();
+        Evento ev = new Evento();
         ArrayList<Pessoa> pe = new ArrayList();
         
         
@@ -51,9 +51,9 @@ public class AtualizarEventoAction implements ICommand{
                 Instituicao usuarioLogado =(Instituicao)sessaoUsuario.getAttribute("instAutenticado");
                 String senha = usuarioLogado.getSenha();
                 int IdEV = (Integer.parseInt(request.getParameter("txtIDEV")));
-                even.setIdEvento(IdEV);
+                ev.setIdEvento(IdEV);
                 usuarioLogado.setSenha(senha);
-                eve = idao.ConsultarEVinst(even,usuarioLogado);
+                eve = daoev.ConsultarEVinst(ev,usuarioLogado);
                 
                 if (eve.isEmpty())
                 {
@@ -65,11 +65,11 @@ public class AtualizarEventoAction implements ICommand{
                     {
                       for(int j = 0; j < eve.size(); j++){
 
-                            even.setIdEvento(eve.get(j).getIdEvento()); 
-                            even.setDataInicio(eve.get(j).getDataInicio());
-                            end = idao.EventoEndereco(even); 
+                            ev.setIdEvento(eve.get(j).getIdEvento()); 
+                            ev.setDataInicio(eve.get(j).getDataInicio());
+                            end = daoev.EventoEndereco(ev); 
 
-                            inst = idao.InstituicaoEvento(even); 
+                            inst = daoev.InstituicaoEvento(ev); 
                             
                         } 
                       
@@ -80,7 +80,7 @@ public class AtualizarEventoAction implements ICommand{
                         
                         /* Regra de negócio proibir edição de eventos que já iniciaram*/
                         
-                        if (datahoje.after(even.getDataInicio()) ){
+                        if (datahoje.after(ev.getDataInicio()) ){
                             return "/AlterareExcluirNegado.jsp"; 
                         }else{
                             
@@ -103,9 +103,9 @@ public class AtualizarEventoAction implements ICommand{
                 Usuario user =(Usuario)sessaoUsuario.getAttribute("usuarioAutenticado");
                 String sen = user.getSenha();
                 int IdEV = (Integer.parseInt(request.getParameter("txtIDEV")));
-                even.setIdEvento(IdEV);
+                ev.setIdEvento(IdEV);
                 user.setSenha(sen);
-                eve = idao.ConsultarEVPessoa(even,user);  
+                eve = daoev.ConsultarEVPessoa(ev,user);  
                 
                           
 
@@ -119,12 +119,12 @@ public class AtualizarEventoAction implements ICommand{
                     {
                       for(int j = 0; j < eve.size(); j++){
 
-                            even.setIdEvento(eve.get(j).getIdEvento()); 
-                            even.setDataInicio(eve.get(j).getDataInicio());
-                            end = idao.EventoEndereco(even); 
+                            ev.setIdEvento(eve.get(j).getIdEvento()); 
+                            ev.setDataInicio(eve.get(j).getDataInicio());
+                            end = daoev.EventoEndereco(ev); 
 
                             
-                            pe = idao.PessoaEvento(even);
+                            pe = daoev.PessoaEvento(ev);
                         }   
                       
                        Date datahoje = new Date(System.currentTimeMillis());
@@ -134,7 +134,7 @@ public class AtualizarEventoAction implements ICommand{
                         
                         /* Regra de negócio proibir edição de eventos que já iniciaram*/
                         
-                        if (datahoje.after(even.getDataInicio()) ){
+                        if (datahoje.after(ev.getDataInicio()) ){
                             return "/AlterareExcluirNegado.jsp"; 
                         }else{
 
@@ -152,8 +152,8 @@ public class AtualizarEventoAction implements ICommand{
                }
         }else if ((url == null) && (u == null ))
         {
-                Evento ev = new Evento();
-                DAOEvento daoevento = new DAOEvento();
+                
+                
             
                         // endereco do evento
                 String[] idEnd = request.getParameterValues("idEnd");
@@ -175,7 +175,30 @@ public class AtualizarEventoAction implements ICommand{
                 String[] emailinst = request.getParameterValues("email");
 
 
+                
+                
+                
                     if (idinst != null){
+                        
+                   for (int i=0; i < cepend.length; i++){
+                            Endereco e = new Endereco(); 
+                                
+                                e.setIdEndereco(Integer.parseInt(idEnd[i]));
+                                e.setCep(cepend[i]);
+                                e.setNomelogradouro(nomeend[i]);
+                                e.setNumeroen(Integer.parseInt(numeroend[i]));
+                                e.setBairro(bairro[i]);
+                                e.setMunicipio(cidade[i]);
+                                e.setEstado(estado[i]);
+                                e.setPais(pais[i]);
+                                DAOEvento daoe = new DAOEvento();
+                                
+                                daoe.AtualizarEndEV(e);   //verificar se deu certo
+
+                             end.add(e);
+
+                         }     
+                        
                     for (int i=0; i < idinst.length; i++){  //Ta dando erro aqui <<<<<<<<<<<<
                             Instituicao in = new Instituicao();
 
@@ -218,15 +241,22 @@ public class AtualizarEventoAction implements ICommand{
 
                     if (valor.isEmpty()){
                         ev.setMetaVoluntario(Integer.parseInt(request.getParameter("volunquant")));
-                        daoevento.AtualizarEvVolunt(ev);
+                        daoev.AtualizarEvVolunt(ev);
                     }else{
                         ev.setMetaValor(Double.parseDouble(request.getParameter("valordoar")));
-                        daoevento.AtualizarEvDoa(ev);
+                        daoev.AtualizarEvDoa(ev);
                     }
                     
                      
                     
-                    for (int i=0; i < cepend.length; i++){
+                    
+                    return "/acessologado/Evento.jsp"; 
+                    
+                    }else {
+                        
+                        
+                        
+                        for (int i=0; i < cepend.length; i++){
                             Endereco e = new Endereco(); 
                                 
                                 e.setIdEndereco(Integer.parseInt(idEnd[i]));
@@ -244,9 +274,6 @@ public class AtualizarEventoAction implements ICommand{
                              end.add(e);
 
                          }
-                    return "/acessologado/Evento.jsp"; 
-                    
-                    }else {
                                 ev.setIdEvento(Integer.parseInt(request.getParameter("idEve")));
                     
                             Date datahoje = new Date(System.currentTimeMillis());
@@ -268,26 +295,9 @@ public class AtualizarEventoAction implements ICommand{
                     ev.setTipoEvento(request.getParameter("tipoEven"));
                     ev.setDescricao(request.getParameter("descricao"));
                     ev.setMetaValor(Double.parseDouble(request.getParameter("valordoar")));
-                    daoevento.AtualizarEvDoa(ev); 
+                    daoev.AtualizarEvDoa(ev); 
                     
-                    for (int i=0; i < cepend.length; i++){
-                            Endereco e = new Endereco(); 
-                                
-                                e.setIdEndereco(Integer.parseInt(idEnd[i]));
-                                e.setCep(cepend[i]);
-                                e.setNomelogradouro(nomeend[i]);
-                                e.setNumeroen(Integer.parseInt(numeroend[i]));
-                                e.setBairro(bairro[i]);
-                                e.setMunicipio(cidade[i]);
-                                e.setEstado(estado[i]);
-                                e.setPais(pais[i]);
-                                DAOEvento daoe = new DAOEvento();
-                                
-                                daoe.AtualizarEndEV(e);   //verificar se deu certo
-
-                             end.add(e);
-
-                         }
+                    
                                 return "/acessologado/EventoPessoa.jsp";
                                                                  
                                  }

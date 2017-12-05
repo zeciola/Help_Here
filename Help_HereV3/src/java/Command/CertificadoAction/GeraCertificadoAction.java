@@ -38,7 +38,7 @@ public class GeraCertificadoAction implements ICommand {
         
         HttpSession sessaoUsuario = ((HttpServletRequest) request).getSession();
         Usuario user = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");
-        String nomeev = request.getParameter("nome");
+        String nomeev = request.getParameter("nomeev");
         String ini = request.getParameter("inicio");
         String fim = request.getParameter("fim");
         String nome = df.format(cal.getTime())+user.getPe().getSobrenome()+user.getId()+".pdf";
@@ -86,7 +86,6 @@ public class GeraCertificadoAction implements ICommand {
             Paragraph p6 = new Paragraph("Lucas Gabriel de Souza Puglia");
             p6.setAlignment(Element.ALIGN_CENTER);
             doc.add(p6);
-            
             
         } finally {
             if (doc != null) {

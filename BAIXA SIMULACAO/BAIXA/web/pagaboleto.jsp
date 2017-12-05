@@ -14,13 +14,8 @@
     </head>
     <body>
         <%
-            Double valor = (Double) session.getAttribute("valorcontac");
-            
-            if(valor == 0 || valor == null){
-                valor = 1000.00;
-            }
-            
-            Baixa b = (Baixa) session.getAttribute("baixab");
+            double valor  =(double) session.getAttribute("v");
+            Baixa b = (Baixa) session.getAttribute("baixa");
         %>
         
         SALDO EM CONTA:<%=valor%>

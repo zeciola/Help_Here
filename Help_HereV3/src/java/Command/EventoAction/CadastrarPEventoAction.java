@@ -68,18 +68,18 @@ public class CadastrarPEventoAction implements ICommand {
         }
 
         for (int i = 0; i < idPessoa.length; i++) {
-            Pessoa pes = new Pessoa();
+            Pessoa p = new Pessoa();
 
-            pes.setId(Integer.parseInt(idPessoa[i]));
-            pes.setNome(nomepessoa[i]);
-            pes.setSobrenome(sobrenome[i]);
-            pes.setEmail(emailpessoa[i]);
-            pes.setCpf(CPF[i]);
-            pes.setContador(Integer.parseInt(contadorP[i])); 
-            pes.setContador(pes.getContador()+1); 
-            daop.AtualizarContadorP(pes);
+            p.setId(Integer.parseInt(idPessoa[i]));
+            p.setNome(nomepessoa[i]);
+            p.setSobrenome(sobrenome[i]);
+            p.setEmail(emailpessoa[i]);
+            p.setCpf(CPF[i]);
+            p.setContador(Integer.parseInt(contadorP[i])); 
+            p.setContador(p.getContador()+1); 
+            daop.AtualizarContadorP(p);
 
-            pe.add(pes);
+            pe.add(p);
         }
 
         Date datahoje = new Date(System.currentTimeMillis());

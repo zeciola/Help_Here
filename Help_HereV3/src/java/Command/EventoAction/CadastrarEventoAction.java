@@ -22,22 +22,24 @@ import javax.servlet.http.HttpSession;
 public class CadastrarEventoAction implements ICommand {
 
     private ArrayList<Instituicao> inst = new ArrayList();
-    private ArrayList<Pessoa> pe = new ArrayList();
+   
     private ArrayList<Endereco> end = new ArrayList();
 
-    private DAOEndereco daoe = new DAOEndereco();
-    private DAOEvento daoevento = new DAOEvento();
-    private DAOFeeds daof = new DAOFeeds();
-    private DAOEvento Ed = new DAOEvento();
-    private DAOInstituicao daoin = new DAOInstituicao();
     
-
-    private Evento ev = new Evento();
     private Endereco e = new Endereco();
+    private Evento ev = new Evento();
+    
     //private Evento evento = new Evento();
     private Instituicao in = new Instituicao();
     private Feeds f = new Feeds();
     int contador;
+    
+    
+    private DAOEvento daoev = new DAOEvento();
+    private DAOEndereco daoe = new DAOEndereco();
+    private DAOFeeds daof = new DAOFeeds();
+    private DAOInstituicao daoin = new DAOInstituicao();
+    
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -121,10 +123,10 @@ public class CadastrarEventoAction implements ICommand {
         
         if (valor.isEmpty()){
             ev.setMetaVoluntario(Integer.parseInt(request.getParameter("volunquant")));
-            daoevento.InserirVoluntario(ev);
+            daoev.InserirVoluntario(ev);
         }else{
             ev.setMetaValor(Double.parseDouble(request.getParameter("valordoar")));
-            daoevento.InserirDoacao(ev);
+            daoev.InserirDoacao(ev);
         }
         
          
@@ -132,7 +134,7 @@ public class CadastrarEventoAction implements ICommand {
         for (int j = 0; j < inst.size(); j++) {
             int idInst = inst.get(j).getIdInstituicao();
             in.setIdInstituicao(idInst);
-            Ed.InserirAuxInstituicaoEvento(in, ev); 
+            daoev.InserirAuxInstituicaoEvento(in, ev); 
         }
         
         

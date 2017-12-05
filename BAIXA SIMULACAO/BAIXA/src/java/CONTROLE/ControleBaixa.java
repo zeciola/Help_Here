@@ -35,27 +35,26 @@ public class ControleBaixa extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            Double Saldo = 1000.00;
             Baixa b = new Baixa();
             String acao = request.getParameter("acao");
-
-
-
-            if (acao == "Proximo") {
-                Baixa consultado = new Baixa();
-                double valor;
+            HttpSession sessao = request.getSession();
+            
+            if (acao.equals("Proximo")) {
+                DAOBaixa daob = new DAOBaixa();                
+               
                 b.setNumeroBoleto(request.getParameter("numeroboleto"));
-                
-                DAOBaixa daob = new DAOBaixa();
-                
-                valor = daob.BuscaValorAPagar(b);
+                b.setValor1(daob.BuscaValorAPagar(b));
                 
                 HttpSession sessaoUsuario = request.getSession();
                     sessaoUsuario.setAttribute("baixa", b);
+                    sessaoUsuario.setAttribute("v", Saldo);
                 response.sendRedirect("pagaboleto.jsp");
             } else {
+                
                 b.setValor1(Double.parseDouble(request.getParameter("valor1")));
-                b.setValor2(Double.parseDouble(request.getParameter("valor2")));
+                if(b.getValor1()>Saldo)
+                
                 b.setSenha(request.getParameter("senha"));
 
                 response.sendRedirect("pagamentoOK.jsp");

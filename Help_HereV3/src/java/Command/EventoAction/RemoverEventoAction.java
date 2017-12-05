@@ -27,13 +27,13 @@ public class RemoverEventoAction implements ICommand{
 
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        DAOEvento daoi = new DAOEvento();
+        
         
         DAOEvento idao = new DAOEvento();
         ArrayList<Evento> eve = new ArrayList();
         Evento ev = new Evento();
-        Instituicao ins = new Instituicao();
-        Endereco en = new Endereco();
+        
+        
         ArrayList<Endereco> end = new ArrayList();
         ArrayList<Instituicao> inst = new ArrayList();
         ArrayList<Pessoa> pe = new ArrayList();
@@ -78,7 +78,7 @@ public class RemoverEventoAction implements ICommand{
                         }else{
                         
                         
-                        daoi.DeletarEvPessoa(ev,usuario);
+                        idao.DeletarEvPessoa(ev,usuario);
                     // if para remover evento pessoa, falta colocar um if na jsp lista evento, metodo na dao criado
                         return "/acessologado/EventoPessoa.jsp";
                         }
@@ -110,7 +110,7 @@ public class RemoverEventoAction implements ICommand{
                         }else{
                         
                         //eve = idao.ConsultarEVinst(NomeEV,SEN);
-                        daoi.Deletar(ev,usuarioLogado); 
+                        idao.Deletar(ev,usuarioLogado); 
                         return "/acessologado/Evento.jsp";
                         }
                 }
